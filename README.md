@@ -344,9 +344,9 @@ I also bought a heap of Xiaomi Miji 1080p IP Cameras thinking they could be hack
 <p align="left">I used the below links for intergration into my own HA or I plan to at some point in the future.</p>
 <hr --- </hr>
 
-[HA UI Themes](https://community.home-assistant.io/t/share-your-themes/22018/100)
-[Custom UI Tiles](https://community.home-assistant.io/t/share-your-themes/22018/100)
-[Sonoff-HA](https://community.home-assistant.io/t/sonoff-homeassistant-alternative-firmware-for-sonoff-switches-for-use-with-mqtt-ha/2332/308)
-[Spotify Playlist Player](https://community.home-assistant.io/t/spotify-playlist-player/22491/67)
-[MQTT Alarm Panel](https://community.home-assistant.io/t/mqtt-alarm-control-panel-for-raspberry-pi-and-android/26484)
-[Better Looking Device Tracker](https://community.home-assistant.io/t/better-looking-device-tracker/27281)
+[HA UI Themes](https://community.home-assistant.io/t/share-your-themes/22018/100)<br>
+[Custom UI Tiles](https://community.home-assistant.io/t/share-your-themes/22018/100)<br>
+[Sonoff-HA](https://community.home-assistant.io/t/sonoff-homeassistant-alternative-firmware-for-sonoff-switches-for-use-with-mqtt-ha/2332/308)<br>
+[Spotify Playlist Player](https://community.home-assistant.io/t/spotify-playlist-player/22491/67)<br>
+[MQTT Alarm Panel](https://community.home-assistant.io/t/mqtt-alarm-control-panel-for-raspberry-pi-and-android/26484)<br>
+[Better Looking Device Tracker](https://community.home-assistant.io/t/better-looking-device-tracker/27281)<br>
