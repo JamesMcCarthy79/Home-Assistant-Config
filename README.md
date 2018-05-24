@@ -331,4 +331,22 @@ I also bought a heap of Xiaomi Miji 1080p IP Cameras thinking they could be hack
 
 [CCSOTAN](https://github.com/CCOSTAN/Home-AssistantConfig) - There is a reason this guys Repo is the most starred out there, his Repo layout was an inspiration for me to start this one and you will see a lot of similarities in my layout as a result. Whilst I don't yet use Docker or Floorplan this is the first place I will coming back to once I move in that direction. His use of TTS is awesome and very creative and I took alot of my TTS from this. His whole setup is very impressive and if you haven't already head over to his repo give it a star and get inspired.
 
-[stanvx](https://github.com/stanvx/Home-Assistant-Configuration) - Another I visit regularly is stanvx he uses alot of Xiaomi products and
+[stanvx](https://github.com/stanvx/Home-Assistant-Configuration) - Another I visit regularly is stanvx he uses alot of Xiaomi products and he has really good examples for those looking for automation ideas.
+
+[notoriousbdg](https://github.com/notoriousbdg/hassio-addons) - As mentioned above notoriousbdg has a great repo with add-ons for Node-Red, HA Bridge & Gogs.
+
+[BRUH Automation](https://www.youtube.com/channel/UCLecVrux63S6aYiErxdiy4w) - Great place for video tutorials on HA related guides.
+
+[DrZzs](https://www.youtube.com/channel/UC7G4tLa4Kt6A9e3hJ-HO8ng) - For anyone wanting to use Sonoff switches plenty of useful guides.
+
+<h3 align="left">My Favourite Projects</h3> 
+
+<p align="left">I used the below links for intergration into my own HA or I plan to at some point in the future.</p>
+<hr --- </hr>
+
+[HA UI Themes](https://community.home-assistant.io/t/share-your-themes/22018/100)
+[Custom UI Tiles](https://community.home-assistant.io/t/share-your-themes/22018/100)
+[Sonoff-HA](https://community.home-assistant.io/t/sonoff-homeassistant-alternative-firmware-for-sonoff-switches-for-use-with-mqtt-ha/2332/308)
+[Spotify Playlist Player](https://community.home-assistant.io/t/spotify-playlist-player/22491/67)
+[MQTT Alarm Panel](https://community.home-assistant.io/t/mqtt-alarm-control-panel-for-raspberry-pi-and-android/26484)
+[Better Looking Device Tracker](https://community.home-assistant.io/t/better-looking-device-tracker/27281)
