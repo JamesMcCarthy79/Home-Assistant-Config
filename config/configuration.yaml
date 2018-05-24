@@ -1,0 +1,168 @@
+###################################################
+#                                                 #
+#     Home Assistant Main Configuration File      #
+#                                                 #
+###################################################
+
+homeassistant:
+  name: !secret name
+  temperature_unit: C
+  time_zone: !secret timezone
+  latitude: !secret latitude
+  longitude: !secret longitude
+  unit_system: metric
+  elevation: 6
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+#  customize_glob:
+#    light.*:
+#      custom_ui_state_card: state-card-custom-ui
+#    cover.*:
+#      custom_ui_state_card: state-card-custom-ui
+
+###################################################
+#                                                 #
+#                     Panel                       #
+#                                                 #
+################################################### 
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: !secret config_panel_url
+  controlpanel:
+    title: Control Panel
+    icon: mdi:tablet-ipad
+    url: !secret cantrol_panel_url
+  nodered:
+    title: Node-Red
+    icon: mdi:shuffle-variant
+    url: !secret node_panel_url
+    
+###################################################
+#                                                 #
+#                     IFTTT                       #
+#                                                 #
+###################################################
+
+#ifttt:
+#  key: !secret ifttt_key
+  
+####################################################
+#                                                  #
+#                     Enables                      #
+#                                                  #
+####################################################
+
+config:
+
+http:
+  api_password: !secret http_password
+  trusted_networks:
+    - your IP's here
+  cors_allowed_origins:
+    - your IP's here
+
+updater:
+discovery:
+conversation:
+history:
+logbook:
+map:
+
+####################################################
+#                                                  #
+#                 Customizations                   #
+#                                                  #
+####################################################
+
+#customizer:
+#  custom_ui: local
+  
+frontend:
+  themes: !include themes.yaml
+#  extra_html_url:
+#    - /local/custom_ui/state-card-custom-ui.html
+#  extra_html_url_es5:
+#    - /local/custom_ui/state-card-custom-ui-es5.html
+
+####################################################
+#                                                  #
+#                      Logger                      #
+#                                                  #
+####################################################
+
+logger:
+  default: warn
+  logs:
+    custom_components.fan.xiaomi_miio_fan: debug
+    miio: debug
+    
+####################################################
+#                                                  #
+#                  Track the Sun                   #
+#                                                  #
+####################################################
+
+sun:
+
+####################################################
+#                                                  #
+#                       TTS                        #
+#                                                  #
+####################################################
+
+tts:
+  - platform: google
+
+####################################################
+#                                                  #
+#                      Cloud                       #
+#                                                  #
+####################################################
+
+cloud:
+
+####################################################
+#                                                  #
+#                      MQTT                        #
+#                                                  #
+####################################################
+
+mqtt: 
+  broker: core-mosquitto
+  username: !secret mozzieuser
+  password: !secret mozziepass
+
+####################################################
+#                                                  #
+#                      Alarm                       #
+#                                                  #
+####################################################
+
+alarm_control_panel:
+  - platform: manual_mqtt
+    state_topic: home/alarm
+    command_topic: home/alarm/set
+    
+automation: !include automations.yaml
+binary_sensor: !include binary_sensor.yaml
+camera: !include cameras.yaml
+device_tracker: !include device_tracker.yaml
+fan: !include fans.yaml
+group: !include groups.yaml
+input_select: !include input_select.yaml
+light: !include lights.yaml
+media_player: !include media_players.yaml
+notify: !include notify.yaml
+python_script: !include_dir_named python_scripts
+scene: !include scenes.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+switch: !include switches.yaml
+vacuum: !include vacuums.yaml
+xiaomi_aqara: !include xiaomi.yaml
+zone: !include zones.yaml
+
+

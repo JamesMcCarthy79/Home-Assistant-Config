@@ -1,0 +1,114 @@
+####################################################
+#                                                  #
+#                    Lounge                        #
+#                                                  #
+####################################################
+
+lounge_aircon:
+  name: Lounge Climate
+  options:
+    - Climate Off
+    - Cool
+    - Heat
+  initial: Climate Off
+  icon: mdi:snowflake
+  
+lounge_fan:
+  name: Lounge Fan 
+  options:
+    - Fan Off
+    - Low 
+    - Medium
+    - High
+  initial: Fan Off
+  icon: mdi:fan
+  
+####################################################
+#                                                  #
+#                 Master Bedroom                   #
+#                                                  #
+####################################################
+
+master_bedroom_aircon:
+  name: Master Bedroom Climate
+  options:
+    - Climate Off
+    - Cool
+    - Heat
+  initial: Climate Off
+  icon: mdi:snowflake
+  
+bedroom_fan:
+  name: Bedroom Fan 
+  options:
+    - Fan Off
+    - Low 
+    - Medium
+    - High
+  initial:  Fan Off
+  icon: mdi:fan
+  
+####################################################
+#                                                  #
+#                  Playroom Fan                    #
+#                                                  #
+####################################################
+
+playroom_fan_speed:
+  name: Fan Speed
+  options:
+    - Level 1
+    - Level 2
+    - Level 3
+    - Level 4
+    - Level 0
+    - Level 10
+    - Level 100
+    - Level 110
+  initial:  Level 1
+  icon: mdi:fan
+  
+playroom_fan_oscillate:
+  name: Oscillation
+  options:
+    - On
+    - Off
+  initial: On
+  icon: mdi:fan
+  
+playroom_fan_direction:
+  name: Direction
+  options:
+    - None
+    - Left
+    - Right
+  initial: None
+  icon: mdi:fan
+  
+playroom_fan_oscillation_angle:
+  name: Oscillation Angle
+  options:
+    - 30°
+    - 60°
+    - 90°
+    - 120°
+  initial: 120°
+  icon: mdi:fan
+  
+playroom_fan_natural_mode:
+  name: Natural Mode
+  options:
+    - On
+    - Off
+  initial: On
+  icon: mdi:fan
+  
+playroom_fan_led_brightness:
+  name: LED Brightness
+  options:
+    - 0
+    - 1
+    - 2
+  initial: 2
+  icon: mdi:fan
+

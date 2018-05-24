@@ -1,0 +1,66 @@
+  - platform: ping
+    hosts:
+      core_router: 10.0.0.1
+      nas_movies: 10.0.0.2
+      nas_tv: 10.0.0.3
+      core_switch: 10.0.0.4
+      upstairs_switch: 10.0.0.5
+      wifi_bridge: 10.0.0.7
+      cambium_ap: 10.0.0.10
+      5g_ac_main: 10.0.0.11
+      5g_ac_media_tv: 10.0.0.12
+      5g_ac_upstairs: 10.0.0.13
+      printer: 10.0.0.50
+      media_kodi_4k: 10.0.1.1
+      bedroom_kodi: 10.0.1.2
+      backup_kodi: 10.0.1.3
+      patio_kodi: 10.0.1.4
+      hdhomerun: 10.0.1.10
+      appletv: 10.0.1.11
+      media_tv: 10.0.2.1
+      bedroom_tv: 10.0.2.2
+      pc_smart_screen: 10.0.2.3
+      media_tv_old: 10.0.2.4
+      james_laptop: 10.0.3.2
+      work_laptop: 10.0.3.3
+      tina_iphone_old: 10.0.5.5
+      james_work_phone: 10.0.5.6
+      upstairs_dashboard: 10.0.6.2
+      kitchen_dashboard: 10.0.6.3
+      baby_monitor_camera: 10.0.10.1
+      downstairs_camera: 10.0.10.2
+      smart_things_hub: 10.0.20.1
+      rPi: 10.0.20.3
+      garden_pi: 10.0.20.5
+      xiaomi_gateway: 10.0.20.6
+      alarm_panel: 10.0.20.7
+      ir_blaster_downstairs: 10.0.30.1
+      ir_blaster_upstairs: 10.0.30.2
+      temp_sensor_downstairs: 10.0.40.1
+      temp_sensor_master_bedroom: 10.0.40.2
+      temp_sensor_playroom: 10.0.40.3
+      temp_sensor_patio: 10.0.40.4
+      temp_sensor_bathroom: 10.0.40.5
+      temp_sensor_jackson: 10.0.40.6
+      temp_sensor_hudson: 10.0.40.7
+      hall_light_bulb: 10.0.50.1
+      lounge_light_bulb: 10.0.50.2
+      entry_light_bulb: 10.0.50.3
+      dining_light_bulb: 10.0.50.4
+      lounge_fan_switch: 10.0.60.1
+      kitchen_dining_light_switch: 10.0.60.2
+      patio_light_switch: 10.0.60.3
+      lounge_light_switch: 10.0.60.4
+      master_bedroom_fan_switch: 10.0.60.5
+      patio_led_switch: 10.0.70.1
+      playroom_fan: 10.0.100.1
+      robovac: 10.0.100.2
+      
+  - platform: owntracks
+    max_gps_accuracy: 200
+    
+  - platform: nmap_tracker
+    hosts:
+      - 10.0.3.1
+      - 10.0.20.2
+      - 10.0.20.4

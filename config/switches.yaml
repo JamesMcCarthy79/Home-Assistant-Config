@@ -1,0 +1,382 @@
+####################################################
+#                                                  #
+#                    Broadlink                     #
+#                                                  #
+####################################################
+
+- platform: broadlink
+  host: !secret rm3_lounge_ip
+  mac: !secret rm3_lounge_mac
+  timeout: 15
+  switches:
+    aircon_power:
+      friendly_name: "Aircon Power"
+      command_on: 'JgBOAAABJZIVEhYQFTcVNhUSFRIVNhUSFBMVERU2FTYVEhUSFRIVEhURFRIVEhUSFRIVNhUSFBMUExQSFRIVEhU2FRIVNhUSFRIVNhUSFQANBQAAAAAAAAAAAAA='
+      command_off: 'JgBOAAABJpEVEhYRFjUVEhYRFhAWNhUSFBMUExM4FDcUExYQFRIWERUSFhEVERUSFhEWNRUSFhEVERcQFhEVEhU2FRIWNRQTFREWNhQTFgANBQAAAAAAAAAAAAA='
+    aircon_temp_cool:
+      friendly_name: "Aircon Temp Cool"
+      command_on: 'JgBOAAABJpEVNhUSFRIVNxUSFREWNRUSFRIVNhUSFTYVEhUSFREWERUSFRIVEhUSFREWNRUSFRIVEhUSFREWERU3FRIUNxUSFRIVNhUSFQANBQAAAAAAAAAAAAA='
+      command_off: 'JgBOAAABJ5AXNRcRFREWNRYRFhEWERYRFhEVERYRFjUWERYRFhEVERYRFhEWERYRFREWNRYRFhEWERYRFhEVERY1FhEWNRYRFhEWNRcRFQANBQAAAAAAAAAAAAA='
+    aircon_mode_cool:
+      friendly_name: "Aircon Mode Cool"
+      command_on: 'JgBOAAABJZIVNhUSFREWNhUSFRIVNhUSFTYVEhUSFTYUEhYRFRIVEhUSFRIVERUSFRIVNhUSFRIVERYRFRIVEhU3FBMUNxUSFREWNRUSFQANBQAAAAAAAAAAAAA='
+    aircon_mode_heat:
+      friendly_name: "Aircon Mode Heat"
+      command_on: 'JgBOAAABJ5AYEBYQFjYWNRY1FjUWNhYRFhEVEhU1FzQXERYRFREWERYRFhEWERYQFhEWNRYRFhEWERYRFhAWERY1FhEWNRYRFhEWNRcRFQANBQAAAAAAAAAAAAA='
+    aircon_temp_hot:
+      friendly_name: "Aircon Temp Heat"
+      command_on: 'JgBOAAABJpEVEhUSFTcUNxU2FTYVNhUTFDcUEhY1FjUVEhYRFRIVEhUSFREWERUSFRIVNhUSFRIVERYRFRIVEhU2FRIVNxQSFhEVNhUSFQANBQAAAAAAAAAAAAA='
+      command_off: 'JgBQAKkACmF9kBUSFRIUNxc0FjYVNRY2FxAWERYRFjUWNRYRFhEWERURFhEWERYRFhEVEhU1FhEWERYRFhEWERUSFTUWERY1FhEWERY2FhEVAA0FAAAAAAAAAAA='
+      
+    media_tv_power:
+      friendly_name: "Media TV Power"
+      command_on: 'JgBGAJGVEjgSNxI4EhMSExITERQSExI4EjcSOBMSEhMRFBITERQRFBI3ExISExMSEhMTEhITEzcRFBI4EjcSOBI4EjgSNxIADQUAAA=='
+      command_off: 'JgBGAJGVEjgSNxI4EhMSExITERQSExI4EjcSOBMSEhMRFBITERQRFBI3ExISExMSEhMTEhITEzcRFBI4EjcSOBI4EjgSNxIADQUAAA=='
+#    media_tv_vol_up:
+#      friendly_name: "Media TV Vol Up"
+#      command_on: 'JgCMAJOUFTUTNxI3ExITEhMSExISExI4EjgSNxMSExITEhITEhMSOBI3EzcTEhMSEhMSExITEhMSExITEjcTNxM3EjgSOBIABgOVlBM2EzcSOBITEhMSExISExITNxM3EjgSExISExITEhMSEzcSOBI3ExITEhMSExITEhMSEhMSExI4EjcUNhQ2EzcUAA0FAAAAAAAAAAAAAAAA'
+#    media_tv_vol_down:
+#      friendly_name: "Media TV Vol Down"
+#      command_on: 'JgCMAJSUEzcTNxI4EhMSEhMSExITEhM3EjgSNxMSExITEhMSExISOBI4EhITNxMSExITEhITEhMSExI4EhITNxM3EjgSNxMABgOUlRI3EzcSOBITEhMSEhMSExITNxI4EjgSEhMSExITEhMSEzcSOBISEzcTEhMSExISExITEhMSNxMSEzcTNxI4EjcTAA0FAAAAAAAA0AAAAAAAA'
+#    media_tv_ch_up:
+#      friendly_name: "Media TV CH Up"
+#      command_on: 'JgCMAJWUEjgSNxM3EhMSExITEhMUERI3EzcSOBITEhMSEhMSExITEhM3EhMSExI4EhITEhMSEzcSExI4EjcTEhM3EzcSOBIABgOVlBM3EzYTNxMSEhMSExITEhITNxU1FDYUERMSEhITEhMSFBEUNhQRFBEUNRUQFRAVEBU1ExIUNhE4EhMUNhI4ETgSAA0FAAAAAAAAAAAAAAAA'
+#    media_tv_ch_down:
+#      friendly_name: "Media TV CH Down"
+#      command_on: 'JgCMAJWUEzcSOBI3ExITEhMSEhMSExI4EjcTNxITEhMSExITEhMSExISExITEhM3EhMSExITEjgSNxM3EjgSExI3EzcTNxIABgOVlBI4EjgSNxMSFBESExITEhMSNxM3EjgSExITEhITEhMSExITEhITEhMSOBISExITEhM3EjgSOBI3FBESOBM3EzYVAA0FAAAAAAAAAAAAAAAA'  
+#    media_tv_up:
+#      friendly_name: "Media TV Up"
+#      command_on: 'JgCMAJWUEzcSOBI3ExITEhMSEhMSExI4EjcTNxITEhMSExITEhMSExISExITEhM3EhMSExITEjgSNxM3EjgSExI3EzcTNxIABgOVlBI4EjgSNxMSFBESExITEhMSNxM3EjgSExITEhITEhMSExITEhITEhMSOBISExITEhM3EjgSOBI3FBESOBM3EzYVAA0FAAAAAAAAAAAAAAAA'
+    media_tv_down:
+      friendly_name: "Media TV Down"
+      command_on: 'JgCMAJeSEzcTNxM2FBEVEBQRFBEUERQ2FDUVNRQRFBEUERQRFBEUNRUQFRAVEBQRFDYUNRUQFRAUNhQ2FDUVNRUQFBEUNhQABgKVlBM3EzYVNRQRFRAUERQRFBEUNRQ2FTUUERQRFBEUERQRFDUVEBUQFRAUERQ2FDYUEBUQFTUUNhQ2EzYVEBUQFTUUAA0FAAAAAAAAAAAAAAAA'
+#    media_tv_left:
+#      friendly_name: "Media TV Left"
+#      command_on: 'JgCMAJSVFDYUNRU1FRAUERQRFBEUERQ1FDYUNhQRFBEUERMSExEUNhQRFBEUERQRFDYUNRQRFBEUNhU1EzYVNRQRFBEUNhQABgGUlRQ2FDYTNhQRFBEUERQRFBEUNhQ1FDYVEBQRFBEUERMSEzYUERQRFBEUERQ2FDYTERQRFDYUNhQ2EzYUERQRFDYUAA0FAAAAAAAAAAAAAAAA'
+    media_tv_right:
+      friendly_name: "Media TV Right"
+      command_on: 'JgCMAJSVEzYTNxI4EhMSExISExITEhM3EzcSOBISExITEhMSExITEhM3EhMSExITEjcTNxMSEjgSExI3EzcTNxITEhMSNxMABgSVlBQ2EzYUNhQREhMSExITEhMSNxQ2EjgSExITEhITEhMSExITNxITEhMSExI4EjcTEhM3EhMSOBI3EzcTEhITEjgSAA0FAAAAAAAAAAAAAAAA'
+    media_tv_select:
+      friendly_name: "Media TV Select"
+      command_on: 'JgCMAJWUEzcTNxI4EhMSExISExITEhM3EzcSOBISExITEhMSExITEhMSEhMSOBITEjcTNxITEjgSNxM3EhMTNxITEhMSOBIABgSXkhI4EjgSNxMSExITEhMSEhMSOBI3EzcTEhITEhMSExITEhMSExISEzcTEhM3EjgSExI3EzcTNxITEjcTEhMSFTUTAA0FAAAAAAAAAAAAAAAA'
+    media_tv_source:
+      friendly_name: "Media TV Source"
+      command_on: 'JgCMAJWUEzYTNxM3EhMSExITEhITEhM3EzcSOBITEhITEhMSExITNxITEhMSExISExITEhMSExITNxI4EjcTNxM3EjgSNxMABgOVlBQ2EjcTNxMSExISExITEhMSNxM3EzcSExITEhMSExISEzcTEhMSEhMSExITEhMSExISEzcTNxI4EjcTNxM3EjgSAA0FAAAAAAAAAAAAAAAA'
+    media_tv_blue:
+      friendly_name: "Media TV Blue"
+      command_on: 'JgCMAJeSFDYUNhQ2ExEUERQRFBEUERQ2FDYTNhQRFBEUERQRFBEUERQ2EzYUERQ2FBEUERMSEzcTERQRFDYUERQ2FDUUNhQABgOWkxQ1FDYUNhQRFBEUERMSExEUNhQ2FDYUERMSExEUERQRFBEUNhQ2FBETNhQRFBEUERQ2FBEUERQ2ExEUNhQ2FDYUAA0FAAAAAAAAAAAAAAAA'
+    media_tv_7:
+      friendly_name: "Media TV 7"
+      command_on: 'JgBGAJeSEjgRORE4EhMSExITExISExE5ETgSOBITEhMTEhMSExITEhMSEzYSOBITExIUERQRFDYTNhQRFRAVNRM3EzcTNhQADQUAAA=='
+    media_tv_0:
+      friendly_name: "Media TV 0"
+      command_on: 'JgCMAJWUEjgSNxM3EhMSExITEhMSExI3EzcTNxITEhMSExITEhITNxMSExITEhI4EhMSExISExITNxM3EjgSExI3EzcTNxIABgSVlBM3EjgSNxMSExITEhMSExISOBI4EjcTEhMSExISExITEjgSEhMSExITNxMSEhMSExITEjcTNxM3EhMSOBI3EzcTAA0FAAAAAAAAAAAAAAAA'
+    media_tv_3:
+      friendly_name: "Media TV 3"
+      command_on: 'JgBGAJWUEzcTNxI4EhITEhMSExITEhM3EjgSNxMSExITEhMSExISExI4EjYUEhMSExITEhMSEzcSExITEjcTNxM3EjgSNxMADQUAAA=='
+    media_tv_5:
+      friendly_name: "Media TV 5"
+      command_on: 'JgCMAJeSEzcSOBI3ExITEhITEhMSExI3EzcTNxITEhMSEhMSExITNxITEhMSNxMSExITEhITEhMSNxM3EhMSOBI3EzcSOBIABgOVlBI4EjcTNxITEhMSExITEhITNxM3EjgSEhMSExITEhITEjgSEhMSEzcSExITEhMSExISEzcTNxITEjcTNxM3EjgSAA0FAAAAAAAAAAAAAAAA'
+    media_tv_pause:
+      friendly_name: "Media TV Pause"
+      command_on: 'JgDqAJOUEzcSOBI3ExISExITEhMSEhM3EzcSNxUQExISExITEhMRExM3EhMSOBISExITNxITEjcTEhM3EhMSNxM3ExISOBISExITEhMSEgAFc5SUEjgSNxM3EhMSExISEhMSExI4EjcTNxITEhMSExISExITEhI4EhMSNxMSEhMSOBISEzcSExI4EhITNxI4EhMSNxMSEhMSExITEgAFc5OUEzcSOBI3ExITEhITEhMSEhM3EzcSNxMSEhMSExITEhMRExM3EhMSOBISExITNxITEjcTEhM3EhMROBM3EhMSNxMSExISExITEgANBQAAAAAAAAAAAAAAAAAA'
+      
+- platform: broadlink
+  host: !secret rm3_bed_ip
+  mac: !secret rm3_bed_mac
+  timeout: 15
+  switches:
+    bedroom_aircon_power:
+      friendly_name: "Bedroom Aircon Power"
+      command_on: 'JgAUAXNyHRwcHR0dHFYcVx1VHVYdVR0dHRwdHBxXHVUdVh1VHlUcHRxXHB0cHRweHRwdHB0cHR0dVR0cHhwdHBwdHB4dHHJzHRwdHRwdHFYcVxxWHlUcVh0dHRwdHB1WHVUeVR1WHVUdHB1WHRwcHR4cHB0dHB0dHRwdVR0dHB0dHBwdHR0dHHJzHQABynJzHB4cHR1VHR0cVhxXHVUcVxwdHRwcVx0cHVYdVRxXHVUdHR1VHFccHR1VHlUdHB0dHRwdVR5VHRwdVh1VHR0dHHNyHRwcHhxWHB0eVR1VHVYdVh0cHRwcVx0cHFYeVR1WHFYdHB5VHVUdHR1VHlUeGx0cHR0dVR1WHRwdVhxWHRwdHXNyHQANBQAAAAA='
+      command_off: 'JgAUAXNyHB0eHB0cHFYeVRxWHlUdVh0cHRwdHB1WHVUeVR1WHVUdHB5VHRwcHh0cHRwdHB0dHRwdVR4cHRwdHBweHRwdHHNyHR0dHB0cHFcdVR1WHVUdVh0cHRwdHR1VHFccVh1WHVUcHhxWHRweHB0cHRwdHRwdHRwdVh0cHRweGx4cHB0cHXJzHgABynJzHRwdHBxXHRwdVh1VHVYdVR0dHRwdVRweHVUdVh1VHVYdHB1WHFYdHRxWHVYcHRwdHRwdVh1WHRwdVR5VHRwdHHNzHRwdHB1WHRwcVh5VHVYcVh0cHhwdVR0cHlUdVh1VHVYcHR1VHlUcHR1WHFYdHR0cHRwdVh1VHR0dVR1WHRwdHHNyHgANBQAAAAA='
+    bedroom_aircon_mode:
+      friendly_name: "Bedroom Aircon Mode"
+      command_on: 'JgDMAHVwHR0cHRwdHB4cHR0cHB0dVhwdHB4eGxwdHB0cHh0cHFYdHR0cHB0cHhxWHVYcHRwdHhsdHR0cHRweVRxWHB4cHXNyHRwcHh0cHRwdHB0dHRwdVR4cHRwcHR4cHB0dHB0cHlUdHB4cHB0dHB1WHVUdHRwdHRwcHR0dHRwdVR5VHRwdHXNyHRwdHB0cHR0dHB0cHR0dVR0cHR0cHRwdHB0eHB0cHVYdHB0cHRweHBxWHFcdHBwdHR0cHRwdHRweVR1WHRwdHHJzHAANBQAAAAAAAAAAAAAAAA=='
+      
+    bedroom_tv_power:
+      friendly_name: "Bedroom TV Power"
+      command_on: 'JgCMAJWWEjgSOBI4EhQRFBITEhMSExI4EzgSOBITEhMSExIUERQSExM3EhMSExIUERQSExITEjgSExI5EjgSOBI5ETkSOBIABhGVlhE5EjgSOBITEhQRFBITEhMSOBI5EjgSExITEhMSExIUERQSOBITEhMSExITEhQRFBI4EhMSOBI5EjgSOBI4EjkTAA0FAAAAAAAAAAAAAAAA'
+      command_off: 'JgCMAJWWEjgSOBI4EhQRFBITEhMSExI4EzgSOBITEhMSExIUERQSExM3EhMSExIUERQSExITEjgSExI5EjgSOBI5ETkSOBIABhGVlhE5EjgSOBITEhQRFBITEhMSOBI5EjgSExITEhMSExIUERQSOBITEhMSExITEhQRFBI4EhMSOBI5EjgSOBI4EjkTAA0FAAAAAAAAAAAAAAAA'
+    bedroom_tv_volume:
+      friendly_name: "Bedroom TV Volume"
+      command_on: 'JgCMAJWWETkSOBI4ExMRFBITEhMSExI4EjkRORITEhMSExITEhQRORI4EjgSExIUEhMSExITEhMTEhITEzgSOBI4EjgSORIABhCVlhI4EjgSORMSEhMSExITEhMSORI4EzcSExIUERQSExITEjgSOBM4EhMSExITEhMSExIUERQSExI4EjgTOBI4EzcTAA0FAAAAAAAAAAAAAAAA'
+      command_off: 'JgCMAJWWEzcSOBI5EhMSExITEhMSExI4EjkSOBITEhMSExIUERQSOBI4EhMSORITEhMSExITEhMSExI5EhMSOBI4EjkSOBIABhGVlhE5EjgSOBIUERQSExITEhMSOBI5EjgSExITEhMTExEUEjgTNxMSEjkRFBITEhMSExITEhMTOBITEjgSOBI5EjgSAA0FAAAAAAAAAAAAAAAA'
+    bedroom_tv_source:
+      friendly_name: "Bedroom TV Source"
+      command_on: 'JgCMAJWWEzcSOBI5EhMSExITEhMSExI4EjkSOBITEhMSExIUERQSOBI4EhMSORITEhMSExITEhMSExI5EhMSOBI4EjkSOBIABhGVlhE5EjgSOBIUERQSExITEhMSOBI5EjgSExITEhMTExEUEjgTNxMSEjkRFBITEhMSExITEhMTOBITEjgSOBI5EjgSAA0FAAAAAAAAAAAAAAAA'
+    fairy_light_power:
+      friendly_name: "Fairy Light Power"
+      command_on: 'JgBYAAABJpQTEhMSExITEhMSExITEhMSEzYTNhM3EzYTNhM2EzcTNhM2ExITNxMSExITEhM2ExITEhM2FRATNxM2EzYTEhM3EwAFGwABJkkTAAxQAAEnSRMADQU='
+      command_off: 'JgBYAAABKJIVEBUQFRAVEBUQFRAVEBUQFTQVNBY0FTQVNBU1FTQVNRU0FTQVNRUQFRAVEBU0FRAVEBUQFRAVNRQ1FTQWDxY0FQAFFwABKUcWAAxJAAEpRxUADQU='
+    fairy_light_mode_4:
+      friendly_name: "Fairy Light Mode 4"
+      command_on: 'JJgBQAAABKJITEhITEhMSFBITEhMTEhMSEzYTNhM2FDYSNxI3FDYTNhI4EhMSExM2EhQRFBITERQRExM3EjcSFBE4EjcTNhI4EwAFGwABJkoSAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABJ5MTEhMSExITEhMSExITEhQRFDYTNhM2FDYTNhM3EzYTNhMSFDYTNhQ2EzYUEhM2ExIUNhMSExITEhMSEzYTEhM3EwAFGAABJkkUAA0FAAAAAAAAAAA='
+    fairy_light_mode_8:
+      friendly_name: "Fairy Light Mode 8"
+      command_on: 'JgBQAAABJ5MTEhMSExITEhMSExITEhQRFDYTNhM2FDYTNhM3EzYTNhMSFDYTNhQ2EzYUEhM2ExIUNhMSExITEhMSEzYTEhM3EwAFGAABJkkUAA0FAAAAAAAAAAA='
+      
+####################################################
+#                                                  #
+#                   Command Line                   #
+#                                                  #
+####################################################
+
+- platform: command_line
+  switches:
+    spotify_kitchen:
+      friendly_name: "Spotify Kitchen"
+      command_on: python3 /config/python_scripts/spotifykitchen.py
+      command_off: python3 /config/python_scripts/spotifykitchenoff.py
+      
+- platform: command_line
+  switches:
+    tasker_say:
+      friendly_name: "Spotify James"
+      command_on: python3 /config/python_scripts/on.py
+      command_off: python3 /config/python_scripts/off.py
+      
+####################################################
+#                                                  #
+#                      Sonoff                      #
+#                                                  #
+####################################################
+
+## Bathroom Fan Switch##
+- platform: mqtt
+  name: "Bathroom Fan Switch"
+  command_topic: "cmnd/sonoff-bathroom/POWER2"
+  state_topic: "stat/sonoff-bathroom/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Bathroom Heat Switch ##
+- platform: mqtt
+  name: "Bathroom Heat Switch"
+  command_topic: "cmnd/sonoff-bathroom/POWER3"
+  state_topic: "stat/sonoff-bathroom/POWER3"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Bathroom Light Switch ##
+- platform: mqtt
+  name: "Bathroom Light Switch"
+  command_topic: "cmnd/sonoff-bathroom/POWER1"
+  state_topic: "stat/sonoff-bathroom/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Dining Light Switch ##
+- platform: mqtt
+  name: "Dining Light Switch"
+  command_topic: "cmnd/kitchen_dining_switch/POWER2"
+  state_topic: "stat/kitchen_dining_switch/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Hall Light Switch ##
+- platform: mqtt
+  name: "Hall Light Switch"
+  command_topic: "cmnd/sonoff-hall/POWER"
+  state_topic: "stat/sonoff-hall/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true  
+## Hudson Light Switch ##
+- platform: mqtt
+  name: "Hudson Light Switch"
+  command_topic: "cmnd/sonoff-hudson-bedroom/POWER1"
+  state_topic: "stat/sonoff-hudson-bedroom/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Hudson Fan Switch High ##
+- platform: mqtt
+  name: "Hudson Fan Switch High"
+  command_topic: "cmnd/sonoff-hudson-bedroom/POWER2"
+  state_topic: "stat/sonoff-hudson-bedroom/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Hudson Fan Switch Med ##
+- platform: mqtt
+  name: "Hudson Fan Switch Med"
+  command_topic: "cmnd/sonoff-hudson-bedroom/POWER3"
+  state_topic: "stat/sonoff-hudson-bedroom/POWER3"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Hudson Fan Switch Low ##
+- platform: mqtt
+  name: "Hudson Fan Switch Low"
+  command_topic: "cmnd/sonoff-hudson-bedroom/POWER4"
+  state_topic: "stat/sonoff-hudson-bedroom/POWER4"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Jackson Light Switch ##
+- platform: mqtt
+  name: "Jackson Light Switch"
+  command_topic: "cmnd/sonoff-jackson-bedroom/POWER1"
+  state_topic: "stat/sonoff-jackson-bedroom/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Jackson Fan Switch High ##
+- platform: mqtt
+  name: "Jackson Fan Switch High"
+  command_topic: "cmnd/sonoff-jackson-bedroom/POWER2"
+  state_topic: "stat/sonoff-jackson-bedroom/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Jackson Fan Switch Med ##
+- platform: mqtt
+  name: "Jackson Fan Switch Med"
+  command_topic: "cmnd/sonoff-jackson-bedroom/POWER3"
+  state_topic: "stat/sonoff-jackson-bedroom/POWER3"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Jackson Fan Switch Low ##
+- platform: mqtt
+  name: "Jackson Fan Switch Low"
+  command_topic: "cmnd/sonoff-jackson-bedroom/POWER4"
+  state_topic: "stat/sonoff-jackson-bedroom/POWER4"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Kitchen Light Switch ##
+- platform: mqtt
+  name: "Kitchen Light Switch"
+  command_topic: "cmnd/kitchen_dining_switch/POWER1"
+  state_topic: "stat/kitchen_dining_switch/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Lounge Fan Switch High ##
+- platform: mqtt
+  name: "Lounge Fan Switch High"
+  command_topic: "cmnd/lounge_fan_switch/POWER1"
+  state_topic: "stat/lounge_fan_switch/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Lounge Fan Switch Med ##
+- platform: mqtt
+  name: "Lounge Fan Switch Med"
+  command_topic: "cmnd/lounge_fan_switch/POWER2"
+  state_topic: "stat/lounge_fan_switch/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Lounge Fan Switch Low ##
+- platform: mqtt
+  name: "Lounge Fan Switch Low"
+  command_topic: "cmnd/lounge_fan_switch/POWER3"
+  state_topic: "stat/lounge_fan_switch/POWER3"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Lounge Light Switch ##
+- platform: mqtt
+  name: "Lounge Light Switch"
+  command_topic: "cmnd/sonoff-lounge/POWER"
+  state_topic: "stat/sonoff-lounge/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Master Light Switch ##
+- platform: mqtt
+  name: "Master Light Switch"
+  command_topic: "cmnd/sonoff-master-bedroom/POWER4"
+  state_topic: "stat/sonoff-master-bedroom/POWER4"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Master Fan Switch High ##
+- platform: mqtt
+  name: "Master Fan Switch High"
+  command_topic: "cmnd/sonoff-master-bedroom/POWER1"
+  state_topic: "stat/sonoff-master-bedroom/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Master Fan Switch Med ##
+- platform: mqtt
+  name: "Master Fan Switch Med"
+  command_topic: "cmnd/sonoff-master-bedroom/POWER2"
+  state_topic: "stat/sonoff-master-bedroom/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Master Fan Switch Low ##
+- platform: mqtt
+  name: "Master Fan Switch Low"
+  command_topic: "cmnd/sonoff-master-bedroom/POWER3"
+  state_topic: "stat/sonoff-master-bedroom/POWER3"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Master Wardrobe Switch ##
+- platform: mqtt
+  name: "Master Wardrobe Switch"
+  command_topic: "cmnd/sonoff-master-wardrobe/POWER"
+  state_topic: "stat/sonoff-master-wardrobe/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+## Patio Light Switch ##
+- platform: mqtt
+  name: "Patio Light Switch"
+  command_topic: "cmnd/sonoff-patio/POWER"
+  state_topic: "stat/sonoff-patio/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true  
+- platform: mqtt
+  name: "XMAS Lights"
+  command_topic: "cmnd/sonoff-s20-xmas/POWER"
+  state_topic: "stat/sonoff-s20-xmas/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+  
+####################################################
+#                                                  #
+#                      XioaMi                      #
+#                                                  #
+####################################################
+
+- platform: xiaomi_miio
+  name: RPi Switch
+  host: !secret washing_plug_ip
+  token: !secret washing_plug_token
+  model: chuangmi.plug.m1
+

@@ -1,0 +1,875 @@
+###################################################
+#                                                 #
+#                     Aircon                      #
+#                                                 #
+################################################### 
+
+scene.climate_off:
+  icon: 'mdi:power'
+  
+scene.climate_cool:
+  icon: 'mdi:snowflake'
+  
+scene.climate_heat:
+  icon: 'mdi:fire'
+
+scene.climate_cool_temp_up:
+  icon: 'mdi:arrow-up-drop-circle-outline'
+  
+scene.climate_cool_temp_down:
+  icon: 'mdi:arrow-down-drop-circle-outline'
+  
+scene.climate_heat_temp_up:
+  icon: 'mdi:arrow-up-drop-circle-outline'
+  
+scene.climate_heat_temp_down:
+  icon: 'mdi:arrow-down-drop-circle-outline'
+  
+scene.bedroom_climate_on:
+  icon: 'mdi:power'
+  
+scene.bedroom_climate_off:
+  icon: 'mdi:power'
+  
+scene.bedroom_climate_mode:
+  icon: 'mdi:snowflake'
+  
+###################################################
+#                                                 #
+#                   Appliances                    #
+#                                                 #
+################################################### 
+
+binary_sensor.device_tracker_playroom_fan:
+  friendly_name: Playroom Fan
+  icon: mdi:fan
+  
+binary_sensor.device_tracker_robovac:
+  friendly_name: RoboVac
+#  icon: mdi:robot-vacuum-variant
+  
+###################################################
+#                                                 #
+#                    Battery                      #
+#                                                 #
+################################################### 
+
+sensor.battery_galaxy_tab:
+  icon: mdi:battery
+  
+sensor.battery_ipad_downstairs:
+  icon: mdi:battery
+  
+sensor.battery_james:
+  icon: mdi:battery
+  
+sensor.battery_tina:
+  icon: mdi:battery
+  
+###################################################
+#                                                 #
+#                    Cameras                      #
+#                                                 #
+################################################### 
+
+binary_sensor.device_tracker_baby_monitor_camera:
+  icon: mdi:cctv
+  friendly_name: Baby Monitor Camera
+  
+binary_sensor.device_tracker_downstairs_camera:
+  icon: mdi:cctv
+  friendly_name: Downstairs Camera
+  
+###################################################
+#                                                 #
+#                 Core Devices                    #
+#                                                 #
+###################################################
+
+binary_sensor.device_tracker_nas_movies:
+  icon: mdi:harddisk
+  friendly_name: NAS Movies
+
+binary_sensor.device_tracker_nas_tv:
+  icon: mdi:harddisk
+  friendly_name: NAS TV Shows
+  
+binary_sensor.device_tracker_smart_things_hub:
+  icon: mdi:checkbox-blank-circle-outline
+  friendly_name: Smart Things Hub
+  
+binary_sensor.device_tracker_44650df543ec:
+  icon: mdi:voice
+  friendly_name: Alexa Main
+  
+binary_sensor.device_tracker_f081735c7ffc:
+  icon: mdi:voice
+  friendly_name: Alexa Bedroom
+  
+binary_sensor.device_tracker_8c89a5ef4d19:
+  icon: mdi:windows
+  friendly_name: Main PC
+  
+binary_sensor.device_tracker_printer:
+  icon: mdi:printer
+  friendly_name: Printer
+  
+binary_sensor.device_tracker_xiaomi_gateway:
+  icon: mdi:server
+  friendly_name: Xiaomi Gateway
+  
+###################################################
+#                                                 #
+#                 Core Network                    #
+#                                                 #
+###################################################
+
+binary_sensor.device_tracker_core_router:
+  icon: mdi:router-wireless
+  friendly_name: Core Router
+
+binary_sensor.device_tracker_core_switch:
+  icon: mdi:switch
+  friendly_name: Core Switch
+
+binary_sensor.device_tracker_wifi_bridge:
+  icon: mdi:access-point
+  friendly_name: Wi-Fi Bridge
+
+binary_sensor.device_tracker_upstairs_switch:
+  icon: mdi:switch
+  friendly_name: Upstairs Switch
+
+binary_sensor.device_tracker_5g_ac_main:
+  icon: mdi:access-point
+  friendly_name: 5G AC Main
+
+binary_sensor.device_tracker_5g_ac_media_tv:
+  icon: mdi:access-point
+  friendly_name: 5G AC Media TV
+
+binary_sensor.device_tracker_5g_ac_upstairs:
+  icon: mdi:access-point
+  friendly_name: 5G AC Upstairs
+  
+###################################################
+#                                                 #
+#                  Group Order                    #
+#                                                 #
+###################################################
+
+group.default_view:
+  order: 1
+  
+group.downstairs:
+  order: 2
+  
+group.play_room:
+  order: 3
+  
+group.patio:
+  order: 4
+  
+group.master_bedroom:
+  order: 5
+  
+group.jackson_bedroom:
+  order: 6
+  
+group.hudson_bedroom:
+  order: 7
+  
+group.bathroom:
+  order: 8
+  
+group.system_status:
+  order: 9
+  
+group.things_status:
+  order: 10
+  
+group.garden:
+  order: 11
+
+  
+###################################################
+#                                                 #
+#                  HA Devices                     #
+#                                                 #
+###################################################
+
+binary_sensor.device_tracker_rpi:
+  icon: mdi:home-assistant
+  friendly_name: HA Server
+
+binary_sensor.device_tracker_garden_pi:
+  icon: mdi:home-assistant
+  friendly_name: HA Garden Server
+  
+binary_sensor.device_tracker_alarm_panel:
+  icon: mdi:security-home
+  friendly_name: Alarm Panel
+
+binary_sensor.device_tracker_kitchen_dashboard:
+  icon: mdi:android
+  friendly_name: Kitchen Dashboard
+
+binary_sensor.device_tracker_upstairs_dashboard:
+  icon: mdi:apple
+  friendly_name: Upstairs Dashboard
+  
+###################################################
+#                                                 #
+#                    Security                     #
+#                                                 #
+###################################################
+
+alarm_control_panel.ha_alarm:
+  icon: mdi:security-home
+  
+###################################################
+#                                                 #
+#                   Speedtest                     #
+#                                                 #
+###################################################
+
+sensor.speedtest_ping:
+  friendly_name: Ping
+  icon: mdi:pulse
+
+sensor.speedtest_download:
+  friendly_name: Download
+  icon: mdi:arrow-down-bold
+
+sensor.speedtest_upload:
+  friendly_name: Upload
+  icon: mdi:arrow-up-bold
+  
+###################################################
+#                                                 #
+#                  IR Blasters                    #
+#                                                 #
+###################################################
+
+binary_sensor.device_tracker_ir_blaster_downstairs:
+  icon: mdi:remote
+  friendly_name: IR Blaster Downstairs
+
+binary_sensor.device_tracker_ir_blaster_upstairs:
+  icon: mdi:remote
+  friendly_name: IR Blaster Upstairs
+  
+###################################################
+#                                                 #
+#                     Lights                      #
+#                                                 #
+###################################################
+
+switch.front_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Front Light"
+  
+switch.lounge_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Lounge Light"
+  
+switch.hall_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Hall Light"
+  
+switch.kitchen_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Kitchen Light"
+  
+switch.dining_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Dining Light"
+  
+switch.patio_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Patio Light"
+  
+switch.master_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Master Light"
+  
+switch.jackson_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Jackson Light"
+  
+switch.hudson_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Hudson Light"
+  
+switch.bathroom_light_switch:
+  icon: 'mdi:lightbulb'
+  friendly_name: "Bathroom Light"
+  
+switch.bathroom_fan_switch:
+  icon: 'mdi:fan'
+  friendly_name: "Bathroom Fan"
+  
+switch.bathroom_heat_switch:
+  icon: 'mdi:fire'
+  friendly_name: "Bathroom Heat"
+  
+switch.fairy_light_power:
+  icon: mdi:lightbulb
+  friendly_name: Fairy Lighting
+  assumed_state: false
+  
+switch.fairy_light_mode_4:
+  icon: mdi:lightbulb-on-outline
+  friendly_name: Fairy Flash Mode
+  assumed_state: false
+  
+binary_sensor.device_tracker_hall_light_bulb:
+  icon: mdi:lightbulb
+  friendly_name: Hall Light Bulb
+  
+binary_sensor.device_tracker_lounge_light_bulb:
+  icon: mdi:lightbulb
+  friendly_name: Lounge Light Bulb
+  
+binary_sensor.device_tracker_dining_light_bulb:
+  icon: mdi:lightbulb
+  friendly_name: Dining Light Bulb
+  
+binary_sensor.device_tracker_entry_light_bulb:
+  icon: mdi:lightbulb
+  friendly_name: Entry Light Bulb
+  
+###################################################
+#                                                 #
+#                      Fans                       #
+#                                                 #
+###################################################
+
+script.lounge_fan_high:
+  icon: mdi:fan
+  friendly_name: "High"
+  
+script.lounge_fan_med:
+  icon: mdi:fan
+  friendly_name: "Medium"
+  
+script.lounge_fan_Low:
+  icon: mdi:fan
+  friendly_name: "Low"
+  
+script.lounge_fan_off:
+  icon: mdi:fan-off
+  friendly_name: "Off"
+  
+script.master_fan_high:
+  icon: mdi:fan
+  friendly_name: "High"
+  
+script.master_fan_med:
+  icon: mdi:fan
+  friendly_name: "Medium"
+  
+script.master_fan_Low:
+  icon: mdi:fan
+  friendly_name: "Low"
+  
+script.master_fan_off:
+  icon: mdi:fan-off
+  friendly_name: "Off"
+  
+script.jackson_fan_high:
+  icon: mdi:fan
+  friendly_name: "High"
+  
+script.jackson_fan_med:
+  icon: mdi:fan
+  friendly_name: "Medium"
+  
+script.jackson_fan_Low:
+  icon: mdi:fan
+  friendly_name: "Low"
+  
+script.jackson_fan_off:
+  icon: mdi:fan-off
+  friendly_name: "Off"
+  
+script.hudson_fan_high:
+  icon: mdi:fan
+  friendly_name: "High"
+  
+script.hudson_fan_med:
+  icon: mdi:fan
+  friendly_name: "Medium"
+  
+script.hudson_fan_Low:
+  icon: mdi:fan
+  friendly_name: "Low"
+  
+script.hudson_fan_off:
+  icon: mdi:fan-off
+  friendly_name: "Off"
+  
+###################################################
+#                                                 #
+#                 Media Devices                   #
+#                                                 #
+###################################################
+
+binary_sensor.device_tracker_hdhomerun:
+  icon: mdi:television-box
+  friendly_name: HDHomeRun
+
+binary_sensor.device_tracker_media_kodi_4k:
+  icon: mdi:kodi
+  friendly_name: Media 4K Kodi
+
+binary_sensor.device_tracker_bedroom_kodi:
+  icon: mdi:kodi
+  friendly_name: Bedroom Kodi
+
+binary_sensor.device_tracker_appletv:
+  icon: mdi:apple
+  friendly_name: Apple TV
+
+binary_sensor.device_tracker_media_tv:
+  icon: mdi:television
+  friendly_name: Media 4K TV
+
+binary_sensor.device_tracker_bedroom_tv:
+  icon: mdi:television
+  friendly_name: Bedroom TV
+
+binary_sensor.device_tracker_patio_kodi:
+  icon: mdi:kodi
+  friendly_name: Patio Kodi
+  
+###################################################
+#                                                 #
+#                    Mi Flora                     #
+#                                                 #
+###################################################
+  
+sensor.bougainvillea_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.bougainvillea_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.bougainvillea_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.bougainvillea_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.bougainvillea_temperature:
+  friendly_name: Temperature
+  
+sensor.jasmine_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.jasmine_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.jasmine_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.jasmine_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.jasmine_temperature:
+  friendly_name: Temperature
+  
+sensor.chilli_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.chilli_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.chilli_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.chilli_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.chilli_temperature:
+  friendly_name: Temperature
+  
+sensor.herb_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.herb_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.herb_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.herb_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.herb_temperature:
+  friendly_name: Temperature
+  
+sensor.strawberry_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.strawberry_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.strawberry_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.strawberry_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.strawberry_temperature:
+  friendly_name: Temperature
+  
+sensor.veggie_patch_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.veggie_patch_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.veggie_patch_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.veggie_patch_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.veggie_patch_temperature:
+  friendly_name: Temperature
+  
+sensor.top_bed_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.top_bed_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.top_bed_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.top_bed_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.top_bed_temperature:
+  friendly_name: Temperature
+  
+sensor.citrus_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.citrus_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.citrus_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.citrus_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.citrus_temperature:
+  friendly_name: Temperature
+  
+sensor.mertyl_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.mertyl_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.mertyl_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.mertyl_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.mertyl_temperature:
+  friendly_name: Temperature
+
+sensor.maple_moisture:
+  icon: mdi:water-percent
+  friendly_name: Moisture
+sensor.maple_light_intensity:
+  icon: mdi:theme-light-dark
+  friendly_name: Light Intensity
+sensor.maple_battery:
+  icon: mdi:battery
+  friendly_name: Battery
+sensor.maple_ph_level:
+  icon: mdi:flash
+  friendly_name: PH Level
+sensor.maple_temperature:
+  friendly_name: Temperature
+  
+  
+###################################################
+#                                                 #
+#               Morning Cartoons                  #
+#                                                 #
+###################################################
+
+script.1521695976118:
+  icon: mdi:youtube-tv
+  friendly_name: "Morning Cartoons"
+  
+script.1521694771100:
+  icon: mdi:kodi
+  friendly_name: "Evening TV"
+  assumed_state: false
+  
+script.1521696758169:
+  icon: mdi:football
+  friendly_name: "Super Rugby"
+  
+switch.media_tv_power:
+  icon: mdi:television
+  friendly_name: "Lounge TV"
+  assumed_state: false
+  
+scene.livingroom_bright:
+  icon: mdi:lightbulb-on
+  assumed_state: false
+  
+###################################################
+#                                                 #
+#                     Music                       #
+#                                                 #
+###################################################
+
+switch.spotify_kitchen:
+  icon: mdi:spotify
+  friendly_name: "Spotify Kitchen"
+  assumed_state: false
+  
+###################################################
+#                                                 #
+#                    People                       #
+#                                                 #
+###################################################
+
+sensor.commute_to_work:
+  icon: 'mdi:car'
+
+sensor.commute_to_home:
+  icon: 'mdi:home-variant'
+
+###################################################
+#                                                 #
+#                Sonoff Switches                  #
+#                                                 #
+###################################################
+
+binary_sensor.device_tracker_lounge_fan_switch:
+  icon: mdi:toggle-switch
+  friendly_name: Lounge Fan Switch
+  
+binary_sensor.device_tracker_kitchen_dining_light_switch:
+  icon: mdi:toggle-switch
+  friendly_name: Kitchen/Dining Light Switch
+  
+binary_sensor.device_tracker_patio_light_switch:
+  icon: mdi:toggle-switch
+  friendly_name: Patio Light Switch
+  
+binary_sensor.device_tracker_lounge_light_switch:
+  icon: mdi:toggle-switch
+  friendly_name: Lounge Light Switch
+  
+binary_sensor.device_tracker_master_bedroom_fan_switch:
+  icon: mdi:toggle-switch
+  friendly_name: Master Bedroom Fan Switch
+
+###################################################
+#                                                 #
+#               System Resources                  #
+#                                                 #
+###################################################
+
+sensor.disk_use_:
+  friendly_name: Disk Use
+
+###################################################
+#                                                 #
+#                Temp Conditions                  #
+#                                                 #
+###################################################
+
+##Master Bedroom##
+
+sensor.temperature_158d0001f53de9:
+  friendly_name: Bedroom Temperature
+  
+sensor.humidity_158d0001f53de9:
+  friendly_name: Bedroom Humidity
+  
+sensor.master_bedroom_light:
+  icon: mdi:theme-light-dark
+
+##Downstairs##  
+sensor.humidity_158d0001f558f5:
+  friendly_name: Downstairs Humidity
+  
+sensor.temperature_158d0001f558f5:
+  friendly_name: Downstairs Temperature
+  templates:
+    templates:
+      theme: >
+        if (state > 25) {
+          return 'hot';
+        } else if (state >= 18 ) {
+          return 'comfortable';
+        } else {
+          return 'cold';
+        }
+
+sensor.illumination_158d0001e5d118:
+  friendly_name: Downstairs LUX
+  
+##Playroom##
+
+sensor.temperature_158d0001f56682:
+  friendly_name: Playroom Temperature
+  
+sensor.humidity_158d0001f56682:
+  friendly_name: Playroom Humidity
+  
+sensor.illumination_158d0001e5cf11:
+  friendly_name: Playroom LUX
+
+##Patio##
+
+sensor.temperature_158d0001f56350:
+  friendly_name: Patio Temperature
+  
+sensor.humidity_158d0001f56350:
+  friendly_name: Patio Humidity
+  
+sensor.illumination_158d000200ea5b:
+  friendly_name: Patio LUX
+  
+##Bathroom##
+sensor.bathroom_humidity:
+  icon: mdi:water-percent
+  
+sensor.bathroom_light:
+  icon: mdi:theme-light-dark
+  
+sensor.bathroom_noise:
+  icon: mdi:gauge
+  
+sensor.bathroom_air_quality:
+  icon: mdi:periodic-table-co2
+  
+##Jacskon##
+
+sensor.temperature_158d0001f534e1:
+  friendly_name: Jackson Room Temperature
+  
+sensor.humidity_158d0001f534e1:
+  friendly_name: Jackson Room Humidity
+  
+##Hudson##
+
+sensor.temperature_158d0001f54df3:
+  friendly_name: Hudson Bedroom Temperature
+  
+sensor.humidity_158d0001f54df3:
+  friendly_name: Hudson Bedroom Humidity
+  
+###################################################
+#                                                 #
+#                  Temp Sensors                   #
+#                                                 #
+###################################################
+
+sensor.158d0001f558f5:
+  icon: 'mdi:thermometer'
+  friendly_name: Temp Sensor Downstairs
+  
+sensor.temp_sensor_master_bedroom:
+  icon: 'mdi:thermometer'
+  
+sensor.temp_sensor_playroom:
+  icon: 'mdi:thermometer'
+  
+sensor.temp_sensor_patio:
+  icon: 'mdi:thermometer'
+  
+sensor.temp_sensor_bathroom:
+  icon: 'mdi:thermometer'
+  
+sensor.temp_sensor_jackson:
+  icon: 'mdi:thermometer'
+  
+sensor.temp_sensor_hudson:
+  icon: 'mdi:thermometer'
+  
+###################################################
+#                                                 #
+#                     Xiaomi                      #
+#                                                 #
+###################################################
+
+binary_sensor.door_window_sensor_158d00022016b2:
+  friendly_name: Front Door Sensor
+  
+binary_sensor.door_window_sensor_158d000225432d:
+  friendly_name: Patio Door Sensor
+  
+binary_sensor.motion_sensor_158d0001e5d147:
+  friendly_name: Entrance Motion Sensor
+  
+binary_sensor.motion_sensor_158d0001e5d118:
+  friendly_name: Living Motion Sensor
+  
+binary_sensor.motion_sensor_158d000200ea5b:
+  friendly_name: Patio Motion Sensor
+  
+binary_sensor.motion_sensor_158d0001e5cf11:
+  friendly_name: Playroom Motion Sensor
+  
+binary_sensor.motion_sensor_158d00022c2f21:
+  friendly_name: Unassigned
+
+binary_sensor.switch_158d000233a19d:
+  friendly_name: Bedside Fan Switch
+  
+binary_sensor.switch_158d000215aa27:
+  friendly_name: Bedroom Wall Fan Switch
+  
+binary_sensor.switch_158d000213108e:
+  friendly_name: Door Bell Switch
+  
+binary_sensor.switch_158d000213455d:
+  friendly_name: Hudson Fan Switch
+  
+binary_sensor.switch_158d00021347cc:
+  friendly_name: Jackson Fan Switch
+  
+binary_sensor.switch_158d000201ce4e:
+  friendly_name: Lounge Fan Switch
+  
+binary_sensor.smoke_sensor_158d0001b8ddc7:
+  friendly_name: Downstairs Smoke Detector
+  
+binary_sensor.smoke_sensor_158d0001b8deba:
+  friendly_name: Upstairs Smoke Detector
+  
+light.gateway_light_7811dcfd812f:
+  friendly_name: TV Back Light
+  
+switch.plug_158d0001bc2b6d:
+  friendly_name: Washing Machine
+  initial_state: on
+  icon: mdi:washing-machine
+  
+switch.plug_158d0001f24e2b:
+  friendly_name: Entertainment Lighting
+  
+switch.plug_158d00022ae069:
+  friendly_name: Dryer
+  initial_state: on
+  icon: mdi:tumble-dryer
+  
+switch.plug_158d00022ae22d:
+  friendly_name: Appliances
+  initial_state: off
+  icon: mdi:power-plug

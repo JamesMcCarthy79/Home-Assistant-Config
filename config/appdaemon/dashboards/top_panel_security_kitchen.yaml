@@ -1,0 +1,48 @@
+clock:
+    widget_type: clock
+    time_style: "font-size: 400%; color: #5294E2;"
+    date_style: "font-size: 180%; line-height: 200%;"
+    date_format_country: "au"
+    date_format_options:
+      weekday: "short"
+      day: "numeric"
+      month: "short"
+      year: "numeric"
+      
+header:
+    widget_type: label
+    title: Security
+    title_style: "font-weight: bold; font-size: 400%; line-height: 250%; color: #5294E2;"
+    title2: Panel
+    title2_style: "font-size: 400%; line-height: 475%; color: #5294E2;"
+    
+weather:
+  widget_type: weather
+  title: Burleigh Heads
+  title_style: "font-size: 200%; line-height: 225%; color: white;"
+  main_style: "font-size: 170%; color: #5294E2;"
+  unit_style: "font-size: 130%; color: white;"
+  sub_style: "font-size: 180%; line-height: 225%; color: white;"
+  sub_unit_style: "color: white;"
+  show_foreacast: 0
+  prefer_icons: 1
+  forecast_title: Tomorrow
+  sensors:
+    icon: ""
+    temperature: sensor.pws_temp_c
+    apparent_temperature: ""
+    humidity: sensor.pws_relative_humidity
+    precip_probability: ""
+    precip_intensity: ""
+    precip_type: ""
+    pressure: ""
+    wind_speed: sensor.pws_wind_kph
+    wind_bearing: ""
+    forecast_icon: ""
+    forecast_temperature_min: ""
+    forecast_temperature_max: ""
+    forecast_precip_probability: ""
+    forecast_precip_type: ""
+      
+layout:
+    - clock(2x3), header(6x2), weather(2x3)

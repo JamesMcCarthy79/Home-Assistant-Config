@@ -1,0 +1,293 @@
+temp:
+    widget_type: sensor
+    title: Living Room Temperature
+    entity: sensor.temperature_158d0001f558f5
+    precision: 1
+    title_style: "line-height: 200%;"
+    value_style: "font-size: 370%; color: #5294E2;"
+    unit_style: "font-size: 130%; color: white;"
+    
+time:
+    widget_type: sensor
+    title: UK Time
+    entity: sensor.mum_time
+    title_style: "font-size: 125%; line-height: 150%;"
+    text_style: "font-size: 400%; color: #5294E2;"
+    
+
+weather2:
+  widget_type: weather
+  title: Living Room Temperature
+  title_style: "color: white;"
+  main_style: "font-size: 125%; color: #5294E2;"
+  unit_style: "color: white;"
+  sub_style: "color: white;"
+  sub_unit_style: "color: white;"
+  show_foreacast: 0
+  prefer_icons: 1
+  forecast_title: Tomorrow
+  sensors:
+    icon: ""
+    temperature: sensor.temperature_158d0001f558f5
+    apparent_temperature: ""
+    humidity: sensor.humidity_158d0001f558f5
+    precip_probability: ""
+    precip_intensity: ""
+    precip_type: ""
+    pressure: ""
+    wind_speed: ""
+    wind_bearing: ""
+    forecast_icon: ""
+    forecast_temperature_min: ""
+    forecast_temperature_max: ""
+    forecast_precip_probability: ""
+    forecast_precip_type: ""
+    
+lounge_light:
+    widget_type: switch
+    entity: switch.lounge_light_switch
+    title: Lounge Light Switch
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+
+lounge_bulb:
+    widget_type: light
+    entity: light.lounge_bulb
+    title: Lounge Bulb
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+kitchen_light:
+    widget_type: switch
+    entity: switch.kitchen_light_switch
+    title: Kitchen Light Switch
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+dining_light:
+    widget_type: switch
+    entity: switch.dining_light_switch
+    title: Dining Light Switch
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+dining_bulb:
+    widget_type: light
+    entity: light.dining_bulb
+    title: Dining Bulb
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+hall_bulb:
+    widget_type: light
+    entity: light.hall_bulb
+    title: Hall Bulb
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+entrance_bulb:
+    widget_type: light
+    entity: light.entrance_bulb
+    title: Entrance Bulb
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+patio_light:
+    widget_type: switch
+    entity: switch.patio_light_switch
+    title: Patio Light Switch
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+climate_off:
+    widget_type: scene
+    entity: scene.climate_off
+    title: Lounge Climate
+    icon_on: mdi-power
+    icon_off: mdi-power
+    icon_style_active: "color: red;"
+    icon_style_inactive: "color: white;"
+    
+climate_cool:
+    widget_type: scene
+    entity: scene.climate_cool
+    title: Cooling
+    icon_on: mdi-snowflake
+    icon_off: mdi-snowflake
+    icon_style_active: "color: #5294E2;"
+    icon_style_inactive: "color: white;"
+    
+climate_heat:
+    widget_type: scene
+    entity: scene.climate_heat
+    title: Heating
+    icon_on: mdi-fire
+    icon_off: mdi-fire
+    icon_style_active: "color: red;"
+    icon_style_inactive: "color: white;"
+    
+lounge_fan_off:
+    widget_type: script
+    entity: script.1521695181969
+    title: Lounge Fan
+    icon_on: mdi-power
+    icon_off: mdi-power
+    icon_style_active: "color: red;"
+    icon_style_inactive: "color: white;"
+    
+lounge_fan_low:
+    widget_type: script
+    entity: script.1521695117457
+    title: Low
+    icon_on: mdi-fan
+    icon_off: mdi-fan
+    icon_style_active: "color: #5294E2;"
+    icon_style_inactive: "color: white;"
+    
+lounge_fan_med:
+    widget_type: script
+    entity: script.1521695035815
+    title: Medium
+    icon_on: mdi-fan
+    icon_off: mdi-fan
+    icon_style_active: "color: #5294E2;"
+    icon_style_inactive: "color: white;"
+    
+lounge_fan_high:
+    widget_type: script
+    entity: script.1521694972303
+    title: High
+    icon_on: mdi-fan
+    icon_off: mdi-fan
+    icon_style_active: "color: #5294E2;"
+    icon_style_inactive: "color: white;"
+    
+cartoons:
+    widget_type: script
+    entity: script.1521695976118
+    title: Cartoons
+    icon_on: mdi-youtube-tv
+    icon_off: mdi-youtube-tv
+    icon_style_active: "color: white;"
+    icon_style_inactive: "color: #ff0000;"
+    
+evening_tv:
+    widget_type: script
+    entity: script.1521694771100
+    title: Evening TV
+    icon_on: mdi-kodi
+    icon_off: mdi-kodi
+    icon_style_active: "color: white;"
+    icon_style_inactive: "color: #5294E2;"
+    
+super_rugby:
+    widget_type: script
+    entity: script.1521696758169
+    title: Super Rugby
+    icon_on: mdi-football
+    icon_off: mdi-football
+    icon_style_active: "color: #5294E2;"
+    icon_style_inactive: "color: white;"
+    
+media_tv:
+    widget_type: switch
+    entity: switch.media_tv_power
+    title: Media TV
+    icon_on: mdi-television
+    icon_off: mdi-television
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+tv_backlight:
+    widget_type: light
+    entity: light.gateway_light_7811dcfd812f
+    title: TV Backlight
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb
+    icon_style_active: "color: #5294E2;"
+    icon_style_inactive: "color: white;"
+    
+living_bright:
+    widget_type: scene
+    entity: scene.livingroom_bright
+    title: Living Room Bright
+    icon_on: mdi-lightbulb-on
+    icon_off: mdi-lightbulb-on
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+downstairs_lights:
+    widget_type: group
+    entity: group.downstairs_lights
+    title: Downstairs Lights
+    icon_on: mdi-lightbulb
+    icon_off: mdi-lightbulb-outline
+    icon_style_active: "color: #f4d742;"
+    icon_style_inactive: "color: white;"
+    
+music:
+    widget_type: switch
+    entity: switch.spotify_kitchen
+    title: Spotify
+    icon_on: mdi-spotify
+    icon_off: mdi-spotify
+    icon_style_active: "color: #1db954;"
+    icon_style_inactive: "color: white;"
+    
+washing_machine:
+    widget_type: switch
+    entity: switch.plug_158d0001bc2b6d
+    title: Washer
+    icon_on: mdi-washing-machine
+    icon_off: mdi-washing-machine
+    icon_style_active: "color: #1db954;"
+    icon_style_inactive: "color: white;"
+    
+dryer:
+    widget_type: switch
+    entity: switch.plug_158d00022ae069
+    title: Dryer
+    icon_on: mdi-washing-machine
+    icon_off: mdi-washing-machine
+    icon_style_active: "color: #1db954;"
+    icon_style_inactive: "color: white;"
+    
+appliances:
+    widget_type: switch
+    entity: switch.plug_158d00022ae22d
+    title: Appliances
+    icon_on: mdi-power-plug
+    icon_off: mdi-power-plug
+    icon_style_active: "color: #1db954;"
+    icon_style_inactive: "color: white;"
+    
+vaccum:
+    widget_type: switch
+    entity: vacuum.robovac
+    title: RoboVac
+    #icon_on: mdi-robot-vacuum
+    #icon_off: mdi-robot-vacuum
+    icon_style_active: "color: #5294E2;"
+    icon_style_inactive: "color: white;"
+  
+layout:
+    - time(2x1), weather2(2x1)
+    - lounge_light, lounge_bulb, kitchen_light, dining_light, dining_bulb, hall_bulb, entrance_bulb, patio_light, downstairs_lights(2x1)
+    - climate_off(2x1), lounge_fan_off(3x1), vaccum(1x2), appliances(4x1)
+    - climate_cool, climate_heat, lounge_fan_low, lounge_fan_med, lounge_fan_high, washing_machine(2x1), dryer(2x1)

@@ -1,0 +1,672 @@
+####################################################
+#                                                  #
+#                     Battery                      #
+#                                                  #
+####################################################
+
+  - platform: mqtt
+    state_topic: "owntracks/admin/samsung"
+    name: "Battery James"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.batt }}'
+    
+  - platform: mqtt
+    state_topic: "owntracks/admin/iphone"
+    name: "Battery Tina"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.batt }}'
+    
+####################################################
+#                                                  #
+#            Google Maps Travel Time               #
+#                                                  #
+####################################################
+    
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    name: 'Commute to Work'
+    origin: !secret home_address
+    destination: !secret work_address
+    
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    name: 'Commute to Home'
+    origin: !secret work_address
+    destination: !secret home_address
+
+####################################################
+#                                                  #
+#                    Mi Flora                      #
+#                                                  #
+####################################################
+
+  - platform: rest
+    resource: http://myip/api/states/sensor.bougainvillea_moisture
+    name: Bougainvillea Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.bougainvillea_conductivity
+    name: Bougainvillea PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.bougainvillea_battery
+    name: Bougainvillea Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://myip/api/states/sensor.chilli_moisture
+    name: Chilli Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.chilli_conductivity
+    name: Chilli PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.chilli_battery
+    name: Chilli Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://myip/api/states/sensor.citrus_bed_moisture
+    name: Citrus Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.citrus_bed_conductivity
+    name: Citrus PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.citrus_bed_battery
+    name: Citrus Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.herb_patch_moisture
+    name: Herb Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.herb_patch_conductivity
+    name: Herb PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.herb_patch_battery
+    name: Herb Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://myip/api/states/sensor.maple_bed_moisture
+    name: Maple Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.maple_bed_conductivity
+    name: Maple PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.maple_bed_battery
+    name: Maple Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://myip/api/states/sensor.mertyl_bed_moisture
+    name: Mertyl Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.mertyl_bed_conductivity
+    name: Mertyl PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.mertyl_bed_battery
+    name: Mertyl Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://myip/api/states/sensor.star_jasmine_moisture
+    name: Jasmine Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.star_jasmine_conductivity
+    name: Jasmine PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.star_jasmine_battery
+    name: Jasmine Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://myip/api/states/sensor.strawberry_moisture
+    name: Strawberry Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.strawberry_conductivity
+    name: Strawberry PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.strawberry_battery
+    name: Strawberry Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://myip/api/states/sensor.top_bed_moisture
+    name: Top Bed Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.top_bed_conductivity
+    name: Top Bed PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.top_bed_battery
+    name: Top Bed Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://myip/api/states/sensor.veggie_patch_moisture
+    name: Veggie Patch Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://myip/api/states/sensor.veggie_patch_conductivity
+    name: Veggie Patch PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://myip/api/states/sensor.veggie_patch_battery
+    name: Veggie Patch Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+
+####################################################
+#                                                  #
+#                 Moon Tracking                    #
+#                                                  #
+####################################################
+  
+  - platform: moon
+
+####################################################
+#                                                  #
+#                     Sonoff                       #
+#                                                  #
+####################################################
+
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-master/SENSOR"
+    name: "Master Bedroom Temperature"
+    unit_of_measurement: "°C"
+    value_template: '{{ value_json.Temperature }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-master/SENSOR"
+    name: "Master Bedroom Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Humidity }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-master/SENSOR"
+    name: "Master Bedroom Light"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Light }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-master/SENSOR"
+    name: "Master Bedroom Noise"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Noise }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-master/SENSOR"
+    name: "Master Bedroom Air Quality"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.AirQuality }}'
+    
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-playroom/SENSOR"
+    name: "Playroom Temperature"
+    unit_of_measurement: "°C"
+    value_template: '{{ value_json.Temperature }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-playroom/SENSOR"
+    name: "Playroom Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Humidity }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-playroom/SENSOR"
+    name: "Playroom Light"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Light }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-playroom/SENSOR"
+    name: "Playroom Noise"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Noise }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-playroom/SENSOR"
+    name: "Playroom Air Quality"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.AirQuality }}'
+    
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-patio/SENSOR"
+    name: "Patio Temperature"
+    unit_of_measurement: "°C"
+    value_template: '{{ value_json.Temperature }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-patio/SENSOR"
+    name: "Patio Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Humidity }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-patio/SENSOR"
+    name: "Patio Light"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Light }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-patio/SENSOR"
+    name: "Patio Noise"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Noise }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-patio/SENSOR"
+    name: "Patio Air Quality"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.AirQuality }}'
+    
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-bathroom/SENSOR"
+    name: "Bathroom Temperature"
+    unit_of_measurement: "°C"
+    value_template: '{{ value_json.Temperature }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-bathroom/SENSOR"
+    name: "Bathroom Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Humidity }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-bathroom/SENSOR"
+    name: "Bathroom Light"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Light }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-bathroom/SENSOR"
+    name: "Bathroom Noise"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Noise }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-bathroom/SENSOR"
+    name: "Bathroom Air Quality"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.AirQuality }}'
+    
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-jackson/SENSOR"
+    name: "Jackson Temperature"
+    unit_of_measurement: "°C"
+    value_template: '{{ value_json.Temperature }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-jackson/SENSOR"
+    name: "Jackson Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Humidity }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-jackson/SENSOR"
+    name: "Jackson Light"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Light }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-jackson/SENSOR"
+    name: "Jackson Noise"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Noise }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-jackson/SENSOR"
+    name: "Jackson Air Quality"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.AirQuality }}'
+    
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-hudson/SENSOR"
+    name: "Hudson Temperature"
+    unit_of_measurement: "°C"
+    value_template: '{{ value_json.Temperature }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-hudson/SENSOR"
+    name: "Hudson Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Humidity }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-hudson/SENSOR"
+    name: "Hudson Light"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Light }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-hudson/SENSOR"
+    name: "Hudson Noise"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.Noise }}'
+  - platform: mqtt
+    state_topic: "tele/sonoff-temp-hudson/SENSOR"
+    name: "Hudson Air Quality"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.AirQuality }}'
+    
+####################################################
+#                                                  #
+#                    SpeedTest                     #
+#                                                  #
+####################################################
+    
+  - platform: speedtest
+    hour:
+    - 8
+    - 12
+    - 16
+    - 20
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+      
+####################################################
+#                                                  #
+#                 System Resources                 #
+#                                                  #
+####################################################
+
+  - platform: systemmonitor
+    resources:
+    - type: disk_use
+      arg: /
+    - type: memory_use_percent
+    - type: processor_use
+    - type: last_boot
+  
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+    
+####################################################
+#                                                  #
+#                    Template                      #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+     core_router:
+        value_template: '{% if is_state("device_tracker.core_router", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Core Router'
+        
+     core_switch:
+        value_template: '{% if is_state("device_tracker.core_switch", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Core Switch'
+        
+     wifi_bridge:
+        value_template: '{% if is_state("device_tracker.wifi_bridge", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Wi-Fi Bridge'
+        
+     5g_ac_main:
+        value_template: '{% if is_state("device_tracker.5g_ac_main", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: '5G AC Main'
+        
+     5g_ac_media_tv:
+        value_template: '{% if is_state("device_tracker.5g_ac_media_tv", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: '5G AC TV'
+        
+     5g_ac_upstairs:
+        value_template: '{% if is_state("device_tracker.5g_ac_upstairs", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: '5G AC Upstairs'
+        
+     upstairs_switch:
+        value_template: '{% if is_state("device_tracker.upstairs_switch", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Upstairs Switch'
+        
+     nas_movies:
+        value_template: '{% if is_state("device_tracker.nas_movies", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'NAS-Movies'
+        
+     nas_tv:
+        value_template: '{% if is_state("device_tracker.nas_tv", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'NAS-TV'
+        
+     smart_things_hub:
+        value_template: '{% if is_state("device_tracker.smart_things_hub", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Smart Things Hub'
+        
+     44650df543ec:
+        value_template: '{% if is_state("device_tracker.44650df543ec", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Alexa'
+        
+     8c89a5ef4d19:
+        value_template: '{% if is_state("device_tracker.8c89a5ef4d19", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Main PC'
+        
+     printer:
+        value_template: '{% if is_state("device_tracker.printer", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Printer'
+        
+     rpi:
+        value_template: '{% if is_state("device_tracker.rpi", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'HA Server'
+        
+     taba_samsung:
+        value_template: '{% if is_state("device_tracker.taba_samsung", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Galaxy Dashboard'
+        
+     tinaipad:
+        value_template: '{% if is_state("device_tracker.tinaipad", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Upstairs Dashboard'
+        
+     hrhomerun:
+        value_template: '{% if is_state("device_tracker.hdhomerun", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'HDHome Run'
+        
+     media_kodi_4k:
+        value_template: '{% if is_state("device_tracker.media_kodi_4k", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Media Kodi 4K'
+        
+     bedroom_kodi:
+        value_template: '{% if is_state("device_tracker.bedroom_kodi", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Bedroom Kodi'
+        
+     appletv:
+        value_template: '{% if is_state("device_tracker.appletv", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Apple TV'
+        
+     media_tv:
+        value_template: '{% if is_state("device_tracker.media_tv", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Media TV'
+        
+     bedroom_tv:
+        value_template: '{% if is_state("device_tracker.bedroom_tv", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Bedroom TV'
+        
+     ir_blaster_downstairs:
+        value_template: '{% if is_state("device_tracker.ir_blaster_downstairs", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'IR Downstairs'
+        
+     baby_monitor_camera:
+        value_template: '{% if is_state("device_tracker.baby_monitor_camera", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Baby Monitor'
+        
+     ir_blaster_upstairs:
+        value_template: '{% if is_state("device_tracker.ir_blaster_upstairs", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'IR Upstairs'
+        
+     rf_bridge_garage:
+        value_template: '{% if is_state("device_tracker.rf_bridge_garage", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'RF Bridge Garage'
+        
+     temp_sensor_master_bedroom:
+        value_template: '{% if is_state("device_tracker.temp_sensor_master_bedroom", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Temp Sensor Master Bedroom'  
+        
+     lounge_light_bulb:
+        value_template: '{% if is_state("device_tracker.lounge_light_bulb", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Lounge Lamp'
+        
+     hall_light_bulb:
+        value_template: '{% if is_state("device_tracker.hall_light_bulb", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Hall Lamp'
+        
+     temp_sensor_playroom:
+        value_template: '{% if is_state("device_tracker.temp_sensor_playroom", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Temp Sensor Playroom'
+        
+     patio_kodi:
+        value_template: '{% if is_state("device_tracker.patio_kodi", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Patio Kodi'
+        
+     temp_sensor_patio:
+        value_template: '{% if is_state("device_tracker.temp_sensor_patio", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Temp Sensor Patio'
+        
+     temp_sensor_bathroom:
+        value_template: '{% if is_state("device_tracker.temp_sensor_bathroom", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Temp Sensor Bathroom'
+        
+     temp_sensor_jackson:
+        value_template: '{% if is_state("device_tracker.temp_sensor_jackson", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Temp Sensor Jackson'
+        
+     temp_sensor_hudson:
+        value_template: '{% if is_state("device_tracker.temp_sensor_hudson", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Temp Sensor Hudson'
+        
+     lounge_fan_switch:
+        value_template: '{% if is_state("device_tracker.lounge_fan_switch", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Lounge Fan Switch'
+        
+     kitchen_dining_light_switch:
+        value_template: '{% if is_state("device_tracker.kitchen_dining_light_switch", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Kitchen Dining Light Switch'
+        
+     patio_light_switch:
+        value_template: '{% if is_state("device_tracker.patio_light_switch", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Patio Light Switch'
+        
+     lounge_light_switch:
+        value_template: '{% if is_state("device_tracker.lounge_light_switch", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Lounge Light Switch'
+        
+     garden_pi:
+        value_template: '{% if is_state("device_tracker.garden_pi", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Garden HA Server'
+        
+     f081735c7ffc:
+        value_template: '{% if is_state("device_tracker.f081735c7ffc", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Echo Bedroom'
+        
+     master_bedroom_fan_switch:
+        value_template: '{% if is_state("device_tracker.master_bedroom_fan_switch", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Master Bedroom Fan Switch'
+        
+     upstairs_dashboard:
+        value_template: '{% if is_state("device_tracker.upstairs_dashboard", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Upstairs Dashboard'
+        
+     kitchen_dashboard:
+        value_template: '{% if is_state("device_tracker.kitchen_dashboard", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Kitchen Dashboard'
+        
+     downstairs_camera:
+        value_template: '{% if is_state("device_tracker.downstairs_camera", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Downstairs Camera'
+        
+     dining_light_bulb:
+        value_template: '{% if is_state("device_tracker.dining_light_bulb", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Dining Light Bulb'
+        
+     entry_light_bulb:
+        value_template: '{% if is_state("device_tracker.entry_light_bulb", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Entry Light Bulb'
+        
+     xiaomi_gateway:
+        value_template: '{% if is_state("device_tracker.xiaomi_gateway", "home") %}Online{% else %}Offline{% endif %}'
+        friendly_name: 'Xiaomi Gateway'
+
+####################################################
+#                                                  #
+#                    Time/Date                     #
+#                                                  #
+####################################################
+
+  - platform: time_date
+    display_options:
+      - time
+      - date
+      - date_time
+      - time_date
+      - beat
+      
+  - platform: worldclock
+    time_zone: Australia/Sydney
+    name: Claire Time
+  
+  - platform: worldclock
+    time_zone: Europe/London
+    name: Mum Time
+
+####################################################
+#                                                  #
+#                     Weather                      #
+#                                                  #
+####################################################
+
+  - platform: wunderground
+    api_key: !secret wunderground_api
+    pwd_id: !secret wunderground_pws_id
+    monitored_conditions:
+      - relative_humidity
+      - pressure_mb
+      - temp_high_1d_c
+      - temp_c
+      - temp_low_1d_c
+      - precip_1d
+      - precip_1d_mm
+      - precip_today_string
+      - wind_kph
+      - wind_1d_kph
+      - wind_dir
+      - feelslike_c
+      - alerts
+      - temp_high_2d_c
+      - temp_high_3d_c
+      - temp_high_4d_c
+      - weather_1d_metric
+      - weather_2d_metric
+      - weather_3d_metric
+      - weather_4d_metric
+
+####################################################
+#                                                  #
+#                   XiaoMi Raw                     #
+#                                                  #
+####################################################
+
+  - platform: xiaomi_miio_raw
+    name: Any Xiaomi MiIO device
+    host: !secret xiaomi_raw_ip
+    token: !secret xiaomi_raw_token

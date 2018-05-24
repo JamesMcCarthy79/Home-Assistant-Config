@@ -1,0 +1,601 @@
+####################################################
+#                                                  #
+#                      Home                        #
+#                                                  #
+####################################################
+
+#home:
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.people
+    - group.security
+    - group.date_and_time
+    - group.weather_overview
+    - group.sun
+    - group.daily_forecast
+    - media_player.tts_kodi
+    - updater.updater
+
+    
+people:
+  name: People
+  view: no
+  entities:
+    - device_tracker.admin_samsung
+    - sensor.battery_james
+    - device_tracker.admin_iphone
+    - sensor.battery_tina
+    - sensor.commute_to_work
+    - sensor.commute_to_home
+    
+date and time:
+  name: Date & Time
+  view: no
+  entities:
+    - sensor.date
+    - sensor.time
+    - sensor.claire_time
+    - sensor.mum_time
+
+weather overview:
+  name: Weather Overview
+  view: no
+  entities:
+    #- sensor.pws_weather_1d_metric
+    - sensor.pws_temp_c
+    - sensor.pws_relative_humidity
+    #- sensor.pws_pressure_mb
+    - sensor.pws_precip_1d
+    - sensor.pws_wind_kph
+    - sensor.pws_alerts
+
+sun:
+  name: Sun
+  view: no
+  entities:
+    - sun.sun
+    - sensor.moon
+    
+daily forcast:
+  name: Daily Forcast
+  view: no
+  entities:
+    - sensor.pws_temp_high_1d_c
+    - sensor.pws_temp_high_2d_c
+    - sensor.pws_temp_high_3d_c
+    - sensor.pws_temp_high_4d_c
+    #- sensor.pws_weather_1d_metric
+    #- sensor.pws_weather_2d_metric
+    #- sensor.pws_weather_3d_metric
+    #- sensor.pws_weather_4d_metric
+    
+security:
+  name: Security
+  icon: mdi:security-home
+  view: no
+  entities:
+    - alarm_control_panel.ha_alarm
+    - binary_sensor.smoke_sensor_158d0001b8ddc7
+    - binary_sensor.smoke_sensor_158d0001b8deba
+    - binary_sensor.motion_sensor_158d0001e5cf11
+    - binary_sensor.motion_sensor_158d0001e5d118
+    - binary_sensor.motion_sensor_158d0001e5d147
+    - binary_sensor.motion_sensor_158d000200ea5b
+    - binary_sensor.motion_sensor_158d00022c2f21
+    - binary_sensor.door_window_sensor_158d00022016b2
+    - binary_sensor.door_window_sensor_158d000225432d
+
+####################################################
+#                                                  #
+#                   Downstairs                     #
+#                                                  #
+####################################################
+
+downstairs:
+  name: Downstairs
+  view: yes
+  entities:
+    - group.climate_control
+    - group.tv
+    - group.downstairs_lights
+    - group.outside_lights
+    - group.music
+#    - camera.baby_monitor
+    - group.laundry
+    - group.robovac
+ 
+climate control:
+  name: Climate Control
+  view: no
+  entities:
+    - sensor.temperature_158d0001f558f5
+    - sensor.humidity_158d0001f558f5
+    - sensor.illumination_158d0001e5d118
+    - input_select.lounge_aircon
+    - input_select.lounge_fan
+    
+tv:
+  name: Scenes
+  view: no
+  entities:
+    - script.1521695976118
+    - script.1521694771100
+    - script.1521696758169
+    - switch.media_tv_power
+    - light.gateway_light_7811dcfd812f
+    - scene.story_time
+    - media_player.media_4k_kodi
+    - scene.livingroom_bright
+    - light.hall_bulb
+  control: hidden
+  
+downstairs lights:
+  name: Downstairs Lights
+  view: no
+  entities:
+    - switch.lounge_light_switch
+    - light.lounge_bulb
+    - switch.kitchen_light_switch
+    - switch.dining_light_switch
+    - light.dining_bulb
+    
+outside lights:
+  name: Outside Lights
+  view: no
+  entities:
+    - switch.patio_light_switch
+    - light.entrance_bulb
+    
+music:
+  name: Music
+  view: no
+  entities:
+    - switch.spotify_kitchen
+    
+laundry:
+  name: Laundry
+  view: no
+  entities:
+    - switch.plug_158d0001bc2b6d
+    - switch.plug_158d00022ae069
+    - switch.plug_158d00022ae22d
+    
+robovac:
+  name: RoboVac
+  view: no
+  entities:
+    - vacuum.robovac
+    
+####################################################
+#                                                  #
+#                    Play Room                     #
+#                                                  #
+####################################################
+
+play room:
+  name: Play Room
+  view: yes
+  entities:
+    - group.play_room_climate
+    - group.play_room_fan
+   
+play room climate:
+  name: Play Room Climate
+  view: no
+  entities:
+    - sensor.temperature_158d0001f56682
+    - sensor.humidity_158d0001f56682
+    - sensor.illumination_158d0001e5cf11
+    - fan.xiaomi_smart_fan
+    - input_select.playroom_fan
+    
+play room fan:
+  name: Play Room Fan
+  view: no
+  entities:
+    - input_select.playroom_fan_speed
+    - input_select.playroom_fan_oscillate
+    - input_select.playroom_fan_direction
+    - input_select.playroom_fan_oscillation_angle
+    - input_select.playroom_fan_natural_mode
+    - input_select.playroom_fan_led_brightness
+
+####################################################
+#                                                  #
+#                      Patio                       #
+#                                                  #
+####################################################
+
+patio:
+  name: Patio
+  view: yes
+  entities:
+    - media_player.patio_kodi
+    - group.patio_temperature
+    - switch.plug_158d0001f24e2b
+    - switch.fairy_light_power
+    - switch.fairy_light_mode_4
+    - switch.patio_light_switch
+    
+patio temperature:
+  name: Patio Temperature
+  view: no
+  entities:
+    - sensor.temperature_158d0001f56350
+    - sensor.humidity_158d0001f56350
+    - sensor.illumination_158d000200ea5b
+
+    
+####################################################
+#                                                  #
+#                 Master Bedroom                   #
+#                                                  #
+####################################################
+
+master bedroom:
+  name: Master Bedroom
+  view: yes
+  entities:
+    - group.master_bedroom_climate
+    - group.master_bedroom_lights
+    - media_player.bedroom_kodi
+    - media_player.bedroom_tv
+    - camera.baby_monitor
+    
+master bedroom climate:
+  name: Master Bedroom Climate
+  view: no
+  entities:
+    - sensor.temperature_158d0001f53de9
+    - sensor.humidity_158d0001f53de9
+    - input_select.master_bedroom_aircon
+    - input_select.bedroom_fan
+    
+master bedroom lights:
+  name: Master Bedroom Lights
+  view: no
+  entities:
+    - switch.master_light_switch
+    - switch.bedroom_wardrobe_switch
+    
+####################################################
+#                                                  #
+#                Jackson Bedroom                   #
+#                                                  #
+####################################################
+
+jackson bedroom:
+  name: Jackson Bedroom
+  view: yes
+  entities:
+    - group.jackson_fan
+    - switch.jackson_light_switch
+    - group.jackson_temperature
+    
+jackson fan:
+  name: Jackson Fan
+  view: no
+  entities:
+    - script.jackson_fan_low
+    - script.jackson_fan_med
+    - script.jackson_fan_high
+    - script.jackson_fan_off
+  control: hidden
+  
+jackson temperature:
+  name: Jackson Climate
+  view: no
+  entities:
+    - sensor.temperature_158d0001f534e1
+    - sensor.humidity_158d0001f534e1
+
+####################################################
+#                                                  #
+#                 Hudson Bedroom                   #
+#                                                  #
+####################################################
+
+hudson bedroom:
+  name: Hudson Bedroom
+  view: yes
+  entities:
+    - group.hudson_fan
+    - switch.hudson_light_switch
+    - group.hudson_temperature
+    
+hudson fan:
+  name: Hudson Fan
+  view: no
+  entities:
+    - script.hudson_fan_low
+    - script.hudson_fan_med
+    - script.hudson_fan_high
+    - script.hudson_fan_off
+  control: hidden
+  
+hudson temperature:
+  name: Hudson Climate
+  view: no
+  entities:
+    - sensor.temperature_158d0001f54df3
+    - sensor.humidity_158d0001f54df3
+    
+####################################################
+#                                                  #
+#                    Bathroom                      #
+#                                                  #
+####################################################
+
+bathroom:
+  name: Bathroom
+  view: yes
+  entities:
+    - group.bathroom_switches
+    - group.bathroom_temperature
+    
+bathroom switches:
+  name: Bathroom Switches
+  view: no
+  entities:
+    - switch.bathroom_light_switch
+    - switch.bathroom_fan_switch
+    - switch.bathroom_heat_switch
+    
+bathroom temperature:
+  name: Bathroom Climate
+  view: no
+  entities:
+    - sensor.bathroom_temperature
+    - sensor.bathroom_humidity
+    - sensor.bathroom_light
+    - sensor.bathroom_noise
+    - sensor.bathroom_air_quality
+    
+####################################################
+#                                                  #
+#                  System Status                   #
+#                                                  #
+####################################################
+
+system status:
+  name: System Status
+  view: yes
+  entities:
+    - group.internet
+    - group.core_network
+    - group.core_devices
+    - group.ha_devices
+    - group.media_devices
+    - group.rpi_resources
+    
+internet:
+  name: Internet
+  view: no
+  entities:
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    
+core network:
+  name: Core Network
+  view: no
+  entities:
+    - binary_sensor.device_tracker_core_router
+    - binary_sensor.device_tracker_core_switch
+    - binary_sensor.device_tracker_upstairs_switch
+    - binary_sensor.device_tracker_wifi_bridge
+    - binary_sensor.device_tracker_5g_ac_main
+    - binary_sensor.device_tracker_5g_ac_media_tv
+    - binary_sensor.device_tracker_5g_ac_upstairs
+    
+core devices:
+  name: Core Devices
+  view: no
+  entities:
+    - binary_sensor.device_tracker_nas_movies
+    - binary_sensor.device_tracker_nas_tv
+    - binary_sensor.device_tracker_smart_things_hub
+    - binary_sensor.device_tracker_xiaomi_gateway
+    - binary_sensor.device_tracker_44650df543ec
+    - binary_sensor.device_tracker_f081735c7ffc
+    - binary_sensor.device_tracker_8c89a5ef4d19
+    - binary_sensor.device_tracker_printer
+    
+ha devices:
+  name: HA Devices
+  view: no
+  entities:
+    - binary_sensor.device_tracker_rpi
+    - binary_sensor.device_tracker_garden_pi
+    - binary_sensor.device_tracker_alarm_panel
+    - binary_sensor.device_tracker_kitchen_dashboard
+    - binary_sensor.device_tracker_upstairs_dashboard
+    
+media devices:
+  name: Media Devices
+  view: no
+  entities:
+    - binary_sensor.device_tracker_hdhomerun
+    - binary_sensor.device_tracker_media_tv
+    - binary_sensor.device_tracker_media_kodi_4k
+    - binary_sensor.device_tracker_appletv
+    - binary_sensor.device_tracker_bedroom_tv
+    - binary_sensor.device_tracker_bedroom_kodi
+    - binary_sensor.device_tracker_patio_kodi
+    
+rpi resources:
+  name: RPi Resources
+  view: no
+  entities:
+    - sensor.disk_use_
+    - sensor.memory_use_percent
+    - sensor.processor_use
+    - sensor.cpu_temperature
+    - sensor.last_boot
+    
+####################################################
+#                                                  #
+#                  Things Status                   #
+#                                                  #
+####################################################
+
+things status:
+  name: Things Status
+  view: yes
+  entities:
+    - group.battery_alert
+    - group.cameras
+    - group.ir_blasters
+    - group.temp_sensors
+    - group.sonoff_switches
+    - group.lamps
+    - group.appliances
+    
+cameras:
+  name: Cameras
+  view: no
+  entities:
+    - binary_sensor.device_tracker_baby_monitor_camera
+    - binary_sensor.device_tracker_downstairs_camera
+    
+ir blasters:
+  name: IR Blasters
+  view: no
+  entities:
+    - binary_sensor.device_tracker_ir_blaster_downstairs
+    - binary_sensor.device_tracker_ir_blaster_upstairs
+    
+temp sensors:
+  name: Temp Sensors
+  view: no
+  entities:
+    - sensor.158d0001f558f5
+    
+sonoff switches:
+  name: Sonoff Swiches
+  view: no
+  entities:
+    - binary_sensor.device_tracker_lounge_fan_switch
+    - binary_sensor.device_tracker_kitchen_dining_light_switch
+    - binary_sensor.device_tracker_patio_light_switch
+    - binary_sensor.device_tracker_lounge_light_switch
+    - binary_sensor.device_tracker_master_bedroom_fan_switch
+    
+lamps:
+  name: Lamps
+  view: no
+  entities:
+    - binary_sensor.device_tracker_hall_light_bulb
+    - binary_sensor.device_tracker_lounge_light_bulb
+    - binary_sensor.device_tracker_dining_light_bulb
+    - binary_sensor.device_tracker_entry_light_bulb
+    
+appliances:
+  name: Appliances
+  view: no
+  entities:
+    - binary_sensor.device_tracker_playroom_fan
+    - binary_sensor.device_tracker_robovac
+    
+####################################################
+#                                                  #
+#                     Garden                       #
+#                                                  #
+####################################################
+
+garden:
+  view: yes
+  icon: mdi:flower
+  entities:
+    - group.bougainvillea
+    - group.chilli
+    - group.citrus
+    - group.herb
+    - group.maple
+    - group.mertyl
+    - group.jasmine
+    - group.strawberry
+    - group.top_bed
+    - group.veggie_patch
+  
+bougainvillea:
+  name: Bougainvillea
+  view: no
+  entities:
+    - sensor.bougainvillea_moisture
+    - sensor.bougainvillea_ph_level
+    - sensor.bougainvillea_battery
+    
+chilli:
+  name: Purple Mumba Chilli
+  view: no
+  entities:
+    - sensor.chilli_moisture
+    - sensor.chilli_ph_level
+    - sensor.chilli_battery
+    
+citrus:
+  name: Citrus Bed
+  view: no
+  entities:
+    - sensor.citrus_moisture
+    - sensor.citrus_ph_level
+    - sensor.citrus_battery
+    
+herb:
+  name: Herb Patch
+  view: no
+  entities:
+    - sensor.herb_moisture
+    - sensor.herb_ph_level
+    - sensor.herb_battery
+    
+maple:
+  name: Maple Bed
+  view: no
+  entities:
+    - sensor.maple_moisture
+    - sensor.maple_ph_level
+    - sensor.maple_battery
+    
+mertyl:
+  name: Mertyl Bed
+  view: no
+  entities:
+    - sensor.mertyl_moisture
+    - sensor.mertyl_ph_level
+    - sensor.mertyl_battery
+    
+jasmine:
+  name: Jasmine Bed
+  view: no
+  entities:
+    - sensor.jasmine_moisture
+    - sensor.jasmine_ph_level
+    - sensor.jasmine_battery
+    
+strawberry:
+  name: Strawberry Patch
+  view: no
+  entities:
+    - sensor.strawberry_moisture
+    - sensor.strawberry_ph_level
+    - sensor.strawberry_battery
+    
+top_bed:
+  name: Top Bed
+  view: no
+  entities:
+    - sensor.top_bed_moisture
+    - sensor.top_bed_ph_level
+    - sensor.top_bed_battery
+    
+veggie_patch:
+  name: Veggie Patch
+  view: no
+  entities:
+    - sensor.veggie_patch_moisture
+    - sensor.veggie_patch_ph_level
+    - sensor.veggie_patch_battery

@@ -1,0 +1,5 @@
+  discovery_retry: 5
+  gateways:
+    - mac: !secret xiaomi_gw1_mac
+      key: !secret xiaomi_gw1_key
+      

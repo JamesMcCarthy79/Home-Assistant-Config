@@ -1,0 +1,14 @@
+kitchen:
+    widget_type: navigate
+    title: Kitchen Dashboard
+    url: http://66c4055fd9fb.sn.mynetname.net:45050/Security_Kitchen
+    icon_active: mdi-android
+    icon_active_style: "color: #5294E2;"
+    icon_inactive: mdi-android
+    icon_inactive_style: "color: #5294E2;"
+
+layout:
+    -
+    -
+    - kitchen(2x1), spacer(2x1)
+    -

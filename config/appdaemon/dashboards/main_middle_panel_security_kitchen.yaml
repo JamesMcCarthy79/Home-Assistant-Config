@@ -1,0 +1,189 @@
+alarm:
+  title: Alarm Panel
+  widget_type: icon
+  entity: alarm_control_panel.ha_alarm
+  state_text: ""
+  icons:
+    "disarmed":
+      icon: mdi-security-home
+      style: "color: white"
+    "pending":
+      icon: mdi-security-home
+      style: "color: #5294E2;"
+    "armed_home":
+      icon: mdi-security-home
+      style: "color: red"
+    "armed_away":
+      icon: mdi-security-home
+      style: "color: red"
+      
+smoke_alarm_1:
+  title: Smoke Detector Downstairs
+  widget_type: icon
+  entity: binary_sensor.smoke_sensor_158d0001b8ddc7
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-periodic-table-co2
+      style: "color: white"
+    "on":
+      icon: mdi-periodic-table-co2
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red"
+      
+smoke_alarm_2:
+  title: Smoke Detector Uptairs
+  widget_type: icon
+  entity: binary_sensor.smoke_sensor_158d0001b8deba
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-periodic-table-co2
+      style: "color: white"
+    "on":
+      icon: mdi-periodic-table-co2
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red"
+      
+motion_entrance:
+  title: Motion Sensor Entrance
+  widget_type: icon
+  entity: binary_sensor.motion_sensor_158d0001e5d147
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-walk
+      style: "color: white"
+    "on":
+      icon: mdi-run
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red"
+
+motion_patio:
+  title: Motion Sensor Patio
+  widget_type: icon
+  entity: binary_sensor.motion_sensor_158d000200ea5b
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-walk
+      style: "color: white"
+    "on":
+      icon: mdi-run
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red"
+      
+motion_living:
+  title: Motion Sensor Living Room
+  widget_type: icon
+  entity: binary_sensor.motion_sensor_158d0001e5d118
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-walk
+      style: "color: white"
+    "on":
+      icon: mdi-run
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red"
+      
+motion_playroom:
+  title: Motion Sensor Play Room
+  widget_type: icon
+  entity: binary_sensor.motion_sensor_158d0001e5cf11
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-walk
+      style: "color: white"
+    "on":
+      icon: mdi-run
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red"
+      
+motion_somewhere:
+  title: Motion Sensor Not Used Yet
+  widget_type: icon
+  entity: binary_sensor.motion_sensor_158d00022c2f21
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-walk
+      style: "color: white"
+    "on":
+      icon: mdi-run
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red"
+
+door_sensor_front:
+  title: Front Door Sensor
+  widget_type: icon
+  entity: binary_sensor.door_window_sensor_158d00022016b2
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-lock
+      style: "color: white"
+    "on":
+      icon: mdi-lock-open
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red;"
+      
+door_sensor_rear:
+  title: Rear Door Sensor
+  widget_type: icon
+  entity: binary_sensor.door_window_sensor_158d000225432d
+  state_text: ""
+  icons:
+    "off":
+      icon: mdi-lock
+      style: "color: white"
+    "on":
+      icon: mdi-lock-open
+      style: "color: #5294E2;"
+    "unavailable":
+      icon: mdi-help
+      style: "color: red"
+      
+james_presence:
+    widget_type: device_tracker
+    title: James
+    device: admin_samsung
+    state_text: 1
+    icon_on: mdi-account
+    icon_style_active: "color: white;"
+    icon_off: mdi-account
+    icon_style_inactive: "color: #5294E2;"
+    
+tina_presence:
+    widget_type: device_tracker
+    title: Tina
+    device: admin_iphone
+    state_text: 1
+    icon_on: mdi-account
+    icon_style_active: "color: white;"
+    icon_off: mdi-account
+    icon_style_inactive: "color: #5294E2;"
+
+
+layout:
+    - 
+    - alarm, james_presence, tina_presence, smoke_alarm_1(3x1)
+    - motion_entrance, motion_patio, motion_living, motion_playroom, motion_somewhere, smoke_alarm_2(3x1), door_sensor_front, door_sensor_rear
+    - 
