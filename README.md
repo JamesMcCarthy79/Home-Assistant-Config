@@ -337,7 +337,7 @@ I also bought a heap of Xiaomi Miji 1080p IP Cameras thinking they could be hack
 [BRUH Automation](https://www.youtube.com/channel/UCLecVrux63S6aYiErxdiy4w) - Great place for video tutorials on HA related guides.
 
 [DrZzs](https://www.youtube.com/channel/UC7G4tLa4Kt6A9e3hJ-HO8ng) - For anyone wanting to use Sonoff switches plenty of useful guides.
-<hr>---</hr>
+<hr --- </hr>
 
 <h3 align="left">My Favourite Projects</h3> 
 
@@ -349,6 +349,6 @@ I also bought a heap of Xiaomi Miji 1080p IP Cameras thinking they could be hack
 [Spotify Playlist Player](https://community.home-assistant.io/t/spotify-playlist-player/22491/67)<br>
 [MQTT Alarm Panel](https://community.home-assistant.io/t/mqtt-alarm-control-panel-for-raspberry-pi-and-android/26484)<br>
 [Better Looking Device Tracker](https://community.home-assistant.io/t/better-looking-device-tracker/27281)<br>
-<p>***More to come as I can remember them***</p>
-<hr>---</hr>
-<hr>---</hr>
+<p>**More to come as I can remember them**</p>
+<hr --- </hr>
+<hr --- </hr>
