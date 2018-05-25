@@ -14,7 +14,7 @@
  [LED Lighting](https://github.com/JamesMcCarthy79/Home-Assistant-Config#led-lighting) | [Appliances & Smart Power](https://github.com/JamesMcCarthy79/Home-Assistant-Config#appliances-and-smart-power) | [Media Control](https://github.com/JamesMcCarthy79/Home-Assistant-Config#media-control) | [Multi Room Audio](https://github.com/JamesMcCarthy79/Home-Assistant-Config#multi-room-audio) | [Security](https://github.com/JamesMcCarthy79/Home-Assistant-Config#security) | [Garden](https://github.com/JamesMcCarthy79/Home-Assistant-Config#garden) | [Config](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config) |
 |  --- | --- | --- | --- | --- | --- | --- |
 
-<p align="center">[My Favourite Resources](https://github.com/JamesMcCarthy79/Home-Assistant-Config#my-favourite-resources)</p>
+<p align="center">| [My Favourite Resources](https://github.com/JamesMcCarthy79/Home-Assistant-Config#my-favourite-resources) |</p>
 | --- |
 
 <hr --- </hr> 
