@@ -341,7 +341,7 @@ I also bought a heap of Xiaomi Miji 1080p IP Cameras thinking they could be hack
 
 [DrZzs](https://www.youtube.com/channel/UC7G4tLa4Kt6A9e3hJ-HO8ng) - For anyone wanting to use Sonoff switches plenty of useful guides.
 
-[HA Podcast](https://hasspodcast.io/) - I didn't mention above but I have an automation to send me a tasker notification that there is a new HA release, so that the next time I am driving to work I can say "ok google" play the latest home asssitant podcast. Nice way to keep abreast of what changes are coming in the latest release and if ther eis anything I would like to take advantage of. 
+[HA Podcast](https://hasspodcast.io/) - I didn't mention above but I have an automation to send me a tasker notification that there is a new HA release, so that the next time I am driving to work I can say "ok google" play the latest home asssitant podcast. Nice way to keep abreast of what changes are coming in the latest release and if there is anything I would like to take advantage of. 
 <hr --- </hr>
 
 <h3 align="left">My Favourite Projects</h3> 
