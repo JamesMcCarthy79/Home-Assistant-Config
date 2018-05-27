@@ -15,8 +15,10 @@ default_view:
     - group.weather_overview
     - group.sun
     - group.daily_forecast
-    - media_player.tts_kodi
+    #- media_player.tts_kodi
     - updater.updater
+    - group.trash_schedule
+    - group.recycle_schedule
 
     
 people:
@@ -86,6 +88,25 @@ security:
     - binary_sensor.motion_sensor_158d00022c2f21
     - binary_sensor.door_window_sensor_158d00022016b2
     - binary_sensor.door_window_sensor_158d000225432d
+    
+trash schedule:
+  name: Trash Schedule
+  view: no
+  entities:
+    - sensor.trash_day
+    - input_select.trash_reminders
+    - sensor.trash_pickup_day
+    - input_select.trash_pickup_day
+
+Recycle Schedule:
+  control: hidden
+  entities:
+    - sensor.recycle_day
+    - sensor.recycle_pickup_day
+    - sensor.recycle_pickup_week
+    - input_select.recycle_pickup_day
+    - sensor.current_week
+    - input_select.recycle_pickup_week
 
 ####################################################
 #                                                  #
