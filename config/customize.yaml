@@ -804,6 +804,37 @@ sensor.temp_sensor_hudson:
   
 ###################################################
 #                                                 #
+#                 Trash Recycle                   #
+#                                                 #
+###################################################
+
+sensor.trash_day:
+  friendly_name: Is it Trash Day today?
+  icon: mdi:delete-variant
+sensor.recycle_day:
+  friendly_name: Is it Recycle Day today?
+  icon: mdi:recycle
+sensor.trash_pickup_day:
+  friendly_name: Trash Pickup Day
+  icon: mdi:calendar-today
+  hidden: true
+sensor.recycle_pickup_day:
+  friendly_name: Recycle Pickup Day
+  icon: mdi:calendar-today
+  hidden: true
+sensor.recycle_pickup_week:
+  friendly_name: Recycle Pickup Week
+  icon: mdi:calendar-today
+  hidden: true
+sensor.current_week:
+  friendly_name: Current Week is
+  icon: mdi:calendar-question
+group.trash__recycle:
+  friendly_name: Trash & Recycle
+  icon: mdi:recycle
+  
+###################################################
+#                                                 #
 #                     Xiaomi                      #
 #                                                 #
 ###################################################
