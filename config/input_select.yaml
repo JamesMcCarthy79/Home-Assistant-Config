@@ -112,3 +112,44 @@ playroom_fan_led_brightness:
   initial: 2
   icon: mdi:fan
 
+####################################################
+#                                                  #
+#                  Trash Recycle                   #
+#                                                  #
+####################################################
+
+trash_pickup_day:
+  name: Current Trash Pickup Day (Evey Week)
+  options:
+   - Monday
+   - Tuesday
+   - Wednesday
+   - Thursday
+   - Friday
+   - Saturday
+   - Sunday
+  icon: mdi:delete-variant
+recycle_pickup_day:
+  name: Current Recycle Pickup Day (Every Other Week)
+  options:
+   - Monday
+   - Tuesday
+   - Wednesday
+   - Thursday
+   - Friday
+   - Saturday
+   - Sunday
+  icon: mdi:recycle
+recycle_pickup_week:
+  name: Select Recycle Pickup Week based on Current Week above
+  options:
+   - Even Weeks
+   - Odd Weeks
+  icon: mdi:recycle
+trash_reminders:
+  name: Trash Reminder
+  options:
+   - Bins Taken Out
+   - Remind Later
+   - Reset Trash Reminders
+
