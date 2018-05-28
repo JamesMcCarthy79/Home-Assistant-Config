@@ -767,9 +767,10 @@
     to: Bins Taken Out
   condition: []
   action:
-  - service: notify.tts_kodi
+  - service: tts.google_say
     data:
       message: Great job, Thank you!
+      entity_id: media_player.tts_kodi
   - service: input_boolean.turn_off
     entity_id: input_boolean.trash_reminders
 - id: '1527449064322'
@@ -780,9 +781,10 @@
     to: Remind Later
   condition: []
   action:
-  - service: notify.tts_kodi
+  - service: tts.google_say
     data:
-      message: Will remind you again before bed!
+      message: Ok lazy, Will remind you again before bed!
+      entity_id: media_player.tts_kodi
   - service: input_boolean.turn_on
     entity_id: input_boolean.trash_reminders
 - id: '1527449476807'
