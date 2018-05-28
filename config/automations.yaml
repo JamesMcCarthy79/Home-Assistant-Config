@@ -449,28 +449,26 @@
     from: playing
     platform: state
     to: paused
-- action:
+- id: '1523387114452'
+  alias: Hall Light On
+  trigger:
+  - at: '17:00'
+    platform: time
+  condition: []
+  action:
   - data:
       entity_id: scene.hall_dusk
     service: scene.turn_on
-  alias: Hall Light On
-  condition: []
-  id: '1523387114452'
+- id: '1523387234695'
+  alias: Hall Light Normal
   trigger:
-  - entity_id: sun.sun
-    platform: state
-    to: below_horizon
-- action:
+  - at: 06:00
+    platform: time
+  condition: []
+  action:
   - data:
       entity_id: scene.hall_normal
     service: scene.turn_on
-  alias: Hall Light Normal
-  condition: []
-  id: '1523387234695'
-  trigger:
-  - event: sunset
-    offset: '30:00'
-    platform: sun
 - action:
   - data:
       entity_id: scene.hall_dim
@@ -481,17 +479,16 @@
   trigger:
   - at: '18:30'
     platform: time
-- action:
+- id: '1523387457800'
+  alias: Hall Light Off
+  trigger:
+  - at: 08:00
+    platform: time
+  condition: []
+  action:
   - data:
       entity_id: light.hall_bulb
     service: light.turn_off
-  alias: Hall Light Off
-  condition: []
-  id: '1523387457800'
-  trigger:
-  - event: sunrise
-    offset: '60:00'
-    platform: sun
 - action:
   - service: script.1523505263098
   alias: Playroom Fan Level 1
