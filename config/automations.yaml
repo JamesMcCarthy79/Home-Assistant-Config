@@ -845,7 +845,7 @@
   condition: []
   action:
   - data:
-      gw_mac: !secret xiaomimac
+      gw_mac: 78:11:DC:FD:81:2F
       ringtone_id: 0
       ringtone_vol: 80
     service: xiaomi_aqara.play_ringtone
@@ -856,7 +856,7 @@
       message: Alarm triggered you have 2 minutes to reset or police will be contacted!
     service: tts.google_say
   - data:
-      entity_id: switch.alarm_triggered
+      entity_id: switch.away_alarm_triggered
     service: switch.turn_on
 - id: '1527538477919'
   alias: Stop Alarm Siren
@@ -868,7 +868,7 @@
   action:
   - service: xiaomi_aqara.stop_ringtone
     data:
-      gw_mac: !secret xiaomimac
+      gw_mac: 78:11:DC:FD:81:2F
   - service: tts.google_say
     data:
       message: Alarm deactivated!
