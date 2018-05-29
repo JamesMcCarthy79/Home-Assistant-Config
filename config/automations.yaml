@@ -810,3 +810,62 @@
     data_template:
       entity_id: input_select.recycle_pickup_week
       option: "{{states.sensor.recycle_pickup_week.state}}"
+- id: '1527499153967'
+  alias: Trigger Alarm While Armed Away
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d00022016b2
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.door_window_sensor_158d000225432d
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.motion_sensor_158d0001e5d118
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.motion_sensor_158d0001e5cf11
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: armed_away
+  action:
+  - entity_id: alarm_control_panel.ha_alarm
+    service: alarm_control_panel.alarm_trigger
+- id: '1527534128837'
+  alias: Start Siren on Alarm Trigger
+  trigger:
+  - entity_id: alarm_control_panel.ha_alarm
+    platform: state
+    to: triggered
+  condition: []
+  action:
+  - data:
+      gw_mac: !secret xiaomimac
+      ringtone_id: 10001
+      ringtone_vol: 100
+    service: xiaomi_aqara.play_ringtone
+  - entity_id: group.downstairs_lights
+    service: light.turn_on
+  - data:
+      entity_id: media_player.tts_kodi
+      message: Alarm triggered you have 60 seconds to reset or police will be contacted!
+    service: tts.google_say
+  - data:
+      entity_id: switch.alarm_triggered
+    service: switch.turn_on
+- id: '1527538477919'
+  alias: Stop Alarm Siren
+  trigger:
+  - entity_id: alarm_control_panel.ha_alarm
+    from: triggered
+    platform: state
+  condition: []
+  action:
+  - service: xiaomi_aqara.stop_ringtone
+    data:
+      gw_mac: !secret xiaomimac
+  - service: tts.google_say
+    data:
+      message: Alarm deactivated!
+      entity_id: media_player.tts_kodi
