@@ -1,2 +1,2 @@
 import requests
-requests.get('[***Your_URL_Here***=SayOff]')
+requests.get('***Your_URL_Here***=SayOff')
