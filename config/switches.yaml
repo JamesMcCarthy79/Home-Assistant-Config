@@ -132,10 +132,9 @@
       
 - platform: command_line
   switches:
-    tasker_say:
-      friendly_name: "Spotify James"
-      command_on: python3 /config/python_scripts/on.py
-      command_off: python3 /config/python_scripts/off.py
+    alarm_triggered:
+      friendly_name: "Alarm Triggered"
+      command_on: python3 /config/python_scripts/alarmtriggered.py
       
 ####################################################
 #                                                  #
