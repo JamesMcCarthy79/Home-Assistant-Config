@@ -759,40 +759,6 @@
     data_template:
       entity_id: input_select.recycle_pickup_week
       option: '{{states.sensor.recycle_pickup_week.state}}'
-- id: '1527584461793'
-  alias: Trash and Recycle Pickup Reminder
-  trigger:
-  - at: '17:00'
-    platform: time
-  - at: '21:00'
-    platform: time
-  condition:
-    condition: and
-    conditions:
-    - condition: template
-      value_template: '{{ states.input_boolean.trash_reminders.state == "on" }}'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: sensor.trash_day
-          state: 'yes'
-        - condition: state
-          entity_id: sensor.recycle_day
-          state: 'yes'
-  action:
-  - service: tts.google_say
-    data_template:
-      speech_message: >
-        {% if is_state("sensor.trash_day", "yes") and is_state("sensor.recycle_day", "yes") %}
-          Attention!: Tomorrow is the Trash and Recycle Pickup day.
-          Please don't forget to put the trash and recycle bin outside tonight!
-        {% elif states.sensor.trash_day.state == "yes" %}
-          Please don't forget to put the Trash bin outside tonight!
-        {% elif states.sensor.recycle_day.state == "yes" %}
-          Attention!: Tomorrow is the Recycle Pickup day.
-          Please don't forget to put the recycle bin outside tonight!
-        {% endif %}
-      entity_id: media_player.tts_kodi
 - id: '1527448703472'
   alias: Bins Taken Out
   trigger:
@@ -826,8 +792,8 @@
   initial_state: true
   hide_entity: true
   trigger:
-    - platform: time
-      at: '09:00:00'
+  - platform: time
+    at: 09:00:00
   condition: []
   action:
   - service: input_boolean.turn_on
@@ -835,15 +801,15 @@
   - service: input_select.select_option
     data_template:
       entity_id: input_select.trash_pickup_day
-      option: "{{states.sensor.trash_pickup_day.state}}"
+      option: '{{states.sensor.trash_pickup_day.state}}'
   - service: input_select.select_option
     data_template:
       entity_id: input_select.recycle_pickup_day
-      option: "{{states.sensor.recycle_pickup_day.state}}"
+      option: '{{states.sensor.recycle_pickup_day.state}}'
   - service: input_select.select_option
     data_template:
       entity_id: input_select.recycle_pickup_week
-      option: "{{states.sensor.recycle_pickup_week.state}}"
+      option: '{{states.sensor.recycle_pickup_week.state}}'
 - id: '1527499153967'
   alias: Trigger Alarm While Armed Away
   trigger:
@@ -866,6 +832,10 @@
   action:
   - entity_id: alarm_control_panel.ha_alarm
     service: alarm_control_panel.alarm_trigger
+  - data:
+      entity_id: media_player.tts_kodi
+      message: Alarm triggered you have 60 seconds to reset or siren will sound!
+    service: tts.google_say
 - id: '1527534128837'
   alias: Start Siren on Alarm Trigger
   trigger:
@@ -876,14 +846,14 @@
   action:
   - data:
       gw_mac: !secret xiaomimac
-      ringtone_id: 10001
-      ringtone_vol: 100
+      ringtone_id: 0
+      ringtone_vol: 80
     service: xiaomi_aqara.play_ringtone
   - entity_id: group.downstairs_lights
     service: light.turn_on
   - data:
       entity_id: media_player.tts_kodi
-      message: Alarm triggered you have 60 seconds to reset or police will be contacted!
+      message: Alarm triggered you have 2 minutes to reset or police will be contacted!
     service: tts.google_say
   - data:
       entity_id: switch.alarm_triggered
@@ -902,4 +872,50 @@
   - service: tts.google_say
     data:
       message: Alarm deactivated!
+      entity_id: media_player.tts_kodi
+- id: '1527584461793'
+  alias: Trash Pickup Reminder
+  trigger:
+  - at: '17:00'
+    platform: time
+  - at: '21:00'
+    platform: time
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ states.input_boolean.trash_reminders.state == "on" }}'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: sensor.trash_day
+        state: 'yes'
+  action:
+  - service: tts.google_say
+    data:
+      message: Attention! Tomorrow is the Trash Pickup day. Please don't forget to
+        put the trash bin outside tonight!
+      entity_id: media_player.tts_kodi
+- id: '1527587374171'
+  alias: Recycle Pickup Reminder
+  trigger:
+  - at: '16:59'
+    platform: time
+  - at: '20:59'
+    platform: time
+  condition:
+    condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ states.input_boolean.trash_reminders.state == "on" }}'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: sensor.recycle_day
+        state: 'yes'
+  action:
+  - service: tts.google_say
+    data:
+      message: Attention! Tomorrow is the Recycle Pickup day. Please don't forget to
+        put the recycle bin outside tonight!
       entity_id: media_player.tts_kodi
