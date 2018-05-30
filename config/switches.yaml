@@ -132,9 +132,20 @@
       
 - platform: command_line
   switches:
-    alarm_triggered:
-      friendly_name: "Alarm Triggered"
-      command_on: python3 /config/python_scripts/alarmtriggered.py
+    away_alarm_triggered:
+      friendly_name: "Away Alarm Triggered"
+      command_on: python3 /config/python_scripts/away_alarm_trigger.py
+      
+- platform: command_line
+  switches:
+    alarm_deactivated:
+      friendly_name: "Alarm Deactivated"
+      command_on: python3 /config/python_scripts/alarm_deactivated.py
+      
+#- platform: command_line
+#    name: "Latest Tasmota"
+#    command: "curl -s https://github.com/arendst/Sonoff-Tasmota/releases/latest | cut -d'\"' -f2 | rev | cut -d'/' -f1 | rev"
+#    scan_interval: 600
       
 ####################################################
 #                                                  #
