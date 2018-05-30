@@ -36,6 +36,7 @@
       alarm_panel: 10.0.20.7
       ir_blaster_downstairs: 10.0.30.1
       ir_blaster_upstairs: 10.0.30.2
+      ir_blaster_patio: 10.0.30.3
       temp_sensor_downstairs: 10.0.40.1
       temp_sensor_master_bedroom: 10.0.40.2
       temp_sensor_playroom: 10.0.40.3
