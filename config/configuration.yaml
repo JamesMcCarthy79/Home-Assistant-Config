@@ -39,6 +39,10 @@ panel_iframe:
     title: Node-Red
     icon: mdi:shuffle-variant
     url: !secret node_panel_url
+  sonweb:
+    title: SonWEB
+    icon: mdi:lightbulb-on
+    url: !secret sonweb_panel_url
     
 ###################################################
 #                                                 #
