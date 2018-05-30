@@ -28,6 +28,7 @@
     - device_tracker.patio_kodi
     - device_tracker.ir_blaster_downstairs
     - device_tracker.ir_blaster_upstairs
+    - device_tracker.ir_blaster_patio
     - device_tracker.baby_monitor_camera
     - device_tracker.downstairs_camera
     - device_tracker.lounge_fan_switch
