@@ -18,6 +18,17 @@
     
 ####################################################
 #                                                  #
+#                   Command Line                   #
+#                                                  #
+####################################################
+    
+  - platform: command_line
+    name: Sonoff Firmware Version
+    command: /config/html/versionsonoffhtml.sh
+    scan_interval: 21600
+    
+####################################################
+#                                                  #
 #            Google Maps Travel Time               #
 #                                                  #
 ####################################################
