@@ -117,6 +117,23 @@
       friendly_name: "Fairy Light Mode 8"
       command_on: 'JgBQAAABJ5MTEhMSExITEhMSExITEhQRFDYTNhM2FDYTNhM3EzYTNhMSFDYTNhQ2EzYUEhM2ExIUNhMSExITEhMSEzYTEhM3EwAFGAABJkkUAA0FAAAAAAAAAAA='
       
+- platform: broadlink
+  host: !secret rm3_patio_ip
+  mac: !secret rm3_patio_mac
+  timeout: 15
+  switches:
+    fairy_light_power:
+      friendly_name: "Fairy Light Power"
+      command_on: 'JgBYAAABJpQTEhMSExITEhMSExITEhMSEzYTNhM3EzYTNhM2EzcTNhM2ExITNxMSExITEhM2ExITEhM2FRATNxM2EzYTEhM3EwAFGwABJkkTAAxQAAEnSRMADQU='
+      command_off: 'JgBYAAABKJIVEBUQFRAVEBUQFRAVEBUQFTQVNBY0FTQVNBU1FTQVNRU0FTQVNRUQFRAVEBU0FRAVEBUQFRAVNRQ1FTQWDxY0FQAFFwABKUcWAAxJAAEpRxUADQU='
+    fairy_light_mode_4:
+      friendly_name: "Fairy Light Mode 4"
+      command_on: 'JJgBQAAABKJITEhITEhMSFBITEhMTEhMSEzYTNhM2FDYSNxI3FDYTNhI4EhMSExM2EhQRFBITERQRExM3EjcSFBE4EjcTNhI4EwAFGwABJkoSAA0FAAAAAAAAAAA='
+      command_off: 'JgBQAAABJ5MTEhMSExITEhMSExITEhQRFDYTNhM2FDYTNhM3EzYTNhMSFDYTNhQ2EzYUEhM2ExIUNhMSExITEhMSEzYTEhM3EwAFGAABJkkUAA0FAAAAAAAAAAA='
+    fairy_light_mode_8:
+      friendly_name: "Fairy Light Mode 8"
+      command_on: 'JgBQAAABJ5MTEhMSExITEhMSExITEhQRFDYTNhM2FDYTNhM3EzYTNhMSFDYTNhQ2EzYUEhM2ExIUNhMSExITEhMSEzYTEhM3EwAFGAABJkkUAA0FAAAAAAAAAAA='
+      
 ####################################################
 #                                                  #
 #                   Command Line                   #
