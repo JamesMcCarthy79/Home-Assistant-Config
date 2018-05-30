@@ -502,6 +502,7 @@ ir blasters:
   entities:
     - binary_sensor.device_tracker_ir_blaster_downstairs
     - binary_sensor.device_tracker_ir_blaster_upstairs
+    - binary_sensor.device_tracker_ir_blaster_patio
     
 temp sensors:
   name: Temp Sensors
