@@ -845,7 +845,7 @@
   condition: []
   action:
   - data:
-      gw_mac: 78:11:DC:FD:81:2F
+      gw_mac: !secret xiaomimac
       ringtone_id: 0
       ringtone_vol: 80
     service: xiaomi_aqara.play_ringtone
@@ -866,13 +866,16 @@
     platform: state
   condition: []
   action:
-  - service: xiaomi_aqara.stop_ringtone
-    data:
-      gw_mac: 78:11:DC:FD:81:2F
-  - service: tts.google_say
-    data:
-      message: Alarm deactivated!
+  - data:
+      gw_mac: !secret xiaomimac
+    service: xiaomi_aqara.stop_ringtone
+  - data:
       entity_id: media_player.tts_kodi
+      message: Alarm deactivated!
+    service: tts.google_say
+  - data:
+      entity_id: switch.alarm_deactivated
+    service: switch.turn_on
 - id: '1527584461793'
   alias: Trash Pickup Reminder
   trigger:
@@ -916,6 +919,25 @@
   action:
   - service: tts.google_say
     data:
-      message: Attention! Tomorrow is the Recycle Pickup day. Please don't forget to
-        put the recycle bin outside tonight!
+      message: Attention! Tomorrow is the Recycle Pickup day. Please don't forget
+        to put the recycle bin outside tonight!
       entity_id: media_player.tts_kodi
+- id: '1527630568885'
+  alias: Trigger Alarm While Armed Home
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d00022016b2
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.door_window_sensor_158d000225432d
+    platform: state
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.ha_alarm
+    state: armed_home
+  action:
+  - entity_id: alarm_control_panel.ha_alarm
+    service: alarm_control_panel.alarm_trigger
+  - data:
+      entity_id: media_player.tts_kodi
+      message: Alarm triggered you have 60 seconds to reset or siren will sound!
+    service: tts.google_say
