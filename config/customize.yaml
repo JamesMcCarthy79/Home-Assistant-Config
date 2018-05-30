@@ -259,6 +259,10 @@ binary_sensor.device_tracker_ir_blaster_upstairs:
   icon: mdi:remote
   friendly_name: IR Blaster Upstairs
   
+binary_sensor.device_tracker_ir_blaster_patio:
+  icon: mdi:remote
+  friendly_name: IR Blaster Patio
+  
 ###################################################
 #                                                 #
 #                     Lights                      #
