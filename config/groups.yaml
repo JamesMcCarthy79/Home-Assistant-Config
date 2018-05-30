@@ -16,9 +16,10 @@ default_view:
     - group.sun
     - group.daily_forecast
     #- media_player.tts_kodi
-    - updater.updater
+    #- updater.updater
     - group.trash_schedule
     - group.recycle_schedule
+    #- sensor.sonoff_firmware_version
 
     
 people:
@@ -79,6 +80,7 @@ security:
   view: no
   entities:
     - alarm_control_panel.ha_alarm
+    #- switch.alarm_triggered
     - binary_sensor.smoke_sensor_158d0001b8ddc7
     - binary_sensor.smoke_sensor_158d0001b8deba
     - binary_sensor.motion_sensor_158d0001e5cf11
@@ -107,6 +109,18 @@ Recycle Schedule:
     - input_select.recycle_pickup_day
     - sensor.current_week
     - input_select.recycle_pickup_week
+
+Date Time:
+  control: hidden
+  entities:
+    - sensor.time
+    - sensor.date
+    - sensor.time_utc
+    - sensor.date__time
+    - sensor.time__date
+    - sensor.internet_time
+    - sensor.rocket_launch_time
+    - sensor.beat
 
 ####################################################
 #                                                  #
@@ -473,6 +487,7 @@ things status:
     - group.sonoff_switches
     - group.lamps
     - group.appliances
+    - group.firmware
     
 cameras:
   name: Cameras
@@ -519,6 +534,14 @@ appliances:
   entities:
     - binary_sensor.device_tracker_playroom_fan
     - binary_sensor.device_tracker_robovac
+    
+firmware:
+  name: Firmware Status
+  view: no
+  entities:
+    - updater.updater
+    - sensor.sonoff_firmware_version
+
     
 ####################################################
 #                                                  #
