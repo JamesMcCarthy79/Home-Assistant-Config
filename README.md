@@ -4,10 +4,12 @@
 <h1 align="center">Kingia Castle Smart Home Configuration</h1>
 <hr *** </hr>
 <p align="center">Home Assistant Configuration &amp; Documentation for my Smart House.</p>
-<p align="center">I am making the move to a package based system as my automations and config is getting out of contro and harder for anyone to follow. I have created a Readme for each of the packages detailing what each is for and how I use it. The transition to packages is being done on a dev Pi to make sure all is well before I commit them to this repo, I hope that these will make it easier to follow having all config pertaining to a particular section all in one place rather then having to navigate several yaml files.</br>
 <p align="center">
   I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/au.png"/>, and therefor my links are for where I purchased from. There may be better (and most likely cheaper) sites in your local regions.</br>
 <hr --- </hr> 
+
+<p align="center">I am making the move to a package based system as my automations and config is getting out of contro and harder for anyone to follow. I have created a Readme for each of the packages detailing what each is for and how I use it. The transition to packages is being done on a dev Pi to make sure all is well before I commit them to this repo, I hope that these will make it easier to follow having all config pertaining to a particular section all in one place rather then having to navigate several yaml files.</br>
+<hr --- <hr/>
 
 | [Topology](https://github.com/JamesMcCarthy79/Home-Assistant-Config#smart-home-hardware-topology) | [HA Hardware](https://github.com/JamesMcCarthy79/Home-Assistant-Config#home-assistant-hardware) | [HA Software](https://github.com/JamesMcCarthy79/Home-Assistant-Config#home-assistant-software) | [Network](https://github.com/JamesMcCarthy79/Home-Assistant-Config#kingia-castle-network) | [Voice Control](https://github.com/JamesMcCarthy79/Home-Assistant-Config#voice-control--tts) |  [Gateways](https://github.com/JamesMcCarthy79/Home-Assistant-Config#gateways) | [Sensors](https://github.com/JamesMcCarthy79/Home-Assistant-Config#sensors) | [Fan & Lighting](https://github.com/JamesMcCarthy79/Home-Assistant-Config#fan--lighting-control) |
 | --- | --- | --- | --- | --- |--- | --- | --- |
