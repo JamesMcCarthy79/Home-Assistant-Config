@@ -4,6 +4,7 @@
 <h1 align="center">Kingia Castle Smart Home Configuration</h1>
 <hr *** </hr>
 <p align="center">Home Assistant Configuration &amp; Documentation for my Smart House.</p>
+<p align="center">I am making the move to a package based system as my automations and config is getting out of contro and harder for anyone to follow. I have created a Readme for each of the packages detailing what each is for and how I use it. The transition to packages is being done on a dev Pi to make sure all is well before I commit them to this repo, I hope that these will make it easier to follow having all config pertaining to a particular section all in one place rather then having to navigate several yaml files.</br>
 <p align="center">
   I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/au.png"/>, and therefor my links are for where I purchased from. There may be better (and most likely cheaper) sites in your local regions.</br>
 <hr --- </hr> 
@@ -14,8 +15,8 @@
  [LED Lighting](https://github.com/JamesMcCarthy79/Home-Assistant-Config#led-lighting) | [Appliances & Smart Power](https://github.com/JamesMcCarthy79/Home-Assistant-Config#appliances-and-smart-power) | [Media Control](https://github.com/JamesMcCarthy79/Home-Assistant-Config#media-control) | [Multi Room Audio](https://github.com/JamesMcCarthy79/Home-Assistant-Config#multi-room-audio) | [Security](https://github.com/JamesMcCarthy79/Home-Assistant-Config#security) | [Garden](https://github.com/JamesMcCarthy79/Home-Assistant-Config#garden) | [Config](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config) |
 |  --- | --- | --- | --- | --- | --- | --- |
 
-| [My Favourite Resources](https://github.com/JamesMcCarthy79/Home-Assistant-Config#my-favourite-resources) |
-| --- |
+| [My Favourite Resources](https://github.com/JamesMcCarthy79/Home-Assistant-Config#my-favourite-resources) | [Packages READme](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages#stay-tuned-this-section-will-be-getting-built-out-in-the-coming-weeks) |
+| --- | --- |
 
 <hr --- </hr> 
 
