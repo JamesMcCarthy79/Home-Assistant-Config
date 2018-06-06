@@ -810,72 +810,6 @@
     data_template:
       entity_id: input_select.recycle_pickup_week
       option: '{{states.sensor.recycle_pickup_week.state}}'
-- id: '1527499153967'
-  alias: Trigger Alarm While Armed Away
-  trigger:
-  - entity_id: binary_sensor.door_window_sensor_158d00022016b2
-    platform: state
-    to: 'on'
-  - entity_id: binary_sensor.door_window_sensor_158d000225432d
-    platform: state
-    to: 'on'
-  - entity_id: binary_sensor.motion_sensor_158d0001e5d118
-    platform: state
-    to: 'on'
-  - entity_id: binary_sensor.motion_sensor_158d0001e5cf11
-    platform: state
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: alarm_control_panel.ha_alarm
-    state: armed_away
-  action:
-  - entity_id: alarm_control_panel.ha_alarm
-    service: alarm_control_panel.alarm_trigger
-  - data:
-      entity_id: media_player.tts_kodi
-      message: Alarm triggered you have 60 seconds to reset or siren will sound!
-    service: tts.google_say
-- id: '1527534128837'
-  alias: Start Siren on Alarm Trigger
-  trigger:
-  - entity_id: alarm_control_panel.ha_alarm
-    platform: state
-    to: triggered
-  condition: []
-  action:
-  - data:
-      gw_mac: !secret xiaomimac
-      ringtone_id: 0
-      ringtone_vol: 80
-    service: xiaomi_aqara.play_ringtone
-  - entity_id: group.downstairs_lights
-    service: light.turn_on
-  - data:
-      entity_id: media_player.tts_kodi
-      message: Alarm triggered you have 2 minutes to reset or police will be contacted!
-    service: tts.google_say
-  - data:
-      entity_id: switch.away_alarm_triggered
-    service: switch.turn_on
-- id: '1527538477919'
-  alias: Stop Alarm Siren
-  trigger:
-  - entity_id: alarm_control_panel.ha_alarm
-    from: triggered
-    platform: state
-  condition: []
-  action:
-  - data:
-      gw_mac: !secret xiaomimac
-    service: xiaomi_aqara.stop_ringtone
-  - data:
-      entity_id: media_player.tts_kodi
-      message: Alarm deactivated!
-    service: tts.google_say
-  - data:
-      entity_id: switch.alarm_deactivated
-    service: switch.turn_on
 - id: '1527584461793'
   alias: Trash Pickup Reminder
   trigger:
@@ -922,22 +856,3 @@
       message: Attention! Tomorrow is the Recycle Pickup day. Please don't forget
         to put the recycle bin outside tonight!
       entity_id: media_player.tts_kodi
-- id: '1527630568885'
-  alias: Trigger Alarm While Armed Home
-  trigger:
-  - entity_id: binary_sensor.door_window_sensor_158d00022016b2
-    platform: state
-    to: 'on'
-  - entity_id: binary_sensor.door_window_sensor_158d000225432d
-    platform: state
-  condition:
-  - condition: state
-    entity_id: alarm_control_panel.ha_alarm
-    state: armed_home
-  action:
-  - entity_id: alarm_control_panel.ha_alarm
-    service: alarm_control_panel.alarm_trigger
-  - data:
-      entity_id: media_player.tts_kodi
-      message: Alarm triggered you have 60 seconds to reset or siren will sound!
-    service: tts.google_say
