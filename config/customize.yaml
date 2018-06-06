@@ -843,27 +843,6 @@ group.trash__recycle:
 #                                                 #
 ###################################################
 
-binary_sensor.door_window_sensor_158d00022016b2:
-  friendly_name: Front Door Sensor
-  
-binary_sensor.door_window_sensor_158d000225432d:
-  friendly_name: Patio Door Sensor
-  
-binary_sensor.motion_sensor_158d0001e5d147:
-  friendly_name: Entrance Motion Sensor
-  
-binary_sensor.motion_sensor_158d0001e5d118:
-  friendly_name: Living Motion Sensor
-  
-binary_sensor.motion_sensor_158d000200ea5b:
-  friendly_name: Patio Motion Sensor
-  
-binary_sensor.motion_sensor_158d0001e5cf11:
-  friendly_name: Playroom Motion Sensor
-  
-binary_sensor.motion_sensor_158d00022c2f21:
-  friendly_name: Unassigned
-
 binary_sensor.switch_158d000233a19d:
   friendly_name: Bedside Fan Switch
   
@@ -881,12 +860,6 @@ binary_sensor.switch_158d00021347cc:
   
 binary_sensor.switch_158d000201ce4e:
   friendly_name: Lounge Fan Switch
-  
-binary_sensor.smoke_sensor_158d0001b8ddc7:
-  friendly_name: Downstairs Smoke Detector
-  
-binary_sensor.smoke_sensor_158d0001b8deba:
-  friendly_name: Upstairs Smoke Detector
   
 light.gateway_light_7811dcfd812f:
   friendly_name: TV Back Light
