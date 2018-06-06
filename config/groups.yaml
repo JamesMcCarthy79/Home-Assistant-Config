@@ -74,23 +74,6 @@ daily forcast:
     #- sensor.pws_weather_3d_metric
     #- sensor.pws_weather_4d_metric
     
-security:
-  name: Security
-  icon: mdi:security-home
-  view: no
-  entities:
-    - alarm_control_panel.ha_alarm
-    #- switch.alarm_triggered
-    - binary_sensor.smoke_sensor_158d0001b8ddc7
-    - binary_sensor.smoke_sensor_158d0001b8deba
-    - binary_sensor.motion_sensor_158d0001e5cf11
-    - binary_sensor.motion_sensor_158d0001e5d118
-    - binary_sensor.motion_sensor_158d0001e5d147
-    - binary_sensor.motion_sensor_158d000200ea5b
-    - binary_sensor.motion_sensor_158d00022c2f21
-    - binary_sensor.door_window_sensor_158d00022016b2
-    - binary_sensor.door_window_sensor_158d000225432d
-    
 trash schedule:
   name: Trash Schedule
   view: no
