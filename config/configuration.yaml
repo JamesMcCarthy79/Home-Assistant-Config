@@ -139,17 +139,6 @@ mqtt:
   username: !secret mozzieuser
   password: !secret mozziepass
 
-####################################################
-#                                                  #
-#                      Alarm                       #
-#                                                  #
-####################################################
-
-alarm_control_panel:
-  - platform: manual_mqtt
-    state_topic: home/alarm
-    command_topic: home/alarm/set
-    
 automation: !include automations.yaml
 binary_sensor: !include binary_sensor.yaml
 camera: !include cameras.yaml
