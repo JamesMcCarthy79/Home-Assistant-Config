@@ -73,37 +73,6 @@ daily forcast:
     #- sensor.pws_weather_2d_metric
     #- sensor.pws_weather_3d_metric
     #- sensor.pws_weather_4d_metric
-    
-trash schedule:
-  name: Trash Schedule
-  view: no
-  entities:
-    - sensor.trash_day
-    - input_select.trash_reminders
-    - sensor.trash_pickup_day
-    - input_select.trash_pickup_day
-
-Recycle Schedule:
-  control: hidden
-  entities:
-    - sensor.recycle_day
-    - sensor.recycle_pickup_day
-    - sensor.recycle_pickup_week
-    - input_select.recycle_pickup_day
-    - sensor.current_week
-    - input_select.recycle_pickup_week
-
-Date Time:
-  control: hidden
-  entities:
-    - sensor.time
-    - sensor.date
-    - sensor.time_utc
-    - sensor.date__time
-    - sensor.time__date
-    - sensor.internet_time
-    - sensor.rocket_launch_time
-    - sensor.beat
 
 ####################################################
 #                                                  #
