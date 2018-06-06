@@ -1,10 +1,1 @@
-####################################################
-#                                                  #
-#                Garbage Reminders                 #
-#                                                  #
-####################################################
 
-trash_reminders:
-  name: Trash Reminders
-  initial: on
-  icon: mdi:delete-variant
