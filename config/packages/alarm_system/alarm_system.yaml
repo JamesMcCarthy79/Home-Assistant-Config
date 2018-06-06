@@ -1,0 +1,221 @@
+#################################################################
+#                                                               #
+#                    Packages/Alarm System                      #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    alarm_control_panel.ha_alarm:
+      icon: mdi:security-home
+    binary_sensor.door_window_sensor_158d00022016b2:
+      friendly_name: Front Door Sensor
+      device_class: door
+    binary_sensor.door_window_sensor_158d000225432d:
+      friendly_name: Patio Door Sensor
+      device_class: door
+    binary_sensor.motion_sensor_158d0001e5d147:
+      friendly_name: Entrance Motion Sensor
+    binary_sensor.motion_sensor_158d0001e5d118:
+      friendly_name: Living Motion Sensor
+    binary_sensor.motion_sensor_158d000200ea5b:
+      friendly_name: Patio Motion Sensor
+    binary_sensor.motion_sensor_158d0001e5cf11:
+      friendly_name: Playroom Motion Sensor
+    binary_sensor.motion_sensor_158d00022c2f21:
+      friendly_name: Staircase Motion Sensor
+    binary_sensor.smoke_sensor_158d0001b8ddc7:
+      friendly_name: Downstairs Smoke Detector
+      device_class: smoke
+    binary_sensor.smoke_sensor_158d0001b8deba:
+     friendly_name: Upstairs Smoke Detector
+     device_class: smoke
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  security:
+    name: Security
+    icon: mdi:security-home
+    view: no
+    entities:
+      - alarm_control_panel.ha_alarm
+      - binary_sensor.smoke_sensor_158d0001b8ddc7
+      - binary_sensor.smoke_sensor_158d0001b8deba
+      - binary_sensor.motion_sensor_158d0001e5cf11
+      - binary_sensor.motion_sensor_158d0001e5d118
+      - binary_sensor.motion_sensor_158d0001e5d147
+      - binary_sensor.motion_sensor_158d000200ea5b
+      - binary_sensor.motion_sensor_158d00022c2f21
+      - binary_sensor.door_window_sensor_158d00022016b2
+      - binary_sensor.door_window_sensor_158d000225432d
+      
+#################################################################
+#                                                               #
+#                     MQTT Control Panel                        #
+#                                                               #
+#################################################################
+
+alarm_control_panel:
+  - platform: manual_mqtt
+    state_topic: home/alarm
+    command_topic: home/alarm/set
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+## This will simply play a TTS message if we set the Alarm but cancel it before it arms mainly to annoy my wife as we always have to cancel and get something she has forgotten
+
+automation:
+  - alias: 'Alarm Pending Cancel'
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.ha_alarm
+      from: pending
+    action:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: What did you forget this time?
+        
+## This will notify if any doors are open it requires the [sensor.door_count] **it won't allow you to arm the alarm until all windows are closed**
+
+  - alias: Open Doors Notification On Alarm Set
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.ha_alarm
+      to: pending
+    condition:
+    - condition: numeric_state
+      above: '1'
+      entity_id: sensor.door_count
+    action:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: There are still doors open maybe you should close them first.
+    - service: alarm_control_panel.alarm_disarm
+     
+## This will notify if any windows are open it requires the [sensor.window_count] **it won't allow you to arm the alarm until all windows are closed**
+
+  - alias: Open Windows Notification on Alarm Set
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.ha_alarm
+      to: pending
+    condition:
+    - condition: numeric_state
+      above: '0'
+      entity_id: sensor.window_count
+    action:
+    - delay: 00:00:20
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: There are still windows open maybe you should close them first.
+    - service: alarm_control_panel.alarm_disarm
+    
+## This will use the Xiaomi Gateway to sound an alarm if the system has been triggered
+
+  - alias: Start Siren on Alarm Trigger
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.ha_alarm
+      to: triggered
+    action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomimac
+        ringtone_id: 0
+        ringtone_vol: 80
+    - service: light.turn_on
+      entity_id: group.downstairs_lights
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: Alarm triggered you have 2 minutes to reset or police will be contacted!
+    - service: switch.turn_on
+      data:
+        entity_id: switch.away_alarm_triggered
+        
+## This will stop the siren once the correct alarm code has been entered
+
+  - alias: Stop Alarm Siren
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.ha_alarm
+      from: triggered
+    action:
+    - service: xiaomi_aqara.stop_ringtone
+      data:
+        gw_mac: !secret xiaomimac
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: Alarm deactivated!
+    - service: switch.turn_on
+      data:
+        entity_id: switch.alarm_deactivated
+    
+## This will set the input sensors used to trigger the alarm whilst it is armed away
+
+  - alias: Trigger Alarm While Armed Away
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d00022016b2
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d000225432d
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e5d118
+      to: 'on'
+    - platform: state 
+      entity_id: binary_sensor.motion_sensor_158d0001e5cf11
+      to: 'on'
+    condition:
+    - condition: state
+      entity_id: alarm_control_panel.ha_alarm
+      state: armed_away
+    action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.ha_alarm
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: Alarm triggered you have 60 seconds to reset or siren will sound!
+    
+## This will set the input sensors used to trigger the alarm whilst it is armed home
+
+  - alias: Trigger Alarm While Armed Home
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d00022016b2
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d000225432d
+    condition:
+    - condition: state
+      entity_id: alarm_control_panel.ha_alarm
+      state: armed_home
+    action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.ha_alarm
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: Alarm triggered you have 60 seconds to reset or siren will sound!
+    
