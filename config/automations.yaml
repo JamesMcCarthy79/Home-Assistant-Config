@@ -36,16 +36,6 @@
     platform: zone
     zone: zone.home
 - action:
-  - service: frontend.set_theme
-    data:
-      name: midnight
-  alias: Set Theme to Midnight
-  condition: []
-  id: '1518991140056'
-  trigger:
-  - event: start
-    platform: homeassistant
-- action:
   - data:
       entity_id: media_player.tts_kodi
       message: Daddy has arrived safely at work.
