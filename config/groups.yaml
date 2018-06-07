@@ -90,6 +90,7 @@ downstairs:
     - group.outside_lights
     - group.music
 #    - camera.baby_monitor
+    - group.kitchen
     - group.laundry
     - group.robovac
  
