@@ -18,7 +18,7 @@
 <p align="left">- Sensors for Time & Date please see my sensor.yaml for details</br>
 <p align="left">- Everything else required is already in the package</br>
 <h4 align="left">Package Sensors:</h4>
-<p align="left">The sensors in this package will detirmine if its an even or odd week of the year, and track day of the week to set reminders for trash and recycle days respectively. </br>
+<p align="left">The sensors in this package will determine if it's an even or odd week of the year, and track day of the week to set reminders for trash and recycle days respectively. </br>
 <h4 align="left">Package Automations:</h4>
 <h4 align="left">Trash Pickup Day Changed</h4>
 <p align="left">This automation publishes a MQTT topic when the UI input select for Trash Day has been changed for the above sensors to track</p>
@@ -35,7 +35,7 @@
 <h4 align="left">Bins Taken Out</h4>
 <p align="left">This automation lets HA know I have taken out the bins and resets the trash recycle reminders for the next week.</p>
 <h4 align="left">Remind Later</h4>
-<p align="left">This automation postpones the trash reminder to 9pm to remind me again before I go to bed, it also plays a TTS message "Ok lazy, Will remind you again before bed!"</p>
+<p align="left">This automation postpones the trash reminder to 9pm to remind me again before I go to bed, it also plays a TTS message "Ok lazy, will remind you again before bed!"</p>
 <h4 align="left">Reset Trash Reminders</h4>
 <p align="left">This automation resets the trash reminders for the next week.</p>
 <hr --- </hr>
