@@ -640,28 +640,6 @@
   - platform: worldclock
     time_zone: Europe/London
     name: Mum Time
-    
-####################################################
-#                                                  #
-#                  Trash Recycle                   #
-#                                                  #
-####################################################
-
-  - platform: mqtt
-    state_topic: "/home/trashpickupday"
-    name: "Trash Pickup Day"
-    value_template: "{{ value }}"
-    qos: 1
-  - platform: mqtt
-    state_topic: "/home/recyclepickupday"
-    name: "Recycle Pickup Day"
-    value_template: "{{ value }}"
-    qos: 1
-  - platform: mqtt
-    state_topic: "/home/recyclepickupweek"
-    name: "Recycle Pickup Week"
-    value_template: "{{ value }}"
-    qos: 1
 
 ####################################################
 #                                                  #
