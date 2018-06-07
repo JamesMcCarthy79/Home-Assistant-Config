@@ -1,0 +1,65 @@
+#################################################################
+#                                                               #
+#                    Packages/Coffee Machine                    #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.coffee_water_level_monitor:
+      icon: mdi:coffee
+      
+#################################################################
+#                                                               #
+#                           Groups                              #
+#                                                               #
+#################################################################
+
+group:
+  kitchen:
+    name: Kitchen
+    view: no
+    entities:
+      - sensor.coffee_water_level_monitor
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor: 
+  - platform: mqtt
+    name: "Coffee Water Level Monitor"
+    state_topic: "cmwaterlevel"
+    
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+
+## Once my Good Morning script kicks in this automation will check the water level in the coffee machine and tell me if I need to fill up the water reservoir
+ 
+automation:
+  - alias: 'Coffee Machine Water Refill'
+    trigger:
+    - platform: state
+      entity_id: input_boolean.morning_script_run
+      to: 'off'
+    condition:
+    - condition: state
+      entity_id: sensor.coffee_water_level_monitor
+      state: empty
+    action:
+    - service: tts.google_say
+      data:
+        message: "Coffee Machine Water Requires Refilling."
+        entity_id: media_player.tts_kodi
