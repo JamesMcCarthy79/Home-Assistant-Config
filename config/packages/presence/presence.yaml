@@ -1,0 +1,263 @@
+#################################################################
+#                                                               #
+#                       Packages/Presence                       #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.commute_to_work:
+      icon: 'mdi:car'
+    sensor.commute_to_home:
+      icon: 'mdi:home-variant'
+ 
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+################################################################# 
+      
+group:
+  people:
+    name: People
+    view: no
+    entities:
+      - device_tracker.admin_samsung
+      - sensor.battery_james
+      - device_tracker.admin_iphone
+      - sensor.battery_tina
+      - sensor.commute_to_work
+      - sensor.commute_to_home
+      
+#################################################################
+#                                                               #
+#                      Device Trackers                          #
+#                                                               #
+################################################################# 
+
+device_tracker:
+  - platform: ping
+    hosts:
+      james_phone: 10.0.5.1
+      tina_phone: 10.0.5.4
+      
+  - platform: owntracks
+    max_gps_accuracy: 200
+    
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+################################################################# 
+
+## Batteries
+sensor:
+  - platform: mqtt
+    state_topic: "owntracks/admin/samsung"
+    name: "Battery James"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.batt }}'
+    
+  - platform: mqtt
+    state_topic: "owntracks/admin/iphone"
+    name: "Battery Tina"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.batt }}'
+    
+## Google Travel Time
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    name: 'Commute to Work'
+    origin: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    destination: 16/511 Olsen Ave, Southport QLD 4215, Australia
+    
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    name: 'Commute to Home'
+    origin: 16/511 Olsen Ave, Southport QLD 4215, Australia
+    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    
+#################################################################
+#                                                               #
+#                            Zones                              #
+#                                                               #
+#################################################################    
+    
+zone:
+  - name: Powertec
+    latitude: !secret james_work_latitude
+    longitude: !secret james_work_longitude
+    radius: 250
+    icon: mdi:briefcase
+  
+  - name: Kindy
+    latitude: !secret kindy_latitude
+    longitude: !secret kindy_longitude
+    radius: 50
+    icon: mdi:school
+  
+  - name: Whole Beings
+    latitude: !secret wb_latitude
+    longitude: !secret wb_longitude
+    radius: 250
+    icon: mdi:school
+  
+  - name: Stocklands
+    latitude: !secret stocklands_latitude
+    longitude: !secret stocklands_longitude
+    radius: 200
+    icon: mdi:cart
+  
+  - name: Parlour
+    latitude: !secret parlour_latitude
+    longitude: !secret parlour_longitude
+    radius: 50
+    icon: mdi:coffee
+  
+  - name: Work Home Beacon 25mins
+    latitude: !secret workhome25mins_latitude
+    longitude: !secret workhome25mins_longitude
+    radius: 50
+    icon: mdi:car
+  
+  - name: Work Home Beacon 15mins
+    latitude: !secret workhome15mins_latitude
+    longitude: !secret workhome15mins_longitude
+    radius: 50
+    icon: mdi:car
+  
+  - name: Work Home Beacon 5mins
+    latitude: !secret workhome5mins_latitude
+    longitude: !secret workhome5mins_longitude
+    radius: 50
+    icon: mdi:car
+    
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+  
+## Tina Home Announcement 
+  - alias: Welcome Home Tina
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_iphone
+      event: enter
+      zone: zone.home
+    action:
+    - delay: 00:02:00
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: "I have detected a disturbance in the force, oh welcome home Lord Tina."
+        
+## James Home Announcement
+  - alias: Welcome Home James
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_samsung
+      event: enter
+      zone: zone.home
+    action:
+    - delay: 00:01:00
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: "Welcome home James your arrival has caused a disturbance in the force."
+        
+## James at work announcement
+  - alias: Dad at Work
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_samsung
+      event: enter
+      zone: zone.powertec
+    action:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: "Daddy has arrived safely at work."
+        
+## James at 25mins from home announcement
+  - alias: Work to Home 25min Notify
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_samsung
+      event: enter
+      zone: zone.work_home_beacon_25mins
+    condition:
+    -  condition: time
+       after: '13:00'
+    action:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: "Daddy is 25 minutes from home."
+        
+## James left work announcement
+  - alias: Daddy Leaving Work Notify
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_samsung
+      event: leave
+      zone: zone.powertec
+    condition:
+    -  condition: time
+       after: '14:00'
+    action:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: "Daddy has left work and is on his way home, with normal traffic he should be 40 minutes."
+        
+## James at 15mins from home announcement
+  - alias: Work to Home 15min Notify
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_samsung
+      event: enter
+      zone: zone.work_home_beacon_15mins
+    condition:
+    -  condition: time
+       after: '13:00'
+    action:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: "Daddy will be home in 15 minutes."
+        
+## James at 5mins from home announcement
+  - alias: Work to Home 5min Notify
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_samsung
+      event: enter
+      zone: zone.work_home_beacon_5mins
+    action:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: "Warning Warning Warning, Daddy will be home in 5 minutes."
+        
+## James at shops announcement
+  - alias: Alert Tina I'm at the Shops
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_samsung
+      event: enter
+      zone: zone.stocklands
+    action:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.tts_kodi
+        message: "James is at the shops call him now if you need him pick up anything else"
+        
