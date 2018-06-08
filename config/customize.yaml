@@ -607,18 +607,6 @@ switch.spotify_kitchen:
   icon: mdi:spotify
   friendly_name: "Spotify Kitchen"
   assumed_state: false
-  
-###################################################
-#                                                 #
-#                    People                       #
-#                                                 #
-###################################################
-
-sensor.commute_to_work:
-  icon: 'mdi:car'
-
-sensor.commute_to_home:
-  icon: 'mdi:home-variant'
 
 ###################################################
 #                                                 #
