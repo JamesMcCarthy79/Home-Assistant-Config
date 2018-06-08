@@ -56,9 +56,6 @@
       patio_led_switch: 10.0.70.1
       playroom_fan: 10.0.100.1
       robovac: 10.0.100.2
-      
-  - platform: owntracks
-    max_gps_accuracy: 200
     
   - platform: nmap_tracker
     hosts:
