@@ -1,0 +1,77 @@
+#################################################################
+#                                                               #
+#                   Packages/TV Power Status                    #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                            Switch                             #
+#                                                               #
+#################################################################
+
+switch:
+  - platform: template
+    switches:
+      tvpower:
+        friendly_name: Lounge TV
+        value_template: >-
+          {% if is_state('timer.tv_delay', 'idle') %}
+          {{ states("binary_sensor.tv_ping") }}
+          {% else %}
+          {{ states("input_boolean.tv_power_status") }}
+          {% endif %}
+        turn_on:
+          - service: switch.broadlink_send_packet_10_0_30_1
+            data:
+              packet: 
+                - "JgBGAJGVEjgSNxI4EhMSExITERQSExI4EjcSOBMSEhMRFBITERQRFBI3ExISExMSEhMTEhITEzcRFBI4EjcSOBI4EjgSNxIADQUAAA=="
+          - service: input_boolean.turn_on
+            data:
+              entity_id: input_boolean.tv_power_status
+          - service: timer.start
+            entity_id: timer.tv_delay
+        turn_off:
+          - service: switch.broadlink_send_packet_10_0_30_1
+            data:
+              packet: 
+                - "JgBGAJGVEjgSNxI4EhMSExITERQSExI4EjcSOBMSEhMRFBITERQRFBI3ExISExMSEhMTEhITEzcRFBI4EjcSOBI4EjgSNxIADQUAAA=="
+          - service: input_boolean.turn_off
+            data:
+              entity_id: input_boolean.tv_power_status
+          - service: timer.start
+            entity_id: timer.tv_delay
+        icon_template: mdi:television-classic
+
+#################################################################
+#                                                               #
+#                             Timer                             #
+#                                                               #
+#################################################################
+
+timer: # It takes 8 seconds for my tv to connect / disconnect from the network
+  tv_delay:
+    duration: '00:00:09'
+
+#################################################################
+#                                                               #
+#                        Input Boolean                          #
+#                                                               #
+#################################################################
+
+input_boolean: # This stores the temporary TV power state while we are waiting for the TV ping to update
+  tv_power_status:
+    name: TV Power Status
+
+#################################################################
+#                                                               #
+#                         Binary Sensor                         #
+#                                                               #
+#################################################################
+
+binary_sensor:
+  - platform: ping
+    host: 10.0.2.1
+    name: TV Ping
+    scan_interval: 2
+    count: 2
