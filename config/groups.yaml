@@ -20,18 +20,6 @@ default_view:
     - group.trash_schedule
     - group.recycle_schedule
     #- sensor.sonoff_firmware_version
-
-    
-people:
-  name: People
-  view: no
-  entities:
-    - device_tracker.admin_samsung
-    - sensor.battery_james
-    - device_tracker.admin_iphone
-    - sensor.battery_tina
-    - sensor.commute_to_work
-    - sensor.commute_to_home
     
 date and time:
   name: Date & Time
