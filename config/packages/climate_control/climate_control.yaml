@@ -296,7 +296,7 @@ automation:
     action:
     - service: input_select.select_next
       data: 
-        entity_id: input_select.bedroom_fan
+        entity_id: input_select.lounge_fan
         
 
 ## Input Select for Bedroom Fan Off
