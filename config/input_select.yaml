@@ -1,55 +1,5 @@
 ####################################################
 #                                                  #
-#                    Lounge                        #
-#                                                  #
-####################################################
-
-lounge_aircon:
-  name: Lounge Climate
-  options:
-    - Climate Off
-    - Cool
-    - Heat
-  initial: Climate Off
-  icon: mdi:snowflake
-  
-lounge_fan:
-  name: Lounge Fan 
-  options:
-    - Fan Off
-    - Low 
-    - Medium
-    - High
-  initial: Fan Off
-  icon: mdi:fan
-  
-####################################################
-#                                                  #
-#                 Master Bedroom                   #
-#                                                  #
-####################################################
-
-master_bedroom_aircon:
-  name: Master Bedroom Climate
-  options:
-    - Climate Off
-    - Cool
-    - Heat
-  initial: Climate Off
-  icon: mdi:snowflake
-  
-bedroom_fan:
-  name: Bedroom Fan 
-  options:
-    - Fan Off
-    - Low 
-    - Medium
-    - High
-  initial:  Fan Off
-  icon: mdi:fan
-  
-####################################################
-#                                                  #
 #                  Playroom Fan                    #
 #                                                  #
 ####################################################
