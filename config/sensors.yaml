@@ -1,23 +1,5 @@
 ####################################################
 #                                                  #
-#                     Battery                      #
-#                                                  #
-####################################################
-
-  - platform: mqtt
-    state_topic: "owntracks/admin/samsung"
-    name: "Battery James"
-    unit_of_measurement: "%"
-    value_template: '{{ value_json.batt }}'
-    
-  - platform: mqtt
-    state_topic: "owntracks/admin/iphone"
-    name: "Battery Tina"
-    unit_of_measurement: "%"
-    value_template: '{{ value_json.batt }}'
-    
-####################################################
-#                                                  #
 #                   Command Line                   #
 #                                                  #
 ####################################################
@@ -27,24 +9,6 @@
     command: /config/html/versionsonoffhtml.sh
     scan_interval: 21600
     
-####################################################
-#                                                  #
-#            Google Maps Travel Time               #
-#                                                  #
-####################################################
-    
-  - platform: google_travel_time
-    api_key: !secret google_maps
-    name: 'Commute to Work'
-    origin: !secret home_address
-    destination: !secret work_address
-    
-  - platform: google_travel_time
-    api_key: !secret google_maps
-    name: 'Commute to Home'
-    origin: !secret work_address
-    destination: !secret home_address
-
 ####################################################
 #                                                  #
 #                    Mi Flora                      #
