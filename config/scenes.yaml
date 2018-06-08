@@ -1,39 +1,5 @@
 ####################################################
 #                                                  #
-#               Downstairs Aircon                  #
-#                                                  #
-####################################################
-
-- name: "Climate Cool"
-  entities:
-      switch.aircon_mode_cool: on
-      
-- name: "Climate Cool Temp Down"
-  entities:
-      switch.aircon_temp_cool: off
-      
-- name: "Climate Cool Temp Up"
-  entities:
-      switch.aircon_temp_cool: on
-      
-- name: "Climate Heat"
-  entities:
-      switch.aircon_mode_cool: off
-      
-- name: "Climate Heat Temp Down"
-  entities:
-      switch.aircon_cool: off
-      
-- name: "Climate Heat Temp Up"
-  entities:
-      switch.aircon_cool: on
-      
-- name: "Climate Off"
-  entities:
-      switch.aircon_power: off
-      
-####################################################
-#                                                  #
 #                     Lights                       #
 #                                                  #
 ####################################################
@@ -127,21 +93,3 @@
 - name: "Media TV Blue"
   entities:
       switch.media_tv_blue: on
-      
-####################################################
-#                                                  #
-#                Upstairs Aircon                   #
-#                                                  #
-####################################################
-
-- name: "Bedroom Climate Mode"
-  entities:
-      switch.bedroom_aircon_mode: on
-      
-- name: "Bedroom Climate Off"
-  entities:
-      switch.bedroom_aircon_power: off
-      
-- name: "Bedroom Climate On"
-  entities:
-      switch.bedroom_aircon_power: on
