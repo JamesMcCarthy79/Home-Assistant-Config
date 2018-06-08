@@ -1,39 +1,4 @@
-###################################################
-#                                                 #
-#                     Aircon                      #
-#                                                 #
-################################################### 
 
-scene.climate_off:
-  icon: 'mdi:power'
-  
-scene.climate_cool:
-  icon: 'mdi:snowflake'
-  
-scene.climate_heat:
-  icon: 'mdi:fire'
-
-scene.climate_cool_temp_up:
-  icon: 'mdi:arrow-up-drop-circle-outline'
-  
-scene.climate_cool_temp_down:
-  icon: 'mdi:arrow-down-drop-circle-outline'
-  
-scene.climate_heat_temp_up:
-  icon: 'mdi:arrow-up-drop-circle-outline'
-  
-scene.climate_heat_temp_down:
-  icon: 'mdi:arrow-down-drop-circle-outline'
-  
-scene.bedroom_climate_on:
-  icon: 'mdi:power'
-  
-scene.bedroom_climate_off:
-  icon: 'mdi:power'
-  
-scene.bedroom_climate_mode:
-  icon: 'mdi:snowflake'
-  
 ###################################################
 #                                                 #
 #                   Appliances                    #
@@ -696,48 +661,6 @@ sensor.disk_use_:
 #                                                 #
 ###################################################
 
-##Master Bedroom##
-
-sensor.temperature_158d0001f53de9:
-  friendly_name: Bedroom Temperature
-  
-sensor.humidity_158d0001f53de9:
-  friendly_name: Bedroom Humidity
-  
-sensor.master_bedroom_light:
-  icon: mdi:theme-light-dark
-
-##Downstairs##  
-sensor.humidity_158d0001f558f5:
-  friendly_name: Downstairs Humidity
-  
-sensor.temperature_158d0001f558f5:
-  friendly_name: Downstairs Temperature
-  templates:
-    templates:
-      theme: >
-        if (state > 25) {
-          return 'hot';
-        } else if (state >= 18 ) {
-          return 'comfortable';
-        } else {
-          return 'cold';
-        }
-
-sensor.illumination_158d0001e5d118:
-  friendly_name: Downstairs LUX
-  
-##Playroom##
-
-sensor.temperature_158d0001f56682:
-  friendly_name: Playroom Temperature
-  
-sensor.humidity_158d0001f56682:
-  friendly_name: Playroom Humidity
-  
-sensor.illumination_158d0001e5cf11:
-  friendly_name: Playroom LUX
-
 ##Patio##
 
 sensor.temperature_158d0001f56350:
@@ -780,43 +703,9 @@ sensor.humidity_158d0001f54df3:
   
 ###################################################
 #                                                 #
-#                  Temp Sensors                   #
-#                                                 #
-###################################################
-
-sensor.158d0001f558f5:
-  icon: 'mdi:thermometer'
-  friendly_name: Temp Sensor Downstairs
-  
-sensor.temp_sensor_master_bedroom:
-  icon: 'mdi:thermometer'
-  
-sensor.temp_sensor_playroom:
-  icon: 'mdi:thermometer'
-  
-sensor.temp_sensor_patio:
-  icon: 'mdi:thermometer'
-  
-sensor.temp_sensor_bathroom:
-  icon: 'mdi:thermometer'
-  
-sensor.temp_sensor_jackson:
-  icon: 'mdi:thermometer'
-  
-sensor.temp_sensor_hudson:
-  icon: 'mdi:thermometer'
-  
-###################################################
-#                                                 #
 #                     Xiaomi                      #
 #                                                 #
 ###################################################
-
-binary_sensor.switch_158d000233a19d:
-  friendly_name: Bedside Fan Switch
-  
-binary_sensor.switch_158d000215aa27:
-  friendly_name: Bedroom Wall Fan Switch
   
 binary_sensor.switch_158d000213108e:
   friendly_name: Door Bell Switch
@@ -826,9 +715,6 @@ binary_sensor.switch_158d000213455d:
   
 binary_sensor.switch_158d00021347cc:
   friendly_name: Jackson Fan Switch
-  
-binary_sensor.switch_158d000201ce4e:
-  friendly_name: Lounge Fan Switch
   
 light.gateway_light_7811dcfd812f:
   friendly_name: TV Back Light
