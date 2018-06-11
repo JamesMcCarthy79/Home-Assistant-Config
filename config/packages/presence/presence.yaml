@@ -28,9 +28,9 @@ group:
     name: People
     view: no
     entities:
-      - device_tracker.admin_samsung
+      - sensor.james
       - sensor.battery_james
-      - device_tracker.admin_iphone
+      - sensor.tina
       - sensor.battery_tina
       - sensor.commute_to_work
       - sensor.commute_to_home
@@ -52,6 +52,23 @@ device_tracker:
     
 #################################################################
 #                                                               #
+#                        Input Boolean                          #
+#                                                               #
+#################################################################
+
+input_boolean: 
+  james_home:
+    name: James
+    initial: off
+    icon: mdi:account
+    
+  tina_home:
+    name: Tina
+    initial: off
+    icon: mdi:account
+    
+#################################################################
+#                                                               #
 #                          Sensors                              #
 #                                                               #
 ################################################################# 
@@ -63,12 +80,14 @@ sensor:
     name: "Battery James"
     unit_of_measurement: "%"
     value_template: '{{ value_json.batt }}'
+    device_class: battery
     
   - platform: mqtt
     state_topic: "owntracks/admin/iphone"
     name: "Battery Tina"
     unit_of_measurement: "%"
     value_template: '{{ value_json.batt }}'
+    device_class: battery
 
 ##Bluetooth Presence Detection    
   - platform: mqtt
@@ -83,6 +102,19 @@ sensor:
     unit_of_measurement: '%'
     name: 'James Upstairs'
     
+  - platform: mqtt
+    state_topic: 'location/owner/downstairs/48:3B:38:A6:60:1C'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'Tina Downstairs'
+    
+  - platform: mqtt
+    state_topic: 'location/owner/upstairs/48:3B:38:A6:60:1C'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'Tina Upstairs'
+
+## Get mean average of BLE Presence Detection Sensors    
   - platform: min_max
     name: "James Home Occupancy Confidence"
     type: mean
@@ -90,6 +122,91 @@ sensor:
     entity_ids:
       - sensor.james_downstairs
       - sensor.james_upstairs
+      
+  - platform: min_max
+    name: "Tina Home Occupancy Confidence"
+    type: mean
+    round_digits: 0
+    entity_ids:
+      - sensor.tina_downstairs
+      - sensor.tina_upstairs
+
+## Create Sensor for Display in UI      
+  - platform: template
+    sensors:
+      james:
+        friendly_name: "James Occupancy"
+        value_template: >-
+          {% if is_state('input_boolean.james_home', 'on') %}
+            Home
+          {% elif is_state('device_tracker.admin_samsung', 'Powertec') %}
+            Powertec
+          {% elif is_state('device_tracker.admin_samsung', 'Kindy') %}
+            Kindy
+          {% elif is_state('device_tracker.admin_samsung', 'Stocklands') %}
+            Stocklands
+          {% elif is_state('device_tracker.admin_samsung', 'Parlour') %}
+            Parlour
+          {% elif is_state('device_tracker.admin_samsung', 'Work Home Beacon 25mins') %}
+            25mins Away
+          {% elif is_state('device_tracker.admin_samsung', 'Work Home Beacon 15mins') %}
+            15mins Away
+          {% elif is_state('device_tracker.admin_samsung', 'Work Home Beacon 5mins') %}
+            5mins Away
+          {% else %}
+            Away
+          {% endif %}
+        entity_picture_template: >-
+          {% if is_state('input_boolean.james_home', 'on') %}
+            /local/james.jpg
+          {% endif %}
+        icon_template: >-
+          {% if is_state('device_tracker.admin_samsung', 'Powertec') %}
+            mdi:briefcase
+          {% elif is_state('device_tracker.admin_samsung', 'Kindy') %}
+            mdi:school
+          {% elif is_state('device_tracker.admin_samsung', 'Stocklands') %}
+            mdi:cart
+          {% elif is_state('device_tracker.admin_samsung', 'Parlour') %}
+            mdi:coffee
+          {% elif is_state('device_tracker.admin_samsung', 'Work Home Beacon 25mins') %}
+            mdi:car
+          {% elif is_state('device_tracker.admin_samsung', 'Work Home Beacon 15mins') %}
+            mdi:car
+          {% elif is_state('device_tracker.admin_samsung', 'Work Home Beacon 5mins') %}
+            mdi:car
+          {% else %}
+            mdi:walk
+          {% endif %}
+          
+      tina:
+        friendly_name: "Tina Occupancy"
+        value_template: >-
+          {% if is_state('input_boolean.tina_home', 'on') %}
+            Home
+          {% elif is_state('device_tracker.admin_iphone', 'Kindy') %}
+            Kindy
+          {% elif is_state('device_tracker.admin_iphone', 'Stocklands') %}
+            Stocklands
+          {% elif is_state('device_tracker.admin_iphone', 'Parlour') %}
+            Parlour
+          {% else %}
+            Away
+          {% endif %}
+        entity_picture_template: >-
+          {% if is_state('input_boolean.tina_home', 'on') %}
+            /local/tina.jpg
+          {% endif %}
+        icon_template: >-
+          {% if is_state('device_tracker.admin_iphone', 'Kindy') %}
+            mdi:school
+          {% elif is_state('device_tracker.admin_iphone', 'Stocklands') %}
+            mdi:cart
+          {% elif is_state('device_tracker.admin_iphone', 'Parlour') %}
+            mdi:coffee
+          {% else %}
+            mdi:walk
+          {% endif %}
     
 ## Google Travel Time
   - platform: google_travel_time
@@ -106,61 +223,6 @@ sensor:
     
 #################################################################
 #                                                               #
-#                            Zones                              #
-#                                                               #
-#################################################################    
-    
-zone:
-  - name: Powertec
-    latitude: !secret james_work_latitude
-    longitude: !secret james_work_longitude
-    radius: 250
-    icon: mdi:briefcase
-  
-  - name: Kindy
-    latitude: !secret kindy_latitude
-    longitude: !secret kindy_longitude
-    radius: 50
-    icon: mdi:school
-  
-  - name: Whole Beings
-    latitude: !secret wb_latitude
-    longitude: !secret wb_longitude
-    radius: 250
-    icon: mdi:school
-  
-  - name: Stocklands
-    latitude: !secret stocklands_latitude
-    longitude: !secret stocklands_longitude
-    radius: 200
-    icon: mdi:cart
-  
-  - name: Parlour
-    latitude: !secret parlour_latitude
-    longitude: !secret parlour_longitude
-    radius: 50
-    icon: mdi:coffee
-  
-  - name: Work Home Beacon 25mins
-    latitude: !secret workhome25mins_latitude
-    longitude: !secret workhome25mins_longitude
-    radius: 50
-    icon: mdi:car
-  
-  - name: Work Home Beacon 15mins
-    latitude: !secret workhome15mins_latitude
-    longitude: !secret workhome15mins_longitude
-    radius: 50
-    icon: mdi:car
-  
-  - name: Work Home Beacon 5mins
-    latitude: !secret workhome5mins_latitude
-    longitude: !secret workhome5mins_longitude
-    radius: 50
-    icon: mdi:car
-    
-#################################################################
-#                                                               #
 #                         Automations                           #
 #                                                               #
 #################################################################
@@ -168,7 +230,7 @@ zone:
 automation:
 
 ## Trigger Input Boolean James is Home
-  - alias: James Occupancy 
+  - alias: James Occupancy Home 
     hide_entity: true
     trigger:
       - platform: numeric_state
@@ -180,7 +242,7 @@ automation:
           entity_id: input_boolean.james_home
           
 ## Trigger Input Boolean James is Away
-  - alias: James Occupancy 
+  - alias: James Occupancy Away
     hide_entity: true
     trigger:
       - platform: numeric_state
@@ -190,6 +252,30 @@ automation:
       - service: homeassistant.turn_off
         data:
           entity_id: input_boolean.james_home
+          
+  ## Trigger Input Boolean Tina is Home
+  - alias: Tina Occupancy Home 
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tina_home_occupancy_confidence
+        above: 10
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.tina_home
+          
+## Trigger Input Boolean Tina is Away
+  - alias: Tina Occupancy Away
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.tina_home_occupancy_confidence
+        below: 10
+    action:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: input_boolean.tina_home
   
 ## Tina Home Announcement 
   - alias: Welcome Home Tina
