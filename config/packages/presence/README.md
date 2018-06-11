@@ -9,7 +9,7 @@
 
 <h4 align="left">Package Credits:</h4>
 <p align="left">andrewjfreyer - https://github.com/andrewjfreyer/presence</br>
-<p align="left">HA Forum - Need to find link</br>
+<p align="left">HA Forum - https://community.home-assistant.io/t/reliable-multi-user-distributed-bluetooth-occupancy-presence-detection/50674/285</br>
 <hr --- </hr>
 
 <h4 align="left">Package Dependencies:</h4>
@@ -20,11 +20,12 @@
 <h4 align="left">Owntracks</h4>
 <p align="left">This tracker uses GPS location from our phones to update HA as to where we are this component works to varing degrees, I have managed to improve this with tasker on my android firing whenever I connect/disconnect from known Wi-FI networks.</br>
 <h4 align="left">BLE Detection</h4>
-<p align="left">This tracker uses 3 Rasberry Pi Zero's located around the house and calulates occupancy via mean average sensor.</br>
+<p align="left">This tracker uses 3 Rasberry Pi Zero's located around the house and calculates occupancy via mean average sensor.</br>
 <h4 align="left">Package Inputs:</h4>
-<h4 align="left">There are 2 input boolaens which are triggered by the BLE trackers located around the house, these are then used to update home/away status aswell as trigger automations.</h4>
+<p align="left">There are 2 input boolaens which are triggered by the BLE trackers located around the house, these are then used to update home/away status aswell as trigger automations.</p>
 <h4 align="left">Package Sensors:</h4>
-<h4 align="left">In this package I use the MQTT json.batt value to provide battery level for our phones, also use json.confidence value to use as part of the mean average sensor. I use a min_max sensor to get the mean average of the 3 Pi Zero's json.confidence value and use that average as the trigger for the input boolean switch status. Lastly there are a couple of Google travel time sensors telling me the time to and from work.</h4>
+<p align="left">In this package I use the MQTT json.batt value to provide battery level for our phones, also use json.confidence value to use as part of the mean average sensor. I use a min_max sensor to get the mean average of the 3 Pi Zero's json.confidence value and use that average as the trigger for the input boolean switch status. Lastly there are a couple of Google travel time sensors telling me the time to and from work.</br>
+<p align="left">**Update I now use a Template Sensor that its state is dynamically updated by the most up to date information received from all device trackers.</p>
 <h4 align="left">Package Automations:</h4>
 <h4 align="left">James Occupancy Home</h4>
 <p align="left">This automation uses the mean average of the occupancy sensor of above 10 to turn on the input boolean as the likelyhood of me being home is very high.</p>
