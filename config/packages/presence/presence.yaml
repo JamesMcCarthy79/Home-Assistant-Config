@@ -177,7 +177,7 @@ automation:
     action:
       - service: homeassistant.turn_on
         data:
-          entity_id: input_boolean.james_occupancy
+          entity_id: input_boolean.james_home
           
 ## Trigger Input Boolean James is Away
   - alias: James Occupancy 
@@ -189,7 +189,7 @@ automation:
     action:
       - service: homeassistant.turn_off
         data:
-          entity_id: input_boolean.james_occupancy
+          entity_id: input_boolean.james_home
   
 ## Tina Home Announcement 
   - alias: Welcome Home Tina
