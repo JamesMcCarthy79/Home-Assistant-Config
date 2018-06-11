@@ -69,19 +69,40 @@ sensor:
     name: "Battery Tina"
     unit_of_measurement: "%"
     value_template: '{{ value_json.batt }}'
+
+##Bluetooth Presence Detection    
+  - platform: mqtt
+    state_topic: 'location/owner/downstairs/A0:10:81:64:82:CB'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'James Downstairs'
+    
+  - platform: mqtt
+    state_topic: 'location/owner/upstairs/A0:10:81:64:82:CB'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'James Upstairs'
+    
+  - platform: min_max
+    name: "James Home Occupancy Confidence"
+    type: mean
+    round_digits: 0
+    entity_ids:
+      - sensor.james_downstairs
+      - sensor.james_upstairs
     
 ## Google Travel Time
   - platform: google_travel_time
     api_key: !secret google_maps
     name: 'Commute to Work'
-    origin: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
-    destination: 16/511 Olsen Ave, Southport QLD 4215, Australia
+    origin: "your home address here"
+    destination: "your work address here"
     
   - platform: google_travel_time
     api_key: !secret google_maps
     name: 'Commute to Home'
-    origin: 16/511 Olsen Ave, Southport QLD 4215, Australia
-    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    origin: "Your work address here"
+    destination: "Your home address here"
     
 #################################################################
 #                                                               #
@@ -145,6 +166,30 @@ zone:
 #################################################################
 
 automation:
+
+## Trigger Input Boolean James is Home
+  - alias: James Occupancy 
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.james_home_occupancy_confidence
+        above: 10
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.james_occupancy
+          
+## Trigger Input Boolean James is Away
+  - alias: James Occupancy 
+    hide_entity: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.james_home_occupancy_confidence
+        below: 10
+    action:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: input_boolean.james_occupancy
   
 ## Tina Home Announcement 
   - alias: Welcome Home Tina
