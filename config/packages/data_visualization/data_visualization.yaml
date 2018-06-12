@@ -1,0 +1,37 @@
+#################################################################
+#                                                               #
+#                 Packages/Data Visualization                   #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                         Panel iFrame                          #
+#                                                               #
+#################################################################
+
+panel_iframe:
+  influxdb:
+    title: InfluxDB
+    icon: mdi:chart-areaspline
+    url: myurl
+    
+  grafana:
+    title: Grafana
+    icon: mdi:chart-timeline
+    url: myurl
+
+#################################################################
+#                                                               #
+#                           InfluxDB                            #
+#                                                               #
+#################################################################
+
+influxdb:
+  host: myip
+  port: myport
+  database: !secret influxdb
+  username: !secret influxdbuser
+  password: !secret influxdbpass
+  max_retries: 3
+  default_measurement: state
