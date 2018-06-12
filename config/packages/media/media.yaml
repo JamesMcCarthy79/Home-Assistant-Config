@@ -1,0 +1,118 @@
+#################################################################
+#                                                               #
+#                        Packages/Media                         #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+
+## Pause TV if door bell is pressed
+  - alias: 'Door Bell Pressed'
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000213108e
+        click_type: single
+    action:
+    - service: media_player.media_pause
+      data:
+        entity_id: media_player.media_4k_kodi
+    - service: switch.turn_on
+      data:
+        entity_id: switch.media_tv_pause
+        
+## Doorbell pressed at night Flash Lights
+  - alias: 'Door Bell Pressed - Night'
+    trigger:
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d000213108e
+        click_type: single
+    condition:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon      
+    action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.livingroom_dim
+    - service: scene.turn_on
+      data:
+        entity_id: scene.livingroom_normal
+              
+## Dim lights whilst playing media of an evening
+  - alias: 'Dim Lights for Lounge Media'
+    trigger:
+    - platform: state
+      entity_id: media_player.media_4k_kodi
+      from: idle
+      to: playing
+    condition:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: time
+      after: '19:00'
+      before: '04:00'      
+    action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.livingroom_dim
+        
+## Turn up lights after media finishes of an evening
+  - alias: 'Light Normal After Media'
+    trigger:
+    - platform: state
+      entity_id: media_player.media_4k_kodi
+      to: idle
+    condition:
+    - condition: state
+      entity_id: light.lounge_bulb
+      state: 'on'    
+    action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.livingroom_normal
+        
+## Dim lights when resuming playing media from pause of an evening
+  - alias: 'Dim Lights for Lounge Media - Paused'
+    trigger:
+    - platform: state
+      entity_id: media_player.media_4k_kodi
+      from: paused
+      to: playing
+    condition:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: time
+      after: '19:00'
+      before: '04:00'      
+    action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.livingroom_dim
+        
+## Turn up lights after media paused of an evening
+  - alias: 'Light Normal Media Paused'
+    trigger:
+    - platform: state
+      entity_id: media_player.media_4k_kodi
+      from: playing
+      to: paused
+    condition:
+    - condition: state
+      entity_id: light.lounge_bulb
+      state: 'on'    
+    action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.livingroom_normal
