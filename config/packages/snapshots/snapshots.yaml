@@ -1,0 +1,34 @@
+#################################################################
+#                                                               #
+#                   Packages/Climate Control                    #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+
+## Create daily snapshot of hassio
+  - alias: Daily Backup at 3 AM
+    trigger:
+      platform: time
+      at: '3:00:00'
+    action:
+    - service: hassio.snapshot_full
+      data_template:
+        name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+    
+## Upload snapshot to Dropbox
+  - alias: Upload dropbox 4AM
+    trigger:
+      platform: time
+      at: '4:00:00'
+    action:
+    - service: hassio.addon_stdin
+      data_template:
+        addon: 7be23ff5_dropbox_sync
+        input: {"command":"upload"}
