@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Packages.png" width="250"/>
+  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Packages.png" width="350"/>
 </p>
 <h1 align="center">Kingia Castle Smart Home Package Configuration</h1>
 <p align="center">Be sure to :star: my repo!</br>
