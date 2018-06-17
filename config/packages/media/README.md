@@ -18,8 +18,10 @@
 <p align="left">- Lights enabled in your configuration</br>
 <p align="left">- Configured scenes for lighting (I use multiple lights in the scenes)</br>
 <h4 align="left">Package Automations:</h4>
-<h4 align="left">Coming Soon</h4>
-<p align="left">*********************</p>
+<h4 align="left">Door Bell Pressed</h4>
+<p align="left">If the doorbell is pressed whilst we are watching Kodi/TV the system will pause what we are watching. It used to flash the lights and pop up a picture of who is at the door but due to recabling for this section where the camera is it will temporarily disabled.</p>
+<h4 align="left">Door Bell Pressed</h4>
+<p align="left">If the doorbell is pressed whilst we are watching Kodi/TV the system will pause what we are watching. It also brightens the lights that would have been dimmed due to watching TV at night.</p>
 <hr --- </hr>
 
 | Take me back to the packages thanks!| [Packages](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages) | 
