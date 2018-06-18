@@ -25,12 +25,6 @@ sensor.battery_galaxy_tab:
 sensor.battery_ipad_downstairs:
   icon: mdi:battery
   
-sensor.battery_james:
-  icon: mdi:battery
-  
-sensor.battery_tina:
-  icon: mdi:battery
-  
 ###################################################
 #                                                 #
 #                    Cameras                      #
@@ -707,20 +701,5 @@ binary_sensor.switch_158d00021347cc:
 light.gateway_light_7811dcfd812f:
   friendly_name: TV Back Light
   
-switch.plug_158d0001bc2b6d:
-  friendly_name: Washing Machine
-  initial_state: on
-  icon: mdi:washing-machine
-  
 switch.plug_158d0001f24e2b:
   friendly_name: Entertainment Lighting
-  
-switch.plug_158d00022ae069:
-  friendly_name: Dryer
-  initial_state: on
-  icon: mdi:tumble-dryer
-  
-switch.plug_158d00022ae22d:
-  friendly_name: Appliances
-  initial_state: off
-  icon: mdi:power-plug
