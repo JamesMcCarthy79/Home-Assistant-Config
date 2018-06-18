@@ -35,6 +35,29 @@ group:
       - sensor.commute_to_work
       - sensor.commute_to_home
       
+  family:
+    name: Family
+    view: no
+    entities:
+      - sensor.james
+      - device_tracker.admin_iphone
+      
+  ble_tracker_james:
+    name: BLE Tracker James
+    view: no
+    entities:
+      - sensor.ble_james_downstairs
+      - sensor.ble_james_upstairs
+      - sensor.ble_james_patio
+      
+  ble_tracker_tina:
+    name: BLE Tracker Tina
+    view: no
+    entities:
+      - sensor.ble_tina_downstairs
+      - sensor.ble_tina_upstairs
+      - sensor.ble_tina_patio
+
 #################################################################
 #                                                               #
 #                      Device Trackers                          #
@@ -88,54 +111,28 @@ sensor:
     unit_of_measurement: "%"
     value_template: '{{ value_json.batt }}'
     device_class: battery
-
-##Bluetooth Presence Detection    
-  - platform: mqtt
-    state_topic: 'location/owner/downstairs/A0:10:81:64:82:CB'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'James Downstairs'
+ 
+##BLE Tracking Sensors 
+  - platform: rest
+    resource: http://myip:port/api/states/device_tracker.galaxy_s8
+    name: BLE James Patio 
+    value_template: '{{ value_json.state }}'
     
-  - platform: mqtt
-    state_topic: 'location/owner/upstairs/A0:10:81:64:82:CB'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'James Upstairs'
+  - platform: rest
+    resource: http://myip:port/api/states/device_tracker.galaxy_s8
+    name: BLE James Downstairs 
+    value_template: '{{ value_json.state }}'
     
-  - platform: mqtt
-    state_topic: 'location/owner/downstairs/48:3B:38:A6:60:1C'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'Tina Downstairs'
-    
-  - platform: mqtt
-    state_topic: 'location/owner/upstairs/48:3B:38:A6:60:1C'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'Tina Upstairs'
-
-## Get mean average of BLE Presence Detection Sensors    
-  - platform: min_max
-    name: "James Home Occupancy Confidence"
-    type: mean
-    round_digits: 0
-    entity_ids:
-      - sensor.james_downstairs
-      - sensor.james_upstairs
-      
-  - platform: min_max
-    name: "Tina Home Occupancy Confidence"
-    type: mean
-    round_digits: 0
-    entity_ids:
-      - sensor.tina_downstairs
-      - sensor.tina_upstairs
+  - platform: rest
+    resource: http://myip:port/api/states/device_tracker.galaxy_s8
+    name: BLE James upstairs 
+    value_template: '{{ value_json.state }}'
 
 ## Create Sensor for Display in UI      
   - platform: template
     sensors:
       james:
-        friendly_name: "James Occupancy"
+        friendly_name: "James"
         value_template: >-
           {% if is_state('input_boolean.james_home', 'on') %}
             Home
@@ -153,6 +150,16 @@ sensor:
             15mins Away
           {% elif is_state('device_tracker.admin_samsung', 'Work Home Beacon 5mins') %}
             5mins Away
+          {% elif is_state('device_tracker.admin_samsung', 'Darwin') %}
+            Darwin
+          {% elif is_state('device_tracker.admin_samsung', 'Brisbane') %}
+            Brisbane
+          {% elif is_state('device_tracker.admin_samsung', 'Sydney') %}
+            Sydney
+          {% elif is_state('device_tracker.admin_samsung', 'Melbourne') %}
+            Melbourne
+          {% elif is_state('device_tracker.admin_samsung', 'UK') %}
+            UK
           {% else %}
             Away
           {% endif %}
@@ -175,6 +182,16 @@ sensor:
             mdi:car
           {% elif is_state('device_tracker.admin_samsung', 'Work Home Beacon 5mins') %}
             mdi:car
+          {% elif is_state('device_tracker.admin_samsung', 'Darwin') %}
+            mdi:airplane
+          {% elif is_state('device_tracker.admin_samsung', 'Brisbane') %}
+            mdi:airplane
+          {% elif is_state('device_tracker.admin_samsung', 'Sydney') %}
+            mdi:airplane
+          {% elif is_state('device_tracker.admin_samsung', 'Melbourne') %}
+            mdi:airplane
+          {% elif is_state('device_tracker.admin_samsung', 'UK') %}
+            mdi:earth
           {% else %}
             mdi:walk
           {% endif %}
@@ -190,6 +207,8 @@ sensor:
             Stocklands
           {% elif is_state('device_tracker.admin_iphone', 'Parlour') %}
             Parlour
+	      {% elif is_state('device_tracker.admin_samsung', 'UK') %}
+            UK
           {% else %}
             Away
           {% endif %}
@@ -204,6 +223,8 @@ sensor:
             mdi:cart
           {% elif is_state('device_tracker.admin_iphone', 'Parlour') %}
             mdi:coffee
+          {% elif is_state('device_tracker.admin_samsung', 'UK') %}
+            mdi:earth
           {% else %}
             mdi:walk
           {% endif %}
@@ -212,14 +233,14 @@ sensor:
   - platform: google_travel_time
     api_key: !secret google_maps
     name: 'Commute to Work'
-    origin: "your home address here"
-    destination: "your work address here"
+    origin: your home address here
+    destination: your work address here
     
   - platform: google_travel_time
     api_key: !secret google_maps
     name: 'Commute to Home'
-    origin: "Your work address here"
-    destination: "Your home address here"
+    origin: your work address here
+    destination: your home address here
     
 #################################################################
 #                                                               #
@@ -229,13 +250,64 @@ sensor:
 
 automation:
 
+## Trigger Occupancy after HA Restart
+  - alias: Restart James Home
+    hide_entity: true
+    trigger:
+      - platform: homeassistant
+        event: start
+    condition:
+      - condition: state
+        entity_id: group.ble_tracker_james
+        state: 'home'
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.james_home
+
+  - alias: Restart Tina Home
+    hide_entity: true
+    trigger:
+      - platform: homeassistant
+        event: start
+    condition:
+      - condition: state
+        entity_id: group.ble_tracker_tina
+        state: 'home'
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.tina_home       
+          
 ## Trigger Input Boolean James is Home
   - alias: James Occupancy Home 
     hide_entity: true
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.james_home_occupancy_confidence
-        above: 10
+      - platform: state
+        entity_id: sensor.ble_james_downstairs
+        to: home
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.james_home
+          
+  - alias: James Occupancy Home 
+    hide_entity: true
+    trigger:
+      - platform: state
+        entity_id: sensor.ble_james_upstairs
+        to: home
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.james_home
+          
+  - alias: James Occupancy Home 
+    hide_entity: true
+    trigger:
+      - platform: state
+        entity_id: sensor.ble_james_patio
+        to: home
     action:
       - service: homeassistant.turn_on
         data:
@@ -245,9 +317,9 @@ automation:
   - alias: James Occupancy Away
     hide_entity: true
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.james_home_occupancy_confidence
-        below: 10
+      - platform: state
+        entity_id: group.ble_tracker_james
+        to: not_home
     action:
       - service: homeassistant.turn_off
         data:
@@ -391,4 +463,4 @@ automation:
       data:
         entity_id: media_player.tts_kodi
         message: "James is at the shops call him now if you need him pick up anything else"
-        
+  
