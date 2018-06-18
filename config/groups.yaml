@@ -120,20 +120,6 @@ music:
   entities:
     - switch.spotify_kitchen
     
-laundry:
-  name: Laundry
-  view: no
-  entities:
-    - switch.plug_158d0001bc2b6d
-    - switch.plug_158d00022ae069
-    - switch.plug_158d00022ae22d
-    
-robovac:
-  name: RoboVac
-  view: no
-  entities:
-    - vacuum.robovac
-    
 ####################################################
 #                                                  #
 #                    Play Room                     #
