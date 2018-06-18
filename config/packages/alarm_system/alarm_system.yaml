@@ -20,6 +20,24 @@ homeassistant:
     binary_sensor.door_window_sensor_158d000225432d:
       friendly_name: Patio Door Sensor
       device_class: door
+    binary_sensor.door_window_sensor_158d0001e73c09:
+      friendly_name: Back Door Sensor
+      device_class: door
+    binary_sensor.door_window_sensor_158d0001e73af4:
+      friendly_name: Kitchen Window
+      device_class: window
+    binary_sensor.door_window_sensor_158d0001e73a73:
+      friendly_name: Jackson Window
+      device_class: window
+    binary_sensor.door_window_sensor_158d0001e73aad:
+      friendly_name: Hudson Window
+      device_class: window
+    binary_sensor.door_window_sensor_158d0001e74875:
+      friendly_name: Bathroom Window
+      device_class: window
+    binary_sensor.door_window_sensor_158d0001f36741:
+      friendly_name: Bedroom Window
+      device_class: window
     binary_sensor.motion_sensor_158d0001e5d147:
       friendly_name: Entrance Motion Sensor
     binary_sensor.motion_sensor_158d0001e5d118:
@@ -30,6 +48,14 @@ homeassistant:
       friendly_name: Playroom Motion Sensor
     binary_sensor.motion_sensor_158d00022c2f21:
       friendly_name: Staircase Motion Sensor
+    binary_sensor.motion_sensor_158d000201351c:
+      friendly_name: Jackson Room Motion Sensor
+    binary_sensor.motion_sensor_158d0002006d46:
+      friendly_name: Hudson Room Motion Sensor
+    binary_sensor.motion_sensor_158d000200e4ab:
+      friendly_name: Bathroom Motion Sensor
+    binary_sensor.motion_sensor_158d0001e63803:
+      friendly_name: Bedroom Motion Densor
     binary_sensor.smoke_sensor_158d0001b8ddc7:
       friendly_name: Downstairs Smoke Detector
       device_class: smoke
@@ -47,18 +73,57 @@ group:
   security:
     name: Security
     icon: mdi:security-home
+    view: yes
+    entities:
+      - group.alarms
+      - group.motion
+      - group.doors
+      - group.windows
+      
+  alarms:
+    name: Alarms
+    icon: mdi:security
     view: no
     entities:
       - alarm_control_panel.ha_alarm
       - binary_sensor.smoke_sensor_158d0001b8ddc7
       - binary_sensor.smoke_sensor_158d0001b8deba
+      
+  motion:
+    name: Motion
+    icon: mdi:walk
+    view: no
+    entities:
       - binary_sensor.motion_sensor_158d0001e5cf11
       - binary_sensor.motion_sensor_158d0001e5d118
       - binary_sensor.motion_sensor_158d0001e5d147
       - binary_sensor.motion_sensor_158d000200ea5b
       - binary_sensor.motion_sensor_158d00022c2f21
+      - binary_sensor.motion_sensor_158d000201351c
+      - binary_sensor.motion_sensor_158d0002006d46
+      - binary_sensor.motion_sensor_158d000200e4ab
+      - binary_sensor.motion_sensor_158d0001e63803
+      
+  doors:
+    name: Doors
+    icon: mdi:door
+    view: no
+    entities:
       - binary_sensor.door_window_sensor_158d00022016b2
       - binary_sensor.door_window_sensor_158d000225432d
+      - binary_sensor.door_window_sensor_158d0001e73c09
+      - sensor.garage
+      
+  windows:
+    name: Windows
+    icon: mdi:window
+    view: no
+    entities:
+      - binary_sensor.door_window_sensor_158d0001e73af4
+      - binary_sensor.door_window_sensor_158d0001e73a73
+      - binary_sensor.door_window_sensor_158d0001e73aad
+      - binary_sensor.door_window_sensor_158d0001e74875
+      - binary_sensor.door_window_sensor_158d0001f36741
       
 #################################################################
 #                                                               #
@@ -70,6 +135,22 @@ alarm_control_panel:
   - platform: manual_mqtt
     state_topic: home/alarm
     command_topic: home/alarm/set
+    
+#################################################################
+#                                                               #
+#                      Template Sensors                         #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: template
+    sensors:
+      door_count:
+        value_template: >-
+           {{ states.binary_sensor | selectattr('state', 'eq', 'on') | selectattr('attributes.device_class', 'eq', 'door') | list | count | int }}
+      window_count:
+        value_template: >-
+           {{ states.binary_sensor | selectattr('state', 'eq', 'on') | selectattr('attributes.device_class', 'eq', 'window') | list | count | int }}
 
 #################################################################
 #                                                               #
@@ -85,6 +166,7 @@ automation:
     - platform: state
       entity_id: alarm_control_panel.ha_alarm
       from: pending
+      to: disarm
     action:
     - service: tts.google_say
       data:
@@ -181,10 +263,43 @@ automation:
       entity_id: binary_sensor.door_window_sensor_158d000225432d
       to: 'on'
     - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e73c09
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e73af4
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e73a73
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e73aad
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e74875
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f36741
+      to: 'on'
+    - platform: state
       entity_id: binary_sensor.motion_sensor_158d0001e5d118
       to: 'on'
     - platform: state 
       entity_id: binary_sensor.motion_sensor_158d0001e5cf11
+      to: 'on'
+    - platform: state 
+      entity_id: binary_sensor.motion_sensor_158d00022c2f21
+      to: 'on'
+    - platform: state 
+      entity_id: binary_sensor.motion_sensor_158d000201351c
+      to: 'on'
+    - platform: state 
+      entity_id: binary_sensor.motion_sensor_158d0002006d46
+      to: 'on'
+    - platform: state 
+      entity_id: binary_sensor.motion_sensor_158d000200e4ab
+      to: 'on'
+    - platform: state 
+      entity_id: binary_sensor.motion_sensor_158d0001e63803
       to: 'on'
     condition:
     - condition: state
@@ -197,7 +312,7 @@ automation:
       data:
         entity_id: media_player.tts_kodi
         message: Alarm triggered you have 60 seconds to reset or siren will sound!
-    
+
 ## This will set the input sensors used to trigger the alarm whilst it is armed home
 
   - alias: Trigger Alarm While Armed Home
@@ -207,6 +322,25 @@ automation:
       to: 'on'
     - platform: state
       entity_id: binary_sensor.door_window_sensor_158d000225432d
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e73c09
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e73af4
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e73a73
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e73aad
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001e74875
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001f36741
+      to: 'on'
     condition:
     - condition: state
       entity_id: alarm_control_panel.ha_alarm
@@ -218,4 +352,3 @@ automation:
       data:
         entity_id: media_player.tts_kodi
         message: Alarm triggered you have 60 seconds to reset or siren will sound!
-    
