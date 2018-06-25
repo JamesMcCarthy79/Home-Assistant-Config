@@ -97,23 +97,6 @@ tv:
     - light.hall_bulb
   control: hidden
   
-downstairs lights:
-  name: Downstairs Lights
-  view: no
-  entities:
-    - switch.lounge_light_switch
-    - light.lounge_bulb
-    - switch.kitchen_light_switch
-    - switch.dining_light_switch
-    - light.dining_bulb
-    
-outside lights:
-  name: Outside Lights
-  view: no
-  entities:
-    - switch.patio_light_switch
-    - light.entrance_bulb
-    
 music:
   name: Music
   view: no
@@ -185,13 +168,6 @@ master bedroom:
     - media_player.bedroom_kodi
     - media_player.bedroom_tv
     - camera.baby_monitor
-    
-master bedroom lights:
-  name: Master Bedroom Lights
-  view: no
-  entities:
-    - switch.master_light_switch
-    - switch.bedroom_wardrobe_switch
     
 ####################################################
 #                                                  #
@@ -267,14 +243,6 @@ bathroom:
   entities:
     - group.bathroom_switches
     - group.bathroom_temperature
-    
-bathroom switches:
-  name: Bathroom Switches
-  view: no
-  entities:
-    - switch.bathroom_light_switch
-    - switch.bathroom_fan_switch
-    - switch.bathroom_heat_switch
     
 bathroom temperature:
   name: Bathroom Climate
