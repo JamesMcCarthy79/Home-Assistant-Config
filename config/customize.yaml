@@ -1,18 +1,3 @@
-
-###################################################
-#                                                 #
-#                   Appliances                    #
-#                                                 #
-################################################### 
-
-binary_sensor.device_tracker_playroom_fan:
-  friendly_name: Playroom Fan
-  icon: mdi:fan
-  
-binary_sensor.device_tracker_robovac:
-  friendly_name: RoboVac
-#  icon: mdi:robot-vacuum-variant
-  
 ###################################################
 #                                                 #
 #                    Battery                      #
@@ -34,10 +19,6 @@ sensor.battery_ipad_downstairs:
 binary_sensor.device_tracker_baby_monitor_camera:
   icon: mdi:cctv
   friendly_name: Baby Monitor Camera
-  
-binary_sensor.device_tracker_downstairs_camera:
-  icon: mdi:cctv
-  friendly_name: Downstairs Camera
   
 ###################################################
 #                                                 #
@@ -227,64 +208,6 @@ binary_sensor.device_tracker_ir_blaster_patio:
 #                     Lights                      #
 #                                                 #
 ###################################################
-
-switch.front_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Front Light"
-  
-switch.lounge_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Lounge Light"
-  
-switch.hall_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Hall Light"
-  
-switch.kitchen_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Kitchen Light"
-  
-switch.dining_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Dining Light"
-  
-switch.patio_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Patio Light"
-  
-switch.master_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Master Light"
-  
-switch.jackson_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Jackson Light"
-  
-switch.hudson_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Hudson Light"
-  
-switch.bathroom_light_switch:
-  icon: 'mdi:lightbulb'
-  friendly_name: "Bathroom Light"
-  
-switch.bathroom_fan_switch:
-  icon: 'mdi:fan'
-  friendly_name: "Bathroom Fan"
-  
-switch.bathroom_heat_switch:
-  icon: 'mdi:fire'
-  friendly_name: "Bathroom Heat"
-  
-switch.fairy_light_power:
-  icon: mdi:lightbulb
-  friendly_name: Fairy Lighting
-  assumed_state: false
-  
-switch.fairy_light_mode_4:
-  icon: mdi:lightbulb-on-outline
-  friendly_name: Fairy Flash Mode
-  assumed_state: false
   
 binary_sensor.device_tracker_hall_light_bulb:
   icon: mdi:lightbulb
