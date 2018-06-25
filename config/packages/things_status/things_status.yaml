@@ -1,0 +1,296 @@
+#################################################################
+#                                                               #
+#                   Packages/Things Status                      #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+
+  
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  cameras:
+    name: Cameras
+    view: no
+    entities:
+      - binary_sensor.baby_monitor_camera
+      - binary_sensor.downstairs_camera
+      
+  ir blasters:
+    name: IR Blasters
+    view: no
+    entities:
+      - binary_sensor.ir_blaster_downstairs
+      - binary_sensor.ir_blaster_upstairs
+      - binary_sensor.ir_blaster_patio
+      
+  sonoff switches:
+    name: Sonoff Swiches
+    view: no
+    entities:
+      - binary_sensor.lounge_fan_switch
+      - binary_sensor.kitchen_dining_light_switch
+      - binary_sensor.patio_light_switch
+      - binary_sensor.lounge_light_switch
+      - binary_sensor.master_bedroom_fan_switch
+      
+  lamps:
+    name: Lamps
+    view: no
+    entities:
+      - binary_sensor.hall_light_bulb
+      - binary_sensor.lounge_light_bulb
+      - binary_sensor.dining_light_bulb
+      - binary_sensor.entry_light_bulb
+      - binary_sensor.bedroom_light_bulb
+      
+  ble_trackers:
+    name: BLE Trackers
+    view: no
+    entities:
+      - binary_sensor.ble_tracker_downstairs
+      - binary_sensor.ble_tracker_upstairs
+
+#################################################################
+#                                                               #
+#                       Device Tracker                          #
+#                                                               #
+#################################################################
+
+device_tracker:
+  - platform: ping
+    hosts:
+      baby_monitor_camera: 10.0.10.1
+      downstairs_camera: 10.0.10.2
+      ir_blaster_downstairs: 10.0.30.1
+      ir_blaster_patio: 10.0.30.2
+      ir_blaster_upstairs: 10.0.30.3
+      hall_light_bulb: 10.0.50.1
+      lounge_light_bulb: 10.0.50.2
+      entry_light_bulb: 10.0.50.3
+      dining_light_bulb: 10.0.50.4
+      bedroom_light_bulb: 10.0.50.5
+      lounge_fan_switch: 10.0.60.1
+      kitchen_dining_light_switch: 10.0.60.2
+      patio_light_switch: 10.0.60.3
+      lounge_light_switch: 10.0.60.4
+      master_bedroom_fan_switch: 10.0.60.5
+      patio_led_switch: 10.0.70.1
+      ble_tracker_downstairs: 10.0.90.1
+      ble_tracker_upstairs: 10.0.90.2
+      playroom_fan: 10.0.100.1
+      robovac: 10.0.100.2
+      
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+
+binary_sensor:
+  - platform: template
+    sensors:
+## Cameras
+      baby_monitor:
+        friendly_name: Baby Monitor
+        device_class: connectivity
+        entity_id: device_tracker.baby_monitor_camera
+        value_template: "{{ is_state('device_tracker.baby_monitor_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.baby_monitor_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}
+      downstairs_camera:
+        friendly_name: Downstairs Camera
+        device_class: connectivity
+        entity_id: device_tracker.downstairs_camera
+        value_template: "{{ is_state('device_tracker.downstairs_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.downstairs_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}
+## IR Blasters
+      ir_blaster_downstairs:
+        friendly_name: IR Blaster Downstairs
+        device_class: connectivity
+        entity_id: device_tracker.ir_blaster_downstairs
+        value_template: "{{ is_state('device_tracker.ir_blaster_downstairs', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.ir_blaster_downstairs', 'home') %}
+            mdi:remote
+          {% else %}
+            mdi:alert
+          {% endif %}
+      ir_blaster_upstairs:
+        friendly_name: IR Blaster Upstairs
+        device_class: connectivity
+        entity_id: device_tracker.ir_blaster_upstairs
+        value_template: "{{ is_state('device_tracker.ir_blaster_upstairs', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.ir_blaster_upstairs', 'home') %}
+            mdi:remote
+          {% else %}
+            mdi:alert
+          {% endif %}
+      ir_blaster_patio:
+        friendly_name: IR Blaster Patio
+        device_class: connectivity
+        entity_id: device_tracker.ir_blaster_patio
+        value_template: "{{ is_state('device_tracker.ir_blaster_patio', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.ir_blaster_patio', 'home') %}
+            mdi:remote
+          {% else %}
+            mdi:alert
+          {% endif %}
+## Sonoff Swiches
+      lounge_fan_switch:
+        friendly_name: Lounge Fan Switch
+        device_class: connectivity
+        entity_id: device_tracker.lounge_fan_switch
+        value_template: "{{ is_state('device_tracker.lounge_fan_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.lounge_fan_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      kitchen_dining_light_switch:
+        friendly_name: Kitchen/Dining Light Switch
+        device_class: connectivity
+        entity_id: device_tracker.kitchen_dining_light_switch
+        value_template: "{{ is_state('device_tracker.kitchen_dining_light_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.kitchen_dining_light_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      patio_light_switch:
+        friendly_name: Patio Light Switch
+        device_class: connectivity
+        entity_id: device_tracker.patio_light_switch
+        value_template: "{{ is_state('device_tracker.patio_light_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.patio_light_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      lounge_light_switch:
+        friendly_name: Lounge Light Switch
+        device_class: connectivity
+        entity_id: device_tracker.lounge_light_switch
+        value_template: "{{ is_state('device_tracker.lounge_light_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.lounge_light_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      master_bedroom_fan_switch:
+        friendly_name: Bedroom Fan Switch
+        device_class: connectivity
+        entity_id: device_tracker.master_bedroom_fan_switch
+        value_template: "{{ is_state('device_tracker.master_bedroom_fan_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.master_bedroom_fan_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+## Light Bulbs
+      hall_light_bulb:
+        friendly_name: Hall Light Bulb
+        device_class: connectivity
+        entity_id: device_tracker.hall_light_bulb
+        value_template: "{{ is_state('device_tracker.hall_light_bulb', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.hall_light_bulb', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+      entry_light_bulb:
+        friendly_name: Entry Light Bulb
+        device_class: connectivity
+        entity_id: device_tracker.entry_light_bulb
+        value_template: "{{ is_state('device_tracker.entry_light_bulb', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.entry_light_bulb', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+      lounge_light_bulb:
+        friendly_name: Lounge Light Bulb
+        device_class: connectivity
+        entity_id: device_tracker.kitchen_light_bulb
+        value_template: "{{ is_state('device_tracker.lounge_light_bulb', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.lounge_light_bulb', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+      dining_light_bulb:
+        friendly_name: Dining Light Bulb
+        device_class: connectivity
+        entity_id: device_tracker.dining_light_bulb
+        value_template: "{{ is_state('device_tracker.dining_light_bulb', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.dining_light_bulb', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_light_bulb:
+        friendly_name: Bedroom Light Bulb
+        device_class: connectivity
+        entity_id: device_tracker.bedroom_light_bulb
+        value_template: "{{ is_state('device_tracker.bedroom_light_bulb', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.bedroom_light_bulb', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+## BLE Trackers
+      ble_tracker_downstairs:
+        friendly_name: BLE Tracker Downstairs
+        device_class: connectivity
+        entity_id: device_tracker.ble_tracker_downstairs
+        value_template: "{{ is_state('device_tracker.ble_tracker_downstairs', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.ble_tracker_downstairs', 'home') %}
+            mdi:bluetooth
+          {% else %}
+            mdi:alert
+          {% endif %}
+      ble_tracker_upstairs:
+        friendly_name: BLE Tracker Downstairs
+        device_class: connectivity
+        entity_id: device_tracker.ble_tracker_upstairs
+        value_template: "{{ is_state('device_tracker.ble_tracker_upstairs', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.ble_tracker_upstairs', 'home') %}
+            mdi:bluetooth
+          {% else %}
+            mdi:alert
+          {% endif %}
