@@ -1,0 +1,125 @@
+#################################################################
+#                                                               #
+#                      Packages/Firmware                        #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    binary_sensor.ha_update_available:
+      icon: mdi:cloud-download
+    binary_sensor.sonoff_update_available:
+      icon: mdi:lightbulb-on
+    binary_sensor.new_podcast_available:
+      icon: mdi:podcast
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  firmware:
+    name: Firmware Status
+    view: no
+    entities:
+      - binary_sensor.new_podcast_available
+      - binary_sensor.ha_update_available
+      - binary_sensor.sonoff_update_available
+#      - sensor.mikrotik_routeros_version
+    
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+#########################  HA Update  ###########################
+sensor:
+## Check Latest HA Version
+  - platform: scrape
+    resource: https://www.home-assistant.io
+    name: Latest HA Version
+    select: ".current-version h1"
+    value_template: '{{ value.split(":")[1] }}'
+
+## Check HA Version Installed    
+  - platform: template
+    sensors:
+      installed_ha_version:
+        value_template: '{% if is_state("device_tracker.rpi", "home") %}0.72.0{% else %}On{% endif %}'
+        friendly_name: 'Sonoff Installed Firmware'
+
+#########################  HA Podcast  ##########################
+
+## Check Latest HA Podcast
+  - platform: scrape
+    resource: https://hasspodcast.io/feed/podcast
+    name: Latest HA Podcast
+    select: 'enclosure:nth-of-type(1)'
+    value_template: '{{ value.split("/")[5] }}'
+    attribute: url
+    
+## Check Latest Watched Podcast
+  - platform: template
+    sensors:
+      latest_watched_podcast:
+        value_template: '{% if is_state("sensor.latest_ha_podcast", "ha028.mp3") %}ha028.mp3{% else %}On{% endif %}'
+
+###########################  Sonoff  ############################
+
+## Check Latest Sonoff Firmware Version
+  - platform: command_line
+    name: Sonoff Firmware Version
+    command: /config/html/versionsonoffhtml.sh
+    scan_interval: 21600
+
+## Check Latest Sonoff Firmware Installed    
+  - platform: template
+    sensors:
+      sonoff_installed_firmware:
+        value_template: '{% if is_state("device_tracker.lounge_light_switch", "home") %}v5.11.1{% else %}On{% endif %}'
+        friendly_name: 'Sonoff Installed Firmware'
+
+##########################  Mikrotik  ###########################      
+
+## Check Latest RouterOS
+#  - platform: scrape
+#    resource: https://mikrotik.com/download
+#    name: Mikrotik RouterOS Version
+#    select: '#sm-start > div:nth-child(4) > div > table:nth-child(18) > thead > tr > th:nth-child(3)'
+#    attribute: url
+          
+###########  Compare Latest Against Current Version  ############
+
+#########################  HA Update  ###########################
+binary_sensor:
+  - platform: template
+    sensors:
+      ha_update_available:
+        value_template: >-
+          {{ states.sensor.latest_ha_version.state != states.sensor.installed_ha_version.state and states.sensor.latest_ha_version.state != 'unavailable' }}
+        friendly_name: HA Update Available
+       
+###########################  Sonoff  ############################
+  - platform: template
+    sensors:
+      sonoff_update_available:
+        value_template: >-
+          {{ states.sensor.sonoff_firmware_version.state != states.sensor.sonoff_installed_firmware.state and states.sensor.sonoff_firmware_version.state != 'unavailable' }}
+        friendly_name: Sonoff Update Available
+        
+#########################  HA Podcast  ##########################        
+  - platform: template
+    sensors:
+      new_podcast_available:
+        value_template: >-
+          {{ states.sensor.latest_ha_podcast.state != states.sensor.latest_watched_podcast.state and states.sensor.latest_ha_podcast.state != 'unavailable' }}
+        friendly_name: New Podcast Available
