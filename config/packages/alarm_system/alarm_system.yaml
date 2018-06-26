@@ -76,9 +76,9 @@ group:
     view: yes
     entities:
       - group.alarms
-      - group.motion
       - group.doors
       - group.windows
+      - group.motion
       
   alarms:
     name: Alarms
@@ -133,6 +133,7 @@ group:
 
 alarm_control_panel:
   - platform: manual_mqtt
+    code: !secret alarm_code
     state_topic: home/alarm
     command_topic: home/alarm/set
     
