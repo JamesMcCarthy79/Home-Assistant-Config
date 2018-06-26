@@ -1,0 +1,624 @@
+#################################################################
+#                                                               #
+#                       Packages/Garden                         #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.bougainvillea_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.bougainvillea_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.bougainvillea_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.bougainvillea_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.bougainvillea_temperature:
+      friendly_name: Temperature
+  
+    sensor.jasmine_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.jasmine_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.jasmine_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.jasmine_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.jasmine_temperature:
+      friendly_name: Temperature
+  
+    sensor.chilli_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.chilli_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.chilli_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.chilli_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.chilli_temperature:
+      friendly_name: Temperature
+  
+    sensor.herb_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.herb_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.herb_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.herb_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.herb_temperature:
+      friendly_name: Temperature
+  
+    sensor.strawberry_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.strawberry_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.strawberry_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.strawberry_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.strawberry_temperature:
+      friendly_name: Temperature
+  
+    sensor.veggie_patch_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.veggie_patch_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.veggie_patch_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.veggie_patch_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.veggie_patch_temperature:
+      friendly_name: Temperature
+  
+    sensor.top_bed_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.top_bed_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.top_bed_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.top_bed_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.top_bed_temperature:
+      friendly_name: Temperature
+  
+    sensor.citrus_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.citrus_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.citrus_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.citrus_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.citrus_temperature:
+      friendly_name: Temperature
+  
+    sensor.mertyl_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.mertyl_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.mertyl_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.mertyl_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.mertyl_temperature:
+      friendly_name: Temperature
+
+    sensor.maple_moisture:
+      icon: mdi:water-percent
+      friendly_name: Moisture
+    sensor.maple_light_intensity:
+      icon: mdi:theme-light-dark
+      friendly_name: Light Intensity
+    sensor.maple_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.maple_ph_level:
+      icon: mdi:flash
+      friendly_name: PH Level
+    sensor.maple_temperature:
+      friendly_name: Temperature  
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  bougainvillea:
+    name: Bougainvillea
+    view: no
+    entities:
+      - sensor.bougainvillea_moisture
+      - sensor.bougainvillea_ph_level
+      - sensor.bougainvillea_battery
+      
+  chilli:
+    name: Purple Mumba Chilli
+    view: no
+    entities:
+      - sensor.chilli_moisture
+      - sensor.chilli_ph_level
+      - sensor.chilli_battery
+    
+  citrus:
+    name: Citrus Bed
+    view: no
+    entities:
+      - sensor.citrus_moisture
+      - sensor.citrus_ph_level
+      - sensor.citrus_battery
+    
+  herb:
+    name: Herb Patch
+    view: no
+    entities:
+      - sensor.herb_moisture
+      - sensor.herb_ph_level
+      - sensor.herb_battery
+    
+  maple:
+    name: Maple Bed
+    view: no
+    entities:
+      - sensor.maple_moisture
+      - sensor.maple_ph_level
+      - sensor.maple_battery
+    
+  mertyl:
+    name: Mertyl Bed
+    view: no
+    entities:
+      - sensor.mertyl_moisture
+      - sensor.mertyl_ph_level
+      - sensor.mertyl_battery
+    
+  jasmine:
+    name: Jasmine Bed
+    view: no
+    entities:
+      - sensor.jasmine_moisture
+      - sensor.jasmine_ph_level
+      - sensor.jasmine_battery
+    
+  strawberry:
+    name: Strawberry Patch
+    view: no
+    entities:
+      - sensor.strawberry_moisture
+      - sensor.strawberry_ph_level
+      - sensor.strawberry_battery
+    
+  top_bed:
+    name: Top Bed
+    view: no
+    entities:
+      - sensor.top_bed_moisture
+      - sensor.top_bed_ph_level
+      - sensor.top_bed_battery
+    
+  veggie_patch:
+    name: Veggie Patch
+    view: no
+    entities:
+      - sensor.veggie_patch_moisture
+      - sensor.veggie_patch_ph_level
+      - sensor.veggie_patch_battery  
+      
+#################################################################
+#                                                               #
+#                       Plant Monitors                          #
+#                                                               #
+#################################################################
+
+plant:
+  Bougainvillea:
+    sensors:
+      moisture: sensor.bougainvillea_moisture
+      battery: sensor.bougainvillea_battery
+      temperature: sensor.bougainvillea_temperature
+      conductivity: sensor.bougainvillea_ph_level
+      brightness: sensor.bougainvillea_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Purple Mumba Chilli:
+    sensors:
+      moisture: sensor.chilli_moisture
+      battery: sensor.chilli_battery
+      temperature: sensor.chilli_temperature
+      conductivity: sensor.chilli_ph_level
+      brightness: sensor.chilli_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Citrus Bed:
+    sensors:
+      moisture: sensor.citrus_moisture
+      battery: sensor.citrus_battery
+      temperature: sensor.citrus_temperature
+      conductivity: sensor.citrus_ph_level
+      brightness: sensor.citrus_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Herb Patch:
+    sensors:
+      moisture: sensor.herb_moisture
+      battery: sensor.herb_battery
+      temperature: sensor.herb_temperature
+      conductivity: sensor.herb_ph_level
+      brightness: sensor.herb_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Maple Bed:
+    sensors:
+      moisture: sensor.maple_moisture
+      battery: sensor.maple_battery
+      temperature: sensor.maple_temperature
+      conductivity: sensor.maple_ph_level
+      brightness: sensor.maple_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Mertyl Bed:
+    sensors:
+      moisture: sensor.mertyl_moisture
+      battery: sensor.mertyl_battery
+      temperature: sensor.mertyl_temperature
+      conductivity: sensor.mertyl_ph_level
+      brightness: sensor.mertyl_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Jasmine Bed:
+    sensors:
+      moisture: sensor.jasmine_moisture
+      battery: sensor.jasmine_battery
+      temperature: sensor.jasmine_temperature
+      conductivity: sensor.jasmine_ph_level
+      brightness: sensor.jasmine_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Strawberry Patch:
+    sensors:
+      moisture: sensor.strawberry_moisture
+      battery: sensor.strawberry_battery
+      temperature: sensor.strawberry_temperature
+      conductivity: sensor.strawberry_ph_level
+      brightness: sensor.strawberry_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Top Bed:
+    sensors:
+      moisture: sensor.top_bed_moisture
+      battery: sensor.top_bed_battery
+      temperature: sensor.top_bed_temperature
+      conductivity: sensor.top_bed_ph_level
+      brightness: sensor.top_bed_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Veggie Patch:
+    sensors:
+      moisture: sensor.veggie_patch_moisture
+      battery: sensor.veggie_patch_battery
+      temperature: sensor.veggie_patch_temperature
+      conductivity: sensor.veggie_patch_ph_level
+      brightness: sensor.veggie_patch_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_moisture
+    name: Bougainvillea Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_conductivity
+    name: Bougainvillea PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_battery
+    name: Bougainvillea Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_temperature
+    name: Bougainvillea Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_light_intensity
+    name: Bougainvillea Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.chilli_moisture
+    name: Chilli Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.chilli_conductivity
+    name: Chilli PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.chilli_battery
+    name: Chilli Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.chilli_temperature
+    name: Chilli Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.chilli_light_intensity
+    name: Chilli Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_moisture
+    name: Citrus Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_conductivity
+    name: Citrus PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_battery
+    name: Citrus Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_temperature
+    name: Citrus Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_light_intensity
+    name: Citrus Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.herb_patch_moisture
+    name: Herb Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.herb_patch_conductivity
+    name: Herb PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.herb_patch_battery
+    name: Herb Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.herb_patch_temperature
+    name: Herb Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.herb_patch_light_intensity
+    name: Herb Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.maple_bed_moisture
+    name: Maple Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.maple_bed_conductivity
+    name: Maple PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.maple_bed_battery
+    name: Maple Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.maple_bed_temperature
+    name: Maple Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.maple_bed_light_intensity
+    name: Maple Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.mertyl_bed_moisture
+    name: Mertyl Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.mertyl_bed_conductivity
+    name: Mertyl PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.mertyl_bed_battery
+    name: Mertyl Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.mertyl_bed_temperature
+    name: Maple Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.mertyl_bed_light_intensity
+    name: Maple Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_moisture
+    name: Jasmine Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_conductivity
+    name: Jasmine PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_battery
+    name: Jasmine Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_temperature
+    name: Jasmine Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_light_intensity
+    name: Jasmine Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.strawberry_moisture
+    name: Strawberry Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.strawberry_conductivity
+    name: Strawberry PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.strawberry_battery
+    name: Strawberry Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.strawberry_temperature
+    name: Strawberry Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.strawberry_light_intensity
+    name: Strawberry Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_moisture
+    name: Top Bed Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_conductivity
+    name: Top Bed PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_battery
+    name: Top Bed Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_temperature
+    name: Top Bed Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_light_intensity
+    name: Top Bed Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_moisture
+    name: Veggie Patch Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_conductivity
+    name: Veggie Patch PH Level
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_battery
+    name: Veggie Patch Battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_temperature
+    name: Veggie Patch Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_light_intensity
+    name: Veggie Patch Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
