@@ -1,0 +1,74 @@
+#################################################################
+#                                                               #
+#                     Packages/Garage Door                      #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.garage_door_status:
+      friendly_name: Garage Door
+      icon: mdi:garage
+      
+#################################################################
+#                                                               #
+#                           Groups                              #
+#                                                               #
+#################################################################
+
+group:
+  garage:
+    name: Garage
+    view: no
+    entities:
+      - sensor.garage_door_status
+      - sensor.garage
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor: 
+  - platform: mqtt
+    name: "Garage Door Status"
+    state_topic: "garagedoor"
+    
+  - platform: template
+    sensors:
+      garage:
+        friendly_name: "Garage Door"
+        value_template: >-
+          {% if is_state('sensor.garage_door_status', 'Open') %}
+            Open
+          {% elif is_state('sensor.garage_door_status', 'Closed') %}
+            Closed
+          {% else %}
+            Obstruction
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.garage_door_status', 'Open') %}
+            mdi:garage-open
+          {% elif is_state('sensor.garage_door_status', 'Closed') %}
+            mdi:garage
+          {% else %}
+            mdi:garage-alert
+          {% endif %}
+    
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+
+## Once my Good Morning script kicks in this automation will check the water level in the coffee machine and tell me if I need to fill up the water reservoir
+ 
+automation:
