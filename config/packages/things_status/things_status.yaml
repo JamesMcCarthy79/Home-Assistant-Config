@@ -294,3 +294,4 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
+      
