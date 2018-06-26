@@ -1,0 +1,90 @@
+#################################################################
+#                                                               #
+#                      Packages/Weather                         #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+
+  
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  sun:
+    name: Sun
+    view: no
+    entities:
+      - sun.sun
+      - sensor.moon
+      
+  weather overview:
+    name: Weather Overview
+    view: no
+    entities:
+      - sensor.pws_temp_c
+      - sensor.pws_relative_humidity
+      - sensor.pws_precip_1d
+      - sensor.pws_wind_kph
+      - sensor.pws_alerts
+      
+  daily forcast:
+    name: Daily Forcast
+    view: no
+    entities:
+      - sensor.pws_temp_high_1d_c
+      - sensor.pws_temp_high_2d_c
+      - sensor.pws_temp_high_3d_c
+      - sensor.pws_temp_high_4d_c
+      
+#################################################################
+#                                                               #
+#                            Sensors                            #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: moon
+## Weather Sensors Weatherunderground
+  - platform: wunderground
+    api_key: !secret wunderground_api
+    pwd_id: !secret wunderground_pws_id
+    monitored_conditions:
+      - relative_humidity
+      - pressure_mb
+      - temp_high_1d_c
+      - temp_c
+      - temp_low_1d_c
+      - precip_1d
+      - precip_1d_mm
+      - precip_today_string
+      - wind_kph
+      - wind_1d_kph
+      - wind_dir
+      - feelslike_c
+      - alerts
+      - temp_high_2d_c
+      - temp_high_3d_c
+      - temp_high_4d_c
+      - weather_1d_metric
+      - weather_2d_metric
+      - weather_3d_metric
+      - weather_4d_metric
+      
+####################################################
+#                                                  #
+#                  Track the Sun                   #
+#                                                  #
+####################################################
+
+sun:
