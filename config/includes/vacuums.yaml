@@ -1,0 +1,4 @@
+  - platform: xiaomi_miio
+    host: 10.0.100.2
+    token: 47436a46644e584c4d64476b75764967
+    name: RoboVac

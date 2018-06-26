@@ -1,0 +1,291 @@
+####################################################
+#                                                  #
+#                      Home                        #
+#                                                  #
+####################################################
+
+#home:
+default_view:
+  view: yes
+  icon: mdi:castle
+  entities:
+    - group.people
+    - group.security
+    - group.date_and_time
+    - group.weather_overview
+    - group.sun
+    - group.daily_forecast
+    
+date and time:
+  name: Date & Time
+  view: no
+  entities:
+    - sensor.date
+    - sensor.time
+    - sensor.claire_time
+    - sensor.mum_time
+
+####################################################
+#                                                  #
+#                   Downstairs                     #
+#                                                  #
+####################################################
+
+downstairs:
+  name: Downstairs
+  icon: mdi:sofa
+  view: yes
+  entities:
+    - group.climate_control
+    - group.tv
+    - group.downstairs_lights
+    - group.outside_lights
+    - group.music
+    
+tv:
+  name: Scenes
+  view: no
+  entities:
+    - script.1521695976118
+    - script.1521694771100
+    - script.1521696758169
+    - switch.tvpower
+    - light.gateway_light_7811dcfd812f
+    - light.gateway_light_7811dce13ad6
+    - scene.story_time
+    - media_player.media_4k_kodi
+    - scene.livingroom_bright
+    - light.hall_bulb
+    - switch.goodnight
+  control: hidden
+    
+####################################################
+#                                                  #
+#                    Play Room                     #
+#                                                  #
+####################################################
+
+play room:
+  name: Play Room
+  icon: mdi:soccer
+  view: yes
+  entities:
+    - group.play_room_climate
+    - group.play_room_fan
+    
+play room fan:
+  name: Play Room Fan
+  view: no
+  entities:
+    - input_select.playroom_fan_speed
+    - input_select.playroom_fan_oscillate
+    - input_select.playroom_fan_direction
+    - input_select.playroom_fan_oscillation_angle
+    - input_select.playroom_fan_natural_mode
+    - input_select.playroom_fan_led_brightness
+
+####################################################
+#                                                  #
+#                      Patio                       #
+#                                                  #
+####################################################
+
+patio:
+  name: Patio
+  icon: mdi:glass-cocktail
+  view: yes
+  entities:
+    - media_player.patio_kodi
+    - group.patio_temperature
+    - switch.plug_158d0001f24e2b
+    - switch.fairy_light_power
+    - switch.fairy_light_mode_4
+    - switch.patio_light_switch
+    
+patio temperature:
+  name: Patio Temperature
+  view: no
+  entities:
+    - sensor.temperature_158d0001f56350
+    - sensor.humidity_158d0001f56350
+    - sensor.illumination_158d000200ea5b
+    
+####################################################
+#                                                  #
+#                 Master Bedroom                   #
+#                                                  #
+####################################################
+
+master bedroom:
+  name: Master Bedroom
+  icon: mdi:hotel
+  view: yes
+  entities:
+    - group.master_bedroom_climate
+    - group.master_bedroom_lights
+    - media_player.bedroom_kodi
+    - media_player.bedroom_tv
+    - camera.baby_monitor
+    
+####################################################
+#                                                  #
+#                Jackson Bedroom                   #
+#                                                  #
+####################################################
+
+jackson bedroom:
+  name: Jackson Bedroom
+  icon: mdi:chess-knight
+  view: yes
+  entities:
+    - group.jackson_fan
+    - switch.jackson_light_switch
+    - group.jackson_temperature
+    
+jackson fan:
+  name: Jackson Fan
+  view: no
+  entities:
+    - script.jackson_fan_low
+    - script.jackson_fan_med
+    - script.jackson_fan_high
+    - script.jackson_fan_off
+  control: hidden
+  
+jackson temperature:
+  name: Jackson Climate
+  view: no
+  entities:
+    - sensor.temperature_158d0001f534e1
+    - sensor.humidity_158d0001f534e1
+
+####################################################
+#                                                  #
+#                 Hudson Bedroom                   #
+#                                                  #
+####################################################
+
+hudson bedroom:
+  name: Hudson Bedroom
+  icon: mdi:chess-rook
+  view: yes
+  entities:
+    - group.hudson_fan
+    - switch.hudson_light_switch
+    - group.hudson_temperature
+    
+hudson fan:
+  name: Hudson Fan
+  view: no
+  entities:
+    - script.hudson_fan_low
+    - script.hudson_fan_med
+    - script.hudson_fan_high
+    - script.hudson_fan_off
+  control: hidden
+  
+hudson temperature:
+  name: Hudson Climate
+  view: no
+  entities:
+    - sensor.temperature_158d0001f54df3
+    - sensor.humidity_158d0001f54df3
+    
+####################################################
+#                                                  #
+#                    Bathroom                      #
+#                                                  #
+####################################################
+
+bathroom:
+  name: Bathroom
+  icon: mdi:shower
+  view: yes
+  entities:
+    - group.bathroom_switches
+    - group.bathroom_temperature
+    
+bathroom temperature:
+  name: Bathroom Climate
+  view: no
+  entities:
+    - sensor.temperature_158d00022c7248
+    - sensor.humidity_158d00022c7248
+    - sensor.illumination_158d000200e4ab
+    
+####################################################
+#                                                  #
+#                  System Status                   #
+#                                                  #
+####################################################
+
+system status:
+  name: System Status
+  icon: mdi:settings
+  view: yes
+  entities:
+    - group.internet
+    - group.core_network
+    - group.core_devices
+    - group.ha_devices
+    - group.media_devices
+    - group.rpi_resources
+    
+####################################################
+#                                                  #
+#                  Things Status                   #
+#                                                  #
+####################################################
+
+things status:
+  name: Things Status
+  icon: mdi:cogs
+  view: yes
+  entities:
+    - group.battery_alert
+    - group.cameras
+    - group.ir_blasters
+    - group.sonoff_switches
+    - group.lamps
+    - group.appliances
+    - group.firmware
+    - group.ble_trackers
+    
+####################################################
+#                                                  #
+#                    Appliances                    #
+#                                                  #
+####################################################
+
+appliances:
+  name: Appliances
+  icon: mdi:washing-machine
+  view: yes
+  entities:
+    - group.laundry
+    - group.kitchen
+    - group.trash_schedule
+    - group.recycle_schedule
+    - group.washing_machine
+    - group.dryer
+
+####################################################
+#                                                  #
+#                     Garden                       #
+#                                                  #
+####################################################
+
+garden:
+  view: yes
+  icon: mdi:flower
+  entities:
+    - group.bougainvillea
+    - group.chilli
+    - group.citrus
+    - group.herb
+    - group.maple
+    - group.mertyl
+    - group.jasmine
+    - group.strawberry
+    - group.top_bed
+    - group.veggie_patch

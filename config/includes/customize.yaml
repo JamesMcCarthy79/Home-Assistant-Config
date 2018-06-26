@@ -1,0 +1,154 @@
+###################################################
+#                                                 #
+#                  Group Order                    #
+#                                                 #
+###################################################
+
+group.default_view:
+  order: 1
+  
+group.security:
+  order: 2
+  
+group.downstairs:
+  order: 3
+  
+group.play_room:
+  order: 4
+  
+group.patio:
+  order: 5
+  
+group.master_bedroom:
+  order: 6
+  
+group.jackson_bedroom:
+  order: 7
+  
+group.hudson_bedroom:
+  order: 8
+  
+group.bathroom:
+  order: 9
+  
+group.system_status:
+  order: 10
+  
+group.things_status:
+  order: 11
+  
+group.appliances:
+  order: 12
+  
+group.garden:
+  order: 13
+
+###################################################
+#                                                 #
+#               Morning Cartoons                  #
+#                                                 #
+###################################################
+
+script.1521695976118:
+  icon: mdi:youtube-tv
+  friendly_name: "Morning Cartoons"
+  
+script.1521694771100:
+  icon: mdi:kodi
+  friendly_name: "Evening TV"
+  assumed_state: false
+  
+script.1521696758169:
+  icon: mdi:football
+  friendly_name: "Super Rugby"
+  
+switch.media_tv_power:
+  icon: mdi:television
+  friendly_name: "Lounge TV"
+  assumed_state: false
+  
+scene.livingroom_bright:
+  icon: mdi:lightbulb-on
+  assumed_state: false
+  
+switch.goodnight:
+  icon: mdi:flash-circle
+  friendly_name: "Good Night"
+  assumed_state: false
+  
+###################################################
+#                                                 #
+#                     Music                       #
+#                                                 #
+###################################################
+
+switch.spotify_kitchen:
+  icon: mdi:spotify
+  friendly_name: "Spotify Kitchen"
+  assumed_state: false
+
+###################################################
+#                                                 #
+#                Temp Conditions                  #
+#                                                 #
+###################################################
+
+##Patio##
+
+sensor.temperature_158d0001f56350:
+  friendly_name: Patio Temperature
+  
+sensor.humidity_158d0001f56350:
+  friendly_name: Patio Humidity
+  
+sensor.illumination_158d000200ea5b:
+  friendly_name: Patio LUX
+  
+##Bathroom##
+sensor.humidity_158d00022c7248:
+  friendly_name: Bathroom Humidity
+  
+sensor.temperature_158d00022c7248:
+  friendly_name: Bathroom Temperature
+  
+sensor.illumination_158d000200e4ab:
+  friendly_name: Bathroom LUX
+  
+##Jacskon##
+
+sensor.temperature_158d0001f534e1:
+  friendly_name: Jackson Room Temperature
+  
+sensor.humidity_158d0001f534e1:
+  friendly_name: Jackson Room Humidity
+  
+sensor.illumination_158d000201351c:
+  friendly_name: Jackson Bedroom LUX
+  
+##Hudson##
+
+sensor.temperature_158d0001f54df3:
+  friendly_name: Hudson Bedroom Temperature
+  
+sensor.humidity_158d0001f54df3:
+  friendly_name: Hudson Bedroom Humidity
+  
+sensor.illumination_158d0002006d46:
+  friendly_name: Hudson Bedroom LUX
+
+###################################################
+#                                                 #
+#                     Xiaomi                      #
+#                                                 #
+###################################################
+
+binary_sensor.switch_158d000213108e:
+  friendly_name: Door Bell Switch
+  
+binary_sensor.switch_158d000213455d:
+  friendly_name: Hudson Fan Switch
+  
+binary_sensor.switch_158d00021347cc:
+  friendly_name: Jackson Fan Switch
+
+  

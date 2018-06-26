@@ -1,0 +1,35 @@
+####################################################
+#                                                  #
+#                    Phillips                      #
+#                                                  #
+####################################################
+
+- platform: xiaomi_miio
+  name: Entrance Bulb
+  host: ip
+  token: token
+  model: philips.light.bulb
+  
+- platform: xiaomi_miio
+  name: Lounge Bulb
+  host: ip
+  token: token
+  model: philips.light.bulb
+  
+- platform: xiaomi_miio
+  name: Dining Bulb
+  host: ip
+  token: token
+  model: philips.light.bulb
+  
+- platform: xiaomi_miio
+  name: Hall Bulb
+  host: ip
+  token: token
+  model: philips.light.bulb
+  
+- platform: xiaomi_miio
+  name: Bedroom Bulb
+  host: ip
+  token: token
+  model: philips.light.bulb

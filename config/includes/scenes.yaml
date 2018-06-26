@@ -1,0 +1,95 @@
+####################################################
+#                                                  #
+#                     Lights                       #
+#                                                  #
+####################################################
+
+- name: Livingroom normal
+  entities:
+      light.lounge_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 75
+          color_temp: 333
+      light.dining_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 85
+          color_temp: 333
+          
+- name: Livingroom dim
+  entities:
+      light.lounge_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 15
+          color_temp: 333
+      light.dining_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 25
+          color_temp: 333
+          
+- name: Hall dim 
+  entities:
+      light.hall_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 15
+          
+- name: Hall normal 
+  entities:
+      light.hall_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 75
+          
+- name: Hall dusk 
+  entities:
+      light.hall_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 50
+          
+- name: Livingroom Bright
+  entities:
+      light.dining_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 100
+          color_temp: 175
+      light.lounge_bulb:
+          state: on
+          transition: 2
+          brightness_pct: 100
+          color_temp: 175
+      
+####################################################
+#                                                  #
+#                       TV                         #
+#                                                  #
+####################################################
+      
+- name: "Media TV 7"
+  entities:
+      switch.media_tv_7: on
+      
+- name: "Media TV 0"
+  entities:
+      switch.media_tv_0: on
+      
+- name: "Media TV 3"
+  entities:
+      switch.media_tv_3: on
+      
+- name: "Media TV Right"
+  entities:
+      switch.media_tv_right: on
+      
+- name: "Media TV Select"
+  entities:
+      switch.media_tv_select: on
+      
+- name: "Media TV Blue"
+  entities:
+      switch.media_tv_blue: on

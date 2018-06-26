@@ -1,0 +1,353 @@
+'1521694771100':
+  alias: Evening TV
+  sequence:
+  - data:
+      entity_id: switch.media_tv_power
+    service: switch.turn_on
+  - delay: 00:00:02
+  - data:
+      entity_id: switch.media_tv_select
+    service: switch.turn_on
+'1521694972303':
+  alias: Lounge Fan High
+  sequence:
+  - data:
+      entity_id: switch.lounge_fan_switch_low
+    service: switch.turn_off
+  - data:
+      entity_id: switch.lounge_fan_switch_med
+    service: switch.turn_off
+  - data:
+      entity_id: switch.lounge_fan_switch_high
+    service: switch.turn_on
+'1521695035815':
+  alias: Lounge Fan Medium
+  sequence:
+  - data:
+      entity_id: switch.lounge_fan_switch_low
+    service: switch.turn_off
+  - data:
+      entity_id: switch.lounge_fan_switch_high
+    service: switch.turn_off
+  - data:
+      entity_id: switch.lounge_fan_switch_med
+    service: switch.turn_on
+'1521695117457':
+  alias: Lounge Fan Low
+  sequence:
+  - data:
+      entity_id: switch.lounge_fan_switch_med
+    service: switch.turn_off
+  - data:
+      entity_id: switch.lounge_fan_switch_high
+    service: switch.turn_off
+  - data:
+      entity_id: switch.lounge_fan_switch_low
+    service: switch.turn_on
+'1521695181969':
+  alias: Lounge Fan Off
+  sequence:
+  - data:
+      entity_id: switch.lounge_fan_switch_low
+    service: switch.turn_off
+  - data:
+      entity_id: switch.lounge_fan_switch_med
+    service: switch.turn_off
+  - data:
+      entity_id: switch.lounge_fan_switch_high
+    service: switch.turn_off
+'1521695238080':
+  alias: Master Fan High
+  sequence:
+  - data:
+      entity_id: switch.master_fan_switch_low
+    service: switch.turn_off
+  - data:
+      entity_id: switch.master_fan_switch_med
+    service: switch.turn_off
+  - data:
+      entity_id: switch.master_fan_switch_high
+    service: switch.turn_on
+'1521695283264':
+  alias: Master Fan Medium
+  sequence:
+  - data:
+      entity_id: switch.master_fan_switch_low
+    service: switch.turn_off
+  - data:
+      entity_id: switch.master_fan_switch_high
+    service: switch.turn_off
+  - data:
+      entity_id: switch.master_fan_switch_med
+    service: switch.turn_on
+'1521695486416':
+  alias: Master Fan Low
+  sequence:
+  - data:
+      entity_id: switch.master_fan_switch_med
+    service: switch.turn_off
+  - data:
+      entity_id: switch.master_fan_switch_high
+    service: switch.turn_off
+  - data:
+      entity_id: switch.master_fan_switch_low
+    service: switch.turn_on
+'1521695537041':
+  alias: Master Fan Off
+  sequence:
+  - data:
+      entity_id: switch.master_fan_switch_low
+    service: switch.turn_off
+  - data:
+      entity_id: switch.master_fan_switch_med
+    service: switch.turn_off
+  - data:
+      entity_id: switch.master_fan_switch_high
+    service: switch.turn_off
+'1521695976118':
+  alias: Morning Cartoons
+  sequence:
+  - data:
+      entity_id: switch.media_tv_power
+    service: switch.turn_on
+  - delay: 00:00:15
+  - data:
+      entity_id: switch.media_tv_source
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_down
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_right
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_right
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_select
+    service: switch.turn_on
+  - delay: 00:00:15
+  - data:
+      entity_id: switch.media_tv_blue
+    service: switch.turn_on
+  - delay: 00:00:06
+  - data:
+      entity_id: switch.media_tv_7
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_0
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_3
+    service: switch.turn_on
+'1521696758169':
+  alias: Super Rugby
+  sequence:
+  - data:
+      entity_id: switch.media_tv_power
+    service: switch.turn_on
+  - delay: 00:00:03
+  - data:
+      entity_id: switch.media_tv_source
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_down
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_right
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_right
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_select
+    service: switch.turn_on
+  - delay: 00:00:15
+  - data:
+      entity_id: switch.media_tv_blue
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_5
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_0
+    service: switch.turn_on
+  - data:
+      entity_id: switch.media_tv_5
+    service: switch.turn_on
+'1521697053706':
+  alias: Watch Kodi
+  sequence:
+  - data:
+      entity_id: switch.media_tv_power
+    service: switch.turn_on
+'1523505263098':
+  alias: Playroom Fan Level 1
+  sequence:
+  - data:
+      entity_id: fan.xiaomi_smart_fan
+      speed: Level 1
+    service: fan.set_speed
+'1523505294052':
+  alias: Playroom Fan Level 2
+  sequence:
+  - data:
+      entity_id: fan.xiaomi_smart_fan
+      speed: Level 2
+    service: fan.set_speed
+'1523505324933':
+  alias: Playroom Fan Level 3
+  sequence:
+  - data:
+      entity_id: fan.xiaomi_smart_fan
+      speed: Level 3
+    service: fan.set_speed
+'1523505358220':
+  alias: Playroom Fan Level 4
+  sequence:
+  - data:
+      entity_id: fan.xiaomi_smart_fan
+      speed: Level 4
+    service: fan.set_speed
+'1523649643350':
+  alias: Turn On Fairy Lights
+  sequence:
+  - data:
+      entity_id: switch.fairy_light_power
+    service: switch.turn_on
+  - data:
+      entity_id: switch.fairy_light_mode_8
+    service: switch.turn_on
+'1524684263950':
+  alias: Playroom Fan Oscillate On
+  sequence:
+  - data:
+      entity_id: fan.xiaomi_smart_fan
+      oscillating: 'true'
+    service: fan.oscillate
+'1524684295834':
+  alias: Playroom Fan Oscillate Off
+  sequence:
+  - data:
+      entity_id: fan.xiaomi_smart_fan
+      oscillating: 'false'
+    service: fan.oscillate
+'1524684610404':
+  alias: Playroom Fan Left
+  sequence:
+  - data:
+      direction: left
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.set_direction
+'1524684637559':
+  alias: Playroom Fan Right
+  sequence:
+  - data:
+      direction: right
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.set_direction
+'1524685492627':
+  alias: Playroom Fan Angle 30°
+  sequence:
+  - data:
+      angle: '30'
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_oscillation_angle
+'1524685531855':
+  alias: Playroom Fan Angle 60°
+  sequence:
+  - data:
+      angle: '60'
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_oscillation_angle
+'1524685564893':
+  alias: Playroom Fan Angle 90°
+  sequence:
+  - data:
+      angle: '90'
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_oscillation_angle
+'1524685607962':
+  alias: Playroom Fan Angle 120°
+  sequence:
+  - data:
+      angle: '120'
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_oscillation_angle
+'1524685935022':
+  alias: Playroom Fan Natural Mode On
+  sequence:
+  - data:
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_natural_mode_on
+'1524685962145':
+  alias: Playroom Fan Natural Mode Off
+  sequence:
+  - data:
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_natural_mode_off
+'1524686151270':
+  alias: Playroom Fan LED 0
+  sequence:
+  - data:
+      brightness: '0'
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_led_brightness
+'1524686188825':
+  alias: Playroom Fan LED 1
+  sequence:
+  - data:
+      brightness: '1'
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_led_brightness
+'1524686216404':
+  alias: Playroom Fan LED 2
+  sequence:
+  - data:
+      brightness: '2'
+      entity_id: fan.xiaomi_smart_fan
+    service: fan.xiaomi_miio_set_led_brightness
+'1527969569077':
+  alias: Goodnight
+  sequence:
+  - data:
+      entity_id: switch.goodnight
+    service: switch.turn_off
+  - data:
+      entity_id: switch.media_tv_power
+    service: switch.turn_off
+  - data:
+      entity_id: switch.kitchen_light_switch
+    service: switch.turn_off
+  - data:
+      entity_id: switch.dining_light_switch
+    service: switch.turn_off
+  - service: alarm_control_panel.alarm_arm_home
+  - delay: 00:00:20
+  - data:
+      entity_id: switch.lounge_light_switch
+    service: switch.turn_off
+  - data:
+      entity_id: input_boolean.morning_script_run
+    service: input_boolean.turn_on
+'1527974742281':
+  alias: Good Morning
+  sequence:
+  - data:
+      entity_id: switch.lounge_light_switch
+    service: switch.turn_on
+  - data: {}
+    service: alarm_control_panel.alarm_disarm
+  - data:
+      entity_id: switch.dining_light_switch
+    service: switch.turn_on
+  - data:
+      entity_id: switch.kitchen_light_switch
+    service: switch.turn_on
+  - service: script.1521695976118
+'1527979491829':
+  alias: 'Alarm Arm '
+  sequence:
+  - data:
+      entity_id: group.downstairs_lights
+    service: homeassistant.turn_off
