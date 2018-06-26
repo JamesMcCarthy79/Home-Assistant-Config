@@ -12,14 +12,9 @@ homeassistant:
   longitude: !secret longitude
   unit_system: metric
   elevation: 6
-  customize: !include customize.yaml
+  customize: !include includes/customize.yaml
   packages: !include_dir_named packages
-#  customize_glob:
-#    light.*:
-#      custom_ui_state_card: state-card-custom-ui
-#    cover.*:
-#      custom_ui_state_card: state-card-custom-ui
-
+  
 ###################################################
 #                                                 #
 #                     Panel                       #
@@ -30,29 +25,16 @@ panel_iframe:
   configurator:
     title: Configurator
     icon: mdi:wrench
-    url: !secret config_panel_url
-  controlpanel:
-    title: Control Panel
-    icon: mdi:tablet-ipad
-    url: !secret cantrol_panel_url
+    url: configurator url
   nodered:
     title: Node-Red
     icon: mdi:shuffle-variant
-    url: !secret node_panel_url
+    url: node red url
   sonweb:
     title: SonWEB
     icon: mdi:lightbulb-on
-    url: !secret sonweb_panel_url
-    
-###################################################
-#                                                 #
-#                     IFTTT                       #
-#                                                 #
-###################################################
+    url:  sonweb url
 
-#ifttt:
-#  key: !secret ifttt_key
-  
 ####################################################
 #                                                  #
 #                     Enables                      #
@@ -64,9 +46,11 @@ config:
 http:
   api_password: !secret http_password
   trusted_networks:
-    - your IP's here
+    - x.x.x.x
+
   cors_allowed_origins:
-    - your IP's here
+    - http://x.x.x.x
+    - http://x.x.x.x:xxxxx
 
 updater:
 discovery:
@@ -85,7 +69,7 @@ map:
 #  custom_ui: local
   
 frontend:
-  #themes: !include themes.yaml
+#  themes: !include themes.yaml
 #  extra_html_url:
 #    - /local/custom_ui/state-card-custom-ui.html
 #  extra_html_url_es5:
@@ -98,18 +82,20 @@ frontend:
 ####################################################
 
 logger:
-  default: warn
-  logs:
-    custom_components.fan.xiaomi_miio_fan: debug
-    miio: debug
+  #default: warn
+  #logs:
+  #  custom_components.fan.xiaomi_miio_fan: debug
+  #  miio: debug
     
 ####################################################
 #                                                  #
-#                  Track the Sun                   #
+#                     Recorder                     #
 #                                                  #
 ####################################################
 
-sun:
+#recorder:
+#  purge_interval: 2
+#  purge_keep_days: 5
 
 ####################################################
 #                                                  #
@@ -138,25 +124,27 @@ mqtt:
   broker: core-mosquitto
   username: !secret mozzieuser
   password: !secret mozziepass
+  
+####################################################
+#                                                  #
+#                    Includes                      #
+#                                                  #
+####################################################
 
-automation: !include automations.yaml
-binary_sensor: !include binary_sensor.yaml
-camera: !include cameras.yaml
-device_tracker: !include device_tracker.yaml
-fan: !include fans.yaml
-group: !include groups.yaml
-input_boolean: !include input_boolean.yaml
-input_select: !include input_select.yaml
-light: !include lights.yaml
-media_player: !include media_players.yaml
-notify: !include notify.yaml
+automation: !include includes/automations.yaml
+camera: !include includes/cameras.yaml
+fan: !include includes/fans.yaml
+group: !include includes/groups.yaml
+input_boolean: !include includes/input_boolean.yaml
+input_select: !include includes/input_select.yaml
+light: !include includes/lights.yaml
+media_player: !include includes/media_players.yaml
+notify: !include includes/notify.yaml
 python_script: !include_dir_named python_scripts
-scene: !include scenes.yaml
-script: !include scripts.yaml
-sensor: !include sensors.yaml
-switch: !include switches.yaml
-vacuum: !include vacuums.yaml
-xiaomi_aqara: !include xiaomi.yaml
-zone: !include zones.yaml
-
-
+scene: !include includes/scenes.yaml
+script: !include includes/scripts.yaml
+sensor: !include includes/sensors.yaml
+switch: !include includes/switches.yaml
+vacuum: !include includes/vacuums.yaml
+xiaomi_aqara: !include includes/xiaomi.yaml
+zone: !include includes/zones.yaml
