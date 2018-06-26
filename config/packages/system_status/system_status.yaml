@@ -1,0 +1,484 @@
+#################################################################
+#                                                               #
+#                    Packages/Core Network                      #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.disk_use_:
+      friendly_name: Disk Use
+    sensor.speedtest_ping:
+      friendly_name: Ping
+      icon: mdi:pulse
+    sensor.speedtest_download:
+      friendly_name: Download
+      icon: mdi:arrow-down-bold
+    sensor.speedtest_upload:
+      friendly_name: Upload
+      icon: mdi:arrow-up-bold
+  
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  core network:
+    name: Core Network
+    view: no
+    entities:
+      - binary_sensor.core_router
+      - binary_sensor.core_switch
+      - binary_sensor.upstairs_switch
+      - binary_sensor.wifi_bridge
+      - binary_sensor.5g_ac_main
+      - binary_sensor.5g_ac_media_tv
+      - binary_sensor.5g_ac_upstairs
+      
+  core devices:
+    name: Core Devices
+    view: no
+    entities:
+      - binary_sensor.nas_movies
+      - binary_sensor.nas_tv
+      - binary_sensor.smart_things_hub
+      - binary_sensor.xiaomi_gateway
+      - binary_sensor.alexa_main
+      - binary_sensor.alexa_bedroom
+      - binary_sensor.main_pc
+      - binary_sensor.printer
+      
+  ha devices:
+    name: HA Devices
+    view: no
+    entities:
+      - binary_sensor.rpi
+      - binary_sensor.garden_pi
+      - binary_sensor.alarm_panel
+      - binary_sensor.kitchen_dashboard
+      - binary_sensor.upstairs_dashboard
+      
+  media devices:
+    name: Media Devices
+    view: no
+    entities:
+      - binary_sensor.hdhomerun
+      - binary_sensor.media_tv
+      - binary_sensor.media_kodi_4k
+      - binary_sensor.appletv
+      - binary_sensor.bedroom_tv
+      - binary_sensor.bedroom_kodi
+      - binary_sensor.patio_kodi
+      
+  internet:
+    name: Internet
+    view: no
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+    
+  rpi resources:
+    name: RPi Resources
+    view: no
+    entities:
+      - sensor.disk_use_
+      - sensor.memory_use_percent
+      - sensor.processor_use
+      - sensor.cpu_temperature
+      - sensor.last_boot
+
+#################################################################
+#                                                               #
+#                       Device Tracker                          #
+#                                                               #
+#################################################################
+
+device_tracker:
+  - platform: ping
+    hosts:
+      core_router: 10.0.0.1
+      nas_movies: 10.0.0.2
+      nas_tv: 10.0.0.3
+      core_switch: 10.0.0.4
+      upstairs_switch: 10.0.0.5
+      wifi_bridge: 10.0.0.7
+      cambium_ap: 10.0.0.10
+      5g_ac_main: 10.0.0.11
+      5g_ac_media_tv: 10.0.0.12
+      5g_ac_upstairs: 10.0.0.13
+      printer: 10.0.0.50
+      media_kodi_4k: 10.0.1.1
+      bedroom_kodi: 10.0.1.2
+      backup_kodi: 10.0.1.3
+      patio_kodi: 10.0.1.4
+      hdhomerun: 10.0.1.10
+      appletv: 10.0.1.11
+      media_tv: 10.0.2.1
+      bedroom_tv: 10.0.2.2
+      pc_smart_screen: 10.0.2.3
+      media_tv_old: 10.0.2.4
+      james_laptop: 10.0.3.2
+      work_laptop: 10.0.3.3
+      tina_iphone_old: 10.0.5.5
+      james_work_phone: 10.0.5.6
+      upstairs_dashboard: 10.0.6.2
+      kitchen_dashboard: 10.0.6.3
+      smart_things_hub: 10.0.20.1
+      rPi: 10.0.20.3
+      garden_pi: 10.0.20.5
+      xiaomi_gateway: 10.0.20.6
+      alarm_panel: 10.0.20.7
+      
+  - platform: nmap_tracker
+    hosts:
+      - 10.0.3.1
+      - 10.0.20.2
+      - 10.0.20.4
+      
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: speedtest
+    hour:
+    - 8
+    - 12
+    - 16
+    - 20
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+      
+  - platform: systemmonitor
+    resources:
+    - type: disk_use
+      arg: /
+    - type: memory_use_percent
+    - type: processor_use
+    - type: last_boot
+  
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+    
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+
+binary_sensor:
+  - platform: template
+    sensors:
+      core_router:
+        friendly_name: Core Router
+        device_class: connectivity
+        entity_id: device_tracker.core_router
+        value_template: "{{ is_state('device_tracker.core_router', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.core_router', 'home') %}
+            mdi:router-wireless
+          {% else %}
+            mdi:alert
+          {% endif %}
+      core_switch:
+        friendly_name: Core Switch
+        device_class: connectivity
+        entity_id: device_tracker.core_switch
+        value_template: "{{ is_state('device_tracker.core_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.core_switch', 'home') %}
+            mdi:switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      wifi_bridge:
+        friendly_name: Wi-Fi Bridge
+        device_class: connectivity
+        entity_id: device_tracker.wifi_bridge
+        value_template: "{{ is_state('device_tracker.wifi_bridge', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.wifi_bridge', 'home') %}
+            mdi:access-point
+          {% else %}
+            mdi:alert
+          {% endif %}
+      upstairs_switch:
+        friendly_name: Upstairs Switch
+        device_class: connectivity
+        entity_id: device_tracker.upstairs_switch
+        value_template: "{{ is_state('device_tracker.upstairs_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.upstairs_switch', 'home') %}
+            mdi:switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      5g_ac_main:
+        friendly_name: 5G AC Main
+        device_class: connectivity
+        entity_id: device_tracker.5g_ac_main
+        value_template: "{{ is_state('device_tracker.5g_ac_main', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.5g_ac_main', 'home') %}
+            mdi:access-point
+          {% else %}
+            mdi:alert
+          {% endif %}
+      5g_ac_media_tv:
+        friendly_name: 5G AC Media TV
+        device_class: connectivity
+        entity_id: device_tracker.5g_ac_media_tv
+        value_template: "{{ is_state('device_tracker.5g_ac_media_tv', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.5g_ac_media_tv', 'home') %}
+            mdi:access-point
+          {% else %}
+            mdi:alert
+          {% endif %}
+      5g_ac_upstairs:
+        friendly_name: 5G AC Upstairs
+        device_class: connectivity
+        entity_id: device_tracker.5g_ac_upstairs
+        value_template: "{{ is_state('device_tracker.5g_ac_upstairs', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.5g_ac_upstairs', 'home') %}
+            mdi:access-point
+          {% else %}
+            mdi:alert
+          {% endif %}
+      nas_movies:
+        friendly_name: NAS Movies
+        device_class: connectivity
+        entity_id: device_tracker.nas_movies
+        value_template: "{{ is_state('device_tracker.nas_movies', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.nas_movies', 'home') %}
+            mdi:harddisk
+          {% else %}
+            mdi:alert
+          {% endif %}
+      nas_tv:
+        friendly_name: NAS TV Shows
+        device_class: connectivity
+        entity_id: device_tracker.nas_tv
+        value_template: "{{ is_state('device_tracker.nas_tv', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.nas_tv', 'home') %}
+            mdi:harddisk
+          {% else %}
+            mdi:alert
+          {% endif %}
+      smart_things_hub:
+        friendly_name: Smart Things Hub
+        device_class: connectivity
+        entity_id: device_tracker.smart_things_hub
+        value_template: "{{ is_state('device_tracker.smart_things_hub', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.smart_things_hub', 'home') %}
+            mdi:checkbox-blank-circle-outline
+          {% else %}
+            mdi:alert
+          {% endif %}
+      alexa_main:
+        friendly_name: Alexa Main
+        device_class: connectivity
+        entity_id: device_tracker.44650df543ec
+        value_template: "{{ is_state('device_tracker.44650df543ec', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.44650df543ec', 'home') %}
+            mdi:voice
+          {% else %}
+            mdi:alert
+          {% endif %}
+      alexa_bedroom:
+        friendly_name: Alexa Bedroom
+        device_class: connectivity
+        entity_id: device_tracker.f081735c7ffc
+        value_template: "{{ is_state('device_tracker.f081735c7ffc', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.f081735c7ffc', 'home') %}
+            mdi:voice
+          {% else %}
+            mdi:alert
+          {% endif %}
+      main_pc:
+        friendly_name: Main PC
+        device_class: connectivity
+        entity_id: device_tracker.8c89a5ef4d19
+        value_template: "{{ is_state('device_tracker.8c89a5ef4d19', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.8c89a5ef4d19', 'home') %}
+            mdi:windows
+          {% else %}
+            mdi:alert
+          {% endif %}
+      printer:
+        friendly_name: Printer
+        device_class: connectivity
+        entity_id: device_tracker.printer
+        value_template: "{{ is_state('device_tracker.printer', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.printer', 'home') %}
+            mdi:printer
+          {% else %}
+            mdi:alert
+          {% endif %}
+      xiaomi_gateway:
+        friendly_name: Xiaomi Gateway
+        device_class: connectivity
+        entity_id: device_tracker.xiaomi_gateway
+        value_template: "{{ is_state('device_tracker.xiaomi_gateway', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.xiaomi_gateway', 'home') %}
+            mdi:server
+          {% else %}
+            mdi:alert
+          {% endif %}
+      rpi:
+        friendly_name: HA Server
+        device_class: connectivity
+        entity_id: device_tracker.rpi
+        value_template: "{{ is_state('device_tracker.rpi', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.rpi', 'home') %}
+            mdi:home-assistant
+          {% else %}
+            mdi:alert
+          {% endif %}
+      garden_pi:
+        friendly_name: HA Garden Server
+        device_class: connectivity
+        entity_id: device_tracker.rpi
+        value_template: "{{ is_state('device_tracker.garden_pi', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.garden_pi', 'home') %}
+            mdi:home-assistant
+          {% else %}
+            mdi:alert
+          {% endif %}
+      alarm_panel:
+        friendly_name: Alarm Panel
+        device_class: connectivity
+        entity_id: device_tracker.alarm_panel
+        value_template: "{{ is_state('device_tracker.alarm_panel', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.alarm_panel', 'home') %}
+            mdi:security-home
+          {% else %}
+            mdi:alert
+          {% endif %}
+      kitchen_dashboard:
+        friendly_name: Kitchen Dashboard
+        device_class: connectivity
+        entity_id: device_tracker.kitchen_dashboard
+        value_template: "{{ is_state('device_tracker.kitchen_dashboard', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.kitchen_dashboard', 'home') %}
+            mdi:android
+          {% else %}
+            mdi:alert
+          {% endif %}
+      upstairs_dashboard:
+        friendly_name: Upstairs Dashboard
+        device_class: connectivity
+        entity_id: device_tracker.upstairs_dashboard
+        value_template: "{{ is_state('device_tracker.upstairs_dashboard', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.upstairs_dashboard', 'home') %}
+            mdi:apple
+          {% else %}
+            mdi:alert
+          {% endif %}
+      hdhomerun:
+        friendly_name: HRHomeRun
+        device_class: connectivity
+        entity_id: device_tracker.hdhomerun
+        value_template: "{{ is_state('device_tracker.hdhomerun', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.hdhomerun', 'home') %}
+            mdi:television-box
+          {% else %}
+            mdi:alert
+          {% endif %}
+      media_kodi_4k:
+        friendly_name: Media 4K Kodi
+        device_class: connectivity
+        entity_id: device_tracker.media_kodi_4k
+        value_template: "{{ is_state('device_tracker.media_kodi_4k', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.media_kodi_4k', 'home') %}
+            mdi:kodi
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_kodi:
+        friendly_name: Bedroom Kodi
+        device_class: connectivity
+        entity_id: device_tracker.bedroom_kodi
+        value_template: "{{ is_state('device_tracker.bedroom_kodi', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.bedroom_kodi', 'home') %}
+            mdi:kodi
+          {% else %}
+            mdi:alert
+          {% endif %}
+      apple_tv:
+        friendly_name: Apple TV
+        device_class: connectivity
+        entity_id: device_tracker.apple_tv
+        value_template: "{{ is_state('device_tracker.apple_tv', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.apple_tv', 'home') %}
+            mdi:apple
+          {% else %}
+            mdi:alert
+          {% endif %}
+      media_tv:
+        friendly_name: Media 4K TV
+        device_class: connectivity
+        entity_id: device_tracker.media_tv
+        value_template: "{{ is_state('device_tracker.media_tv', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.media_tv', 'home') %}
+            mdi:television
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_tv:
+        friendly_name: Bedroom TV
+        device_class: connectivity
+        entity_id: device_tracker.bedroom_tv
+        value_template: "{{ is_state('device_tracker.bedroom_tv', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.bedroom_tv', 'home') %}
+            mdi:television
+          {% else %}
+            mdi:alert
+          {% endif %}
+      patio_kodi:
+        friendly_name: Patio Kodi
+        device_class: connectivity
+        entity_id: device_tracker.patio_kodi
+        value_template: "{{ is_state('device_tracker.patio_kodi', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.patio_kodi', 'home') %}
+            mdi:kodi
+          {% else %}
+            mdi:alert
+          {% endif %}
