@@ -129,6 +129,21 @@ sensor:
     resource: http://10.0.90.2:8123/api/states/device_tracker.galaxy_s8
     name: BLE James upstairs 
     value_template: '{{ value_json.state }}'
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/device_tracker.tina_phone
+    name: BLE Tina Patio 
+    value_template: '{{ value_json.state }}'
+    
+  - platform: rest
+    resource: http://10.0.90.1:8123/api/states/device_tracker.tina_phone
+    name: BLE Tina Downstairs 
+    value_template: '{{ value_json.state }}'
+    
+  - platform: rest
+    resource: http://10.0.90.2:8123/api/states/device_tracker.tina_phone
+    name: BLE Tina upstairs 
+    value_template: '{{ value_json.state }}'
 
 ## Create Sensor for Display in UI      
   - platform: template
@@ -354,7 +369,7 @@ automation:
           entity_id: input_boolean.tina_home       
           
 ## Trigger Input Boolean James is Home
-  - alias: James Occupancy Home 
+  - alias: James Occupancy Downstairs
     hide_entity: true
     trigger:
       - platform: state
@@ -365,7 +380,7 @@ automation:
         data:
           entity_id: input_boolean.james_home
           
-  - alias: James Occupancy Home 
+  - alias: James Occupancy Upstairs 
     hide_entity: true
     trigger:
       - platform: state
@@ -376,7 +391,7 @@ automation:
         data:
           entity_id: input_boolean.james_home
           
-  - alias: James Occupancy Home 
+  - alias: James Occupancy Patio
     hide_entity: true
     trigger:
       - platform: state
@@ -400,12 +415,34 @@ automation:
           entity_id: input_boolean.james_home
           
   ## Trigger Input Boolean Tina is Home
-  - alias: Tina Occupancy Home 
+  - alias: Tina Occupancy Downstairs
     hide_entity: true
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.tina_home_occupancy_confidence
-        above: 10
+      - platform: state
+        entity_id: sensor.ble_tina_downstairs
+        to: home
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.tina_home
+          
+  - alias: Tina Occupancy Upstairs 
+    hide_entity: true
+    trigger:
+      - platform: state
+        entity_id: sensor.ble_tina_upstairs
+        to: home
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.tina_home
+          
+  - alias: Tina Occupancy Patio
+    hide_entity: true
+    trigger:
+      - platform: state
+        entity_id: sensor.ble_tina_patio
+        to: home
     action:
       - service: homeassistant.turn_on
         data:
@@ -415,9 +452,9 @@ automation:
   - alias: Tina Occupancy Away
     hide_entity: true
     trigger:
-      - platform: numeric_state
-        entity_id: sensor.tina_home_occupancy_confidence
-        below: 10
+      - platform: state
+        entity_id: group.ble_tracker_tina
+        to: not_home
     action:
       - service: homeassistant.turn_off
         data:
