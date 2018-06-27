@@ -1,0 +1,443 @@
+name: Kingia Castle
+views:
+  - tab_icon: mdi:castle
+    name: Home
+    #theme: dark-mode
+    cards:
+      - type: entities
+        title: People
+        entities:
+          - sensor.james
+          - sensor.battery_james
+          - device_tracker.admin_iphone
+          - sensor.tina
+          - sensor.battery_tina
+          - sensor.commute_to_work
+          - sensor.commute_to_home
+      - type: entities
+        title: Date & Time
+        entities:
+          - sensor.date
+          - sensor.time
+          - sensor.claire_time
+          - sensor.mum_time
+      - type: weather-forecast
+        entity: weather.bom_gold_coast
+      - type: entities
+        title: Daily Forcast
+        entities:
+          - sensor.pws_temp_high_1d_c
+          - sensor.pws_temp_high_2d_c
+          - sensor.pws_temp_high_3d_c
+          - sensor.pws_temp_high_4d_c
+      - type: entities
+        title: Sun
+        entities:
+          - sun.sun
+          - sensor.moon
+      - type: history-graph
+        entity: history_graph.presence_graph
+      - type: history-graph
+        entity: history_graph.battery_use
+      - type: history-graph
+        entity: history_graph.temperature_graph
+                    
+  - tab_icon: mdi:security-home
+    name: Security
+    cards:
+      - type: entities
+        title: Alarms
+        entities:
+          - alarm_control_panel.ha_alarm
+          - binary_sensor.smoke_sensor_158d0001b8ddc7
+          - binary_sensor.smoke_sensor_158d0001b8deba
+      - type: entities
+        title: Doors
+        entities:
+          - binary_sensor.door_window_sensor_158d00022016b2
+          - binary_sensor.door_window_sensor_158d000225432d
+          - binary_sensor.door_window_sensor_158d0001e73c09
+          - sensor.garage
+      - type: entities
+        title: Windows
+        entities:
+          - binary_sensor.door_window_sensor_158d0001e73af4
+          - binary_sensor.door_window_sensor_158d0001e73a73
+          - binary_sensor.door_window_sensor_158d0001e73aad
+          - binary_sensor.door_window_sensor_158d0001e74875
+          - binary_sensor.door_window_sensor_158d0001f36741
+      - type: entities
+        title: Motion
+        entities:
+          - binary_sensor.motion_sensor_158d0001e5cf11
+          - binary_sensor.motion_sensor_158d0001e5d118
+          - binary_sensor.motion_sensor_158d0001e5d147
+          - binary_sensor.motion_sensor_158d000200ea5b
+          - binary_sensor.motion_sensor_158d00022c2f21
+          - binary_sensor.motion_sensor_158d000201351c
+          - binary_sensor.motion_sensor_158d0002006d46
+          - binary_sensor.motion_sensor_158d000200e4ab
+          - binary_sensor.motion_sensor_158d0001e63803
+
+  - tab_icon: mdi:sofa
+    name: Downstairs
+    cards:
+      - type: entities
+        title: Climate Control
+        entities:
+          - sensor.temperature_158d0001f558f5
+          - sensor.humidity_158d0001f558f5
+          - sensor.illumination_158d0001e5d118
+          - input_select.lounge_aircon
+          - input_select.lounge_fan
+      - type: entities
+        title: Scenes
+        entities:
+          - script.1521695976118
+          - script.1521694771100
+          - script.1521696758169
+          - switch.tvpower
+          - light.gateway_light_7811dcfd812f
+          - light.gateway_light_7811dce13ad6
+          - scene.story_time
+          - scene.livingroom_bright
+          - light.hall_bulb
+          #- switch.goodnight
+      - type: entities
+        title: Downstairs Lights
+        entities:
+          - switch.lounge_light_switch
+          - light.lounge_bulb
+          - switch.kitchen_light_switch
+          - switch.dining_light_switch
+          - light.dining_bulb
+          - switch.patio_light_switch
+          - light.entrance_bulb
+      - type: entity-picture
+        image: https://wallpaperwire.com/wp-content/uploads/2018/04/Best-Good-Night-HD-Wallpaper.jpg
+        entity: switch.goodnight
+      - type: media-control
+        entity: media_player.media_4k_kodi
+      - type: entities
+        title: Music
+        entities:
+          - switch.spotify_kitchen
+      - type: history-graph
+        entity: history_graph.downstairs_usage_graph
+          
+  - tab_icon: mdi:soccer
+    name: Play Room
+    cards:
+      - type: entities
+        title: Climate Control
+        entities:
+          - sensor.temperature_158d0001f56682
+          - sensor.humidity_158d0001f56682
+          - sensor.illumination_158d0001e5cf11
+      - type: entities
+        title: Playroom Fan
+        entities:
+          - input_select.playroom_fan_speed
+          - input_select.playroom_fan_oscillate
+          - input_select.playroom_fan_direction
+          - input_select.playroom_fan_oscillation_angle
+          - input_select.playroom_fan_natural_mode
+          - input_select.playroom_fan_led_brightness
+      - type: history-graph
+        entity: history_graph.play_room_climate_graph
+          
+  - tab_icon: mdi:glass-cocktail
+    name: Patio
+    cards:
+      - type: entities
+        title: Patio Temperature
+        entities:
+          - sensor.temperature_158d0001f56350
+          - sensor.humidity_158d0001f56350
+          - sensor.illumination_158d000200ea5b
+      - type: media-control
+        entity: media_player.patio_kodi
+      - type: entities
+        title: Lighting
+        entities:
+          - switch.plug_158d0001f24e2b
+          - switch.fairy_light_power
+          - switch.fairy_light_mode_4
+          - switch.patio_light_switch
+      - type: history-graph
+        entity: history_graph.patio_climate_graph
+        
+  - tab_icon: mdi:hotel
+    name: Master Bedroom
+    cards:
+      - type: entities
+        title: Climate Control
+        entities:
+          - sensor.temperature_158d0001f53de9
+          - sensor.humidity_158d0001f53de9
+          - sensor.illumination_158d0001e63803
+          - input_select.master_bedroom_aircon
+          - input_select.bedroom_fan
+      - type: media-control
+        entity: media_player.bedroom_kodi
+      - type: media-control
+        entity: media_player.bedroom_tv
+      - type: history-graph
+        entity: history_graph.bedroom_climate_graph
+      - type: camera-preview
+        entity: camera.generic
+      - type: entities
+        title: Lights
+        entities:
+          - switch.master_light_switch
+          - light.bedroom_bulb
+          - switch.bedroom_wardrobe_switch
+        
+  - tab_icon: mdi:chess-knight
+    name: Jackson Bedroom
+    cards:
+      - type: entities
+        title: Climate Control
+        entities:
+          - sensor.temperature_158d0001f534e1
+          - sensor.humidity_158d0001f534e1
+          - sensor.illumination_158d000201351c
+          - script.jackson_fan_low
+          - script.jackson_fan_med
+          - script.jackson_fan_high
+          - script.jackson_fan_off
+      - type: entities
+        title: Lighting
+        entities:
+          - switch.jackson_light_switch
+      - type: history-graph
+        entity: history_graph.jackson_climate_graph
+          
+  - tab_icon: mdi:chess-rook
+    name: Hudson Bedroom
+    cards:
+      - type: entities
+        title: Climate Control
+        entities:
+          - sensor.temperature_158d0001f54df3
+          - sensor.humidity_158d0001f54df3
+          - sensor.illumination_158d0002006d46
+          - script.hudson_fan_low
+          - script.hudson_fan_med
+          - script.hudson_fan_high
+          - script.hudson_fan_off
+      - type: entities
+        title: Lighting
+        entities:
+          - switch.hudson_light_switch
+      - type: history-graph
+        entity: history_graph.hudson_climate_graph
+          
+  - tab_icon: mdi:shower
+    name: Bathroom
+    cards:
+      - type: entities
+        title: Climate Control
+        entities:
+          - sensor.temperature_158d00022c7248
+          - sensor.humidity_158d00022c7248
+          - sensor.illumination_158d000200e4ab
+      - type: entities
+        title: Lighting
+        entities:
+          - switch.bathroom_light_switch
+          - switch.bathroom_fan_switch
+          - switch.bathroom_heat_switch
+      - type: history-graph
+        entity: history_graph.bathroom_climate_graph
+          
+  - tab_icon: mdi:settings
+    name: System Status
+    cards:
+      - type: entities
+        title: Internet
+        entities:
+          - sensor.speedtest_ping
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
+      - type: entities
+        title: Core Network
+        entities:
+          - binary_sensor.core_router
+          - binary_sensor.core_switch
+          - binary_sensor.upstairs_switch
+          - binary_sensor.wifi_bridge
+          - binary_sensor.5g_ac_main
+          - binary_sensor.5g_ac_media_tv
+          - binary_sensor.5g_ac_upstairs
+      - type: entities
+        title: Core Devices
+        entities:
+          - binary_sensor.nas_movies
+          - binary_sensor.nas_tv
+          - binary_sensor.smart_things_hub
+          - binary_sensor.xiaomi_gateway
+          - binary_sensor.alexa_main
+          - binary_sensor.alexa_bedroom
+          - binary_sensor.main_pc
+          - binary_sensor.printer
+      - type: entities
+        title: HA Devices
+        entities:
+          - binary_sensor.rpi
+          - binary_sensor.garden_pi
+          - binary_sensor.alarm_panel
+          - binary_sensor.kitchen_dashboard
+          - binary_sensor.upstairs_dashboard
+      - type: entities
+        title: Media Devices
+        entities:
+          - binary_sensor.hdhomerun
+          - binary_sensor.media_tv
+          - binary_sensor.media_kodi_4k
+          - binary_sensor.appletv
+          - binary_sensor.bedroom_tv
+          - binary_sensor.bedroom_kodi
+          - binary_sensor.patio_kodi
+      - type: entities
+        title: RPi Resources
+        entities:
+          - sensor.disk_use_
+          - sensor.memory_use_percent
+          - sensor.processor_use
+          - sensor.cpu_temperature
+          - sensor.last_boot
+      - type: history-graph
+        entity: history_graph.internet_graph
+          
+  - tab_icon: mdi:cogs
+    name: Things Status
+    cards:
+      - type: entities
+        title: Battery Alert
+        entities:
+          - automation.battery_alert
+          - automation.battery_alert_clear
+      - type: entities
+        title: Camera
+        entities:
+          - binary_sensor.baby_monitor_camera
+          - binary_sensor.downstairs_camera
+      - type: entities
+        title: IR Blasters
+        entities:
+          - binary_sensor.ir_blaster_downstairs
+          - binary_sensor.ir_blaster_upstairs
+          - binary_sensor.ir_blaster_patio
+      - type: entities
+        title: Sonoff Switches
+        entities:
+          - binary_sensor.lounge_fan_switch
+          - binary_sensor.kitchen_dining_light_switch
+          - binary_sensor.patio_light_switch
+          - binary_sensor.lounge_light_switch
+          - binary_sensor.master_bedroom_fan_switch
+      - type: entities
+        title: Lamps
+        entities:
+          - binary_sensor.hall_light_bulb
+          - binary_sensor.lounge_light_bulb
+          - binary_sensor.dining_light_bulb
+          - binary_sensor.entry_light_bulb
+          - binary_sensor.bedroom_light_bulb
+      - type: entities
+        title: BLE Trackers
+        entities:
+          - binary_sensor.ble_tracker_downstairs
+          - binary_sensor.ble_tracker_upstairs
+      - type: entities
+        title: Firmware
+        entities:
+          - binary_sensor.new_podcast_available
+          - binary_sensor.ha_update_available
+          - binary_sensor.sonoff_update_available
+          
+  - tab_icon: mdi:washing-machine
+    name: Appliances
+    cards:
+      - type: entities
+        title: Laundry
+        entities:
+          - switch.plug_158d00022ae22d
+          - vacuum.robovac
+      - type: entities
+        title: Kitchen
+        entities:
+          - sensor.coffee_water_level_monitor
+      - type: entities
+        title: Trash Schedule
+        entities:
+          - sensor.trash_day
+          - input_select.trash_reminders
+          - sensor.trash_pickup_day
+          - input_select.trash_pickup_day
+      - type: entities
+        title: Recycle Schedule
+        entities:
+          - sensor.recycle_day
+          - sensor.recycle_pickup_day
+          - sensor.recycle_pickup_week
+          - input_select.recycle_pickup_day
+          - sensor.current_week
+          - input_select.recycle_pickup_week
+      - type: entities
+        title: Washing Machine
+        entities:
+          - switch.plug_158d0001bc2b6d
+          - sensor.washing_machine_status
+          - binary_sensor.door_window_sensor_158d0001e73a83
+      - type: entities
+        title: Dryer
+        entities:
+          - switch.plug_158d00022ae069
+          - sensor.dryer_status
+          - binary_sensor.door_window_sensor_158d0001e73bc5
+      - type: history-graph
+        entity: history_graph.power_load_graph
+      - type: history-graph
+        entity: history_graph.power_consumption_graph
+          
+  - tab_icon: mdi:flower
+    name: Garden
+    cards:
+      - type: plant-status
+        title: Bougainvillea
+        entity: plant.bougainvillea
+      - type: plant-status
+        title: Citrus Bed
+        entity: plant.citrus_bed
+      - type: plant-status
+        title: Herb Patch
+        entity: plant.herb_patch
+      - type: history-graph
+        entity: history_graph.bougainvillea_moisture
+      - type: history-graph
+        entity: history_graph.chilli_moisture
+      - type: history-graph
+        entity: history_graph.citrus_moisture
+      - type: plant-status
+        title: Jasmine Bed
+        entity: plant.jasmine_bed
+      - type: plant-status
+        title: Maple Bed
+        entity: plant.maple_bed
+      - type: plant-status
+        title: Mertyl Bed
+        entity: plant.mertyl_bed
+      - type: plant-status
+        title: Purple Mumba Chilli
+        entity: plant.purple_mumba_chilli
+      - type: plant-status
+        title: Strawberry Patch
+        entity: plant.strawberry_patch
+      - type: plant-status
+        title: Top Bed
+        entity: plant.top_bed
+      - type: plant-status
+        title: Veggie Patch
+        entity: plant.veggie_patch
