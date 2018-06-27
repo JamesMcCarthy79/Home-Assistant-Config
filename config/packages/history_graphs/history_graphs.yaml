@@ -1,0 +1,150 @@
+#################################################################
+#                                                               #
+#                   Packages/History Graphs                     #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+  
+#################################################################
+#                                                               #
+#                       History Graphs                          #
+#                                                               #
+#################################################################
+
+history_graph:
+  presence:
+    name: Presence Graph
+    entities:
+      - sensor.james
+      - device_tracker.admin_iphone
+    hours_to_show: 240
+    refresh: 300
+  battery:
+    name: Battery Use
+    entities:
+      - sensor.battery_james
+      - sensor.battery_tina
+    hours_to_show: 240
+    refresh: 300
+  temperature:
+    name: Temperature Graph
+    entities:
+      - sensor.pws_temp_c
+      - sensor.temperature_158d0001f56350
+      - sensor.temperature_158d0001f558f5
+      - sensor.temperature_158d0001f53de9
+    hours_to_show: 240
+    refresh: 300
+  downstairs:
+    name: Downstairs Usage Graph
+    entities:
+      - switch.lounge_light_switch
+      - light.lounge_bulb
+      - switch.kitchen_light_switch
+      - switch.dining_light_switch
+      - light.dining_bulb
+      - light.hall_bulb
+      - switch.patio_light_switch
+      - light.entrance_bulb
+      - switch.tvpower
+    hours_to_show: 240
+    refresh: 300
+  playroom_temperature:
+    name: Play Room Climate Graph
+    entities:
+      - sensor.temperature_158d0001f56682
+      - sensor.humidity_158d0001f56682
+    hours_to_show: 240
+    refresh: 300
+  patio_temperature:
+    name: Patio Climate Graph
+    entities:
+      - sensor.temperature_158d0001f56350
+      - sensor.humidity_158d0001f56350
+      - sensor.illumination_158d000200ea5b
+    hours_to_show: 240
+    refresh: 300
+  bedroom_temperature:
+    name: Bedroom Climate Graph
+    entities:
+      - sensor.temperature_158d0001f53de9
+      - sensor.humidity_158d0001f53de9
+      - sensor.illumination_158d0001e63803
+    hours_to_show: 240
+    refresh: 300
+  jackson_temperature:
+    name: Jackson Climate Graph
+    entities:
+      - sensor.temperature_158d0001f534e1
+      - sensor.humidity_158d0001f534e1
+      - sensor.illumination_158d000201351c
+    hours_to_show: 240
+    refresh: 300
+  hudson_temperature:
+    name: Hudson Climate Graph
+    entities:
+      - sensor.temperature_158d0001f54df3
+      - sensor.humidity_158d0001f54df3
+      - sensor.illumination_158d0002006d46
+    hours_to_show: 240
+    refresh: 300
+  bathroom_temperature:
+    name: Bathroom Climate Graph
+    entities:
+      - sensor.temperature_158d00022c7248
+      - sensor.humidity_158d00022c7248
+      - sensor.illumination_158d000200e4ab
+    hours_to_show: 240
+    refresh: 300
+  internet:
+    name: Internet Graph
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+    hours_to_show: 240
+    refresh: 300
+  power_load:
+    name: Power Load Graph
+    entities:
+      - sensor.158d0001bc2b6d_load_power
+      - sensor.158d00022ae069_load_power
+      - sensor.158d00022ae22d_load_power
+      - sensor.158d0001f24e2b_load_power
+    hours_to_show: 240
+    refresh: 300
+  power_consumption:
+    name: Power Consumption Graph
+    entities:
+      - sensor.158d0001bc2b6d_power_consumed
+      - sensor.158d00022ae069_power_consumed
+      - sensor.158d00022ae22d_power_consumed
+      - sensor.158d0001f24e2b_power_consumed
+    hours_to_show: 2160
+    refresh: 300
+  bougainvillea:
+    name: Bougainvillea Moisture
+    entities:
+      - sensor.bougainvillea_moisture
+    hours_to_show: 240
+    refresh: 300
+  chilli:
+    name: Purple Mumba Chilli Moisture
+    entities:
+      - sensor.chilli_moisture
+    hours_to_show: 240
+    refresh: 300
+  citrus:
+    name: Citrus Bed Moisture
+    entities:
+      - sensor.citrus_moisture
+    hours_to_show: 240
+    refresh: 300
