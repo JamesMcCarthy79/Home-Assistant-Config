@@ -6,6 +6,9 @@
 <p align="center">
   I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/au.png"/>, and therefor my links are for where I purchased from. There may be better (and most likely cheaper) sites in your local regions.</p>
 <p align="center">Be sure to :star: my repo!</p>
+<p align="center">
+  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
+  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/></p>
 <hr --- </hr> 
 
 <p align="center">I have made the move to a package-based configuration. This will make it easier for anyone that wants to use a certain part of my configuration as all parts are in the one yaml file rather then having to search through multiple yalm files to find what pertains to a certain intergration. I have also merged all of my includes into a folder as a way of cleaning up my configuration files. I have uploaded new screenshots to reflect the changes made since I first uploaded them, and I am working on my lovelace UI and will upload config and pictures once ready.</br>
