@@ -21,7 +21,7 @@
  [LED Lighting](https://github.com/JamesMcCarthy79/Home-Assistant-Config#led-lighting) | [Appliances & Smart Power](https://github.com/JamesMcCarthy79/Home-Assistant-Config#appliances-and-smart-power) | [Media Control](https://github.com/JamesMcCarthy79/Home-Assistant-Config#media-control) | [Multi Room Audio](https://github.com/JamesMcCarthy79/Home-Assistant-Config#multi-room-audio) | [Security](https://github.com/JamesMcCarthy79/Home-Assistant-Config#security) | [Garden](https://github.com/JamesMcCarthy79/Home-Assistant-Config#garden) | [Config](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config) |
 |  --- | --- | --- | --- | --- | --- | --- |
 
-| [My Favourite Resources](https://github.com/JamesMcCarthy79/Home-Assistant-Config#my-favourite-resources) | [Packages READme](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages#stay-tuned-this-section-will-be-getting-built-out-in-the-coming-weeks) | [Lovelace UI](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/ui-lovelace.yaml) |
+| [My Favourite Resources](https://github.com/JamesMcCarthy79/Home-Assistant-Config#my-favourite-resources) | [Packages](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages#stay-tuned-this-section-will-be-getting-built-out-in-the-coming-weeks) | [Lovelace UI](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/ui-lovelace.yaml) |
 | --- | --- | --- |
 
 <hr --- </hr> 
