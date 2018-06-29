@@ -8,6 +8,7 @@
 <p align="center">Be sure to :star: my repo!</p>
 <p align="center">
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
+  <href="https://github.com/home-assistant/home-assistant/tree/0.72.1"><img src="https://badge.fury.io/gh/JamesMcCarthy79%2FHome-Assistant-Config.svg"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/></p>
 <hr --- </hr> 
 
