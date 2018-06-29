@@ -10,7 +10,6 @@
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://badge.fury.io/gh/home-assistant%2Fhome-assistant.svg"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/></p>
-<hr --- </hr> 
 <p align="center">
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.2.0-orange.svg"/>
   <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--Red-v0.2.1-red.svg"/>
