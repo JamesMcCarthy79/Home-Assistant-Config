@@ -11,6 +11,16 @@
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://badge.fury.io/gh/home-assistant%2Fhome-assistant.svg"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/></p>
 <hr --- </hr> 
+<p align="center">
+  <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.2.0-orange.svg"/>
+  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--Red-v0.2.1-red.svg"/>
+  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v0.2.2-blue.svg"/>
+  <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v0.2.0-blue.svg"/>
+  <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-v0.3.0-brightgreen.svg"/>
+  <href="https://github.com/hassio-addons/addon-happy-bubbles"><img src="https://img.shields.io/badge/Happy--Bubbles-v0.4.1-orange.svg"/>
+  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v2.5.0-yellow.svg"/>
+</p>
+<hr --- </hr> 
 
 <p align="center">I have made the move to a package-based configuration. This will make it easier for anyone that wants to use a certain part of my configuration as all parts are in the one yaml file rather then having to search through multiple yalm files to find what pertains to a certain intergration. I have also merged all of my includes into a folder as a way of cleaning up my configuration files. I have uploaded new screenshots to reflect the changes made since I first uploaded them, and I am working on my lovelace UI and will upload config and pictures once ready.</br>
 <hr --- <hr/>
