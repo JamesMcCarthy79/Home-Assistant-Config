@@ -24,9 +24,6 @@
 </p>
 <hr --- </hr> 
 
-<p align="center">I have made the move to a package-based configuration. This will make it easier for anyone that wants to use a certain part of my configuration as all parts are in the one yaml file rather then having to search through multiple yalm files to find what pertains to a certain intergration. I have also merged all of my includes into a folder as a way of cleaning up my configuration files. I have uploaded new screenshots to reflect the changes made since I first uploaded them, and I am working on my lovelace UI and will upload config and pictures once ready.</br>
-<hr --- <hr/>
-
 | [Topology](https://github.com/JamesMcCarthy79/Home-Assistant-Config#smart-home-hardware-topology) | [HA Hardware](https://github.com/JamesMcCarthy79/Home-Assistant-Config#home-assistant-hardware) | [HA Software](https://github.com/JamesMcCarthy79/Home-Assistant-Config#home-assistant-software) | [Network](https://github.com/JamesMcCarthy79/Home-Assistant-Config#kingia-castle-network) | [Voice Control](https://github.com/JamesMcCarthy79/Home-Assistant-Config#voice-control--tts) |  [Gateways](https://github.com/JamesMcCarthy79/Home-Assistant-Config#gateways) | [Sensors](https://github.com/JamesMcCarthy79/Home-Assistant-Config#sensors) | [Fan & Lighting](https://github.com/JamesMcCarthy79/Home-Assistant-Config#fan--lighting-control) |
 | --- | --- | --- | --- | --- |--- | --- | --- |
 
