@@ -354,7 +354,7 @@ I also bought a heap of Xiaomi Miji 1080p IP Cameras thinking they could be hack
 
 <p align="left">I used the below links for inspiration, configuration help and I recommend a visit to them if you haven't already.</p>
 
-[CCSOTAN](https://github.com/CCOSTAN/Home-AssistantConfig) - There is a reason this guys Repo is the most starred out there, his Repo layout was an inspiration for me to start this one and you will see a lot of similarities in my layout as a result. Whilst I don't yet use Docker or Floorplan this is the first place I will coming back to once I move in that direction. His use of TTS is awesome and very creative and I took alot of my TTS from this. His whole setup is very impressive and if you haven't already head over to his repo give it a star and get inspired.
+[CCOSTAN](https://github.com/CCOSTAN/Home-AssistantConfig) - There is a reason this guys Repo is the most starred out there, his Repo layout was an inspiration for me to start this one and you will see a lot of similarities in my layout as a result. Whilst I don't yet use Docker or Floorplan this is the first place I will coming back to once I move in that direction. His use of TTS is awesome and very creative and I took alot of my TTS from this. His whole setup is very impressive and if you haven't already head over to his repo give it a star and get inspired.
 
 [stanvx](https://github.com/stanvx/Home-Assistant-Configuration) - Another I visit regularly is stanvx he uses alot of Xiaomi products and he has really good examples for those looking for automation ideas.
 
