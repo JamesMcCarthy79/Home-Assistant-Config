@@ -93,9 +93,9 @@ logger:
 #                                                  #
 ####################################################
 
-#recorder:
-#  purge_interval: 2
-#  purge_keep_days: 5
+recorder:
+  purge_interval: 2
+  purge_keep_days: 5
 
 ####################################################
 #                                                  #
