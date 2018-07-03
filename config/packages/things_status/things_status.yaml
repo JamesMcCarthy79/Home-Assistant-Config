@@ -62,6 +62,13 @@ group:
     entities:
       - binary_sensor.ble_tracker_downstairs
       - binary_sensor.ble_tracker_upstairs
+      
+  esp_sensors:
+    name: ESP Sensors
+    view: no
+    entities:
+      - binary_sensor.garage_door_sensor
+      - binary_sensor.coffee_machine_sensor
 
 #################################################################
 #                                                               #
@@ -88,6 +95,8 @@ device_tracker:
       lounge_light_switch: 10.0.60.4
       master_bedroom_fan_switch: 10.0.60.5
       patio_led_switch: 10.0.70.1
+      garage_door_sensor: 10.0.80.1
+      coffee_machine_sensor: 10.0.80.2
       ble_tracker_downstairs: 10.0.90.1
       ble_tracker_upstairs: 10.0.90.2
       playroom_fan: 10.0.100.1
@@ -291,6 +300,29 @@ binary_sensor:
         icon_template: >-
           {% if is_state('device_tracker.ble_tracker_upstairs', 'home') %}
             mdi:bluetooth
+          {% else %}
+            mdi:alert
+          {% endif %}
+## ESP Sensors
+      garage_door:
+        friendly_name: Garage Door Sensor
+        device_class: connectivity
+        entity_id: device_tracker.garage_door_sensor
+        value_template: "{{ is_state('device_tracker.garage_door_sensor', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.garage_door_sensor', 'home') %}
+            mdi:garage
+          {% else %}
+            mdi:alert
+          {% endif %}
+      coffee_machine:
+        friendly_name: Coffee Machine Sensor
+        device_class: connectivity
+        entity_id: device_tracker.coffee_machine_sensor
+        value_template: "{{ is_state('device_tracker.coffee_machine_sensor', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.coffee_machine_sensor', 'home') %}
+            mdi:coffee
           {% else %}
             mdi:alert
           {% endif %}
