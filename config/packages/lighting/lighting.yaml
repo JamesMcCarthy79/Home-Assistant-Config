@@ -215,7 +215,7 @@ automation:
     trigger:
     - platform: sun
       event: sunset
-      offset: '30:00'
+      offset: "-00:30:00"
     action:
     - service: script.1523649643350
     
