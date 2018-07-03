@@ -250,6 +250,7 @@ things status:
     - group.appliances
     - group.firmware
     - group.ble_trackers
+    - group.esp_sensors
     
 ####################################################
 #                                                  #
