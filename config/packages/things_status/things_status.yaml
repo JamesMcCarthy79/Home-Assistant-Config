@@ -67,8 +67,8 @@ group:
     name: ESP Sensors
     view: no
     entities:
-      - binary_sensor.garage_door_sensor
-      - binary_sensor.coffee_machine_sensor
+      - binary_sensor.garage_door
+      - binary_sensor.coffee_machine
 
 #################################################################
 #                                                               #
