@@ -51,6 +51,7 @@ group:
       - binary_sensor.nas_tv
       - binary_sensor.smart_things_hub
       - binary_sensor.xiaomi_gateway
+      - binary_sensor.xiaomi_gateway
       - binary_sensor.alexa_main
       - binary_sensor.alexa_bedroom
       - binary_sensor.main_pc
@@ -136,7 +137,8 @@ device_tracker:
       rPi: 10.0.20.3
       garden_pi: 10.0.20.5
       xiaomi_gateway: 10.0.20.6
-      alarm_panel: 10.0.20.7
+      xiaomi_gateway_2: 10.0.20.7
+      alarm_panel: 10.0.200.1
       
   - platform: nmap_tracker
     hosts:
@@ -346,6 +348,17 @@ binary_sensor:
         value_template: "{{ is_state('device_tracker.xiaomi_gateway', 'home') }}"
         icon_template: >-
           {% if is_state('device_tracker.xiaomi_gateway', 'home') %}
+            mdi:server
+          {% else %}
+            mdi:alert
+          {% endif %}
+      xiaomi_gateway_2:
+        friendly_name: Xiaomi Gateway 2
+        device_class: connectivity
+        entity_id: device_tracker.xiaomi_gateway_2
+        value_template: "{{ is_state('device_tracker.xiaomi_gateway_2', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.xiaomi_gateway_2', 'home') %}
             mdi:server
           {% else %}
             mdi:alert
