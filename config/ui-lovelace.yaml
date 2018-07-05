@@ -277,6 +277,7 @@ views:
           - binary_sensor.nas_tv
           - binary_sensor.smart_things_hub
           - binary_sensor.xiaomi_gateway
+          - binary_sensor.xiaomi_gateway_2
           - binary_sensor.alexa_main
           - binary_sensor.alexa_bedroom
           - binary_sensor.main_pc
@@ -356,6 +357,11 @@ views:
           - binary_sensor.new_podcast_available
           - binary_sensor.ha_update_available
           - binary_sensor.sonoff_update_available
+      - type: entities
+        title: ESP Sensors
+        entities:
+          - binary_sensor.garage_door
+          - binary_sensor.coffee_machine
           
   - tab_icon: mdi:washing-machine
     name: Appliances
