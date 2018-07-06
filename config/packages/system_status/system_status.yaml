@@ -39,6 +39,8 @@ group:
       - binary_sensor.core_switch
       - binary_sensor.upstairs_switch
       - binary_sensor.wifi_bridge
+      - binary_sensor.downstairs_ap
+      - binary_sensor.upstairs_ap
       - binary_sensor.5g_ac_main
       - binary_sensor.5g_ac_media_tv
       - binary_sensor.5g_ac_upstairs
@@ -112,7 +114,8 @@ device_tracker:
       core_switch: 10.0.0.4
       upstairs_switch: 10.0.0.5
       wifi_bridge: 10.0.0.7
-      cambium_ap: 10.0.0.10
+      upstairs_ap: 10.0.0.9
+      downstairs_ap: 10.0.0.10
       5g_ac_main: 10.0.0.11
       5g_ac_media_tv: 10.0.0.12
       5g_ac_upstairs: 10.0.0.13
@@ -216,6 +219,28 @@ binary_sensor:
         value_template: "{{ is_state('device_tracker.wifi_bridge', 'home') }}"
         icon_template: >-
           {% if is_state('device_tracker.wifi_bridge', 'home') %}
+            mdi:access-point
+          {% else %}
+            mdi:alert
+          {% endif %}
+      downstairs_ap:
+        friendly_name: Altai AP Downstairs
+        device_class: connectivity
+        entity_id: device_tracker.downstairs_ap
+        value_template: "{{ is_state('device_tracker.downstairs_ap', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.downstairs_ap', 'home') %}
+            mdi:access-point
+          {% else %}
+            mdi:alert
+          {% endif %}
+      upstairs_ap:
+        friendly_name: Altai AP Upstairs
+        device_class: connectivity
+        entity_id: device_tracker.upstairs_ap
+        value_template: "{{ is_state('device_tracker.upstairs_ap', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.upstairs_ap', 'home') %}
             mdi:access-point
           {% else %}
             mdi:alert
