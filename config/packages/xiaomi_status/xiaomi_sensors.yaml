@@ -1,0 +1,574 @@
+#################################################################
+#                                                               #
+#                   Packages/Xiaomi Status                      #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+
+  
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  xiaomi_door_sensors:
+    name: Door Sensors
+    view: no
+    entities:
+      - binary_sensor.front_door
+      - binary_sensor.patio_door
+      - binary_sensor.back_door
+      - binary_sensor.washer_door
+      - binary_sensor.dryer_door
+      
+  xiaomi_window_sensors:
+    name: Window Sensors
+    view: no
+    entities:
+      - binary_sensor.kitchen_window
+      - binary_sensor.jackson_window
+      - binary_sensor.hudson_window
+      - binary_sensor.bathroom_window
+      - binary_sensor.bedroom_window
+
+  xiaomi_motion_sensors:
+    name: Motion Sensors
+    view: no
+    entities:
+      - binary_sensor.playroom_motion
+      - binary_sensor.living_motion
+      - binary_sensor.entrance_motion
+      - binary_sensor.bedroom_motion
+      - binary_sensor.hudson_motion
+      - binary_sensor.bathroom_motion
+      - binary_sensor.patio_motion
+      - binary_sensor.jackson_motion
+      - binary_sensor.staircase_motion
+      
+  xiaomi_smoke_sensors:
+    name: Smoke Sensors
+    view: no
+    entities:
+      - binary_sensor.downstairs_smoke
+      - binary_sensor.upstairs_smoke
+      
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+
+binary_sensor:
+  - platform: template
+    sensors:
+## Door Sensors
+      front_door:
+        friendly_name: Front Door Sensor
+        device_class: connectivity
+        entity_id: sensor.front_door
+        value_template: "{{ is_state('sensor.front_door', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.front_door', 'on') %}
+            mdi:door
+          {% elif is_state('sensor.front_door', 'off') %}
+            mdi:door         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      patio_door:
+        friendly_name: Patio Door Sensor
+        device_class: connectivity
+        entity_id: sensor.patio_door
+        value_template: "{{ is_state('sensor.patio_door', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.patio_door', 'on') %}
+            mdi:door
+          {% elif is_state('sensor.patio_door', 'off') %}
+            mdi:door         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      back_door:
+        friendly_name: Back Door Sensor
+        device_class: connectivity
+        entity_id: sensor.back_door
+        value_template: "{{ is_state('sensor.back_door', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.back_door', 'on') %}
+            mdi:door
+          {% elif is_state('sensor.back_door', 'off') %}
+            mdi:door         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      washer_door:
+        friendly_name: Washer Door Sensor
+        device_class: connectivity
+        entity_id: sensor.washer_door
+        value_template: "{{ is_state('sensor.washer_door', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.washer_door', 'on') %}
+            mdi:door
+          {% elif is_state('sensor.washer_door', 'off') %}
+            mdi:door         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      dryer_door:
+        friendly_name: Dryer Door Sensor
+        device_class: connectivity
+        entity_id: sensor.dryer_door
+        value_template: "{{ is_state('sensor.dryer_door', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.dryer_door', 'on') %}
+            mdi:door
+          {% elif is_state('sensor.dryer_door', 'off') %}
+            mdi:door         
+          {% else %}
+            mdi:alert
+          {% endif %}
+## Window Sensors
+      kitchen_window:
+        friendly_name: Kitchen Window Sensor
+        device_class: connectivity
+        entity_id: sensor.kitchen_window
+        value_template: "{{ is_state('sensor.kitchen_window', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.kitchen_window', 'on') %}
+            mdi:window-closed
+          {% elif is_state('sensor.kitchen_window', 'off') %}
+            mdi:window-closed        
+          {% else %}
+            mdi:alert
+          {% endif %}
+      jackson_window:
+        friendly_name: Jackson Window Sensor
+        device_class: connectivity
+        entity_id: sensor.jackson_window
+        value_template: "{{ is_state('sensor.jackson_window', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.jackson_window', 'on') %}
+            mdi:window-closed
+          {% elif is_state('sensor.jackson_window', 'off') %}
+            mdi:window-closed         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      hudson_window:
+        friendly_name: Hudson Window Sensor
+        device_class: connectivity
+        entity_id: sensor.hudson_window
+        value_template: "{{ is_state('sensor.hudson_window', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.hudson_window', 'on') %}
+            mdi:window-closed
+          {% elif is_state('sensor.hudson_window', 'off') %}
+            mdi:window-closed        
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bathroom_window:
+        friendly_name: Bathroom Window Sensor
+        device_class: connectivity
+        entity_id: sensor.bathroom_window
+        value_template: "{{ is_state('sensor.bathroom_window', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bathroom_window', 'on') %}
+            mdi:window-closed
+          {% elif is_state('sensor.bathroom_window', 'off') %}
+            mdi:window-closed       
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_window:
+        friendly_name: Bedroom Window Sensor
+        device_class: connectivity
+        entity_id: sensor.bedroom_window
+        value_template: "{{ is_state('sensor.bedroom_window', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bedroom_window', 'on') %}
+            mdi:window-closed
+          {% elif is_state('sensor.bedroom_window', 'off') %}
+            mdi:window-closed         
+          {% else %}
+            mdi:alert
+          {% endif %}
+## Motion Sensors
+      playroom_motion:
+        friendly_name: Playroom Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.playroom_motion
+        value_template: "{{ is_state('sensor.playroom_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.playroom_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.playroom_motion', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      living_motion:
+        friendly_name: Living Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.living_motion
+        value_template: "{{ is_state('sensor.living_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.living_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.living_motion', 'off') %}
+            mdi:walk        
+          {% else %}
+            mdi:alert
+          {% endif %}
+      entrance_motion:
+        friendly_name: Entrance Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.entrance_motion
+        value_template: "{{ is_state('sensor.entrance_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.entrance_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.entrance_motion', 'off') %}
+            mdi:walk       
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_motion:
+        friendly_name: Bedroom Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.bedroom_motion
+        value_template: "{{ is_state('sensor.bedroom_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bedroom_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.bedroom_motion', 'off') %}
+            mdi:walk       
+          {% else %}
+            mdi:alert
+          {% endif %}
+      hudson_motion:
+        friendly_name: Hudson Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.hudson_motion
+        value_template: "{{ is_state('sensor.hudson_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.hudson_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.hudson_motion', 'off') %}
+            mdi:walk    
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bathroom_motion:
+        friendly_name: Bathroom Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.bathroom_motion
+        value_template: "{{ is_state('sensor.bathroom_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bathroom_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.bathroom_motion', 'off') %}
+            mdi:walk    
+          {% else %}
+            mdi:alert
+          {% endif %}
+      patio_motion:
+        friendly_name: Patio Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.patio_motion
+        value_template: "{{ is_state('sensor.patio_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.patio_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.patio_motion', 'off') %}
+            mdi:walk    
+          {% else %}
+            mdi:alert
+          {% endif %}
+      jackson_motion:
+        friendly_name: Jackson Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.jackson_motion
+        value_template: "{{ is_state('sensor.jackson_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.jackson_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.jackson_motion', 'off') %}
+            mdi:walk    
+          {% else %}
+            mdi:alert
+          {% endif %}
+      staircase_motion:
+        friendly_name: Staircase Motion Sensor
+        device_class: connectivity
+        entity_id: sensor.staircase_motion
+        value_template: "{{ is_state('sensor.staircase_motion', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.staircase_motion', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.staircase_motion', 'off') %}
+            mdi:walk    
+          {% else %}
+            mdi:alert
+          {% endif %}
+      downstairs_smoke:
+        friendly_name: Downstairs Smoke Sensor
+        device_class: connectivity
+        entity_id: sensor.downstairs_smoke
+        value_template: "{{ is_state('sensor.downstairs_smoke', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.downstairs_smoke', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.downstairs_smoke', 'off') %}
+            mdi:walk    
+          {% else %}
+            mdi:alert
+          {% endif %}
+      upstairs_smoke:
+        friendly_name: Upstairs Smoke Sensor
+        device_class: connectivity
+        entity_id: sensor.upstairs_smoke
+        value_template: "{{ is_state('sensor.upstairs_smoke', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.upstairs_smoke', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.upstairs_smoke', 'off') %}
+            mdi:walk    
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+#################################################################
+#                                                               #
+#                      Template Sensors                         #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: template
+    sensors:
+## Door Sensors
+      front_door:
+        friendly_name: "Front Door"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d00022016b2', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d00022016b2', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      patio_door:
+        friendly_name: "Patio Door"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d000225432d', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d000225432d', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      back_door:
+        friendly_name: "Back Door"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e73c09', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e73c09', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      washer_door:
+        friendly_name: "Washer Door"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e73a83', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e73a83', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      dryer_door:
+        friendly_name: "Dryer Door"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e73bc5', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e73bc5', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+## Window Sensors
+      kitchen_window:
+        friendly_name: "Kitchen Window"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e73af4', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e73af4', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      jackson_window:
+        friendly_name: "Jackson Window"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e73a73', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e73a73', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      hudson_window:
+        friendly_name: "Hudson Window"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e73aad', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e73aad', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      bathroom_window:
+        friendly_name: "Bathroom Window"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e74875', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e74875', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      bedroom_window:
+        friendly_name: "Bedroom Window"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001f36741', 'on') %}
+            on
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001f36741', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+## Motion Sensors
+      playroom_motion:
+        friendly_name: "Playroom Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d0001e5cf11', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d0001e5cf11', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      living_motion:
+        friendly_name: "Living Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d0001e5d118', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d0001e5d118', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      entrance_motion:
+        friendly_name: "Entrance Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d0001e5d147', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d0001e5d147', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      bedroom_motion:
+        friendly_name: "Bedroom Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d0001e63803', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d0001e63803', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      hudson_motion:
+        friendly_name: "Hudson Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d0002006d46', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d0002006d46', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      bathroom_motion:
+        friendly_name: "Bathroom Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d000200e4ab', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d000200e4ab', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      patio_motion:
+        friendly_name: "Patio Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d000200ea5b', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d000200ea5b', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      jackson_motion:
+        friendly_name: "Jackson Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d000201351c', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d000201351c', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      staircase_motion:
+        friendly_name: "Staircase Motion"
+        value_template: >-
+          {% if is_state('binary_sensor.motion_sensor_158d00022c2f21', 'on') %}
+            on
+          {% elif is_state('binary_sensor.motion_sensor_158d00022c2f21', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+## Motion Sensors
+      downstairs_smoke:
+        friendly_name: "Downstairs Smoke"
+        value_template: >-
+          {% if is_state('binary_sensor.smoke_sensor_158d0001b8ddc7', 'on') %}
+            on
+          {% elif is_state('binary_sensor.smoke_sensor_158d0001b8ddc7', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      upstairs_smoke:
+        friendly_name: "Upstairs Smoke"
+        value_template: >-
+          {% if is_state('binary_sensor.smoke_sensor_158d0001b8deba', 'on') %}
+            on
+          {% elif is_state('binary_sensor.smoke_sensor_158d0001b8deba', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
