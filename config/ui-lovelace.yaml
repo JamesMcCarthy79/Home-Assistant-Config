@@ -408,6 +408,43 @@ views:
       - type: history-graph
         entity: history_graph.power_consumption_graph
           
+  - tab_icon: mdi:server
+    name: Xiaomi Sensors
+    cards:
+      - type: entities
+        title: Door Sensors
+        entities:
+          - binary_sensor.front_door
+          - binary_sensor.patio_door
+          - binary_sensor.back_door
+          - binary_sensor.washer_door
+          - binary_sensor.dryer_door 
+      - type: entities
+        title: Window Sensors
+        entities:
+          - binary_sensor.kitchen_window
+          - binary_sensor.jackson_window
+          - binary_sensor.hudson_window
+          - binary_sensor.bathroom_window
+          - binary_sensor.bedroom_window
+      - type: entities
+        title: Motion Sensors
+        entities:
+          - binary_sensor.playroom_motion
+          - binary_sensor.living_motion
+          - binary_sensor.entrance_motion
+          - binary_sensor.bedroom_motion
+          - binary_sensor.hudson_motion
+          - binary_sensor.bathroom_motion
+          - binary_sensor.patio_motion
+          - binary_sensor.jackson_motion
+          - binary_sensor.staircase_motion
+      - type: entities
+        title: Motion Sensors
+        entities:
+          - binary_sensor.downstairs_smoke
+          - binary_sensor.upstairs_smoke
+          
   - tab_icon: mdi:flower
     name: Garden
     cards:
