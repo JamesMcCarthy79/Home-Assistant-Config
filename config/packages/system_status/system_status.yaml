@@ -520,3 +520,32 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
+          
+#################################################################
+#                                                               #
+#                          Automations                          #
+#                                                               #
+################################################################# 
+
+automation:
+## Notify of High Disk Use
+  - alias: Disk Use Alarm
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.disk_use_
+      above: 12
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'Warning - HA Server Disk Use is above 12Gb'
+          
+## Notify of High CPU Usage
+  - alias: Disk Use Alarm
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.processor_use
+      above: 85
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'Warning - HA Server Processor above 85%'
