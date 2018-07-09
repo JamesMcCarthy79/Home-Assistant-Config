@@ -540,7 +540,7 @@ automation:
           message: 'Warning - HA Server Disk Use is above 12Gb'
           
 ## Notify of High CPU Usage
-  - alias: Disk Use Alarm
+  - alias: CPU Use Alarm
     trigger:
       platform: numeric_state
       entity_id: sensor.processor_use
