@@ -55,7 +55,7 @@ sensor:
     sensors:
       installed_ha_version:
         value_template: '{% if is_state("device_tracker.rpi", "home") %}0.72.0{% else %}On{% endif %}'
-        friendly_name: 'Sonoff Installed Firmware'
+        friendly_name: 'HA Installed Version'
 
 #########################  HA Podcast  ##########################
 
@@ -123,3 +123,46 @@ binary_sensor:
         value_template: >-
           {{ states.sensor.latest_ha_podcast.state != states.sensor.latest_watched_podcast.state and states.sensor.latest_ha_podcast.state != 'unavailable' }}
         friendly_name: New Podcast Available
+        
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+## Notify of New HA Update Available
+  - alias: HA Update Available Notifications
+    trigger:
+      platform: state
+      entity_id: binary_sensor.ha_update_available
+      to: 'on'
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'New Update Available for HA'
+          data: 
+            url: https://www.home-assistant.io
+            
+## Notify of New HA Podcast
+  - alias: HA Podcast Update Available Notifications
+    trigger:
+      platform: state
+      entity_id: binary_sensor.new_podcast_available
+      to: 'on'
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'New Podcast Available for HA'
+          data: https://hasspodcast.io/feed/podcast
+          
+## Notify of New Sonoff Version
+  - alias: Disk Use Alarm
+    trigger:
+      platform: state
+      entity_id: sensor.sonoff_firmware_version
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'New Firmware Available for SONOFF'
+          data: https://github.com/arendst/Sonoff-Tasmota/releases
