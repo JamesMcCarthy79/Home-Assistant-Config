@@ -549,3 +549,14 @@ automation:
       - service: notify.pushbullet
         data:
           message: 'Warning - HA Server Processor above 85%'
+
+## Notify if ISP Download Speed has dropped
+  - alias: Internet Download Speed Drop
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.speedtest_download
+      below: 85
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'Warning - ISP Download Speed is lower then 85Mbps'
