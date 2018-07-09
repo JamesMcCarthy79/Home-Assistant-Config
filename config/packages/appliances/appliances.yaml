@@ -451,3 +451,14 @@ automation:
     - service: switch.turn_off
       data:
         entity_id: switch.plug_158d00022ae22d
+        
+## Robovac Error Notification
+  - alias: Robovac Error Notification
+    trigger:
+      platform: state
+      entity_id: vacuum.robovac
+      to: error
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'Attention - Robovac has got himself into a situation again'
