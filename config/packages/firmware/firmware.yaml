@@ -132,7 +132,7 @@ binary_sensor:
 
 automation:
 ## Notify of New HA Update Available
-  - alias: HA Update Available Notifications
+  - alias: HA Update Available Notification
     trigger:
       platform: state
       entity_id: binary_sensor.ha_update_available
@@ -145,7 +145,7 @@ automation:
             url: https://www.home-assistant.io
             
 ## Notify of New HA Podcast
-  - alias: HA Podcast Update Available Notifications
+  - alias: HA Podcast Update Available Notification
     trigger:
       platform: state
       entity_id: binary_sensor.new_podcast_available
@@ -157,7 +157,7 @@ automation:
           data: https://hasspodcast.io/feed/podcast
           
 ## Notify of New Sonoff Version
-  - alias: Disk Use Alarm
+  - alias: Sonoff Firmware Update Available Notification
     trigger:
       platform: state
       entity_id: sensor.sonoff_firmware_version
