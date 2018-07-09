@@ -549,6 +549,17 @@ automation:
       - service: notify.pushbullet
         data:
           message: 'Warning - HA Server Processor above 85%'
+          
+## Notify if CPU Temperature is High
+  - alias: CPU Temp Alarm
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.cpu_temperature
+      below: 75
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'Warning - HA Server CPU Temp Above 75c'
 
 ## Notify if ISP Download Speed has dropped
   - alias: Internet Download Speed Drop
