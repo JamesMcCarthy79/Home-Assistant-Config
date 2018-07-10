@@ -254,6 +254,24 @@ things status:
     
 ####################################################
 #                                                  #
+#                  Xiaomi Status                   #
+#                                                  #
+####################################################
+
+xiaomi status:
+  name: Xiaomi Status
+  icon: mdi:server
+  view: yes
+  entities:
+    - group.xiaomi_door_sensors
+    - group.xiaomi_window_sensors
+    - group.xiaomi_motion_sensors
+    - group.xiaomi_temperature_sensors
+    - group.xiaomi_smart_switches
+    - group.xiaomi_smart_plugs
+    
+####################################################
+#                                                  #
 #                    Appliances                    #
 #                                                  #
 ####################################################
