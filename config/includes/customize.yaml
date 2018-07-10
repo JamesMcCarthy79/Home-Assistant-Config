@@ -37,11 +37,14 @@ group.system_status:
 group.things_status:
   order: 11
   
-group.appliances:
+group.xiaomi_status:
   order: 12
   
-group.garden:
+group.appliances:
   order: 13
+  
+group.garden:
+  order: 14
 
 ###################################################
 #                                                 #
