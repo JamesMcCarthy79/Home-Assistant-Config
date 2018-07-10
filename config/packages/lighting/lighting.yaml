@@ -131,6 +131,27 @@ automation:
     - service: light.turn_off
       data:
         entity_id: light.gateway_light_7811dcfd812f
+        
+## This turns the PC backlight on
+  - alias: 'PC Back Light On'
+    trigger:
+    - platform: state
+      entity_id: sun.sun
+      to: 'below_horizon'
+    action:
+    - service: light.turn_on
+      data:
+        entity_id: light.gateway_light_7811dce13ad6
+        
+## This turns the PC backlight off
+  - alias: 'PC Back Light Off'
+    trigger:
+    - platform: time
+      at: '22:00'
+    action:
+    - service: light.turn_off
+      data:
+        entity_id: light.gateway_light_7811dce13ad6
 
 ## This turns on the patio light upon motion for 2 mins after sun is below horizon        
   - alias: 'Patio Motion Light'
