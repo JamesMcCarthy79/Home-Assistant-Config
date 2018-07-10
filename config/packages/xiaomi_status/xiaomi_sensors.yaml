@@ -62,6 +62,38 @@ group:
       - binary_sensor.downstairs_smoke
       - binary_sensor.upstairs_smoke
       
+  xiaomi_temperature_sensors:
+    name: Temperature Sensors
+    view: no
+    entities:
+      - binary_sensor.jackson_temperature
+      - binary_sensor.bedroom_temperature
+      - binary_sensor.hudson_temperature
+      - binary_sensor.downstairs_temperature
+      - binary_sensor.patio_temperature
+      - binary_sensor.playroom_temperature
+      - binary_sensor.bathroom_temperature
+      
+  xiaomi_smart_switches:
+    name: Smart Switches
+    view: no
+    entities:
+      - binary_sensor.lounge_fan_button
+      - binary_sensor.door_button
+      - binary_sensor.hudson_fan_button
+      - binary_sensor.jackson_fan_button
+      - binary_sensor.bedroom_wall_fan_button
+      - binary_sensor.bedside_fan_button
+      
+  xiaomi_smart_plugs:
+    name: Smart Plugs
+    view: no
+    entities:
+      - binary_sensor.washer_switch_plug
+      - binary_sensor.entertainment_switch_plug
+      - binary_sensor.dryer_switch_plug
+      - binary_sensor.appliance_switch_plug
+      
 #################################################################
 #                                                               #
 #                       Binary Sensors                          #
@@ -347,7 +379,230 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-
+## Temperature Sensors
+      jackson_temperature:
+        friendly_name: Jackson Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.jackson_temperature
+        value_template: "{{ is_state('sensor.jackson_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.jackson_temperature', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.jackson_temperature', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_temperature:
+        friendly_name: Bedroom Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.bedroom_temperature
+        value_template: "{{ is_state('sensor.bedroom_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bedroom_temperature', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.bedroom_temperature', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      hudson_temperature:
+        friendly_name: Hudson Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.hudson_temperature
+        value_template: "{{ is_state('sensor.hudson_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.hudson_temperature', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.hudson_temperature', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      downstairs_temperature:
+        friendly_name: Downstairs Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.downstairs_temperature
+        value_template: "{{ is_state('sensor.downstairs_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.downstairs_temperature', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.downstairs_temperature', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      patio_temperature:
+        friendly_name: Patio Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.patio_temperature
+        value_template: "{{ is_state('sensor.patio_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.patio_temperature', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.patio_temperature', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      playroom_temperature:
+        friendly_name: Playroom Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.playroom_temperature
+        value_template: "{{ is_state('sensor.playroom_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.playroom_temperature', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.playroom_temperature', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bathroom_temperature:
+        friendly_name: Bathroom Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.playroom_temperature
+        value_template: "{{ is_state('sensor.bathroom_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bathroom_temperature', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.bathroom_temperature', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+## Smart Switches
+      lounge_fan_button:
+        friendly_name: Lounge Fan Button
+        device_class: connectivity
+        entity_id: sensor.lounge_fan_button
+        value_template: "{{ is_state('sensor.lounge_fan_button', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.lounge_fan_button', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.lounge_fan_button', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      door_button:
+        friendly_name: Door Bell
+        device_class: connectivity
+        entity_id: sensor.door_button
+        value_template: "{{ is_state('sensor.door_button', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.door_button', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.door_button', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      hudson_fan_button:
+        friendly_name: Hudson Fan Button
+        device_class: connectivity
+        entity_id: sensor.hudson_fan_button
+        value_template: "{{ is_state('sensor.hudson_fan_button', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.hudson_fan_button', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.hudson_fan_button', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      jackson_fan_button:
+        friendly_name: Jackson Fan Button
+        device_class: connectivity
+        entity_id: sensor.jackson_fan_button
+        value_template: "{{ is_state('sensor.jackson_fan_button', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.jackson_fan_button', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.jackson_fan_button', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_wall_fan_button:
+        friendly_name: Bedroom Wall Fan Button
+        device_class: connectivity
+        entity_id: sensor.bedroom_wall_fan_button
+        value_template: "{{ is_state('sensor.bedroom_wall_fan_button', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bedroom_wall_fan_button', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.bedroom_wall_fan_button', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedside_fan_button:
+        friendly_name: Bedside Fan Button
+        device_class: connectivity
+        entity_id: sensor.bedside_fan_button
+        value_template: "{{ is_state('sensor.bedside_fan_button', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bedside_fan_button', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.bedside_fan_button', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+## Smart Plugs
+      washer_switch_plug:
+        friendly_name: Washer Switch Plug
+        device_class: connectivity
+        entity_id: sensor.washer_switch_plug
+        value_template: "{{ is_state('sensor.washer_switch_plug', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.washer_switch_plug', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.washer_switch_plug', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      entertainment_switch_plug:
+        friendly_name: Entertainment Switch Plug
+        device_class: connectivity
+        entity_id: sensor.entertainment_switch_plug
+        value_template: "{{ is_state('sensor.entertainment_switch_plug', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.entertainment_switch_plug', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.entertainment_switch_plug', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      dryer_switch_plug:
+        friendly_name: Dryer Switch Plug
+        device_class: connectivity
+        entity_id: sensor.dryer_switch_plug
+        value_template: "{{ is_state('sensor.dryer_switch_plug', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.dryer_switch_plug', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.dryer_switch_plug', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      appliance_switch_plug:
+        friendly_name: Appliance Switch Plug
+        device_class: connectivity
+        entity_id: sensor.appliance_switch_plug
+        value_template: "{{ is_state('sensor.appliance_switch_plug', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.appliance_switch_plug', 'on') %}
+            mdi:walk
+          {% elif is_state('sensor.appliance_switch_plug', 'off') %}
+            mdi:walk         
+          {% else %}
+            mdi:alert
+          {% endif %}
 
 #################################################################
 #                                                               #
@@ -568,6 +823,179 @@ sensor:
           {% if is_state('binary_sensor.smoke_sensor_158d0001b8deba', 'on') %}
             on
           {% elif is_state('binary_sensor.smoke_sensor_158d0001b8deba', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+## Temerature Sensors
+      jackson_temperature:
+        friendly_name: "Jackson Temperature"
+        value_template: >-
+          {% if is_state('sensor.temperature_158d0001f534e1', 'on') %}
+            on
+          {% elif is_state('sensor.temperature_158d0001f534e1', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      bedroom_temperature:
+        friendly_name: "Bedroom Temperature"
+        value_template: >-
+          {% if is_state('sensor.temperature_158d0001f53de9', 'on') %}
+            on
+          {% elif is_state('sensor.temperature_158d0001f53de9', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      hudson_temperature:
+        friendly_name: "Hudson Temperature"
+        value_template: >-
+          {% if is_state('sensor.temperature_158d0001f54df3', 'on') %}
+            on
+          {% elif is_state('sensor.temperature_158d0001f54df3', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      downstairs_temperature:
+        friendly_name: "Downstairs Temperature"
+        value_template: >-
+          {% if is_state('sensor.temperature_158d0001f558f5', 'on') %}
+            on
+          {% elif is_state('sensor.temperature_158d0001f558f5', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      patio_temperature:
+        friendly_name: "Patio Temperature"
+        value_template: >-
+          {% if is_state('sensor.temperature_158d0001f56350', 'on') %}
+            on
+          {% elif is_state('sensor.temperature_158d0001f56350', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      playroom_temperature:
+        friendly_name: "Playroom Temperature"
+        value_template: >-
+          {% if is_state('sensor.temperature_158d0001f56682', 'on') %}
+            on
+          {% elif is_state('sensor.temperature_158d0001f56682', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      bathroom_temperature:
+        friendly_name: "Bathroom Temperature"
+        value_template: >-
+          {% if is_state('sensor.temperature_158d00022c7248', 'on') %}
+            on
+          {% elif is_state('sensor.temperature_158d00022c7248', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+## Smart Switches
+      lounge_fan_button:
+        friendly_name: "Lounge Fan Button"
+        value_template: >-
+          {% if is_state('binary_sensor.switch_158d000201ce4e', 'on') %}
+            on
+          {% elif is_state('binary_sensor.switch_158d000201ce4e', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      door_button:
+        friendly_name: "Door Button"
+        value_template: >-
+          {% if is_state('binary_sensor.switch_158d000213108e', 'on') %}
+            on
+          {% elif is_state('binary_sensor.switch_158d000213108e', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      hudson_fan_button:
+        friendly_name: "Hudson Fan Button"
+        value_template: >-
+          {% if is_state('binary_sensor.switch_158d000213455d', 'on') %}
+            on
+          {% elif is_state('binary_sensor.switch_158d000213455d', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      jackson_fan_button:
+        friendly_name: "Jackson Fan Button"
+        value_template: >-
+          {% if is_state('binary_sensor.switch_158d00021347cc', 'on') %}
+            on
+          {% elif is_state('binary_sensor.switch_158d00021347cc', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      bedroom_wall_fan_button:
+        friendly_name: "Bedroom Wall Fan Button"
+        value_template: >-
+          {% if is_state('binary_sensor.switch_158d000215aa27', 'on') %}
+            on
+          {% elif is_state('binary_sensor.switch_158d000215aa27', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      bedside_fan_button:
+        friendly_name: "Bedside Fan Button"
+        value_template: >-
+          {% if is_state('binary_sensor.switch_158d000233a19d', 'on') %}
+            on
+          {% elif is_state('binary_sensor.switch_158d000233a19d', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+## Smart Plugs
+      washer_switch_plug:
+        friendly_name: "Washer Switch Plug"
+        value_template: >-
+          {% if is_state('switch.plug_158d0001bc2b6d', 'on') %}
+            on
+          {% elif is_state('switch.plug_158d0001bc2b6d', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      entertainment_switch_plug:
+        friendly_name: "Entertainment Switch Plug"
+        value_template: >-
+          {% if is_state('switch.plug_158d0001f24e2b', 'on') %}
+            on
+          {% elif is_state('switch.plug_158d0001f24e2b', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      dryer_switch_plug:
+        friendly_name: "Dryer Switch Plug"
+        value_template: >-
+          {% if is_state('switch.plug_158d00022ae069', 'on') %}
+            on
+          {% elif is_state('switch.plug_158d00022ae069', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      appliance_switch_plug:
+        friendly_name: "Appliance Switch Plug"
+        value_template: >-
+          {% if is_state('switch.plug_158d00022ae22d', 'on') %}
+            on
+          {% elif is_state('switch.plug_158d00022ae22d', 'off') %}
             on
           {% else %}
             off
