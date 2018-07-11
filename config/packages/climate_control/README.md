@@ -33,7 +33,7 @@
 <h4 align="left">Package Scenes:</h4>
 <p align="left">The Scenes in this package simple call Air Conditioner IR codes from the Broadlink Switch component they were there from before I changed to an input select and I just decided to keep them you could just as easily use the switch calls here. I was considering creating a custom component for my air conditioner but it is either really hot or cold when we use them so I only use the pre-set settings for cold and hot respectively.</br>
 <h4 align="left">Package Automations:</h4>
-<h4 align="left">Air COnditioners</h4>
+<h4 align="left">Air Conditioners</h4>
 <p align="left">The automations for the Air Conditioners are pretty straight forward they just call on the above scenes nothing to complicated here.</p>
 <h4 align="left">Fans</h4>
 <p align="left">The automations for the fans are a little more complicated as I used a 4ch sonoff and used seperate channels to control each speed of the fan. What I wanted to avoid when switching between fan speed selections was to have more than one of the fan speed switches on at the same time. When each fan speed is selected from the input select these automations make sure all other switches on the sonoff are off then turns on the speed selected.</p>
