@@ -1,8 +1,11 @@
+resources:
+  - url: /local/custom_ui/weather-card.js
+    type: js
+
 name: Kingia Castle
 views:
-  - tab_icon: mdi:castle
+  - icon: mdi:castle
     name: Home
-    #theme: dark-mode
     cards:
       - type: entities
         title: People
@@ -23,6 +26,7 @@ views:
           - sensor.mum_time
       - type: weather-forecast
         entity: weather.bom_gold_coast
+      #- type: "custom:weather-card"
       - type: entities
         title: Daily Forcast
         entities:
@@ -36,13 +40,22 @@ views:
           - sun.sun
           - sensor.moon
       - type: history-graph
-        entity: history_graph.presence_graph
+        title: Presence
+        entities:
+          - sensor.james
+          - device_tracker.admin_iphone
       - type: history-graph
-        entity: history_graph.battery_use
+        title: Phone Battery
+        entities:
+          - sensor.battery_james
+          - sensor.battery_tina
       - type: history-graph
-        entity: history_graph.temperature_graph
+        title: Weather
+        entities:
+          - sensor.temperature_158d0001f56350
+          - sensor.temperature_158d0001f558f5
                     
-  - tab_icon: mdi:security-home
+  - icon: mdi:security-home
     name: Security
     cards:
       - type: entities
@@ -79,7 +92,7 @@ views:
           - binary_sensor.motion_sensor_158d000200e4ab
           - binary_sensor.motion_sensor_158d0001e63803
 
-  - tab_icon: mdi:sofa
+  - icon: mdi:sofa
     name: Downstairs
     cards:
       - type: entities
@@ -99,7 +112,6 @@ views:
           - switch.tvpower
           - light.gateway_light_7811dcfd812f
           - light.gateway_light_7811dce13ad6
-          - scene.story_time
           - scene.livingroom_bright
           - light.hall_bulb
           #- switch.goodnight
@@ -113,7 +125,7 @@ views:
           - light.dining_bulb
           - switch.patio_light_switch
           - light.entrance_bulb
-      - type: entity-picture
+      - type: picture-entity
         image: https://wallpaperwire.com/wp-content/uploads/2018/04/Best-Good-Night-HD-Wallpaper.jpg
         entity: switch.goodnight
       - type: media-control
@@ -122,10 +134,10 @@ views:
         title: Music
         entities:
           - switch.spotify_kitchen
-      - type: history-graph
-        entity: history_graph.downstairs_usage_graph
+#      - type: history-graph
+#        entity: history_graph.downstairs_usage_graph
           
-  - tab_icon: mdi:soccer
+  - icon: mdi:soccer
     name: Play Room
     cards:
       - type: entities
@@ -144,9 +156,12 @@ views:
           - input_select.playroom_fan_natural_mode
           - input_select.playroom_fan_led_brightness
       - type: history-graph
-        entity: history_graph.play_room_climate_graph
+        title: Climate
+        entities:
+          - sensor.temperature_158d0001f56682
+          - sensor.humidity_158d0001f56682
           
-  - tab_icon: mdi:glass-cocktail
+  - icon: mdi:glass-cocktail
     name: Patio
     cards:
       - type: entities
@@ -165,9 +180,12 @@ views:
           - switch.fairy_light_mode_4
           - switch.patio_light_switch
       - type: history-graph
-        entity: history_graph.patio_climate_graph
+        title: Climate
+        entities:
+          - sensor.temperature_158d0001f56350
+          - sensor.humidity_158d0001f56350
         
-  - tab_icon: mdi:hotel
+  - icon: mdi:hotel
     name: Master Bedroom
     cards:
       - type: entities
@@ -183,17 +201,18 @@ views:
       - type: media-control
         entity: media_player.bedroom_tv
       - type: history-graph
-        entity: history_graph.bedroom_climate_graph
-      - type: camera-preview
-        entity: camera.generic
+        title: Climate
+        entities:
+          - sensor.temperature_158d0001f53de9
+          - sensor.humidity_158d0001f53de9
       - type: entities
         title: Lights
         entities:
           - switch.master_light_switch
           - light.bedroom_bulb
-          - switch.bedroom_wardrobe_switch
+          #- switch.bedroom_wardrobe_switch
         
-  - tab_icon: mdi:chess-knight
+  - icon: mdi:chess-knight
     name: Jackson Bedroom
     cards:
       - type: entities
@@ -202,18 +221,21 @@ views:
           - sensor.temperature_158d0001f534e1
           - sensor.humidity_158d0001f534e1
           - sensor.illumination_158d000201351c
-          - script.jackson_fan_low
-          - script.jackson_fan_med
-          - script.jackson_fan_high
-          - script.jackson_fan_off
+          #- script.jackson_fan_low
+          #- script.jackson_fan_med
+          #- script.jackson_fan_high
+          #- script.jackson_fan_off
       - type: entities
         title: Lighting
         entities:
           - switch.jackson_light_switch
       - type: history-graph
-        entity: history_graph.jackson_climate_graph
+        title: Climate
+        entities:
+          - sensor.temperature_158d0001f534e1
+          - sensor.humidity_158d0001f534e1
           
-  - tab_icon: mdi:chess-rook
+  - icon: mdi:chess-rook
     name: Hudson Bedroom
     cards:
       - type: entities
@@ -222,18 +244,21 @@ views:
           - sensor.temperature_158d0001f54df3
           - sensor.humidity_158d0001f54df3
           - sensor.illumination_158d0002006d46
-          - script.hudson_fan_low
-          - script.hudson_fan_med
-          - script.hudson_fan_high
-          - script.hudson_fan_off
+          #- script.hudson_fan_low
+          #- script.hudson_fan_med
+          #- script.hudson_fan_high
+          #- script.hudson_fan_off
       - type: entities
         title: Lighting
         entities:
           - switch.hudson_light_switch
       - type: history-graph
-        entity: history_graph.hudson_climate_graph
+        title: Climate
+        entities:
+          - sensor.temperature_158d0001f54df3
+          - sensor.humidity_158d0001f54df3
           
-  - tab_icon: mdi:shower
+  - icon: mdi:shower
     name: Bathroom
     cards:
       - type: entities
@@ -249,9 +274,12 @@ views:
           - switch.bathroom_fan_switch
           - switch.bathroom_heat_switch
       - type: history-graph
-        entity: history_graph.bathroom_climate_graph
+        title: Climate
+        entities:
+          - sensor.temperature_158d00022c7248
+          - sensor.humidity_158d00022c7248
           
-  - tab_icon: mdi:settings
+  - icon: mdi:settings
     name: System Status
     cards:
       - type: entities
@@ -267,6 +295,8 @@ views:
           - binary_sensor.core_switch
           - binary_sensor.upstairs_switch
           - binary_sensor.wifi_bridge
+          - binary_sensor.downstairs_ap
+          - binary_sensor.upstairs_ap
           - binary_sensor.5g_ac_main
           - binary_sensor.5g_ac_media_tv
           - binary_sensor.5g_ac_upstairs
@@ -309,9 +339,12 @@ views:
           - sensor.cpu_temperature
           - sensor.last_boot
       - type: history-graph
-        entity: history_graph.internet_graph
+        title: Internet Speed
+        entities:
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
           
-  - tab_icon: mdi:cogs
+  - icon: mdi:cogs
     name: Things Status
     cards:
       - type: entities
@@ -363,7 +396,7 @@ views:
           - binary_sensor.garage_door
           - binary_sensor.coffee_machine
           
-  - tab_icon: mdi:washing-machine
+  - icon: mdi:washing-machine
     name: Appliances
     cards:
       - type: entities
@@ -404,11 +437,14 @@ views:
           - sensor.dryer_status
           - binary_sensor.door_window_sensor_158d0001e73bc5
       - type: history-graph
-        entity: history_graph.power_load_graph
-      - type: history-graph
-        entity: history_graph.power_consumption_graph
-          
-  - tab_icon: mdi:server
+        title: Washing Machine
+        entities:
+          - sensor.waching_machine_load_power
+          - sensor.dryer_load_power
+          - sensor.appliance_load_power
+          - sensor.entertainment_load_power
+        
+  - icon: mdi:server
     name: Xiaomi Sensors
     cards:
       - type: entities
@@ -471,7 +507,7 @@ views:
           - binary_sensor.dryer_switch_plug
           - binary_sensor.appliance_switch_plug
           
-  - tab_icon: mdi:flower
+  - icon: mdi:flower
     name: Garden
     cards:
       - type: plant-status
