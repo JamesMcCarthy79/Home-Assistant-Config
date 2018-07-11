@@ -444,6 +444,32 @@ views:
         entities:
           - binary_sensor.downstairs_smoke
           - binary_sensor.upstairs_smoke
+      - type: entities
+        title: Temperature Sensors
+        entities:
+          - binary_sensor.jackson_temperature
+          - binary_sensor.bedroom_temperature
+          - binary_sensor.hudson_temperature
+          - binary_sensor.downstairs_temperature
+          - binary_sensor.patio_temperature
+          - binary_sensor.playroom_temperature
+          - binary_sensor.bathroom_temperature
+      - type: entities
+        title: Smart Switches
+        entities:
+          - binary_sensor.lounge_fan_button
+          - binary_sensor.door_button
+          - binary_sensor.hudson_fan_button
+          - binary_sensor.jackson_fan_button
+          - binary_sensor.bedroom_wall_fan_button
+          - binary_sensor.bedside_fan_button
+      - type: entities
+        title: Smart Plugs
+        entities:
+          - binary_sensor.washer_switch_plug
+          - binary_sensor.entertainment_switch_plug
+          - binary_sensor.dryer_switch_plug
+          - binary_sensor.appliance_switch_plug
           
   - tab_icon: mdi:flower
     name: Garden
