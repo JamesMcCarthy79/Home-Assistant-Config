@@ -387,9 +387,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.jackson_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.jackson_temperature', 'on') %}
-            mdi:walk
+            mdi:thermometer
           {% elif is_state('sensor.jackson_temperature', 'off') %}
-            mdi:walk         
+            mdi:thermometer      
           {% else %}
             mdi:alert
           {% endif %}
@@ -400,9 +400,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.bedroom_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.bedroom_temperature', 'on') %}
-            mdi:walk
+            mdi:thermometer
           {% elif is_state('sensor.bedroom_temperature', 'off') %}
-            mdi:walk         
+            mdi:thermometer
           {% else %}
             mdi:alert
           {% endif %}
@@ -413,9 +413,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.hudson_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.hudson_temperature', 'on') %}
-            mdi:walk
+            mdi:thermometer
           {% elif is_state('sensor.hudson_temperature', 'off') %}
-            mdi:walk         
+            mdi:thermometer
           {% else %}
             mdi:alert
           {% endif %}
@@ -426,9 +426,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.downstairs_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.downstairs_temperature', 'on') %}
-            mdi:walk
+            mdi:thermometer
           {% elif is_state('sensor.downstairs_temperature', 'off') %}
-            mdi:walk         
+            mdi:thermometer
           {% else %}
             mdi:alert
           {% endif %}
@@ -439,9 +439,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.patio_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.patio_temperature', 'on') %}
-            mdi:walk
+            mdi:thermometer
           {% elif is_state('sensor.patio_temperature', 'off') %}
-            mdi:walk         
+            mdi:thermometer
           {% else %}
             mdi:alert
           {% endif %}
@@ -452,9 +452,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.playroom_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.playroom_temperature', 'on') %}
-            mdi:walk
+            mdi:thermometer
           {% elif is_state('sensor.playroom_temperature', 'off') %}
-            mdi:walk         
+            mdi:thermometer
           {% else %}
             mdi:alert
           {% endif %}
@@ -465,9 +465,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.bathroom_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.bathroom_temperature', 'on') %}
-            mdi:walk
+            mdi:thermometer
           {% elif is_state('sensor.bathroom_temperature', 'off') %}
-            mdi:walk         
+            mdi:thermometer
           {% else %}
             mdi:alert
           {% endif %}
@@ -479,9 +479,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.lounge_fan_button', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.lounge_fan_button', 'on') %}
-            mdi:walk
+            mdi:radiobox-marked
           {% elif is_state('sensor.lounge_fan_button', 'off') %}
-            mdi:walk         
+            mdi:radiobox-marked
           {% else %}
             mdi:alert
           {% endif %}
@@ -492,9 +492,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.door_button', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.door_button', 'on') %}
-            mdi:walk
+            mdi:radiobox-marked
           {% elif is_state('sensor.door_button', 'off') %}
-            mdi:walk         
+            mdi:radiobox-marked
           {% else %}
             mdi:alert
           {% endif %}
@@ -505,9 +505,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.hudson_fan_button', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.hudson_fan_button', 'on') %}
-            mdi:walk
+            mdi:radiobox-marked
           {% elif is_state('sensor.hudson_fan_button', 'off') %}
-            mdi:walk         
+            mdi:radiobox-marked
           {% else %}
             mdi:alert
           {% endif %}
@@ -518,9 +518,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.jackson_fan_button', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.jackson_fan_button', 'on') %}
-            mdi:walk
+            mdi:radiobox-marked
           {% elif is_state('sensor.jackson_fan_button', 'off') %}
-            mdi:walk         
+            mdi:radiobox-marked
           {% else %}
             mdi:alert
           {% endif %}
@@ -531,9 +531,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.bedroom_wall_fan_button', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.bedroom_wall_fan_button', 'on') %}
-            mdi:walk
+            mdi:radiobox-marked
           {% elif is_state('sensor.bedroom_wall_fan_button', 'off') %}
-            mdi:walk         
+            mdi:radiobox-marked
           {% else %}
             mdi:alert
           {% endif %}
@@ -544,9 +544,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.bedside_fan_button', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.bedside_fan_button', 'on') %}
-            mdi:walk
+            mdi:radiobox-marked
           {% elif is_state('sensor.bedside_fan_button', 'off') %}
-            mdi:walk         
+            mdi:radiobox-marked
           {% else %}
             mdi:alert
           {% endif %}
@@ -558,9 +558,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.washer_switch_plug', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.washer_switch_plug', 'on') %}
-            mdi:walk
+            mdi:power-plug
           {% elif is_state('sensor.washer_switch_plug', 'off') %}
-            mdi:walk         
+            mdi:power-plug
           {% else %}
             mdi:alert
           {% endif %}
@@ -571,9 +571,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.entertainment_switch_plug', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.entertainment_switch_plug', 'on') %}
-            mdi:walk
+            mdi:power-plug
           {% elif is_state('sensor.entertainment_switch_plug', 'off') %}
-            mdi:walk         
+            mdi:power-plug
           {% else %}
             mdi:alert
           {% endif %}
@@ -584,9 +584,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.dryer_switch_plug', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.dryer_switch_plug', 'on') %}
-            mdi:walk
+            mdi:power-plug
           {% elif is_state('sensor.dryer_switch_plug', 'off') %}
-            mdi:walk         
+            mdi:power-plug
           {% else %}
             mdi:alert
           {% endif %}
@@ -597,9 +597,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.appliance_switch_plug', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.appliance_switch_plug', 'on') %}
-            mdi:walk
+            mdi:power-plug
           {% elif is_state('sensor.appliance_switch_plug', 'off') %}
-            mdi:walk         
+            mdi:power-plug
           {% else %}
             mdi:alert
           {% endif %}
