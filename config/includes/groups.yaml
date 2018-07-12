@@ -15,6 +15,7 @@ default_view:
     - group.weather_overview
     - group.sun
     - group.daily_forecast
+    - group.currency
     
 date and time:
   name: Date & Time
