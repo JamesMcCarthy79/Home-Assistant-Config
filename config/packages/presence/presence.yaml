@@ -14,7 +14,9 @@ homeassistant:
   customize:
     sensor.commute_to_work:
       icon: 'mdi:car'
-    sensor.commute_to_home:
+    sensor.commute_from_work:
+      icon: 'mdi:home-variant'
+    sensor.james_to_home:
       icon: 'mdi:home-variant'
  
 #################################################################
@@ -35,7 +37,8 @@ group:
       - sensor.tina
       - sensor.battery_tina
       - sensor.commute_to_work
-      - sensor.commute_to_home
+      - sensor.commute_from_work
+      - sensor.james_to_home
       
   family:
     name: Family
@@ -322,14 +325,20 @@ sensor:
   - platform: google_travel_time
     api_key: !secret google_maps
     name: 'Commute to Work'
-    origin: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
-    destination: 16/511 Olsen Ave, Southport QLD 4215, Australia
+    origin: !secret home
+    destination: !secret work
     
   - platform: google_travel_time
     api_key: !secret google_maps
-    name: 'Commute to Home'
-    origin: 16/511 Olsen Ave, Southport QLD 4215, Australia
-    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    name: 'Commute from Work'
+    origin: !secret work
+    destination: !secret home
+    
+  - platform: google_travel_time
+    api_key: !secret google_maps
+    name: 'James to Home'
+    origin: device_tracker.admin_samsung
+    destination: !secret home
     
 #################################################################
 #                                                               #
