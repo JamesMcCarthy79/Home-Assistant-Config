@@ -512,7 +512,7 @@ automation:
   - alias: Appliance Charging after Daily Clean
     trigger:
     - platform: state
-      entity_id: vacuum.robovac
+      entity_id: sensor.robovac_status
       to: Returning home
     action:
     - service: switch.turn_on
