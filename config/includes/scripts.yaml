@@ -351,3 +351,21 @@
   - data:
       entity_id: group.downstairs_lights
     service: homeassistant.turn_off
+    
+blue_tv_light:
+  alias: Blue
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: light.gateway_light_7811dcfd812f
+      data:
+        brightness: 255
+        rgb_color: [0,0,255]
+        
+blue_pc_light:
+  alias: Blue
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: light.gateway_light_7811dce13ad6
+      data:
+        brightness: 255
+        rgb_color: [0,0,255]
