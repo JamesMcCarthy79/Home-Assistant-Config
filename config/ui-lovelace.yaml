@@ -13,10 +13,11 @@ views:
           - sensor.james
           - sensor.battery_james
           - device_tracker.admin_iphone
-          - sensor.tina
+          #- sensor.tina
           - sensor.battery_tina
           - sensor.commute_to_work
-          - sensor.commute_to_home
+          - sensor.commute_from_work
+          - sensor.james_to_home
       - type: entities
         title: Date & Time
         entities:
@@ -45,15 +46,20 @@ views:
           - sensor.james
           - device_tracker.admin_iphone
       - type: history-graph
-        title: Phone Battery
+        title: Currency
         entities:
-          - sensor.battery_james
-          - sensor.battery_tina
+          - sensor.audusd
+          - sensor.bitcoin
       - type: history-graph
         title: Weather
         entities:
           - sensor.temperature_158d0001f56350
           - sensor.temperature_158d0001f558f5
+      - type: history-graph
+        title: Phone Battery
+        entities:
+          - sensor.battery_james
+          - sensor.battery_tina
                     
   - icon: mdi:security-home
     name: Security
@@ -134,8 +140,10 @@ views:
         title: Music
         entities:
           - switch.spotify_kitchen
-#      - type: history-graph
-#        entity: history_graph.downstairs_usage_graph
+      - type: history-graph
+        title: TV Time On
+        entities:
+          - sensor.total_tv_time
           
   - icon: mdi:soccer
     name: Play Room
