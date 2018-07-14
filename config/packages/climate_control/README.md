@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Climate%20Control.jpg" width="250"/>
+  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Climate%20Control.png" width="450"/>
 </p>
 <h1 align="center">Climate Control Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
