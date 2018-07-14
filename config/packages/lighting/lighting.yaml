@@ -116,11 +116,11 @@ automation:
     trigger:
     - platform: state
       entity_id: sun.sun
-      to: below_horizon
+      to: 'below_horizon'
     action:
-    - service: light.turn_on
+    - service: script.turn_on
       data:
-        entity_id: light.gateway_light_7811dcfd812f
+        entity_id: script.blue_tv_light
         
 ## This turns the Media TV backlight off
   - alias: 'TV Back Light Off'
@@ -139,9 +139,9 @@ automation:
       entity_id: sun.sun
       to: 'below_horizon'
     action:
-    - service: light.turn_on
+    - service: script.turn_on
       data:
-        entity_id: light.gateway_light_7811dce13ad6
+        entity_id: script.blue_pc_light
         
 ## This turns the PC backlight off
   - alias: 'PC Back Light Off'
