@@ -6,6 +6,26 @@
 
 #################################################################
 #                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    switch.spotify_kitchen:
+      friendly_name: "Spotify Kitchen"
+      assumed_state: false
+      icon: mdi:spotify
+        #icon: >
+        #  if (state === 'on') return 'mdi:spotify';
+        #  return 'mdi:spotify';
+        #icon_color: >
+        #  if (state === 'on') return 'rgb(30, 215, 96)';
+        #  return 'rgb(255,255,255)';
+        
+
+#################################################################
+#                                                               #
 #                           Group                               #
 #                                                               #
 #################################################################
@@ -16,6 +36,21 @@ group:
     view: no
     entities:
       - switch.spotify_kitchen
+      
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: history_stats
+    name: Total TV Time
+    entity_id: media_player.media_4k_tv
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
 
 #################################################################
 #                                                               #
