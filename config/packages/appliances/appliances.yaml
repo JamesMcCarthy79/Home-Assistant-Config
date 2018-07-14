@@ -534,8 +534,8 @@ automation:
   - alias: Robovac Error Notification
     trigger:
       platform: state
-      entity_id: vacuum.robovac
-      to: error
+      entity_id: sensor.robovac_status
+      to: Error
     action:
       - service: notify.pushbullet
         data:
