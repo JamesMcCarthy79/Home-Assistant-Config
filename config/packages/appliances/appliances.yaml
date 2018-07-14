@@ -34,6 +34,16 @@ homeassistant:
       friendly_name: Appliances
       initial_state: off
       icon: mdi:power-plug
+    sensor.robovac_cleaning_time:
+      icon: mdi:clock-outline
+    sensor.robovac_main_brush:
+      icon: mdi:blender
+    sensor.robovac_side_brush:
+      icon: mdi:blender
+    sensor.robovac_filter:
+      icon: mdi:filter
+    sensor.robovac_cleaning_count:
+      icon: mdi:counter
       
 #################################################################
 #                                                               #
@@ -66,7 +76,21 @@ group:
     control: hidden
     entities:
       - switch.plug_158d00022ae22d
-      - vacuum.robovac
+      #- vacuum.robovac
+    
+  robovac:
+    name: Robovac
+    view: no
+    control: hidden 
+    entities:
+      - vacuum.robovac  
+      - sensor.robovac_status 
+      - sensor.robovac_battery
+      - sensor.robovac_cleaning_time
+      - sensor.robovac_main_brush
+      - sensor.robovac_side_brush
+      - sensor.robovac_filter
+      - sensor.robovac_cleaning_count      
       
 #################################################################
 #                                                               #
@@ -132,6 +156,51 @@ sensor:
         value_template: '{{ state.attributes.load_power }}'
         friendly_name: 'Dryer Power'
         
+## Robovac Things
+      robovac_status:
+        friendly_name: "Status"
+        value_template: "{{ states.vacuum.robovac.attributes.status }}"
+        icon_template: >-
+          {% if is_state('sensor.robovac_status', 'Cleaning') %}
+            mdi:robot-vacuum
+          {% elif is_state('sensor.robovac_status', 'Returning home') %}
+            mdi:home
+          {% elif is_state('sensor.robovac_status', 'Charging') %}
+            mdi:battery-charging-wireless
+          {% elif is_state('sensor.robovac_status', 'Idle') %}
+            mdi:sleep
+          {% elif is_state('sensor.robovac_status', 'Error') %}
+            mdi:alert
+          {% elif is_state('sensor.robovac_status', 'Charger disconnected') %}
+            mdi:power-plug-off
+          {% else %}
+            mdi:help-circle
+          {% endif %}
+      robovac_battery:
+        friendly_name: "Battery"
+        unit_of_measurement: "%"
+        device_class: battery
+        value_template: "{{ states.vacuum.robovac.attributes.battery_level }}"
+      robovac_cleaning_time:
+        friendly_name: "Cleaning Time"
+        unit_of_measurement: "Mins"
+        value_template: "{{ states.vacuum.robovac.attributes.cleaning_time }}"
+      robovac_main_brush:
+        friendly_name: "Main Brush Left"
+        unit_of_measurement: "Hrs"
+        value_template: "{{ states.vacuum.robovac.attributes.main_brush_left }}"
+      robovac_side_brush:
+        friendly_name: "Side Brush Left"
+        unit_of_measurement: "Hrs"
+        value_template: "{{ states.vacuum.robovac.attributes.side_brush_left }}"
+      robovac_filter:
+        friendly_name: "Filter Left"
+        unit_of_measurement: "Hrs"
+        value_template: "{{ states.vacuum.robovac.attributes.filter_left }}"
+      robovac_cleaning_count:
+        friendly_name: "Cleaning Count"
+        value_template: "{{ states.vacuum.robovac.attributes.cleaning_count }}"
+  
 #################################################################
 #                                                               #
 #                          Automations                          #
@@ -287,7 +356,9 @@ automation:
         data:
           entity_id: media_player.tts_kodi
           message: 'The washing machine has finished and is ready to be emptied'
-          
+      - service: notify.pushbullet
+        data:
+          message: 'The washing machine has finished and is ready to be emptied'        
 ## When power is detected, and the dryer is not in
 ## the Running state, change the status of the dryer
 ## to Running.
@@ -311,7 +382,7 @@ automation:
           entity_id: sensor.dryer_status
           state: Clean
         - condition: state
-          entity_id: sensor.dryere_status
+          entity_id: sensor.dryer_status
           state: Finishing
     action:
       - service: input_select.select_option
@@ -438,16 +509,23 @@ automation:
           message: 'The dryer has finished and is ready to be emptied'
           
 ## Charge Appliances overnight
-
-  - alias: Appliance Charging Overnight
+  - alias: Appliance Charging after Daily Clean
     trigger:
-    - platform: time
-      at: '01:00'
+    - platform: state
+      entity_id: vacuum.robovac
+      to: Returning home
     action:
     - service: switch.turn_on
       data:
         entity_id: switch.plug_158d00022ae22d
-    - delay: '02:00'
+
+## Turn off Appliance Charging
+  - alias: Turn off Appliance Charging after RoboVac Battery reaches 100%
+    trigger:
+    - platform: state
+      entity_id: sensor.robovac_battery
+      to: '100'
+    action:
     - service: switch.turn_off
       data:
         entity_id: switch.plug_158d00022ae22d
