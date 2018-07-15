@@ -1,0 +1,97 @@
+#################################################################
+#                                                               #
+#                       Packages/Notify                         #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                           Notify                              #
+#                                                               #
+#################################################################
+
+notify:
+  - name: Pushbullet
+    platform: pushbullet
+    api_key: o.hBPgrZLbNGUpPHGhC7ZXc2Ad52VUzFRB
+    
+#  - name: Galaxy_Tab_A_(2016)
+#    platform: lannouncer
+#    host: 10.0.6.3
+    
+  - platform: kodi
+    host: 10.0.3.1   
+    port: 8080                   
+    name: TTS_Kodi                    
+    username: kodi            
+    password: kodi
+
+#################################################################
+#                                                               #
+#                             TTS                               #
+#                                                               #
+#################################################################
+    
+tts:
+  - platform: google
+  
+#################################################################
+#                                                               #
+#                       Speech Scripts                          #
+#                                                               #
+#################################################################
+
+script:
+  james_briefing:
+    alias: James Briefing
+    sequence:
+      - service: tts.google_say
+        data_template:
+          entity_id: media_player.tts_kodi
+          message: >
+            {% if now().strftime("%H")|int < 12 %}
+            Good morning James.
+            {% elif now().strftime("%H")|int < 18 %}
+            Good afternoon James.
+            {% else %}
+            Good evening James.
+            {% endif %}
+            It's currently {{states.sensor.pws_temp_c.state|round}} degrees in Burleigh but feels like {{states.sensor.pws_feelslike_c.state|round}} degrees. Today will be {{states.sensor.pws_weather_1d_metric.state|replace(".", "")}}.
+            {% if now().strftime("%H")|int < 9 and now().strftime("%w")|int > 0and now().strftime("%w")|int < 6 %}
+            The current drive to Powertec in traffic is {{states.sensor.commute_to_work.state}}
+            {% endif %}
+            
+  tina_briefing:
+    alias: Tina Briefing
+    sequence:
+      - service: tts.google_say
+        data_template:
+          entity_id: media_player.tts_kodi
+          message: >
+            {% if now().strftime("%H")|int < 12 %}
+            Good morning Tina.
+            {% elif now().strftime("%H")|int < 18 %}
+            Good afternoon Tina.
+            {% else %}
+            Good evening Tina.
+            {% endif %}
+            It's currently {{states.sensor.pws_temp_c.state|round}} degrees in Burleigh but feels like {{states.sensor.pws_feelslike_c.state|round}} degrees. Today will be {{states.sensor.pws_weather_1d_metric.state|replace(".", "")}}.
+            {% if now().strftime("%H")|int < 9 and now().strftime("%w")|int > 0and now().strftime("%w")|int < 4 %}
+            Jackson has kindy today
+            {% endif %}
+            
+  overnight_briefing:
+    alias: Overnight Briefing
+    sequence:
+      - service: tts.google_say
+        data_template:
+          entity_id: media_player.tts_kodi
+          message: >
+            {% if now().strftime("%H")|int < 12 %}
+            Good morning.
+            {% elif now().strftime("%H")|int < 18 %}
+            Good afternoon.
+            {% else %}
+            Good evening.
+            {% endif %}
+            It's currently {{states.sensor.pws_temp_c.state|round}} degrees in Burleigh but feels like {{states.sensor.pws_feelslike_c.state|round}} degrees. Overnight the temperature is expected to drop to {{states.sensor.pws_temp_low_2d_c.state|round}} degrees.
