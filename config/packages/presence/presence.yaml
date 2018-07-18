@@ -30,10 +30,9 @@ group:
     name: People
     view: no
     entities:
-      #- device_tracker.admin_samsung
       - sensor.james
+      - sensor.james_castle_location
       - sensor.battery_james
-      - device_tracker.admin_iphone
       - sensor.tina
       - sensor.battery_tina
       - sensor.commute_to_work
@@ -45,7 +44,7 @@ group:
     view: no
     entities:
       - sensor.james
-      - device_tracker.admin_iphone
+      - sensor.tina
       
   ble_tracker_james:
     name: BLE Tracker James
@@ -78,22 +77,8 @@ device_tracker:
   - platform: owntracks
     max_gps_accuracy: 200
     
-#################################################################
-#                                                               #
-#                        Input Boolean                          #
-#                                                               #
-#################################################################
-
-input_boolean: 
-  james_home:
-    name: James
-    initial: off
-    icon: mdi:account
-    
-  tina_home:
-    name: Tina
-    initial: off
-    icon: mdi:account
+  - platform: bluetooth_tracker
+    request_rssi: true
     
 #################################################################
 #                                                               #
@@ -118,43 +103,33 @@ sensor:
     device_class: battery
  
 ##BLE Tracking Sensors 
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/device_tracker.galaxy_s8
-    name: BLE James Patio 
-    value_template: '{{ value_json.state }}'
-    
-  - platform: rest
-    resource: http://10.0.90.1:8123/api/states/device_tracker.galaxy_s8
-    name: BLE James Downstairs 
-    value_template: '{{ value_json.state }}'
-    
-  - platform: rest
-    resource: http://10.0.90.2:8123/api/states/device_tracker.galaxy_s8
-    name: BLE James upstairs 
-    value_template: '{{ value_json.state }}'
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/device_tracker.tina_phone
-    name: BLE Tina Patio 
-    value_template: '{{ value_json.state }}'
-    
-  - platform: rest
-    resource: http://10.0.90.1:8123/api/states/device_tracker.tina_phone
-    name: BLE Tina Downstairs 
-    value_template: '{{ value_json.state }}'
-    
-  - platform: rest
-    resource: http://10.0.90.2:8123/api/states/device_tracker.tina_phone
-    name: BLE Tina upstairs 
-    value_template: '{{ value_json.state }}'
+  - platform: mqtt_room
+    device_id: 342d24e9aa9f
+    name: 'BLE James'
+    state_topic: 'room_presence'
+    timeout: 5
+    away_timeout: 60
 
+  - platform: mqtt_room
+    device_id: 174f24f2acfc
+    name: 'BLE Tina'
+    state_topic: 'room_presence'
+    timeout: 5
+    away_timeout: 60
+    
 ## Create Sensor for Display in UI      
   - platform: template
     sensors:
       james:
         friendly_name: "James"
         value_template: >-
-          {% if is_state('input_boolean.james_home', 'on') %}
+          {% if is_state('device_tracker.galaxy_s8', 'home') %}
+            Home
+          {% elif is_state('sensor.ble_james', 'downstairs') %}
+            Home
+          {% elif is_state('sensor.ble_james', 'bedroom') %}
+            Home
+          {% elif is_state('sensor.ble_james', 'patio') %}
             Home
           {% elif is_state('device_tracker.admin_samsung', 'Powertec') %}
             Powertec
@@ -198,7 +173,7 @@ sensor:
             Away
           {% endif %}
         entity_picture_template: >-
-          {% if is_state('input_boolean.james_home', 'on') %}
+          {% if is_state('sensor.james', 'Home') %}
             /local/james.jpg
           {% endif %}
         icon_template: >-
@@ -245,9 +220,13 @@ sensor:
           {% endif %}
           
       tina:
-        friendly_name: "Tina Occupancy"
+        friendly_name: "Tina"
         value_template: >-
-          {% if is_state('input_boolean.tina_home', 'on') %}
+          {% if is_state('sensor.ble_tina', 'downstairs') %}
+            Home
+          {% elif is_state('sensor.ble_tina', 'bedroom') %}
+            Home
+          {% elif is_state('sensor.ble_tina', 'patio') %}
             Home
           {% elif is_state('device_tracker.admin_iphone', 'Kindy') %}
             Kindy
@@ -283,7 +262,7 @@ sensor:
             Away
           {% endif %}
         entity_picture_template: >-
-          {% if is_state('input_boolean.tina_home', 'on') %}
+          {% if is_state('sensor.tina', 'on') %}
             /local/tina.jpg
           {% endif %}
         icon_template: >-
@@ -320,25 +299,123 @@ sensor:
           {% else %}
             mdi:walk
           {% endif %}
-    
+
+## Room Assistant Sensors          
+      ble_james_downstairs:
+        friendly_name: "BLE James Downstairs"
+        value_template: >-
+          {% if is_state('sensor.ble_james', 'downstairs') %}
+            {{states.sensor.ble_james.attributes.distance}}
+          {% endif %}
+          
+      ble_james_bedroom:
+        friendly_name: "BLE James Upstairs"
+        value_template: >-
+          {% if is_state('sensor.ble_james', 'bedroom') %}
+            {{states.sensor.ble_james.attributes.distance}}
+          {% endif %}
+          
+      ble_james_outside:
+        friendly_name: "BLE James Outside"
+        value_template: >-
+          {% if is_state('sensor.ble_james', 'patio') %}
+            {{states.sensor.ble_james.attributes.distance}}
+          {% endif %}
+          
+      ble_tina_downstairs:
+        friendly_name: "BLE Tina Downstairs"
+        value_template: >-
+          {% if is_state('sensor.ble_tina', 'downstairs') %}
+            {{states.sensor.ble_tina.attributes.distance}}
+          {% endif %}
+          
+      ble_tina_bedroom:
+        friendly_name: "BLE Tina Upstairs"
+        value_template: >-
+          {% if is_state('sensor.ble_tina', 'bedroom') %}
+            {{states.sensor.ble_tina.attributes.distance}}
+          {% endif %}
+          
+      ble_tina_outside:
+        friendly_name: "BLE Tina Outside"
+        value_template: >-
+          {% if is_state('sensor.ble_tina', 'patio') %}
+            {{states.sensor.ble_tina.attributes.distance}}
+          {% endif %}
+
+## UI Sensor to show which location I am in the house          
+      james_castle_location:
+        friendly_name: "Kingia Castle Location"
+        value_template: >-
+          {% if (states.sensor.ble_james_downstairs.state | float) < 5 %}
+            Downstairs
+          {% elif (states.sensor.ble_james_bedroom.state | float) < 5 %}
+            Bedroom
+          {% elif (states.sensor.ble_james_outside.state | float) < 5 %}
+            Outside
+          {% elif is_state('device_tracker.galaxy_s8', 'home') %}
+            Just Arrived
+          {% else %}
+            Not Home
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.james_castle_location', 'Just Arrived') %}
+            mdi:castle
+          {% elif is_state('sensor.james_castle_location', 'Downstairs') %}
+            mdi:sofa
+          {% elif is_state('sensor.james_castle_location', 'Bedroom') %}
+            mdi:hotel
+          {% elif is_state('sensor.james_castle_location', 'Outside') %}
+            mdi:flower
+          {% else %}
+            mdi:walk
+          {% endif %}
+          
+      tina_castle_location:
+        friendly_name: "Kingia Castle Location"
+        value_template: >-
+          {% if (states.sensor.ble_tina_downstairs.state | float) < 5 %}
+            Downstairs
+          {% elif (states.sensor.ble_tina_bedroom.state | float) < 5 %}
+            Bedroom
+          {% elif (states.sensor.ble_tina_outside.state | float) < 5 %}
+            Outside
+          {% elif is_state('device_tracker.admin_iphone', 'home') %}
+            Just Arrived
+          {% else %}
+            Not Home
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.tina_castle_location', 'Just Arrived') %}
+            mdi:castle
+          {% elif is_state('sensor.tina_castle_location', 'Downstairs') %}
+            mdi:sofa
+          {% elif is_state('sensor.tina_castle_location', 'Bedroom') %}
+            mdi:hotel
+          {% elif is_state('sensor.tina_castle_location', 'Outside') %}
+            mdi:flower
+          {% else %}
+            mdi:walk
+          {% endif %}
+            
 ## Google Travel Time
   - platform: google_travel_time
     api_key: !secret google_maps
     name: 'Commute to Work'
-    origin: !secret home
-    destination: !secret work
+    origin: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    destination: 16/511 Olsen Ave, Southport QLD 4215, Australia
     
   - platform: google_travel_time
     api_key: !secret google_maps
     name: 'Commute from Work'
-    origin: !secret work
-    destination: !secret home
+    origin: 16/511 Olsen Ave, Southport QLD 4215, Australia
+    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
     
   - platform: google_travel_time
     api_key: !secret google_maps
     name: 'James to Home'
     origin: device_tracker.admin_samsung
-    destination: !secret home
+    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
     
 #################################################################
 #                                                               #
@@ -347,128 +424,17 @@ sensor:
 #################################################################
 
 automation:
-
-## Trigger Occupancy after HA Restart
-  - alias: Restart James Home
-    hide_entity: true
+## Refresh Owntracks 
+  - alias: Refresh Owntracks
     trigger:
-      - platform: homeassistant
-        event: start
-    condition:
-      - condition: state
-        entity_id: group.ble_tracker_james
-        state: 'home'
+      - platform: time
+        minutes: '/5'
     action:
-      - service: input_boolean.turn_on
+      - service: mqtt.publish
         data:
-          entity_id: input_boolean.james_home
-
-  - alias: Restart Tina Home
-    hide_entity: true
-    trigger:
-      - platform: homeassistant
-        event: start
-    condition:
-      - condition: state
-        entity_id: group.ble_tracker_tina
-        state: 'home'
-    action:
-      - service: input_boolean.turn_on
-        data:
-          entity_id: input_boolean.tina_home       
-          
-## Trigger Input Boolean James is Home
-  - alias: James Occupancy Downstairs
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: sensor.ble_james_downstairs
-        to: home
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: input_boolean.james_home
-          
-  - alias: James Occupancy Upstairs 
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: sensor.ble_james_upstairs
-        to: home
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: input_boolean.james_home
-          
-  - alias: James Occupancy Patio
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: sensor.ble_james_patio
-        to: home
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: input_boolean.james_home
-          
-## Trigger Input Boolean James is Away
-  - alias: James Occupancy Away
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: group.ble_tracker_james
-        to: not_home
-    action:
-      - service: homeassistant.turn_off
-        data:
-          entity_id: input_boolean.james_home
-          
-  ## Trigger Input Boolean Tina is Home
-  - alias: Tina Occupancy Downstairs
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: sensor.ble_tina_downstairs
-        to: home
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: input_boolean.tina_home
-          
-  - alias: Tina Occupancy Upstairs 
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: sensor.ble_tina_upstairs
-        to: home
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: input_boolean.tina_home
-          
-  - alias: Tina Occupancy Patio
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: sensor.ble_tina_patio
-        to: home
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: input_boolean.tina_home
-          
-## Trigger Input Boolean Tina is Away
-  - alias: Tina Occupancy Away
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: group.ble_tracker_tina
-        to: not_home
-    action:
-      - service: homeassistant.turn_off
-        data:
-          entity_id: input_boolean.tina_home
-  
+          topic: "owntracks/admin/samsung/cmd"
+          payload_template: '{"_type": "cmd","action": "reportLocation", "batt": %BATT}'
+        
 ## Tina Home Announcement 
   - alias: Welcome Home Tina
     trigger:
@@ -583,3 +549,15 @@ automation:
       data:
         entity_id: media_player.tts_kodi
         message: "James is at the shops call him now if you need him pick up anything else"
+        
+## Tina at shops announcement
+  - alias: Alert James I'm at the Shops
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.admin_iphone
+      event: enter
+      zone: zone.stocklands
+    action:
+    - service: notify.pushbullet
+        data:
+          message: 'Tina is at the shops do you need anything?'
