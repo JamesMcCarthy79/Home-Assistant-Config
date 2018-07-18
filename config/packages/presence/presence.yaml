@@ -559,5 +559,5 @@ automation:
       zone: zone.stocklands
     action:
     - service: notify.pushbullet
-        data:
-          message: 'Tina is at the shops do you need anything?'
+      data:
+        message: 'Tina is at the shops do you need anything?'
