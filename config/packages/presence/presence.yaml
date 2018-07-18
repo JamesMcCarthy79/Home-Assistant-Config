@@ -223,7 +223,9 @@ sensor:
       tina:
         friendly_name: "Tina"
         value_template: >-
-          {% if is_state('sensor.ble_tina', 'downstairs') %}
+          {% if is_state('device_tracker.christinas_iphone:', 'home') %}
+            Home
+          {% elif is_state('sensor.ble_tina', 'downstairs') %}
             Home
           {% elif is_state('sensor.ble_tina', 'bedroom') %}
             Home
