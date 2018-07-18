@@ -34,6 +34,7 @@ group:
       - sensor.james_castle_location
       - sensor.battery_james
       - sensor.tina
+      - sensor.tina_castle_location
       - sensor.battery_tina
       - sensor.commute_to_work
       - sensor.commute_from_work
