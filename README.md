@@ -15,7 +15,7 @@
 </p>
 <p align="center">
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.2.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--Red-v0.2.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-0.3.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v0.2.2-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v0.2.0-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.4.0-5294E2.svg"/>
