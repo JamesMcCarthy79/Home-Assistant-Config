@@ -263,7 +263,7 @@ sensor:
             Away
           {% endif %}
         entity_picture_template: >-
-          {% if is_state('sensor.tina', 'on') %}
+          {% if is_state('sensor.tina', 'Home') %}
             /local/tina.jpg
           {% endif %}
         icon_template: >-
