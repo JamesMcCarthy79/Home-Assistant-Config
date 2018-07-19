@@ -350,6 +350,8 @@ sensor:
       james_castle_location:
         friendly_name: "Kingia Castle Location"
         value_template: >-
+          {% if is_state('sensor.ble_james', 'not_home') %}
+            Not Home
           {% if (states.sensor.ble_james_downstairs.state | float) < 5 %}
             Downstairs
           {% elif (states.sensor.ble_james_bedroom.state | float) < 5 %}
@@ -377,6 +379,8 @@ sensor:
       tina_castle_location:
         friendly_name: "Kingia Castle Location"
         value_template: >-
+          {% if is_state('sensor.ble_tina', 'not_home') %}
+            Not Home
           {% if (states.sensor.ble_tina_downstairs.state | float) < 5 %}
             Downstairs
           {% elif (states.sensor.ble_tina_bedroom.state | float) < 5 %}
@@ -435,8 +439,8 @@ automation:
     action:
       - service: mqtt.publish
         data:
-          topic: "owntracks/admin/samsung/cmd"
-          payload_template: '{"_type": "cmd","action": "reportLocation", "batt": %BATT}'
+          topic: "owntracks/admin/samsung"
+          payload_template: '{"_type": "cmd","action": "reportLocation"}'
         
 ## Tina Home Announcement 
   - alias: Welcome Home Tina
