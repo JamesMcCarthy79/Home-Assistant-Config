@@ -431,8 +431,8 @@ sensor:
 #################################################################
 
 automation:
-## Refresh Owntracks 
-  - alias: Refresh Owntracks
+## Refresh Owntracks James
+  - alias: Refresh Owntracks James
     trigger:
       - platform: time
         minutes: '/5'
@@ -440,6 +440,17 @@ automation:
       - service: mqtt.publish
         data:
           topic: "owntracks/admin/samsung/cmd"
+          payload_template: '{"_type":"cmd","action":"reportLocation","batt":"%BATT"}'
+          
+## Refresh Owntracks Tina
+  - alias: Refresh Owntracks Tina
+    trigger:
+      - platform: time
+        minutes: '/5'
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "owntracks/admin/iphone/cmd"
           payload_template: '{"_type":"cmd","action":"reportLocation","batt":"%BATT"}'
         
 ## Tina Home Announcement 
