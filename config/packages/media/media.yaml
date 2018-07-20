@@ -16,13 +16,6 @@ homeassistant:
       friendly_name: "Spotify Kitchen"
       assumed_state: false
       icon: mdi:spotify
-        #icon: >
-        #  if (state === 'on') return 'mdi:spotify';
-        #  return 'mdi:spotify';
-        #icon_color: >
-        #  if (state === 'on') return 'rgb(30, 215, 96)';
-        #  return 'rgb(255,255,255)';
-        
 
 #################################################################
 #                                                               #
@@ -36,7 +29,29 @@ group:
     view: no
     entities:
       - switch.spotify_kitchen
-      
+
+#################################################################
+#                                                               #
+#                         Input_Select                          #
+#                                                               #
+#################################################################
+
+input_select:
+  media_tv:
+    name: Media TV
+    options:
+      - TV Off
+      - Morning Cartoon
+      - Evening TV
+      - Super Rugby
+      - Foxtel
+      - Netflix
+      - YouTube
+      - Apple TV
+      - FTA TV
+    initial:  TV Off
+    icon: mdi:television  
+  
 #################################################################
 #                                                               #
 #                          Sensors                              #
@@ -52,6 +67,42 @@ sensor:
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
 
+#################################################################
+#                                                               #
+#                        Rest Commands                          #
+#                                                               #
+#################################################################
+
+rest_command:
+  media_tv_app_netflix:
+    method: POST
+    url: 'http://10.0.2.1:8080/ws/app/Netflix'
+  media_tv_app_youtube:
+    method: POST
+    url: 'http://10.0.2.1:8080/ws/app/YouTube'
+  media_tv_app_foxtel:
+    method: POST
+    url: 'http://10.0.2.1:8080/ws/app/FoxtelNow'
+    
+#################################################################
+#                                                               #
+#                          Scripts                              #
+#                                                               #
+#################################################################
+
+script:
+  media_tv_app_netflix:
+    sequence:
+      - service: rest_command.media_tv_app_netflix
+      
+  media_tv_app_youtube:
+    sequence:
+      - service: rest_command.media_tv_app_youtube
+      
+  media_tv_app_foxtel:
+    sequence:
+      - service: rest_command.media_tv_app_foxtel
+    
 #################################################################
 #                                                               #
 #                         Automations                           #
@@ -164,3 +215,80 @@ automation:
     - service: scene.turn_on
       data:
         entity_id: scene.livingroom_normal
+        
+## Input Select for Media TV Off
+  - alias: Media TV Off
+    trigger:
+    - platform: state
+      entity_id: input_select.media_tv
+      to: TV Off
+    action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.tvpower
+
+## Input Select for Media TV Morning Cartoons
+  - alias: Media TV Off
+    trigger:
+    - platform: state
+      entity_id: input_select.media_tv
+      to: Morning Cartoons
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.1521695976118
+        
+## Input Select for Media TV Evening TV
+  - alias: Media TV Off
+    trigger:
+    - platform: state
+      entity_id: input_select.media_tv
+      to: Evening TV
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.1521694771100
+        
+## Input Select for Media TV Super Rugby
+  - alias: Media TV Off
+    trigger:
+    - platform: state
+      entity_id: input_select.media_tv
+      to: Super Rugby
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.1521696758169
+        
+## Input Select for Media TV Netflix
+  - alias: Media TV Off
+    trigger:
+    - platform: state
+      entity_id: input_select.media_tv
+      to: Netflix
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.media_tv_app_netflix
+        
+## Input Select for Media TV YouTube
+  - alias: Media TV Off
+    trigger:
+    - platform: state
+      entity_id: input_select.media_tv
+      to: YouTube
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.media_tv_app_youtube
+        
+## Input Select for Media TV YouTube
+  - alias: Media TV Off
+    trigger:
+    - platform: state
+      entity_id: input_select.media_tv
+      to: Foxtel
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.media_tv_app_foxtel
