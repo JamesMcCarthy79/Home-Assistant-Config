@@ -161,7 +161,7 @@ scene:
       
     name: "Climate Heat"
     entities:
-      - switch.aircon_mode_cool: off
+      - switch.aircon_mode_heat: on
       
     name: "Climate Off"
     entities:
