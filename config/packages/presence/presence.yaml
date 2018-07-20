@@ -439,8 +439,8 @@ automation:
     action:
       - service: mqtt.publish
         data:
-          topic: "owntracks/admin/samsung"
-          payload_template: '{"_type": "cmd","action": "reportLocation"}'
+          topic: "owntracks/admin/samsung/cmd"
+          payload_template: '{"_type":"cmd","action":"reportLocation","batt":"%BATT"}'
         
 ## Tina Home Announcement 
   - alias: Welcome Home Tina
