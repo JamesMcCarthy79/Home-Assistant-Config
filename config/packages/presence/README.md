@@ -8,7 +8,7 @@
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">andrewjfreyer - https://github.com/andrewjfreyer/presence</br>
+<p align="left">Room Assistant - https://github.com/mKeRix/room-assistant</br>
 <p align="left">HA Forum - https://community.home-assistant.io/t/reliable-multi-user-distributed-bluetooth-occupancy-presence-detection/50674/285</br>
 <hr --- </hr>
 
