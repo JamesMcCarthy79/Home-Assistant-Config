@@ -1,0 +1,64 @@
+#################################################################
+#                                                               #
+#                     Packages/Info Sensors                     #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.aud_usd:
+      icon: mdi:home-currency-usd
+      friendly_name: "AUD to USD"
+    sensor.gbp_usd:
+      icon: mdi:home-currency-usd
+      friendly_name: "USD to GBP"
+    sensor.aud_gbp:
+      icon: mdi:home-currency-usd
+
+#################################################################
+#                                                               #
+#                            Groups                             #
+#                                                               #
+#################################################################
+
+group:
+  currency:
+    name: Currency
+    view: no
+    entities:
+      - sensor.aud_usd
+      - sensor.aud_gbp
+      - sensor.bitcoin
+
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+################################################################# 
+
+sensor:  
+  - platform: alpha_vantage
+    api_key: !secret alphavantage_key
+    foreign_exchange:
+      - from: AUD
+        to: USD
+        name: AUD_USD
+      - from: USD
+        to: GBP
+        name: USD_GBP
+      - from: BTC
+        to: AUD
+        name: Bitcoin
+        
+## AUS to GBP Conversion
+  - platform: template
+    sensors:
+      aud_gbp:
+        value_template: "{{ states('sensor.aud_usd')|float * states('sensor.usd_gbp')|float }}"
+        friendly_name: 'AUD to GBP'
