@@ -11,9 +11,10 @@ views:
         title: People
         entities:
           - sensor.james
+          - sensor.james_castle_location
           - sensor.battery_james
-          - device_tracker.admin_iphone
-          #- sensor.tina
+          - sensor.tina
+          - sensor.tina_castle_location
           - sensor.battery_tina
           - sensor.commute_to_work
           - sensor.commute_from_work
@@ -41,20 +42,21 @@ views:
           - sun.sun
           - sensor.moon
       - type: history-graph
-        title: Presence
-        entities:
-          - sensor.james
-          - device_tracker.admin_iphone
-      - type: history-graph
-        title: Currency
-        entities:
-          - sensor.audusd
-          - sensor.bitcoin
-      - type: history-graph
         title: Weather
         entities:
           - sensor.temperature_158d0001f56350
           - sensor.temperature_158d0001f558f5
+      - type: history-graph
+        title: Currency
+        entities:
+          - sensor.aud_to_usd
+          - sensor.aud_to_gbp
+          - sensor.bitcoin_round
+      - type: history-graph
+        title: Presence
+        entities:
+          - sensor.james
+          - sensor.tina
       - type: history-graph
         title: Phone Battery
         entities:
