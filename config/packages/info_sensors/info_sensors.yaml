@@ -77,5 +77,5 @@ sensor:
         friendly_name: 'USD to GBP'
       bitcoin_round:
         unit_of_measurement: 'AUD'
-        value_template: "{{ states.sensor.bitcoin.state|round(2) }}"
+        value_template: "{{ states.sensor.bitcoin.state|round }}"
         friendly_name: 'Bitcoin'
