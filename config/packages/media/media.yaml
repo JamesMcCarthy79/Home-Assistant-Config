@@ -47,6 +47,7 @@ input_select:
       - Foxtel
       - Netflix
       - YouTube
+      - Spotify
       - Apple TV
       - FTA TV
     initial:  TV Off
@@ -82,7 +83,10 @@ rest_command:
     url: 'http://10.0.2.1:8080/ws/app/YouTube'
   media_tv_app_foxtel:
     method: POST
-    url: 'http://10.0.2.1:8080/ws/app/FoxtelNow'
+    url: 'http://10.0.2.1:8080/ws/app/Foxtel'
+  media_tv_app_spotify:
+    method: POST
+    url: 'http://10.0.2.1:8080/ws/app/com.spotify.Spotify.TV'
     
 #################################################################
 #                                                               #
@@ -102,6 +106,10 @@ script:
   media_tv_app_foxtel:
     sequence:
       - service: rest_command.media_tv_app_foxtel
+      
+  media_tv_app_spotify:
+    sequence:
+      - service: rest_command.media_tv_app_spotify
     
 #################################################################
 #                                                               #
@@ -282,7 +290,7 @@ automation:
       data:
         entity_id: script.media_tv_app_youtube
         
-## Input Select for Media TV YouTube
+## Input Select for Media TV Foxtel
   - alias: Media TV Off
     trigger:
     - platform: state
@@ -292,3 +300,14 @@ automation:
     - service: script.turn_on
       data:
         entity_id: script.media_tv_app_foxtel
+        
+## Input Select for Media TV Spotify
+  - alias: Media TV Off
+    trigger:
+    - platform: state
+      entity_id: input_select.media_tv
+      to: Spotify
+    action:
+    - service: script.turn_on
+      data:
+        entity_id: script.media_tv_app_spotify
