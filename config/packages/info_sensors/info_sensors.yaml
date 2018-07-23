@@ -19,9 +19,9 @@ homeassistant:
       icon: mdi:home-currency-usd
       friendly_name: "USD to GBP"
     sensor.aud_to_gbp:
-      icon: mdi:home-currency-usd
+      icon: mdi:currency-usd
     sensor.aud_to_usd:
-      icon: mdi:home-currency-usd
+      icon: mdi:currency-usd
     sensor.bitcoin_round:
       icon: mdi:bitcoin
 
