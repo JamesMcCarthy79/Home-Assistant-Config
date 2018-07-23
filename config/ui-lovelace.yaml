@@ -529,12 +529,6 @@ views:
       - type: plant-status
         title: Herb Patch
         entity: plant.herb_patch
-      - type: history-graph
-        entity: history_graph.bougainvillea_moisture
-      - type: history-graph
-        entity: history_graph.chilli_moisture
-      - type: history-graph
-        entity: history_graph.citrus_moisture
       - type: plant-status
         title: Jasmine Bed
         entity: plant.jasmine_bed
