@@ -24,6 +24,12 @@ homeassistant:
       icon: mdi:currency-usd
     sensor.bitcoin_round:
       icon: mdi:bitcoin
+    sensor.stats_tv:
+      icon: mdi:theater
+      friendly_name: 'TV (7 days)' 
+    sensor.stats_work:
+      icon: mdi:domain
+      friendly_name: 'Working (7 days)'
 
 #################################################################
 #                                                               #
@@ -39,6 +45,13 @@ group:
       - sensor.aud_to_usd
       - sensor.aud_to_gbp
       - sensor.bitcoin_round
+      
+  stats:
+    name: Stats
+    view: no
+    entities:
+      - sensor.stats_tv
+      - sensor.stats_work
 
 #################################################################
 #                                                               #
@@ -79,3 +92,21 @@ sensor:
         unit_of_measurement: 'AUD'
         value_template: "{{ states.sensor.bitcoin.state|round }}"
         friendly_name: 'Bitcoin'
+        
+  - platform: history_stats
+    name: stats_tv
+    entity_id: media_player.media_4k_tv
+    state: 'on'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      days: 7
+
+  - platform: history_stats
+    name: stats_work
+    entity_id: sensor.james
+    state: 'Powertec'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      days: 7
