@@ -8,6 +8,7 @@
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
+<p align="left">vpnmaster - https://github.com/vpnmaster/homeassistant-custom-components
 <p align="left">Me :bowtie:</br>
 
 <hr --- </hr>
@@ -19,6 +20,7 @@
 <p align="left">- Preconfigured Switches for IR or Sonoff devices</br>
 <p align="left">- Optional Temperature/Humidity/Lux Sensors</br>
 <p align="left">- Notify Component</br>
+<p align="left">- Broadlink IR Climate Component</br>
 <h4 align="left">Package User Inputs:</h4>
 <p align="left">******************************</br>
 <h4 align="left">Package Scenes:</h4>
