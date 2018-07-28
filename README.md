@@ -15,7 +15,7 @@
 </p>
 <p align="center">
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.2.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-0.4.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-0.5.0-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v0.2.2-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v0.2.0-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.4.0-5294E2.svg"/>
@@ -65,9 +65,9 @@
 
 <h3 align="left">Home Assistant Software</h3>
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/HA%20logo%202%20.png" width="200"/>
-<p align="left">I have used Hassio with standard Add-On store packages which include Appdaemon for use with HaDashboard, Mosquitto Broker for MQTT Broker & Node-RED for more complex Automation flows. I have now installed a stand alone RPi with Grafana, InfluxDB and Node-RED to take the strain off resources on my HA device and to also have access to a larger hdd for database storage.</p>
+<p align="left">Lately I have started to notice the automations becoming sluggish and this is due to the resources of my HA Server becoming occupied with background tasks like device tracking and sensor polling. With the recent release of HASSIO on its new operating system HASSOS I decided now was a good time to upgrade and splinter my automations off my main HA instance onto a dedicated RPi. Splitting my HA tasks across 3 Pis has made a huge difference and myautomations have become snappy again whilst all my sensors can run in the background not effecting the performance of my essential tasks. I used the MQTT Statestream to keep all the Pis insync with each other. I have used Hassio with standard Add-On store packages which include Appdaemon for use with HaDashboard, Mosquitto Broker for MQTT Broker & Node-RED for more complex Automation flows. I have now installed a stand alone RPi with Grafana, InfluxDB and Node-RED to take the strain off resources on my HA device and to also have access to a larger hdd for database storage. My config in this repo is a combination of all my Pi's as if you were running it all of the same device to save confusion message me if you would like more info on how I splintered off the automations to a dedicated device.</p>
 <p align="center">
-  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/HA%20Device%20Topo.png"/>
+  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/HA%20Device%20Topo%202.png"/>
 </p>
 <hr --- </hr>
 
