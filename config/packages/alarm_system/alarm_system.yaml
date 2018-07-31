@@ -167,7 +167,7 @@ automation:
     - platform: state
       entity_id: alarm_control_panel.ha_alarm
       from: pending
-      to: disarm
+      to: disarmed
     action:
     - service: tts.google_say
       data:
