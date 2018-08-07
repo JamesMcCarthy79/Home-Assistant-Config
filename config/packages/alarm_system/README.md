@@ -36,7 +36,7 @@
 <p align="left">This automation uses the from "triggered" alarm state to trigger the Xiaomi Gateway to stop playing the siren sound. It also plays a TTS message over the in-house system to let us know the alarm has been deactivated. Lastly it will trigger the command_line switch which uses a python script that notifies my Android phone that Alarm has been deactivated.</p>
 <hr --- </hr>
 
-| Automations! | [Node-RED-Flow](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/alarm_system/Node-Red-Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/alarm_system/alarm_system.yaml) |
+| Automations! | [Node-RED-Flow]https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages/alarm_system/Node-RED-Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/alarm_system/alarm_system.yaml) |
 | --- | --- | --- |
 
 | Take me back to the packages thanks!| [Packages](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages) | 
