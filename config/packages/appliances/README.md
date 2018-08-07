@@ -4,7 +4,7 @@
 <h1 align="center">Appliance Control Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
 <hr *** </hr>
-<p align="center">This package enables control and notifications of my smart and not so smart appliances. I get notifications when my washer or dryer have finished thiers cycles over TTS. This also allows me to automate my Xiaomi Robovac.</p>
+<p align="center">This package enables control and notifications of my smart and not so smart appliances. I get notifications when my washer or dryer have finished thiers cycles over TTS. This also allows me to automate my Xiaomi Robovac. You can use the automations within the yaml file or use the Node-RED Flow in the link below.</p>
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
@@ -33,6 +33,9 @@
 <h4 align="left">Robovac Error Notification</h4>
 <p align="left">Anyone with a Xiaomi product knows that all notifications happen in Chinese these announcements can mean its finished, stuck, needs a filter change, charging etc, so in case of my Robovac encoutering an error I monitor that state and send a pushbullet notification to tell me there is an issu with the Robovac.</p>
 <hr --- </hr>
+
+| Automations! | [Node-RED-Flow](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/appliances/Node-RED-Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/appliances/appliances.yaml) |
+| --- | --- | --- |
 
 | Take me back to the packages thanks!| [Packages](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages) | 
 | --- | --- |
