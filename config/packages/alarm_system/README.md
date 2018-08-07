@@ -4,7 +4,7 @@
 <h1 align="center">Alarm System Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
 <hr *** </hr>
-<p align="center">This package utilises the MQTT Control Panel in conjunction with my Xiaomi Gateway and Door, Window & Motion Sensors to act as an Alarm System.</p>
+<p align="center">This package utilises the MQTT Control Panel in conjunction with my Xiaomi Gateway and Door, Window & Motion Sensors to act as an Alarm System. You can use the automations within the yaml file or use the Node-RED Flow in the link below.</p>
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
@@ -35,6 +35,9 @@
 <h4 align="left">Stop Alarm Siren</h4>
 <p align="left">This automation uses the from "triggered" alarm state to trigger the Xiaomi Gateway to stop playing the siren sound. It also plays a TTS message over the in-house system to let us know the alarm has been deactivated. Lastly it will trigger the command_line switch which uses a python script that notifies my Android phone that Alarm has been deactivated.</p>
 <hr --- </hr>
+
+| Automations! | [Node-RED-Flow](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/alarm_system/Node-Red-Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/alarm_system/alarm_system.yaml) |
+| --- | --- | --- |
 
 | Take me back to the packages thanks!| [Packages](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages) | 
 | --- | --- |
