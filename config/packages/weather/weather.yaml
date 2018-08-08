@@ -81,6 +81,12 @@ sensor:
       - weather_3d_metric
       - weather_4d_metric
       
+  - platform: template
+    sensors:
+      bom_temp:
+        friendly_name: "Gold Coast"
+        value_template: "{{ states.weather.bom_gold_coast.attributes.temperature }}"
+      
 ####################################################
 #                                                  #
 #                     Weather                      #
