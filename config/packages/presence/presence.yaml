@@ -18,6 +18,10 @@ homeassistant:
       icon: 'mdi:home-variant'
     sensor.james_to_home:
       icon: 'mdi:home-variant'
+    sensor.tina_to_home:
+      icon: 'mdi:home-variant'
+    sensor.next_bus:
+      icon: 'mdi:bus-clock'
  
 #################################################################
 #                                                               #
