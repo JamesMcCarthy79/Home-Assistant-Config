@@ -86,6 +86,7 @@ sensor:
       bom_temp:
         friendly_name: "Gold Coast"
         value_template: "{{ states.weather.bom_gold_coast.attributes.temperature }}"
+        device_class: temperature
       
 ####################################################
 #                                                  #
