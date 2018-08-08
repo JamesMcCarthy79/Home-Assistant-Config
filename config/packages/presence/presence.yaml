@@ -430,6 +430,15 @@ sensor:
     origin: device_tracker.admin_samsung
     destination: your destination
     
+  - platform: template
+    sensors:
+      next_bus:
+        friendly_name: Time to Next Bus
+        unit_of_measurement: min
+        value_template: >
+          {% set min_now = states('sensor.time').split(':')[1]|int %}
+          {{ 44 - min_now if min_now < 44 else 104 - min_now }}
+    
 #################################################################
 #                                                               #
 #                         Automations                           #
