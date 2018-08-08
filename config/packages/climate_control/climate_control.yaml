@@ -248,6 +248,31 @@ scene:
       
 #################################################################
 #                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: min_max
+    name: "Lower Temperature"
+    type: mean
+    round_digits: 1
+    entity_ids:
+      - sensor.temperature_158d0001f558f5
+      - sensor.temperature_158d0001f56682
+      
+  - platform: min_max
+    name: "Upstairs Temperature"
+    type: mean
+    round_digits: 1
+    entity_ids:
+      - sensor.temperature_158d0001f534e1
+      - sensor.temperature_158d0001f53de9
+      - sensor.temperature_158d0001f54df3
+      - sensor.temperature_158d00022c7248
+      
+#################################################################
+#                                                               #
 #                         Automations                           #
 #                                                               #
 #################################################################
