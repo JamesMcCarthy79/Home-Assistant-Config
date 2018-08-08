@@ -7,7 +7,7 @@
   - platform: alexa
     email: !secret alexa_user
     password: !secret alexa_pass
-    url: amazon.com
+    url: amazon.com.au
 
 ####################################################
 #                                                  #
