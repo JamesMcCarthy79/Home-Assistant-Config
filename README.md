@@ -35,7 +35,7 @@
 
 <hr --- </hr> 
 
-| [Lovelace Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Lovelace%20Screenshots) |
+| [Lovelace Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Lovelace%20Screenshots/01.%20Home-new.png) |
 | --- |
 | [<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Lovelace%20Screenshots/01.%20Home.png"/>](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Lovelace%20Screenshots) |
 
