@@ -1,68 +1,249 @@
 resources:
-  - url: /local/custom_ui/weather-card.js
+  - url: /local/custom_ui/dark-sky-weather-card.js?v=4
     type: js
-
 name: Kingia Castle
 views:
   - icon: mdi:castle
     name: Home
     cards:
-      - type: entities
-        title: People
-        entities:
-          - sensor.james
-          - sensor.james_castle_location
-          - sensor.battery_james
-          - sensor.tina
-          - sensor.tina_castle_location
-          - sensor.battery_tina
-          - sensor.commute_to_work
-          - sensor.commute_from_work
-          - sensor.james_to_home
-      - type: entities
-        title: Date & Time
-        entities:
-          - sensor.date
-          - sensor.time
-          - sensor.claire_time
-          - sensor.mum_time
-      - type: weather-forecast
-        entity: weather.bom_gold_coast
-      #- type: "custom:weather-card"
-      - type: entities
-        title: Daily Forcast
-        entities:
-          - sensor.pws_temp_high_1d_c
-          - sensor.pws_temp_high_2d_c
-          - sensor.pws_temp_high_3d_c
-          - sensor.pws_temp_high_4d_c
-      - type: entities
-        title: Sun
-        entities:
-          - sun.sun
-          - sensor.moon
-      - type: history-graph
-        title: Weather
-        entities:
-          - sensor.temperature_158d0001f56350
-          - sensor.temperature_158d0001f558f5
-      - type: history-graph
-        title: Currency
-        entities:
-          - sensor.aud_to_usd
-          - sensor.aud_to_gbp
-          - sensor.bitcoin_round
-      - type: history-graph
-        title: Presence
-        entities:
-          - sensor.james
-          - sensor.tina
-      - type: history-graph
-        title: Phone Battery
-        entities:
-          - sensor.battery_james
-          - sensor.battery_tina
-                    
+      - type: vertical-stack
+        cards:
+        
+#################################################################
+#                                                               #
+#                           Presence                            #
+#                                                               #
+################################################################# 
+
+          - type: horizontal-stack
+            cards:
+              - type: picture-elements
+                image: /local/lovelace/home/james_3.jpg
+                elements:
+                  - type: state-label
+                    entity: sensor.james
+                    style:
+                      top: 93%
+                      left: 20%
+                      color: white
+                  - type: state-icon
+                    entity: sensor.battery_james
+                    style:
+                      top: 92%
+                      left: 77%
+                      color: white
+                  - type: state-label
+                    entity: sensor.battery_james
+                    style:
+                      top: 93%
+                      left: 90%
+                      color: white
+                
+              - type: picture-elements
+                image: /local/lovelace/home/tina_2.jpg
+                elements:
+                  - type: state-label
+                    entity: sensor.tina
+                    style:
+                      top: 92%
+                      left: 15%
+                      color: white
+                  - type: state-icon
+                    entity: sensor.battery_tina
+                    style:
+                      top: 91%
+                      left: 77%
+                      color: white
+                  - type: state-label
+                    entity: sensor.battery_tina
+                    style:
+                      top: 92%
+                      left: 90%
+                      color: white
+                      
+#################################################################
+#                                                               #
+#                         Travel Time                           #
+#                                                               #
+################################################################# 
+                
+          - type: entities
+            entities:
+              - sensor.commute_to_work
+              - sensor.next_bus
+              - sensor.james_to_home
+              - sensor.tina_to_home
+
+#################################################################
+#                                                               #
+#                            Glance                             #
+#                                                               #
+################################################################# 
+
+          - type: picture-elements
+            image: /local/lovelace/home/house.png
+            elements:
+              - type: state-icon
+                icon: mdi:lightbulb
+                entity: group.downstairs_lights
+                tap_action: navigate
+                navigation_path: /lovelace/lights
+                style:
+                  top: 88%
+                  left: 52%
+                  color: white
+                  
+              - type: state-icon
+                entity: alarm_control_panel.ha_alarm
+                style:
+                  top: 88%
+                  left: 5%
+                  color: white
+              - type: state-icon
+                entity: group.doors
+                style:
+                  top: 88%
+                  left: 14%
+                  color: white
+              - type: state-icon
+                entity: sensor.trash_day
+                style:
+                  top: 88%
+                  left: 23%
+                  color: white
+              - type: state-icon
+                entity: sensor.recycle_day
+                style:
+                  top: 88%
+                  left: 32%
+                  color: white
+                  
+                        ## temp
+              - type: state-icon
+                entity: sensor.lower_temperature
+                tap_action: more-info
+                style:
+                  top: 82%
+                  left: 72% 
+                  color: white
+              - type: state-label
+                entity: sensor.lower_temperature
+                style:
+                  top: 95%
+                  left: 72%
+                  color: white
+
+              - type: state-icon
+                entity: sensor.upstairs_temperature
+                tap_action: more-info
+                style:
+                  top: 82%
+                  left: 87% 
+                  color: white
+              - type: state-label
+                entity: sensor.upstairs_temperature
+                style:
+                  top: 95%
+                  left: 87%
+                  color: white
+
+              - type: state-label
+                entity: sensor.bom_temp
+                style:
+                  top: 12%
+                  left: 9%
+                  color: white
+                  
+#################################################################
+#                                                               #
+#                            Weather                            #
+#                                                               #
+################################################################# 
+
+      - type: vertical-stack
+        cards:
+          - type: custom:dark-sky-weather-card
+            entity_sun: sun.sun
+            entity_daily_summary: sensor.dark_sky_daily_summary
+            entity_current_conditions: sensor.dark_sky_icon  
+            entity_humidity: sensor.dark_sky_humidity
+            entity_pressure: sensor.dark_sky_pressure
+            entity_temperature: sensor.dark_sky_temperature
+            entity_visibility: sensor.dark_sky_visibility
+            entity_wind_bearing: sensor.dark_sky_wind_bearing
+            entity_wind_speed: sensor.dark_sky_wind_speed
+            entity_forecast_high_temp_1: sensor.dark_sky_daytime_high_temperature_1
+            entity_forecast_high_temp_2: sensor.dark_sky_daytime_high_temperature_2
+            entity_forecast_high_temp_3: sensor.dark_sky_daytime_high_temperature_3
+            entity_forecast_high_temp_4: sensor.dark_sky_daytime_high_temperature_4
+            entity_forecast_high_temp_5: sensor.dark_sky_daytime_high_temperature_5
+            entity_forecast_low_temp_1: sensor.dark_sky_overnight_low_temperature
+            entity_forecast_low_temp_2: sensor.dark_sky_overnight_low_temperature_1
+            entity_forecast_low_temp_3: sensor.dark_sky_overnight_low_temperature_2
+            entity_forecast_low_temp_4: sensor.dark_sky_overnight_low_temperature_3
+            entity_forecast_low_temp_5: sensor.dark_sky_overnight_low_temperature_4
+            entity_forecast_icon_1: sensor.dark_sky_icon_1
+            entity_forecast_icon_2: sensor.dark_sky_icon_2
+            entity_forecast_icon_3: sensor.dark_sky_icon_3
+            entity_forecast_icon_4: sensor.dark_sky_icon_4
+            entity_forecast_icon_5: sensor.dark_sky_icon_5
+            
+#################################################################
+#                                                               #
+#                         Date & Time                           #
+#                                                               #
+################################################################# 
+        
+          - type: horizontal-stack
+            cards:
+              - type: picture-entity
+                entity: sensor.date 
+                image: https://images.pexels.com/photos/9352/glass-time-watch-business.jpg?cs=srgb&dl=clock-hours-minutes-9352.jpg&fm=jpg
+                tap_action: more-info
+              - type: picture-entity
+                entity: sensor.time
+                image: https://images.pexels.com/photos/9352/glass-time-watch-business.jpg?cs=srgb&dl=clock-hours-minutes-9352.jpg&fm=jpg
+                tap_action: more-info
+                
+          - type: horizontal-stack
+            cards:
+              - type: picture-entity
+                entity: sensor.claire_time
+                image: https://images.pexels.com/photos/9352/glass-time-watch-business.jpg?cs=srgb&dl=clock-hours-minutes-9352.jpg&fm=jpg
+                tap_action: more-info
+              - type: picture-entity
+                entity: sensor.mum_time
+                image: https://images.pexels.com/photos/9352/glass-time-watch-business.jpg?cs=srgb&dl=clock-hours-minutes-9352.jpg&fm=jpg
+                tap_action: more-info
+                
+#################################################################
+#                                                               #
+#                           Currency                            #
+#                                                               #
+################################################################# 
+
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Currency
+            entities:
+              - sensor.aud_to_usd
+              - sensor.aud_to_gbp
+              - sensor.bitcoin_round
+              
+#################################################################
+#                                                               #
+#                             Stats                             #
+#                                                               #
+################################################################# 
+              
+          - type: history-graph
+            title: Stats
+            entities:
+              - sensor.stats_tv
+              - sensor.stats_work
+### Everything from here will be changed in the coming weeks ###
+
   - icon: mdi:security-home
     name: Security
     cards:
