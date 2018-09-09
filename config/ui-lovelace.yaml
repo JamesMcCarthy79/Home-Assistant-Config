@@ -242,44 +242,79 @@ views:
             entities:
               - sensor.stats_tv
               - sensor.stats_work
-### Everything from here will be changed in the coming weeks ###
+
+#################################################################
+#                                                               #
+#                           Security                            #
+#                                                               #
+################################################################# 
 
   - icon: mdi:security-home
     name: Security
+    panel: false
     cards:
-      - type: entities
-        title: Alarms
+      - type: entity-filter
         entities:
-          - alarm_control_panel.ha_alarm
-          - binary_sensor.smoke_sensor_158d0001b8ddc7
-          - binary_sensor.smoke_sensor_158d0001b8deba
-      - type: entities
-        title: Doors
-        entities:
-          - binary_sensor.door_window_sensor_158d00022016b2
-          - binary_sensor.door_window_sensor_158d000225432d
-          - binary_sensor.door_window_sensor_158d0001e73c09
+          - entity: alarm_control_panel.ha_alarm
+            name: Alarm
+          - entity: binary_sensor.smoke_sensor_158d0001b8ddc7
+            name: Downstairs Smoke
+          - entity: binary_sensor.smoke_sensor_158d0001b8deba
+            name: Upstairs Smoke
+          - entity: binary_sensor.motion_sensor_158d0001e5d118
+            name: Living
+          - entity: binary_sensor.motion_sensor_158d0001e5cf11
+            name: Playroom
+          - entity: binary_sensor.motion_sensor_158d0001e5d147
+            name: Entrance
+          - entity: binary_sensor.motion_sensor_158d000200ea5b
+            name: Patio
+          - entity: binary_sensor.motion_sensor_158d00022c2f21
+            name: Staircase
+          - entity: binary_sensor.motion_sensor_158d000201351c
+            name: Jackson
+          - entity: binary_sensor.motion_sensor_158d0002006d46
+            name: Hudson
+          - entity: binary_sensor.motion_sensor_158d000200e4ab
+            name: Bathroom
+          - entity: binary_sensor.motion_sensor_158d0001e63803
+            name: Bedroom
+          - entity: binary_sensor.door_window_sensor_158d00022016b2
+            name: Front
+          - entity: binary_sensor.door_window_sensor_158d000225432d
+            name: Patio
+          - entity: binary_sensor.door_window_sensor_158d0001e73c09
+            name: Back
           - sensor.garage
-      - type: entities
-        title: Windows
-        entities:
-          - binary_sensor.door_window_sensor_158d0001e73af4
-          - binary_sensor.door_window_sensor_158d0001e73a73
-          - binary_sensor.door_window_sensor_158d0001e73aad
-          - binary_sensor.door_window_sensor_158d0001e74875
-          - binary_sensor.door_window_sensor_158d0001f36741
-      - type: entities
-        title: Motion
-        entities:
-          - binary_sensor.motion_sensor_158d0001e5cf11
-          - binary_sensor.motion_sensor_158d0001e5d118
-          - binary_sensor.motion_sensor_158d0001e5d147
-          - binary_sensor.motion_sensor_158d000200ea5b
-          - binary_sensor.motion_sensor_158d00022c2f21
-          - binary_sensor.motion_sensor_158d000201351c
-          - binary_sensor.motion_sensor_158d0002006d46
-          - binary_sensor.motion_sensor_158d000200e4ab
-          - binary_sensor.motion_sensor_158d0001e63803
+          - entity: binary_sensor.door_window_sensor_158d0001e73af4
+            name: Kitchen
+          - entity: binary_sensor.door_window_sensor_158d0001e73a73
+            name: Jackson
+          - entity: binary_sensor.door_window_sensor_158d0001e73aad
+            name: Hudson
+          - entity: binary_sensor.door_window_sensor_158d0001e74875
+            name: Bathroom
+          - entity: binary_sensor.door_window_sensor_158d0001f36741
+            name: Bedroom
+        state_filter:
+          - "on"
+          - "disarmed"
+          - "pending"
+          - "armed_home"
+          - "armed_away"
+          - "triggered"
+        card:
+          type: picture-glance
+          title: Security
+          image: https://cryptocoinspy.com/wp-content/uploads/2018/06/compass-needle-pointing-the-word-security-1000x743.jpg
+          
+### Everything from here will be changed in the coming weeks ###
+
+#################################################################
+#                                                               #
+#                          Downstairs                           #
+#                                                               #
+#################################################################
 
   - icon: mdi:sofa
     name: Downstairs
