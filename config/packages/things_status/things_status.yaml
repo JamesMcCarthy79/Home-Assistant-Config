@@ -90,15 +90,16 @@ device_tracker:
       dining_light_bulb: 10.0.50.4
       bedroom_light_bulb: 10.0.50.5
       lounge_fan_switch: 10.0.60.1
-      kitchen_dining_light_switch: 10.0.60.2
+      kitchen_light_switch: 10.0.60.2
       patio_light_switch: 10.0.60.3
       lounge_light_switch: 10.0.60.4
       master_bedroom_fan_switch: 10.0.60.5
+      dining_light_switch: 10.0.60.6
       patio_led_switch: 10.0.70.1
       garage_door_sensor: 10.0.80.1
       coffee_machine_sensor: 10.0.80.2
-      ble_tracker_downstairs: 10.0.90.1
-      ble_tracker_upstairs: 10.0.90.2
+      ble_tracker_downstairs: 10.0.20.6
+      ble_tracker_upstairs: 10.0.20.7
       playroom_fan: 10.0.100.1
       robovac: 10.0.100.2
       
@@ -112,7 +113,7 @@ binary_sensor:
   - platform: template
     sensors:
 ## Cameras
-      baby_monitor:
+      baby_monitor_camera:
         friendly_name: Baby Monitor
         device_class: connectivity
         entity_id: device_tracker.baby_monitor_camera
@@ -180,13 +181,24 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-      kitchen_dining_light_switch:
-        friendly_name: Kitchen/Dining Light Switch
+      kitchen_light_switch:
+        friendly_name: Kitchen Light Switch
         device_class: connectivity
-        entity_id: device_tracker.kitchen_dining_light_switch
-        value_template: "{{ is_state('device_tracker.kitchen_dining_light_switch', 'home') }}"
+        entity_id: device_tracker.kitchen_light_switch
+        value_template: "{{ is_state('device_tracker.kitchen_light_switch', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.kitchen_dining_light_switch', 'home') %}
+          {% if is_state('device_tracker.kitchen_light_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      kitchen_dining_light_switch:
+        friendly_name: Dining Light Switch
+        device_class: connectivity
+        entity_id: device_tracker.dining_light_switch
+        value_template: "{{ is_state('device_tracker.dining_light_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.dining_light_switch', 'home') %}
             mdi:toggle-switch
           {% else %}
             mdi:alert
@@ -293,7 +305,7 @@ binary_sensor:
             mdi:alert
           {% endif %}
       ble_tracker_upstairs:
-        friendly_name: BLE Tracker Downstairs
+        friendly_name: BLE Tracker Upstairs
         device_class: connectivity
         entity_id: device_tracker.ble_tracker_upstairs
         value_template: "{{ is_state('device_tracker.ble_tracker_upstairs', 'home') }}"
