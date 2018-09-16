@@ -168,7 +168,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Bathroom Heat Switch ##
 - platform: mqtt
   name: "Bathroom Heat Switch"
@@ -177,7 +177,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Bathroom Light Switch ##
 - platform: mqtt
   name: "Bathroom Light Switch"
@@ -186,16 +186,16 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Dining Light Switch ##
 - platform: mqtt
   name: "Dining Light Switch"
-  command_topic: "cmnd/kitchen_dining_switch/POWER2"
-  state_topic: "stat/kitchen_dining_switch/POWER2"
+  command_topic: "cmnd/kitchen_light_switch/POWER"
+  state_topic: "stat/kitchen_light_switch/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Hall Light Switch ##
 - platform: mqtt
   name: "Hall Light Switch"
@@ -204,7 +204,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true  
+  retain: false 
 ## Hudson Light Switch ##
 - platform: mqtt
   name: "Hudson Light Switch"
@@ -213,7 +213,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Hudson Fan Switch High ##
 - platform: mqtt
   name: "Hudson Fan Switch High"
@@ -222,7 +222,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Hudson Fan Switch Med ##
 - platform: mqtt
   name: "Hudson Fan Switch Med"
@@ -231,7 +231,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Hudson Fan Switch Low ##
 - platform: mqtt
   name: "Hudson Fan Switch Low"
@@ -240,7 +240,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Jackson Light Switch ##
 - platform: mqtt
   name: "Jackson Light Switch"
@@ -249,7 +249,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Jackson Fan Switch High ##
 - platform: mqtt
   name: "Jackson Fan Switch High"
@@ -258,7 +258,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Jackson Fan Switch Med ##
 - platform: mqtt
   name: "Jackson Fan Switch Med"
@@ -267,7 +267,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Jackson Fan Switch Low ##
 - platform: mqtt
   name: "Jackson Fan Switch Low"
@@ -276,16 +276,16 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Kitchen Light Switch ##
 - platform: mqtt
   name: "Kitchen Light Switch"
-  command_topic: "cmnd/kitchen_dining_switch/POWER1"
-  state_topic: "stat/kitchen_dining_switch/POWER1"
+  command_topic: "cmnd/kitchen_light_switch/POWER"
+  state_topic: "stat/kitchen_light_switch/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Lounge Fan Switch High ##
 - platform: mqtt
   name: "Lounge Fan Switch High"
@@ -294,7 +294,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Lounge Fan Switch Med ##
 - platform: mqtt
   name: "Lounge Fan Switch Med"
@@ -303,7 +303,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Lounge Fan Switch Low ##
 - platform: mqtt
   name: "Lounge Fan Switch Low"
@@ -312,7 +312,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Lounge Light Switch ##
 - platform: mqtt
   name: "Lounge Light Switch"
@@ -321,7 +321,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Master Light Switch ##
 - platform: mqtt
   name: "Master Light Switch"
@@ -330,7 +330,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Master Fan Switch High ##
 - platform: mqtt
   name: "Master Fan Switch High"
@@ -339,7 +339,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Master Fan Switch Med ##
 - platform: mqtt
   name: "Master Fan Switch Med"
@@ -348,7 +348,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Master Fan Switch Low ##
 - platform: mqtt
   name: "Master Fan Switch Low"
@@ -357,7 +357,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Master Wardrobe Switch ##
 - platform: mqtt
   name: "Master Wardrobe Switch"
@@ -366,7 +366,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
+  retain: false
 ## Patio Light Switch ##
 - platform: mqtt
   name: "Patio Light Switch"
@@ -375,7 +375,7 @@
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true  
+  retain: false
 - platform: mqtt
   name: "XMAS Lights"
   command_topic: "cmnd/sonoff-s20-xmas/POWER"
