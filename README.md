@@ -8,7 +8,7 @@
 <p align="center">Be sure to :star: my repo!</p>
 <p align="center">
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.75.3-brightgreen.svg"/>
+  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.75.3-yellow.svg"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/issues"><img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <href="http://unlicense.org/"><img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
