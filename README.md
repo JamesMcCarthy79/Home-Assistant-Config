@@ -15,12 +15,18 @@
 </p>
 <p align="center">
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-0.6.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-0.7.0-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v1.1.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v1.1.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.6.0-5294E2.svg"/>
   <href="https://github.com/mKeRix/room-assistant"><img src="https://img.shields.io/badge/RoomAssistant-1.0.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v2.5.0-5294E2.svg"/>
+</p>
+<p align="center">
+  <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
+  <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/configurator"><img src="https://img.shields.io/badge/Configurator-v2.0-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v6.0-5294E2.svg"/>
 </p>
 <hr --- </hr> 
 
