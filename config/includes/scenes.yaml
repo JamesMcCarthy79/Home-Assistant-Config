@@ -1,5 +1,11 @@
 ####################################################
 #                                                  #
+#                    Bathroom                      #
+#                                                  #
+####################################################
+
+####################################################
+#                                                  #
 #                     Lights                       #
 #                                                  #
 ####################################################
@@ -63,6 +69,17 @@
           transition: 2
           brightness_pct: 100
           color_temp: 175
+          
+- name: Backlights Night
+  entities:
+      light.gateway_light_7811dcfd812f:
+          state: on
+          brightness: 255
+          rgb_color: [0,0,255]
+      light.gateway_light_7811dce13ad6:
+          state: on
+          brightness: 255
+          rgb_color: [0,0,255]
       
 ####################################################
 #                                                  #
