@@ -10,3 +10,41 @@
   username: admin
   password: !secret camera_password
   authentication: digest
+  
+  ####################################################
+#                                                  #
+#                 Xiaomi Cameras                   #
+#                                                  #
+####################################################
+ 
+- platform: ffmpeg
+  name: Dining
+  input: -rtsp_transport tcp -i rtsp://yourip:yourport/
+  
+- platform: ffmpeg
+  name: Living
+  input: -rtsp_transport tcp -i rtsp://yourip:yourport/
+  
+- platform: ffmpeg
+  name: Bedroom
+  input: -rtsp_transport tcp -i rtsp://yourip:yourport/
+  
+- platform: ffmpeg
+  name: Jackson
+  input: -rtsp_transport tcp -i rtsp://yourip:yourport/
+  
+- platform: ffmpeg
+  name: Hudson
+  input: -rtsp_transport tcp -i rtsp://yourip:yourport/
+  
+- platform: ffmpeg
+  name: Stairscase
+  input: -rtsp_transport tcp -i rtsp://yourip:yourport/
+  
+- platform: ffmpeg
+  name: Entrance
+  input: -rtsp_transport tcp -i rtsp://yourip:yourport/
+  
+- platform: ffmpeg
+  name: Patio
+  input: -rtsp_transport tcp -i rtsp://yourip:yourport/
