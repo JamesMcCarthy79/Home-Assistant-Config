@@ -384,6 +384,15 @@
   payload_on: "ON"
   payload_off: "OFF"
   retain: true
+  ## Toilet Light Bulb ##
+- platform: mqtt
+  name: "Upstairs Toilet Bulb"
+  state_topic: "stat/sonoff-light-toilet/POWER"
+  command_topic: "cmnd/sonoff-light-toilet/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
   
 ####################################################
 #                                                  #
