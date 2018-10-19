@@ -48,16 +48,15 @@ tv:
   name: Scenes
   view: no
   entities:
-    - script.1521695976118
-    - script.1521694771100
-    - script.1521696758169
     - switch.tvpower
+    - input_select.media_tv
     - light.gateway_light_7811dcfd812f
     - light.gateway_light_7811dce13ad6
     - scene.story_time
+    - media_player.media_room_tv
     - media_player.media_4k_kodi
     - scene.livingroom_bright
-    - light.hall_bulb
+    - input_number.hall_brightness
     - switch.goodnight
   control: hidden
     
@@ -160,6 +159,7 @@ jackson temperature:
   entities:
     - sensor.temperature_158d0001f534e1
     - sensor.humidity_158d0001f534e1
+    - sensor.illumination_158d000201351c
 
 ####################################################
 #                                                  #
@@ -192,6 +192,7 @@ hudson temperature:
   entities:
     - sensor.temperature_158d0001f54df3
     - sensor.humidity_158d0001f54df3
+    - sensor.illumination_158d0002006d46
     
 ####################################################
 #                                                  #
@@ -285,10 +286,14 @@ appliances:
   entities:
     - group.laundry
     - group.kitchen
-    - group.trash_schedule
-    - group.recycle_schedule
     - group.washing_machine
+    - group.trash_schedule
+    - group.robovac
+    - group.recycle_schedule
     - group.dryer
+    - group.green_waste_schedule
+    
+
 
 ####################################################
 #                                                  #
@@ -310,3 +315,25 @@ garden:
     - group.strawberry
     - group.top_bed
     - group.veggie_patch
+    
+####################################################
+#                                                  #
+#                    Lovelace                      #
+#                                                  #
+####################################################
+
+doors:
+  view: no
+  entities:
+    - binary_sensor.door_window_sensor_158d0001e73c09
+    - binary_sensor.door_window_sensor_158d00022016b2
+    - binary_sensor.door_window_sensor_158d000225432d
+    
+windows_ll:
+  view: no
+  entities:
+    - binary_sensor.door_window_sensor_158d0001e73a73
+    - binary_sensor.door_window_sensor_158d0001e73aad
+    - binary_sensor.door_window_sensor_158d0001e73af4
+    - binary_sensor.door_window_sensor_158d0001e74875
+    - binary_sensor.door_window_sensor_158d0001f36741
