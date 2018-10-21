@@ -1,0 +1,54 @@
+#################################################################
+#                                                               #
+#                      Packages/APC UPS                         #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.battery_runtime_mins:
+      icon: mdi:timer
+
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+#group:
+    
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: nut
+    name: APC UPS
+    username: apc
+    password: apc
+    resources:
+      - ups.load
+      - ups.status
+      - battery.voltage
+      - ups.realpower.nominal
+      - battery.charge.warning
+      - battery.charge.low
+      - battery.runtime
+      - battery.charge
+      - output.current
+      
+  - platform: template
+    sensors:
+      battery_runtime_mins:
+        friendly_name: "Battery Runtime"
+        value_template: "{{ (states('sensor.apc_ups_battery_runtime')|float / 60 ) | round() }}"
+        unit_of_measurement: 'Mins'
