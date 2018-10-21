@@ -18,6 +18,8 @@ homeassistant:
       icon: mdi:lightbulb-on
     binary_sensor.new_podcast_available:
       icon: mdi:podcast
+    binary_sensor.new_routeros_available:
+      icon: mdi:router-wireless
 
 #################################################################
 #                                                               #
@@ -32,8 +34,8 @@ group:
     entities:
       - binary_sensor.new_podcast_available
       - binary_sensor.ha_update_available
+      - binary_sensor.new_routeros_available
       - binary_sensor.sonoff_update_available
-#      - sensor.mikrotik_routeros_version
     
 #################################################################
 #                                                               #
@@ -54,8 +56,8 @@ sensor:
   - platform: template
     sensors:
       installed_ha_version:
-        value_template: '{% if is_state("device_tracker.rpi", "home") %}0.72.0{% else %}On{% endif %}'
-        friendly_name: 'HA Installed Version'
+        value_template: '{% if is_state("device_tracker.rpi", "home") %}0.80.3{% else %}On{% endif %}'
+        friendly_name: 'HA Installed Firmware'
 
 #########################  HA Podcast  ##########################
 
@@ -71,7 +73,7 @@ sensor:
   - platform: template
     sensors:
       latest_watched_podcast:
-        value_template: '{% if is_state("sensor.latest_ha_podcast", "ha028.mp3") %}ha028.mp3{% else %}On{% endif %}'
+        value_template: '{% if is_state("sensor.latest_ha_podcast", "ha036.mp3") %}ha036.mp3{% else %}On{% endif %}'
 
 ###########################  Sonoff  ############################
 
@@ -85,18 +87,48 @@ sensor:
   - platform: template
     sensors:
       sonoff_installed_firmware:
-        value_template: '{% if is_state("device_tracker.lounge_light_switch", "home") %}v5.11.1{% else %}On{% endif %}'
+        value_template: '{% if is_state("device_tracker.lounge_light_switch", "home") %}v6.2.1{% else %}On{% endif %}'
         friendly_name: 'Sonoff Installed Firmware'
 
 ##########################  Mikrotik  ###########################      
 
-## Check Latest RouterOS
-#  - platform: scrape
-#    resource: https://mikrotik.com/download
-#    name: Mikrotik RouterOS Version
-#    select: '#sm-start > div:nth-child(4) > div > table:nth-child(18) > thead > tr > th:nth-child(3)'
-#    attribute: url
-          
+## Check Latest Mikrotik Firmware
+  - platform: feedparser
+    name: Engineering Feed
+    feed_url: 'https://mikrotik.com/download.rss'
+    date_format: '%a, %b %d %I:%M %p'
+    inclusions:
+      - title
+      - link
+    exclusions:
+      - language
+      
+  - platform: template
+    sensors:
+      next_router_os_release:
+        value_template: >
+          {% set sorted_releases = states.sensor.engineering_feed.attributes | sort | reverse %}
+          {%- for release in sorted_releases if release | regex_match('.*\[Stable\].*') %}
+            {%- if loop.first %}
+              {{- release | replace('[Stable]','') }}
+            {%- endif %}
+          {%- endfor %}
+    
+## Check Installed RouterOS Version
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.4.1.14988.1.1.4.4.0
+    name: Installed RouterOS
+    
+#########################  Github Stars  ##########################
+
+## Check Github Stars
+  - platform: rest
+    resource: https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers
+    name: Github Stars
+    #value_template: '{{ value_json.state }}'
+    #unit_of_measurement: "GiB"
+    
 ###########  Compare Latest Against Current Version  ############
 
 #########################  HA Update  ###########################
@@ -124,6 +156,14 @@ binary_sensor:
           {{ states.sensor.latest_ha_podcast.state != states.sensor.latest_watched_podcast.state and states.sensor.latest_ha_podcast.state != 'unavailable' }}
         friendly_name: New Podcast Available
         
+##########################  Mikrotik  ###########################        
+  - platform: template
+    sensors:
+      new_routeros_available:
+        value_template: >-
+          {{ states.sensor.next_router_os_release != states.sensor.installed_routeros.state and next_router_os_release != 'unavailable' }}
+        friendly_name: New RouterOS Available
+
 #################################################################
 #                                                               #
 #                         Automations                           #
@@ -137,12 +177,13 @@ automation:
       platform: state
       entity_id: binary_sensor.ha_update_available
       to: 'on'
+      for:
+        minutes: 2
     action:
       - service: notify.pushbullet
         data:
-          message: 'New Update Available for HA'
-          data: 
-            url: https://www.home-assistant.io
+          title: 'HA HASSIO Server'
+          message: 'New Update Available for HA {{states.sensor.latest_ha_version.state}}'
             
 ## Notify of New HA Podcast
   - alias: HA Podcast Update Available Notification
@@ -150,11 +191,15 @@ automation:
       platform: state
       entity_id: binary_sensor.new_podcast_available
       to: 'on'
+      for:
+        minutes: 2
     action:
       - service: notify.pushbullet
         data:
+          title: 'HA HASSIO Server'
           message: 'New Podcast Available for HA'
-          data: https://hasspodcast.io/feed/podcast
+          data:
+            url: http://hasspodcast.io/
           
 ## Notify of New Sonoff Version
   - alias: Sonoff Firmware Update Available Notification
@@ -164,5 +209,5 @@ automation:
     action:
       - service: notify.pushbullet
         data:
+          title: 'HA HASSIO Server'
           message: 'New Firmware Available for SONOFF'
-          data: https://github.com/arendst/Sonoff-Tasmota/releases
