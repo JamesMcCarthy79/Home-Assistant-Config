@@ -43,6 +43,10 @@ panel_iframe:
 
 config:
 
+hassio:
+api:
+  api_password: !secret api_password
+  
 http:
   api_password: !secret http_password
   trusted_networks:
@@ -69,11 +73,9 @@ map:
 #  custom_ui: local
   
 frontend:
-#  themes: !include themes.yaml
-#  extra_html_url:
-#    - /local/custom_ui/state-card-custom-ui.html
-#  extra_html_url_es5:
-#    - /local/custom_ui/state-card-custom-ui-es5.html
+  javascript_version: latest
+
+custom_updater: 
 
 ####################################################
 #                                                  #
@@ -104,6 +106,16 @@ recorder:
 ####################################################
 
 cloud:
+  alexa:
+    filter:
+      include_entities:
+        - group.all_lights
+        - group.downstairs_lights
+        - group.outside_lights
+      include_domains:
+        - switch
+        - cover
+        - input_boolean
 
 ####################################################
 #                                                  #
@@ -112,9 +124,15 @@ cloud:
 ####################################################
 
 mqtt: 
-  broker: core-mosquitto
-  username: !secret mozzieuser
-  password: !secret mozziepass
+  broker: myip
+  port: myport
+  username: !secret mqttuser
+  password: !secret mqttpass
+  
+mqtt_statestream:
+  base_topic: ha-main
+  publish_attributes: true
+  publish_timestamps: true
   
 ####################################################
 #                                                  #
