@@ -51,9 +51,10 @@ group:
     entities:
       - binary_sensor.nas_movies
       - binary_sensor.nas_tv
+      - binary_sensor.nas_3
       - binary_sensor.smart_things_hub
       - binary_sensor.xiaomi_gateway
-      - binary_sensor.xiaomi_gateway
+      - binary_sensor.xiaomi_gateway_2
       - binary_sensor.alexa_main
       - binary_sensor.alexa_bedroom
       - binary_sensor.main_pc
@@ -63,6 +64,8 @@ group:
     name: HA Devices
     view: no
     entities:
+      - binary_sensor.automation_pi
+      - binary_sensor.addon_pi
       - binary_sensor.rpi
       - binary_sensor.garden_pi
       - binary_sensor.alarm_panel
@@ -111,8 +114,9 @@ device_tracker:
       core_router: 10.0.0.1
       nas_movies: 10.0.0.2
       nas_tv: 10.0.0.3
-      core_switch: 10.0.0.4
-      upstairs_switch: 10.0.0.5
+      nas_3: 10.0.0.4
+      core_switch: 10.0.0.5
+      upstairs_switch: 10.0.0.6
       wifi_bridge: 10.0.0.7
       upstairs_ap: 10.0.0.9
       downstairs_ap: 10.0.0.10
@@ -136,18 +140,20 @@ device_tracker:
       james_work_phone: 10.0.5.6
       upstairs_dashboard: 10.0.6.2
       kitchen_dashboard: 10.0.6.3
-      smart_things_hub: 10.0.20.1
+      smart_things_hub: 10.0.40.1
       rPi: 10.0.20.3
       garden_pi: 10.0.20.5
-      xiaomi_gateway: 10.0.20.6
-      xiaomi_gateway_2: 10.0.20.7
+      addon_pi: 10.0.20.2
+      automation_pi: 10.0.20.1
+      xiaomi_gateway: 10.0.90.1
+      xiaomi_gateway_2: 10.0.90.2
       alarm_panel: 10.0.200.1
       
   - platform: nmap_tracker
     hosts:
       - 10.0.3.1
-      - 10.0.20.2
-      - 10.0.20.4
+      - 10.0.40.2
+      - 10.0.40.3
       
 #################################################################
 #                                                               #
@@ -181,6 +187,58 @@ sensor:
     unit_of_measurement: "°C"
     value_template: '{{ (value | multiply(0.001)) | round(1) }}'
     
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
+      
+  - platform: rest
+    resource: http://10.0.20.1:8123/api/states/sensor.disk_use_
+    name: Automation Server Disk
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "GiB"
+    
+  - platform: rest
+    resource: http://10.0.20.1:8123/api/states/sensor.memory_use_percent
+    name: Automation Server Memory
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.1:8123/api/states/sensor.processor_use
+    name: Automation Server CPU
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.1:8123/api/states/sensor.cpu_temperature
+    name: Automation Server CPU Temp
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.disk_use_
+    name: Addon Server Disk
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "GiB"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.memory_use_percent
+    name: Addon Server Memory
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.processor_use
+    name: Addon Server CPU
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.cpu_temperature
+    name: Addon Server CPU Temp
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
 #################################################################
 #                                                               #
 #                       Binary Sensors                          #
@@ -199,7 +257,7 @@ binary_sensor:
           {% if is_state('device_tracker.core_router', 'home') %}
             mdi:router-wireless
           {% else %}
-            mdi:alert
+            mdi:router-wireless
           {% endif %}
       core_switch:
         friendly_name: Core Switch
@@ -210,7 +268,7 @@ binary_sensor:
           {% if is_state('device_tracker.core_switch', 'home') %}
             mdi:switch
           {% else %}
-            mdi:alert
+            mdi:switch
           {% endif %}
       wifi_bridge:
         friendly_name: Wi-Fi Bridge
@@ -221,7 +279,7 @@ binary_sensor:
           {% if is_state('device_tracker.wifi_bridge', 'home') %}
             mdi:access-point
           {% else %}
-            mdi:alert
+            mdi:access-point
           {% endif %}
       downstairs_ap:
         friendly_name: Altai AP Downstairs
@@ -232,7 +290,7 @@ binary_sensor:
           {% if is_state('device_tracker.downstairs_ap', 'home') %}
             mdi:access-point
           {% else %}
-            mdi:alert
+            mdi:access-point
           {% endif %}
       upstairs_ap:
         friendly_name: Altai AP Upstairs
@@ -243,7 +301,7 @@ binary_sensor:
           {% if is_state('device_tracker.upstairs_ap', 'home') %}
             mdi:access-point
           {% else %}
-            mdi:alert
+            mdi:access-point
           {% endif %}
       upstairs_switch:
         friendly_name: Upstairs Switch
@@ -254,7 +312,7 @@ binary_sensor:
           {% if is_state('device_tracker.upstairs_switch', 'home') %}
             mdi:switch
           {% else %}
-            mdi:alert
+            mdi:switch
           {% endif %}
       5g_ac_main:
         friendly_name: 5G AC Main
@@ -265,7 +323,7 @@ binary_sensor:
           {% if is_state('device_tracker.5g_ac_main', 'home') %}
             mdi:access-point
           {% else %}
-            mdi:alert
+            mdi:access-point
           {% endif %}
       5g_ac_media_tv:
         friendly_name: 5G AC Media TV
@@ -276,7 +334,7 @@ binary_sensor:
           {% if is_state('device_tracker.5g_ac_media_tv', 'home') %}
             mdi:access-point
           {% else %}
-            mdi:alert
+            mdi:access-point
           {% endif %}
       5g_ac_upstairs:
         friendly_name: 5G AC Upstairs
@@ -287,7 +345,7 @@ binary_sensor:
           {% if is_state('device_tracker.5g_ac_upstairs', 'home') %}
             mdi:access-point
           {% else %}
-            mdi:alert
+            mdi:access-point
           {% endif %}
       nas_movies:
         friendly_name: NAS Movies
@@ -298,7 +356,7 @@ binary_sensor:
           {% if is_state('device_tracker.nas_movies', 'home') %}
             mdi:harddisk
           {% else %}
-            mdi:alert
+            mdi:harddisk
           {% endif %}
       nas_tv:
         friendly_name: NAS TV Shows
@@ -309,7 +367,18 @@ binary_sensor:
           {% if is_state('device_tracker.nas_tv', 'home') %}
             mdi:harddisk
           {% else %}
-            mdi:alert
+            mdi:harddisk
+          {% endif %}
+      nas_3:
+        friendly_name: NAS 3
+        device_class: connectivity
+        entity_id: device_tracker.nas_3
+        value_template: "{{ is_state('device_tracker.nas_3', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.nas_3', 'home') %}
+            mdi:harddisk
+          {% else %}
+            mdi:harddisk
           {% endif %}
       smart_things_hub:
         friendly_name: Smart Things Hub
@@ -320,7 +389,7 @@ binary_sensor:
           {% if is_state('device_tracker.smart_things_hub', 'home') %}
             mdi:checkbox-blank-circle-outline
           {% else %}
-            mdi:alert
+            mdi:checkbox-blank-circle-outline
           {% endif %}
       alexa_main:
         friendly_name: Alexa Main
@@ -331,7 +400,7 @@ binary_sensor:
           {% if is_state('device_tracker.44650df543ec', 'home') %}
             mdi:voice
           {% else %}
-            mdi:alert
+            mdi:voice
           {% endif %}
       alexa_bedroom:
         friendly_name: Alexa Bedroom
@@ -342,7 +411,7 @@ binary_sensor:
           {% if is_state('device_tracker.f081735c7ffc', 'home') %}
             mdi:voice
           {% else %}
-            mdi:alert
+            mdi:voice
           {% endif %}
       main_pc:
         friendly_name: Main PC
@@ -353,7 +422,7 @@ binary_sensor:
           {% if is_state('device_tracker.8c89a5ef4d19', 'home') %}
             mdi:windows
           {% else %}
-            mdi:alert
+            mdi:windows
           {% endif %}
       printer:
         friendly_name: Printer
@@ -364,7 +433,7 @@ binary_sensor:
           {% if is_state('device_tracker.printer', 'home') %}
             mdi:printer
           {% else %}
-            mdi:alert
+            mdi:printer
           {% endif %}
       xiaomi_gateway:
         friendly_name: Xiaomi Gateway
@@ -375,7 +444,7 @@ binary_sensor:
           {% if is_state('device_tracker.xiaomi_gateway', 'home') %}
             mdi:server
           {% else %}
-            mdi:alert
+            mdi:server
           {% endif %}
       xiaomi_gateway_2:
         friendly_name: Xiaomi Gateway 2
@@ -386,7 +455,7 @@ binary_sensor:
           {% if is_state('device_tracker.xiaomi_gateway_2', 'home') %}
             mdi:server
           {% else %}
-            mdi:alert
+            mdi:server
           {% endif %}
       rpi:
         friendly_name: HA Server
@@ -397,18 +466,18 @@ binary_sensor:
           {% if is_state('device_tracker.rpi', 'home') %}
             mdi:home-assistant
           {% else %}
-            mdi:alert
+            mdi:home-assistant
           {% endif %}
       garden_pi:
         friendly_name: HA Garden Server
         device_class: connectivity
-        entity_id: device_tracker.rpi
+        entity_id: device_tracker.garden_pi
         value_template: "{{ is_state('device_tracker.garden_pi', 'home') }}"
         icon_template: >-
           {% if is_state('device_tracker.garden_pi', 'home') %}
             mdi:home-assistant
           {% else %}
-            mdi:alert
+            mdi:home-assistant
           {% endif %}
       alarm_panel:
         friendly_name: Alarm Panel
@@ -419,7 +488,7 @@ binary_sensor:
           {% if is_state('device_tracker.alarm_panel', 'home') %}
             mdi:security-home
           {% else %}
-            mdi:alert
+            mdi:security-home
           {% endif %}
       kitchen_dashboard:
         friendly_name: Kitchen Dashboard
@@ -430,7 +499,7 @@ binary_sensor:
           {% if is_state('device_tracker.kitchen_dashboard', 'home') %}
             mdi:android
           {% else %}
-            mdi:alert
+            mdi:android
           {% endif %}
       upstairs_dashboard:
         friendly_name: Upstairs Dashboard
@@ -441,7 +510,7 @@ binary_sensor:
           {% if is_state('device_tracker.upstairs_dashboard', 'home') %}
             mdi:apple
           {% else %}
-            mdi:alert
+            mdi:apple
           {% endif %}
       hdhomerun:
         friendly_name: HRHomeRun
@@ -452,7 +521,7 @@ binary_sensor:
           {% if is_state('device_tracker.hdhomerun', 'home') %}
             mdi:television-box
           {% else %}
-            mdi:alert
+            mdi:television-box
           {% endif %}
       media_kodi_4k:
         friendly_name: Media 4K Kodi
@@ -463,7 +532,7 @@ binary_sensor:
           {% if is_state('device_tracker.media_kodi_4k', 'home') %}
             mdi:kodi
           {% else %}
-            mdi:alert
+            mdi:kodi
           {% endif %}
       bedroom_kodi:
         friendly_name: Bedroom Kodi
@@ -474,18 +543,18 @@ binary_sensor:
           {% if is_state('device_tracker.bedroom_kodi', 'home') %}
             mdi:kodi
           {% else %}
-            mdi:alert
+            mdi:kodi
           {% endif %}
       apple_tv:
         friendly_name: Apple TV
         device_class: connectivity
-        entity_id: device_tracker.apple_tv
-        value_template: "{{ is_state('device_tracker.apple_tv', 'home') }}"
+        entity_id: device_tracker.appletv
+        value_template: "{{ is_state('device_tracker.appletv', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.apple_tv', 'home') %}
+          {% if is_state('device_tracker.appletv', 'home') %}
             mdi:apple
           {% else %}
-            mdi:alert
+            mdi:apple
           {% endif %}
       media_tv:
         friendly_name: Media 4K TV
@@ -496,7 +565,7 @@ binary_sensor:
           {% if is_state('device_tracker.media_tv', 'home') %}
             mdi:television
           {% else %}
-            mdi:alert
+            mdi:television
           {% endif %}
       bedroom_tv:
         friendly_name: Bedroom TV
@@ -507,7 +576,7 @@ binary_sensor:
           {% if is_state('device_tracker.bedroom_tv', 'home') %}
             mdi:television
           {% else %}
-            mdi:alert
+            mdi:television
           {% endif %}
       patio_kodi:
         friendly_name: Patio Kodi
@@ -518,7 +587,29 @@ binary_sensor:
           {% if is_state('device_tracker.patio_kodi', 'home') %}
             mdi:kodi
           {% else %}
-            mdi:alert
+            mdi:kodi
+          {% endif %}
+      addon_pi:
+        friendly_name: HA Addon Server
+        device_class: connectivity
+        entity_id: device_tracker.addon_pi
+        value_template: "{{ is_state('device_tracker.addon_pi', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.addon_pi', 'home') %}
+            mdi:home-assistant
+          {% else %}
+            mdi:home-assistant
+          {% endif %}
+      automation_pi:
+        friendly_name: HA Automation Server
+        device_class: connectivity
+        entity_id: device_tracker.automation_pi
+        value_template: "{{ is_state('device_tracker.automation_pi', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.automation_pi', 'home') %}
+            mdi:home-assistant
+          {% else %}
+            mdi:home-assistant
           {% endif %}
           
 #################################################################
@@ -530,6 +621,7 @@ binary_sensor:
 automation:
 ## Notify of High Disk Use
   - alias: Disk Use Alarm
+    initial_state: 'on'
     trigger:
       platform: numeric_state
       entity_id: sensor.disk_use_
@@ -537,10 +629,12 @@ automation:
     action:
       - service: notify.pushbullet
         data:
+          title: 'HA HASSIO Server'
           message: 'Warning - HA Server Disk Use is above 12Gb'
           
 ## Notify of High CPU Usage
   - alias: CPU Use Alarm
+    initial_state: 'on'
     trigger:
       platform: numeric_state
       entity_id: sensor.processor_use
@@ -548,26 +642,44 @@ automation:
     action:
       - service: notify.pushbullet
         data:
+          title: 'HA HASSIO Server'
           message: 'Warning - HA Server Processor above 85%'
           
 ## Notify if CPU Temperature is High
   - alias: CPU Temp Alarm
+    initial_state: 'on'
     trigger:
       platform: numeric_state
       entity_id: sensor.cpu_temperature
-      below: 75
+      above: 85
     action:
       - service: notify.pushbullet
         data:
-          message: 'Warning - HA Server CPU Temp Above 75c'
-
+          title: 'HA HASSIO Server'
+          message: 'Warning - HA Server CPU Temp Above 85c'
+          
 ## Notify if ISP Download Speed has dropped
   - alias: Internet Download Speed Drop
+    initial_state: 'on'
     trigger:
       platform: numeric_state
       entity_id: sensor.speedtest_download
-      below: 85
+      below: 40
     action:
       - service: notify.pushbullet
         data:
-          message: 'Warning - ISP Download Speed is lower then 85Mbps'
+          title: 'HA HASSIO Server'
+          message: 'Warning - ISP Download Speed is lower then 40Mbps'
+          
+## Notify if ISP Download Speed has dropped
+  - alias: HA Restart
+    initial_state: 'on'
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: notify.pushbullet
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Main HA Server Restarted'
+         
