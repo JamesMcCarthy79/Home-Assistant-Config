@@ -18,6 +18,9 @@ homeassistant:
     sensor.recycle_day:
       friendly_name: Is it Recycle Day today?
       icon: mdi:recycle
+    sensor.green_day:
+      friendly_name: Is it Green Waste Day today?
+      icon: mdi:leaf
     sensor.trash_pickup_day:
       friendly_name: Trash Pickup Day
       icon: mdi:calendar-today
@@ -28,6 +31,14 @@ homeassistant:
       hidden: true
     sensor.recycle_pickup_week:
       friendly_name: Recycle Pickup Week
+      icon: mdi:calendar-today
+      hidden: true
+    sensor.green_pickup_day:
+      friendly_name: Green Pickup Day
+      icon: mdi:calendar-today
+      hidden: true
+    sensor.green_pickup_week:
+      friendly_name: Green Pickup Week
       icon: mdi:calendar-today
       hidden: true
     sensor.current_week:
@@ -62,6 +73,16 @@ group:
       - input_select.recycle_pickup_day
       - sensor.current_week
       - input_select.recycle_pickup_week
+      
+  Green Waste Schedule:
+    control: hidden
+    entities:
+      - sensor.green_day
+      - sensor.green_pickup_day
+      - sensor.green_pickup_week
+      - input_select.green_pickup_day
+      - sensor.current_week
+      - input_select.green_pickup_week
 
   Date Time:
     control: hidden
@@ -110,6 +131,23 @@ input_select:
      - Even Weeks
      - Odd Weeks
     icon: mdi:recycle
+  green_pickup_day:
+    name: Current Green Pickup Day (Every Other Week)
+    options:
+     - Monday
+     - Tuesday
+     - Wednesday
+     - Thursday
+     - Friday
+     - Saturday
+     - Sunday
+    icon: mdi:leaf
+  green_pickup_week:
+    name: Select Recycle Pickup Week based on Current Week above
+    options:
+     - Even Weeks
+     - Odd Weeks
+    icon: mdi:leaf
   trash_reminders:
     name: Trash Reminder
     options:
@@ -143,6 +181,16 @@ sensor:
   - platform: mqtt
     state_topic: "/home/recyclepickupweek"
     name: "Recycle Pickup Week"
+    value_template: "{{ value }}"
+    qos: 1
+  - platform: mqtt
+    state_topic: "/home/greenpickupday"
+    name: "Green Pickup Day"
+    value_template: "{{ value }}"
+    qos: 1
+  - platform: mqtt
+    state_topic: "/home/greenpickupweek"
+    name: "Green Pickup Week"
     value_template: "{{ value }}"
     qos: 1
     
@@ -230,7 +278,103 @@ sensor:
           {%- endif -%}
           {%- endmacro -%}
           {{- is_it_today() -}}
+          
+## Green Waste - Pickup schedule is every other week.
+## Set the day to a day before the actual day leaving time for reminders
 
+  - platform: template
+    sensors:
+      green_day:
+        value_template: >-
+          {% set year = states.sensor.date__time.state.split(',')[0].split('-')[0] %}
+          {% set month = states.sensor.date__time.state.split(',')[0].split('-')[1] %}
+          {% set date = states.sensor.date__time.state.split(',')[0].split('-')[2] %}
+          {% set today = strptime(year ~ '-' ~ month ~ '-' ~ date , '%Y-%m-%d') %}
+          {%- set pickupDay = states.sensor.green_pickup_day.state | lower -%}
+          {% if states.input_select.green_pickup_week.state | lower == "even weeks" %}
+            {%- set evenWeekPickup = "true" %}
+          {% else %}
+            {%- set evenWeekPickup = "false" %}
+          {% endif %}
+          {%- macro day_of_week(timestamp) -%}
+            {{ as_timestamp(timestamp)| timestamp_custom('%A', true) | lower }}
+          {%- endmacro %}
+          {%- macro week_number_of_year() -%}
+            {{ as_timestamp(today) | timestamp_custom('%U', true) | int }}
+          {%- endmacro %}
+          {%- macro is_it_this_week() -%}
+            {%- if as_timestamp(today) | timestamp_custom('%U', true) | int % 2 == 0 -%}
+              {%- if evenWeekPickup == "true" -%}
+                true
+              {%- else -%}
+                false
+              {%- endif -%}
+            {%- else -%}
+              {%- if evenWeekPickup == "true" -%}
+                false
+              {%- else -%}
+                true
+              {%- endif -%}
+            {%- endif -%}
+          {%- endmacro -%}
+          {%- macro is_it_today() -%}
+          {%- if is_it_this_week() == "true" -%}
+            {%- if day_of_week(today) | lower == pickupDay -%}
+              yes
+            {%- else -%}
+              no
+            {%- endif -%}
+          {%- else -%}
+            no
+          {%- endif -%}
+          {%- endmacro -%}
+          {{- is_it_today() -}}
+          
+### Lovelace UI ###
+
+binary_sensor:
+  - platform: template
+    sensors:
+
+      trash:
+        friendly_name: Trash
+        entity_id: sensor.trash_day
+        value_template: "{{ is_state('sensor.trash_day', 'yes') }}"
+        icon_template: >-
+          {% if is_state('sensor.trash_day', 'yes') %}
+            mdi:delete-variant
+          {% elif is_state('sensor.trash_day', 'no') %}
+            mdi:delete-variant 
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      recycle:
+        friendly_name: Recycle
+        entity_id: sensor.recycle_day
+        value_template: "{{ is_state('sensor.recycle_day', 'yes') }}"
+        icon_template: >-
+          {% if is_state('sensor.recycle_day', 'yes') %}
+            mdi:recycle
+          {% elif is_state('sensor.recycle_day', 'no') %}
+            mdi:recycle
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      green:
+        friendly_name: Green
+        entity_id: sensor.green_day
+        value_template: "{{ is_state('sensor.green_day', 'yes') }}"
+        icon_template: >-
+          {% if is_state('sensor.green_day', 'yes') %}
+            mdi:leaf
+          {% elif is_state('sensor.green_day', 'no') %}
+            mdi:leaf
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
 #################################################################
 #                                                               #
 #                         Automations                           #
@@ -282,6 +426,32 @@ automation:
           topic: "/home/recyclepickupweek"
           retain: true
           payload: '{{ states.input_select.recycle_pickup_week.state }}'
+          
+  - alias: Green Pickup Day Changed
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_select.green_pickup_day
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "/home/greenpickupday"
+          retain: true
+          payload: '{{ states.input_select.green_pickup_day.state }}'
+
+  - alias: Green Pickup Week Changed
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_select.green_pickup_week
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "/home/greenpickupweek"
+          retain: true
+          payload: '{{ states.input_select.green_pickup_week.state }}'
 
   - alias: Restore Trash Recycle Settings on Startup
     initial_state: true
@@ -304,6 +474,14 @@ automation:
         data_template:
           entity_id: input_select.recycle_pickup_week
           option: "{{states.sensor.recycle_pickup_week.state}}"
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.green_pickup_day
+          option: "{{states.sensor.green_pickup_day.state}}"
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.green_pickup_week
+          option: "{{states.sensor.green_pickup_week.state}}"
 
 ##  Reminder code - Reminds 5 times every hour starting 4 PM
 ##  Conditions: Only notifies when someone is at home
