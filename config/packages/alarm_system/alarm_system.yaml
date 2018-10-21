@@ -153,6 +153,67 @@ sensor:
         value_template: >-
            {{ states.binary_sensor | selectattr('state', 'eq', 'on') | selectattr('attributes.device_class', 'eq', 'window') | list | count | int }}
 
+### For Lovelace UI ###           
+binary_sensor:
+  - platform: template
+    sensors:
+## Door Sensors
+      doors:
+        friendly_name: Doors
+        device_class: door
+        entity_id: group.doors
+        value_template: "{{ is_state('group.doors', 'on') }}"
+        icon_template: >-
+          {% if is_state('group.doors', 'on') %}
+            mdi:door-open
+          {% elif is_state('group.doors', 'off') %}
+            mdi:door         
+          {% else %}
+            mdi:alert
+          {% endif %}
+      windows:
+        friendly_name: Windows
+        device_class: window
+        entity_id: group.windows_ll
+        value_template: "{{ is_state('group.windows_ll', 'on') }}"
+        icon_template: >-
+          {% if is_state('group.windows_ll', 'on') %}
+            mdi:window-open
+          {% elif is_state('group.windows_ll', 'off') %}
+            mdi:window-closed       
+          {% else %}
+            mdi:alert
+          {% endif %}
+      alarm:
+        friendly_name: Alarm
+        entity_id: alarm_control_panel.ha_alarm
+        value_template: >-
+          {% if is_state('alarm_control_panel.ha_alarm', 'armed_home') %}
+            on
+          {% elif is_state('alarm_control_panel.ha_alarm', 'armed_away') %}
+            on
+          {% elif is_state('alarm_control_panel.ha_alarm', 'pending') %}
+            on
+          {% elif is_state('alarm_control_panel.ha_alarm', 'triggered') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+        icon_template: >-
+          {% if is_state('alarm_control_panel.ha_alarm', 'armed_home') %}
+            mdi:security-home
+          {% elif is_state('alarm_control_panel.ha_alarm', 'armed_away') %}
+            mdi:security-lock
+          {% elif is_state('alarm_control_panel.ha_alarm', 'pending') %}
+            mdi:security
+          {% elif is_state('alarm_control_panel.ha_alarm', 'triggered') %}
+            mdi:security-close
+          {% elif is_state('alarm_control_panel.ha_alarm', 'disarmed') %}
+            mdi:security-home
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
 #################################################################
 #                                                               #
 #                         Automations                           #
