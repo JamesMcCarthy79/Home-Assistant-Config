@@ -26,7 +26,12 @@ group:
     view: no
     entities:
       - binary_sensor.baby_monitor_camera
-      - binary_sensor.downstairs_camera
+      - binary_sensor.dining_camera
+      - binary_sensor.lounge_camera
+      - binary_sensor.bedroom_camera
+      #- binary_sensor.jackson_camera
+      #- binary_sensor.hudson_camera
+      #- binary_sensor.staircase_camera
       
   ir blasters:
     name: IR Blasters
@@ -41,7 +46,8 @@ group:
     view: no
     entities:
       - binary_sensor.lounge_fan_switch
-      - binary_sensor.kitchen_dining_light_switch
+      - binary_sensor.dining_light_switch
+      - binary_sensor.kitchen_light_switch
       - binary_sensor.patio_light_switch
       - binary_sensor.lounge_light_switch
       - binary_sensor.master_bedroom_fan_switch
@@ -80,7 +86,12 @@ device_tracker:
   - platform: ping
     hosts:
       baby_monitor_camera: 10.0.10.1
-      downstairs_camera: 10.0.10.2
+      dining_camera: 10.0.10.2
+      living_camera: 10.0.10.3
+      bedroom_camera: 10.0.10.4
+      jackson_camera: 10.0.10.5
+      hudson_camera: 10.0.10.6
+      staircase_camera: 10.0.10.7
       ir_blaster_downstairs: 10.0.30.1
       ir_blaster_patio: 10.0.30.2
       ir_blaster_upstairs: 10.0.30.3
@@ -124,17 +135,73 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-      downstairs_camera:
-        friendly_name: Downstairs Camera
+      dining_camera:
+        friendly_name: Dining Camera
         device_class: connectivity
-        entity_id: device_tracker.downstairs_camera
-        value_template: "{{ is_state('device_tracker.downstairs_camera', 'home') }}"
+        entity_id: device_tracker.dining_camera
+        value_template: "{{ is_state('device_tracker.dining_camera', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.downstairs_camera', 'home') %}
+          {% if is_state('device_tracker.dining_camera', 'home') %}
             mdi:cctv
           {% else %}
             mdi:alert
           {% endif %}
+      lounge_camera:
+        friendly_name: Lounge Camera
+        device_class: connectivity
+        entity_id: device_tracker.living_camera
+        value_template: "{{ is_state('device_tracker.living_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.living_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_camera:
+        friendly_name: Bedroom Camera
+        device_class: connectivity
+        entity_id: device_tracker.bedroom_camera
+        value_template: "{{ is_state('device_tracker.bedroom_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.bedroom_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}
+      #jackson_camera:
+      #  friendly_name: Jackson Camera
+      #  device_class: connectivity
+      #  entity_id: device_tracker.jackson_camera
+      #  value_template: "{{ is_state('device_tracker.jackson_camera', 'home') }}"
+      #  icon_template: >-
+      #    {% if is_state('device_tracker.jackson_camera', 'home') %}
+      #      mdi:cctv
+      #    {% else %}
+      #      mdi:alert
+      #    {% endif %} 
+      #hudson_camera:
+      #  friendly_name: Hudson Camera
+      #  device_class: connectivity
+      #  entity_id: device_tracker.hudson_camera
+      #  value_template: "{{ is_state('device_tracker.hudson_camera', 'home') }}"
+      #  icon_template: >-
+      #    {% if is_state('device_tracker.hudson_camera', 'home') %}
+      #      mdi:cctv
+      #    {% else %}
+      #      mdi:alert
+      #    {% endif %}  
+      #staircase_camera:
+      #  friendly_name: Staircase Camera
+      #  device_class: connectivity
+      #  entity_id: device_tracker.staircase_camera
+      #  value_template: "{{ is_state('device_tracker.staircase_camera', 'home') }}"
+      #  icon_template: >-
+      #    {% if is_state('device_tracker.staircase_camera', 'home') %}
+      #      mdi:cctv
+      #    {% else %}
+      #      mdi:alert
+      #    {% endif %}          
+    
 ## IR Blasters
       ir_blaster_downstairs:
         friendly_name: IR Blaster Downstairs
