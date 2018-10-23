@@ -42,13 +42,13 @@ homeassistant:
       friendly_name: "Hudson Light"
     switch.bathroom_light_switch:
       icon: 'mdi:lightbulb'
-      friendly_name: "Bathroom Light"
+      friendly_name: "Light"
     switch.bathroom_fan_switch:
       icon: 'mdi:fan'
-      friendly_name: "Bathroom Fan"
+      friendly_name: "Fan"
     switch.bathroom_heat_switch:
       icon: 'mdi:fire'
-      friendly_name: "Bathroom Heat"
+      friendly_name: "Heat"
     switch.fairy_light_power:
       icon: mdi:lightbulb
       friendly_name: Fairy Lighting
@@ -76,10 +76,10 @@ group:
     view: no
     entities:
       - switch.lounge_light_switch
-      - light.lounge_bulb
+      - input_number.lounge_brightness
       - switch.kitchen_light_switch
       - switch.dining_light_switch
-      - light.dining_bulb
+      - input_number.dining_brightness
       
   outside lights:
     name: Outside Lights
@@ -93,7 +93,7 @@ group:
     view: no
     entities:
       - switch.master_light_switch
-      - light.bedroom_bulb
+      - input_number.bedroom_brightness
       - switch.bedroom_wardrobe_switch
       
   bathroom switches:
@@ -101,151 +101,146 @@ group:
     view: no
     entities:
       - switch.bathroom_light_switch
+      - input_number.bedroom_brightness
       - switch.bathroom_fan_switch
       - switch.bathroom_heat_switch
       
 #################################################################
 #                                                               #
-#                         Automations                           #
+#                           Inputs                              #
+#                                                               #
+#################################################################
+
+input_number:
+  lounge_brightness:
+    name: Brightness
+    initial: 254
+    min: 0
+    max: 254
+    step: 1
+    
+  dining_brightness:
+    name: Brightness
+    initial: 254
+    min: 0
+    max: 254
+    step: 1
+    
+  hall_brightness:
+    name: Brightness
+    initial: 254
+    min: 0
+    max: 254
+    step: 1
+    
+  bedroom_brightness:
+    name: Brightness
+    initial: 254
+    min: 0
+    max: 254
+    step: 1
+    
+  gateway1_brightness:
+    name: Brightness
+    initial: 254
+    min: 0
+    max: 254
+    step: 1
+    
+  gateway2_brightness:
+    name: Brightness
+    initial: 254
+    min: 0
+    max: 254
+    step: 1
+    
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+      
+binary_sensor:
+  - platform: template
+    sensors:
+## Door Sensors
+      lights:
+        friendly_name: Lights
+        device_class: light
+        entity_id: group.downstairs_lights
+        value_template: "{{ is_state('group.downstairs_lights', 'on') }}"
+        icon_template: >-
+          {% if is_state('group.downstairs_lights', 'on') %}
+            mdi:lightbulb
+          {% elif is_state('group.doors', 'off') %}
+            mdi:lightbulb       
+          {% else %}
+            mdi:alert
+          {% endif %}
+      
+#################################################################
+#                                                               #
+#                Automations moved to Node_RED                  #
 #                                                               #
 #################################################################
 
 automation:
-## This turns the Media TV backlight on
-  - alias: 'TV Back Light On'
+  - alias: Lounge Light - Adjust Brightness
     trigger:
-    - platform: state
-      entity_id: sun.sun
-      to: 'below_horizon'
+      platform: state
+      entity_id: input_number.lounge_brightness
     action:
-    - service: script.turn_on
-      data:
-        entity_id: script.blue_tv_light
-        
-## This turns the Media TV backlight off
-  - alias: 'TV Back Light Off'
+      - service: light.turn_on
+        data_template:
+          entity_id: light.lounge_bulb
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Dining Light - Adjust Brightness
     trigger:
-    - platform: time
-      at: '22:00'
+      platform: state
+      entity_id: input_number.dining_brightness
     action:
-    - service: light.turn_off
-      data:
-        entity_id: light.gateway_light_7811dcfd812f
-        
-## This turns the PC backlight on
-  - alias: 'PC Back Light On'
+      - service: light.turn_on
+        data_template:
+          entity_id: light.dining_bulb
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Hall Light - Adjust Brightness
     trigger:
-    - platform: state
-      entity_id: sun.sun
-      to: 'below_horizon'
+      platform: state
+      entity_id: input_number.hall_brightness
     action:
-    - service: script.turn_on
-      data:
-        entity_id: script.blue_pc_light
-        
-## This turns the PC backlight off
-  - alias: 'PC Back Light Off'
+      - service: light.turn_on
+        data_template:
+          entity_id: light.hall_bulb
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Bedroom Light - Adjust Brightness
     trigger:
-    - platform: time
-      at: '22:00'
+      platform: state
+      entity_id: input_number.bedroom_brightness
     action:
-    - service: light.turn_off
-      data:
-        entity_id: light.gateway_light_7811dce13ad6
-
-## This turns on the patio light upon motion for 2 mins after sun is below horizon        
-  - alias: 'Patio Motion Light'
+      - service: light.turn_on
+        data_template:
+          entity_id: light.bedroom_bulb
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Gateway 1 Light - Adjust Brightness
     trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d000200ea5b
-      to: 'on'
-    condition:
-    - condition: state
-      state: below_horizon
-      entity_id: sun.sun
+      platform: state
+      entity_id: input_number.gateway1_brightness
     action:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.patio_light_switch
-    - delay: 00:02:00
-    - service: switch.turn_off
-      data:
-        entity_id: switch.patio_light_switch
-        
-## This turns on the entrance light upon motion for 2 mins after sun is below horizon        
-  - alias: 'Entry Motion Light'
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dcfd812f
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Gateway 2 Light - Adjust Brightness
     trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001e5d147
-      to: 'on'
-    condition:
-    - condition: state
-      state: below_horizon
-      entity_id: sun.sun
+      platform: state
+      entity_id: input_number.gateway2_brightness
     action:
-    - service: light.turn_on
-      data:
-        entity_id: light.entrance_bulb
-    - delay: 00:02:00
-    - service: light.turn_off
-      data:
-        entity_id: light.entrance_bulb
-        
-## This turns on the hall light at 5pm       
-  - alias: 'Hall Light On'
-    trigger:
-    - platform: time
-      at: '17:00'
-    action:
-    - service: scene.turn_on
-      data:
-        entity_id: scene.hall_dusk
-        
-## This dims the hall light at 6:30pm       
-  - alias: 'Hall Light Dim'
-    trigger:
-    - platform: time
-      at: '18:30'
-    action:
-    - service: scene.turn_on
-      data:
-        entity_id: scene.hall_dim
-        
-## This turns the hall light back up at 6:00am       
-  - alias: 'Hall Light Normal'
-    trigger:
-    - platform: time
-      at: '06:00'
-    action:
-    - service: scene.turn_on
-      data:
-        entity_id: scene.hall_normal
-        
-## This turns the hall light off at 8:00am       
-  - alias: 'Hall Light Off'
-    trigger:
-    - platform: time
-      at: '08:00'
-    action:
-    - service: light.turn_off
-      data:
-        entity_id: light.hall_bulb
-        
-## This turns on the fairy lights after sun is below horizon        
-  - alias: 'Fairy Lights On'
-    trigger:
-    - platform: sun
-      event: sunset
-      offset: "-00:30:00"
-    action:
-    - service: script.1523649643350
-    
-## This turns off the fairy lights at 10pm       
-  - alias: 'Fairy Lights Off'
-    trigger:
-    - platform: time
-      at: '22:00'
-    action:
-    - service: switch.turn_off
-      data:
-        entity_id: switch.fairy_light_power
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dce13ad6
+          brightness: "{{ trigger.to_state.state | int }}"
