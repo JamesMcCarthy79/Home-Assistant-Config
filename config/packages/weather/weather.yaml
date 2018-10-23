@@ -55,6 +55,42 @@ group:
 
 sensor:
   - platform: moon
+  
+## Weather Dark Sky
+  - platform: darksky
+    api_key: 2395af4f72c2143ebe21cb8c4a8eb6e0
+    forecast:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    monitored_conditions:
+      - icon
+      - summary
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - humidity
+      - temperature
+      - temperature_high
+      - temperature_low
+      - apparent_temperature
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - wind_speed
+      - wind_bearing
+      - precip_type
+      - precip_probability
+      - precip_accumulation
+      - precip_intensity
+      - precip_intensity_max
+      - uv_index
+      - daily_summary
+      - pressure
+      - visibility
+    update_interval:
+      minutes: 5
+      
 ## Weather Sensors Weatherunderground
   - platform: wunderground
     api_key: !secret wunderground_api
@@ -74,6 +110,7 @@ sensor:
       - feelslike_c
       - alerts
       - temp_high_2d_c
+      - temp_low_2d_c
       - temp_high_3d_c
       - temp_high_4d_c
       - weather_1d_metric
@@ -88,7 +125,7 @@ sensor:
         value_template: "{{ states.weather.bom_gold_coast.attributes.temperature }}"
         device_class: temperature
         unit_of_measurement: °C
-      
+        
 ####################################################
 #                                                  #
 #                     Weather                      #
@@ -128,3 +165,4 @@ weather:
       - wind_dir
       - wind_spd_kmh
       - wind_spd_kt
+  
