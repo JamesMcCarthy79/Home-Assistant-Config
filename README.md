@@ -43,7 +43,7 @@
 
 | [Lovelace Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Lovelace%20Screenshots/10.%20System%20Status.png) |
 | --- |
-| [<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Lovelace%20Screenshots/10.%20System%20Status.png"/>](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Lovelace%20Screenshots) |
+| [<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Lovelace%20Screenshots%20(Rounded%20Cards)/01.%20Home.png"/>](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Lovelace%20Screenshots) |
 
 | [Home Assistant Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/HA%20Screenshots) |
 | --- |
