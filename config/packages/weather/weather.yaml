@@ -118,13 +118,53 @@ sensor:
       - weather_3d_metric
       - weather_4d_metric
       
+## BOM Forecast
+  - platform: bom_forecast
+    product_id: IDQ10610
+    name: GC Forecast
+    forecast_days: 5
+    rest_of_today: True
+    friendly: False
+    friendly_state_format: '{max}, {summary}'
+    monitored_conditions:
+      - 'max'
+      - 'min'
+      - 'chance_of_rain'
+      - 'possible_rainfall'
+      - 'summary'
+      - 'detailed_summary'
+     
   - platform: template
     sensors:
       bom_temp:
-        friendly_name: "Gold Coast"
+        friendly_name: "Gold Coast Temperature"
         value_template: "{{ states.weather.bom_gold_coast.attributes.temperature }}"
         device_class: temperature
         unit_of_measurement: °C
+        
+      bom_humd:
+        friendly_name: "Gold Coast Humidity"
+        value_template: "{{ states.weather.bom_gold_coast.attributes.humidity }}"
+        #device_class: humidity
+        unit_of_measurement: '%'
+        
+      bom_wind_sp:
+        friendly_name: "Gold Coast Wind Speed"
+        value_template: "{{ states.weather.bom_gold_coast.attributes.wind_speed }}"
+        #device_class: temperature
+        unit_of_measurement: km
+        
+      bom_wind_bear:
+        friendly_name: "Gold Coast Wind Bearing"
+        value_template: "{{ states.weather.bom_gold_coast.attributes.wind_bearing }}"
+        #device_class: temperature
+        #unit_of_measurement: km
+        
+      bom_pres:
+        friendly_name: "Gold Coast Pressure"
+        value_template: "{{ states.weather.bom_gold_coast.attributes.pressure }}"
+        #device_class: temperature
+        unit_of_measurement: hPa
         
 ####################################################
 #                                                  #
