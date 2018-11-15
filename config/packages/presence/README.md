@@ -4,12 +4,13 @@
 <h1 align="center">Presence Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
 <hr *** </hr>
-<p align="center">This package incorporates the device trackers I use to detect our home or away presence and use these to fire off Automations and TTS messages. In order to improve my home state accuracy I use BLE trackers for detecting home status which is working very very well, whilst I'm out and about I use owntracks with tasker on my android phone to force updates whenever I connect/disconnect from wifi/bluetooth/airplane mode.</p>
+<p align="center">This package incorporates the device trackers I use to detect our home or away presence and use these to fire off Automations and TTS messages. In order to improve my home state accuracy I use BLE trackers for detecting home status which is working very very well, whilst I'm out and about I use owntracks with tasker on my android phone to force updates whenever I connect/disconnect from wifi/bluetooth/airplane mode. I not only monitor my wife and I presence I also monitor my bins presence to further automate my trash collection routines aswell as montioring our cars with BLE Tile devices.</p>
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
 <p align="left">Room Assistant - https://github.com/mKeRix/room-assistant</br>
 <p align="left">HA Forum - https://community.home-assistant.io/t/reliable-multi-user-distributed-bluetooth-occupancy-presence-detection/50674/285</br>
+<p align+"left">Brad - https://diyfuturism.com/index.php/2017/11/26/presence-detection-with-home-assistant-bayesian-probability/<br/>
 <hr --- </hr>
 
 <h4 align="left">Package Dependencies:</h4>
@@ -21,6 +22,8 @@
 <p align="left">This tracker uses GPS location from our phones to update HA as to where we are this component works to varing degrees, I have managed to improve this with tasker on my android firing whenever I connect/disconnect from Wi-FI/Bluetooth or select Airplane mode.</br>
 <h4 align="left">BLE Detection</h4>
 <p align="left">This tracker uses 3 Rasberry Pi Zero's located around the house with HASSIO with Bluetooth addon and Bluetooth tracker component configured.</br>
+<h4 align="left">Bayesian Sensor</h4>
+<p align="left">This brings the best of all the methods above together to detect the probability that I am indeed home or away. I assume if I can ping my device I'm home, I also assume if more then one of my methods thinks I'm home then thats probably where I am. This is as close to perfect presence detection as I can acheive. I should mention that I also use Node-RED to combine my trackers to come up with the best probability that I'm home.</br>
 <h4 align="left">Package Inputs:</h4>
 <p align="left">There are 2 input boolaens which are triggered by the BLE trackers located around the house, these are then used to update home/away status aswell as trigger automations.</p>
 <h4 align="left">Package Sensors:</h4>
