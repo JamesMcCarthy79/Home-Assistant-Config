@@ -74,6 +74,10 @@ map:
   
 frontend:
   javascript_version: latest
+  extra_html_url:
+    - /local/custom_ui/fontawesome/hass-fontawesome-solid.html
+    - /local/custom_ui/fontawesome/hass-fontawesome-regular.html
+    - /local/custom_ui/fontawesome/hass-fontawesome-brands.html
 
 custom_updater: 
 
