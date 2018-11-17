@@ -54,6 +54,12 @@ homeassistant:
     sensor.illumination_158d0001e5cf11:
       friendly_name: Playroom LUX
       
+    sensor.lower_temperature:
+      friendly_name: Downstairs Temperature
+      icon: mdi:sofa
+    sensor.upstairs_temperature:
+      icon: mdi:hotel
+      
 #################################################################
 #                                                               #
 #                           Group                               #
@@ -271,183 +277,138 @@ sensor:
       - sensor.temperature_158d0001f54df3
       - sensor.temperature_158d00022c7248
       
+  - platform: mqtt
+    name: "Lounge Fan Switch"
+    state_topic: "lounge_fan"
+    
+  - platform: mqtt
+    name: "Bedroom Fan Switch"
+    state_topic: "bedroom_fan"
+    
+  - platform: mqtt
+    name: "Jackson Fan Switch"
+    state_topic: "jackson_fan"
+    
+  - platform: mqtt
+    name: "Hudson Fan Switch"
+    state_topic: "hudson_fan"
+    
 #################################################################
 #                                                               #
-#                         Automations                           #
+#                             Fan                               #
 #                                                               #
 #################################################################
 
-automation:
+fan:
 
-## Input Select for Downstairs Climate Off
-  - alias: Lounge Climate Off
-    trigger:
-    - platform: state
-      entity_id: input_select.lounge_aircon
-      to: Climate Off
-    action:
-    - service: scene.turn_on
-      data:
-        entity_id: scene.climate_off
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: "Downstairs Climate Off"
-        
-## Input Select for Downstairs Climate Cool
-  - alias: Lounge Climate Cool
-    trigger:
-    - platform: state
-      entity_id: input_select.lounge_aircon
-      to: Climate Cool
-    action:
-    - service: scene.turn_on
-      data:
-        entity_id: scene.climate_cool
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: "Climate Control On lets cool this place down."
-        
-## Input Select for Downstairs Climate Heat
-  - alias: Lounge Climate Heat
-    trigger:
-    - platform: state
-      entity_id: input_select.lounge_aircon
-      to: Climate Heat
-    action:
-    - service: scene.turn_on
-      data:
-        entity_id: scene.climate_heat
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: "Climate Control On lets warm this place up."
+### Bedroom Fan ###
+  - platform: mqtt  
+    name: "Bedroom Fan"
+    command_topic: "cmnd/bedroom_fan/FanSpeed"
+    speed_command_topic: "cmnd/bedroom_fan/FanSpeed"    
+    state_topic: "stat/bedroom_fan/RESULT"
+    speed_state_topic: "stat/bedroom_fan/RESULT"
+    state_value_template: >
+      {% if value_json.FanSpeed is defined %}
+        {% if value_json.FanSpeed == 0 -%}0{%- elif value_json.FanSpeed > 0 -%}4{%- endif %}
+      {% else %}
+        {% if states.fan.bedroom_fan.state == 'off' -%}0{%- elif states.fan.bedroom_fan.state == 'on' -%}4{%- endif %}
+      {% endif %}
+    speed_value_template: "{{ value_json.FanSpeed }}"
+    availability_topic: tele/bedroom_fan/LWT
+    payload_off: "0"
+    payload_on: "4"
+    payload_low_speed: "1"
+    payload_medium_speed: "2"
+    payload_high_speed: "3"
+    payload_available: Online
+    payload_not_available: Offline
+    speeds:
+      - off
+      - low
+      - medium
+      - high
 
-## Input Select for Fan Off
-  - alias: Lounge Fan Off
-    trigger:
-    - platform: state
-      entity_id: input_select.lounge_fan
-      to: Fan Off
-    action:
-    - service: script.1521695181969
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: "Lounge Fan Off"
-        
-## Input Select for Fan Low 
-  - alias: Lounge Fan Low
-    trigger:
-    - platform: state
-      entity_id: input_select.lounge_fan
-      to: Low
-    action:
-    - service: script.1521695117457
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: "Fan Speed Low"
-        
-## Input Select for Fan Medium 
-  - alias: Lounge Fan Medium
-    trigger:
-    - platform: state
-      entity_id: input_select.lounge_fan
-      to: Medium
-    action:
-    - service: script.1521695035815
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: "Fan Speed Medium"
-        
-## Input Select for Fan High
-  - alias: Lounge Fan High
-    trigger:
-    - platform: state
-      entity_id: input_select.lounge_fan
-      to: High
-    action:
-    - service: script.1521694972303
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: "Fan Speed High"
-        
-##Lounge Fan Wall Switch
-  - alias: Lounge Wall Fan Switch
-    trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        click_type: single
-        entity_id: binary_sensor.switch_158d000201ce4e
-    action:
-    - service: input_select.select_next
-      data: 
-        entity_id: input_select.lounge_fan
-        
-
-## Input Select for Bedroom Fan Off
-  - alias: Bedroom Fan Off
-    trigger:
-    - platform: state
-      entity_id: input_select.bedroom_fan
-      to: Fan Off
-    action:
-    - service: script.1521695537041
-    
-## Input Select for Bedroom Fan Low
-  - alias: Bedroom Fan Low
-    trigger:
-    - platform: state
-      entity_id: input_select.bedroom_fan
-      to: Low
-    action:
-    - service: script.1521695486416
-    
-## Input Select for Bedroom Fan Medium
-  - alias: Bedroom Fan Medium
-    trigger:
-    - platform: state
-      entity_id: input_select.bedroom_fan
-      to: Medium
-    action:
-    - service: script.1521695283264
-    
-## Input Select for Bedroom Fan High
-  - alias: Bedroom Fan Medium
-    trigger:
-    - platform: state
-      entity_id: input_select.bedroom_fan
-      to: High
-    action:
-    - service: script.1521695238080
-    
-##Bedside Fan Switch
-  - alias: Bedside Fan Switch
-    trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        click_type: single
-        entity_id: binary_sensor.switch_158d000233a19
-    action:
-    - service: input_select.select_next
-      data: 
-        entity_id: input_select.bedroom_fan
-        
-##Bedroom Fan Wall Switch
-  - alias: Bedroom Fan Wall Switch
-    trigger:
-    - platform: event
-      event_type: click
-      event_data:
-        click_type: single
-        entity_id: binary_sensor.switch_158d000215aa27
-    action:
-    - service: input_select.select_next
-      data: 
-        entity_id: input_select.bedroom_fan
+### Lounge Fan ###
+  - platform: mqtt  
+    name: "Lounge Fan"
+    command_topic: "cmnd/lounge_fan/FanSpeed"
+    speed_command_topic: "cmnd/lounge_fan/FanSpeed"    
+    state_topic: "stat/lounge_fan/RESULT"
+    speed_state_topic: "stat/lounge_fan/RESULT"
+    state_value_template: >
+      {% if value_json.FanSpeed is defined %}
+        {% if value_json.FanSpeed == 0 -%}0{%- elif value_json.FanSpeed > 0 -%}4{%- endif %}
+      {% else %}
+        {% if states.fan.lounge_fan.state == 'off' -%}0{%- elif states.fan.lounge_fan.state == 'on' -%}4{%- endif %}
+      {% endif %}
+    speed_value_template: "{{ value_json.FanSpeed }}"
+    availability_topic: tele/lounge_fan/LWT
+    payload_off: "0"
+    payload_on: "4"
+    payload_low_speed: "1"
+    payload_medium_speed: "2"
+    payload_high_speed: "3"
+    payload_available: Online
+    payload_not_available: Offline
+    speeds:
+      - off
+      - low
+      - medium
+      - high
+      
+### Jackson Fan ###
+  - platform: mqtt  
+    name: "Jackson Fan"
+    command_topic: "cmnd/jackson_fan/FanSpeed"
+    speed_command_topic: "cmnd/jackson_fan/FanSpeed"    
+    state_topic: "stat/jackson_fan/RESULT"
+    speed_state_topic: "stat/jackson_fan/RESULT"
+    state_value_template: >
+      {% if value_json.FanSpeed is defined %}
+        {% if value_json.FanSpeed == 0 -%}0{%- elif value_json.FanSpeed > 0 -%}4{%- endif %}
+      {% else %}
+        {% if states.fan.jackson_fan.state == 'off' -%}0{%- elif states.fan.jackson_fan.state == 'on' -%}4{%- endif %}
+      {% endif %}
+    speed_value_template: "{{ value_json.FanSpeed }}"
+    availability_topic: tele/jackson_fan/LWT
+    payload_off: "0"
+    payload_on: "4"
+    payload_low_speed: "1"
+    payload_medium_speed: "2"
+    payload_high_speed: "3"
+    payload_available: Online
+    payload_not_available: Offline
+    speeds:
+      - off
+      - low
+      - medium
+      - high
+      
+### Hudson Fan ###
+  - platform: mqtt  
+    name: "Hudson Fan"
+    command_topic: "cmnd/hudson_fan/FanSpeed"
+    speed_command_topic: "cmnd/hudson_fan/FanSpeed"    
+    state_topic: "stat/hudson_fan/RESULT"
+    speed_state_topic: "stat/hudson_fan/RESULT"
+    state_value_template: >
+      {% if value_json.FanSpeed is defined %}
+        {% if value_json.FanSpeed == 0 -%}0{%- elif value_json.FanSpeed > 0 -%}4{%- endif %}
+      {% else %}
+        {% if states.fan.hudson_fan.state == 'off' -%}0{%- elif states.fan.hudson_fan.state == 'on' -%}4{%- endif %}
+      {% endif %}
+    speed_value_template: "{{ value_json.FanSpeed }}"
+    availability_topic: tele/hudson_fan/LWT
+    payload_off: "0"
+    payload_on: "4"
+    payload_low_speed: "1"
+    payload_medium_speed: "2"
+    payload_high_speed: "3"
+    payload_available: Online
+    payload_not_available: Offline
+    speeds:
+      - off
+      - low
+      - medium
+      - high
