@@ -100,19 +100,29 @@ device_tracker:
       entry_light_bulb: 10.0.50.3
       dining_light_bulb: 10.0.50.4
       bedroom_light_bulb: 10.0.50.5
-      lounge_fan_switch: 10.0.60.1
+      bedroom_light_switch: 10.0.60.1
       kitchen_light_switch: 10.0.60.2
       patio_light_switch: 10.0.60.3
       lounge_light_switch: 10.0.60.4
-      master_bedroom_fan_switch: 10.0.60.5
+      walkin_light_switch: 10.0.60.5
       dining_light_switch: 10.0.60.6
+      bathroom_light_switch: 10.0.60.7
+      playroom_light_switch: 10.0.60.8
       patio_led_switch: 10.0.70.1
       garage_door_sensor: 10.0.80.1
       coffee_machine_sensor: 10.0.80.2
       ble_tracker_downstairs: 10.0.20.6
       ble_tracker_upstairs: 10.0.20.7
       playroom_fan: 10.0.100.1
-      robovac: 10.0.100.2
+      bedroom_fan: 10.0.100.3
+      bedroom_fan_switch: 10.0.100.4
+      lounge_fan: 10.0.100.5
+      lounge_fan_switch: 10.0.100.6
+      jackson_fan: 10.0.100.7
+      jackson_fan_switch: 10.0.100.8
+      hudson_fan: 10.0.100.9
+      hudson_fan_switch: 10.0.100.10
+      robovac: 10.0.110.1
       
 #################################################################
 #                                                               #
