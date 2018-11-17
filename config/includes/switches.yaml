@@ -136,17 +136,17 @@
       command_on: python3 /config/python_scripts/spotifykitchen.py
       command_off: python3 /config/python_scripts/spotifykitchenoff.py
       
-- platform: command_line
-  switches:
-    away_alarm_triggered:
-      friendly_name: "Away Alarm Triggered"
-      command_on: python3 /config/python_scripts/away_alarm_trigger.py
+#- platform: command_line
+#  switches:
+#    away_alarm_triggered:
+#      friendly_name: "Away Alarm Triggered"
+#      command_on: python3 /config/python_scripts/away_alarm_trigger.py
       
-- platform: command_line
-  switches:
-    alarm_deactivated:
-      friendly_name: "Alarm Deactivated"
-      command_on: python3 /config/python_scripts/alarm_deactivated.py
+#- platform: command_line
+#  switches:
+#    alarm_deactivated:
+#      friendly_name: "Alarm Deactivated"
+#      command_on: python3 /config/python_scripts/alarm_deactivated.py
       
 #- platform: command_line
 #  switches:
@@ -190,8 +190,8 @@
 ## Dining Light Switch ##
 - platform: mqtt
   name: "Dining Light Switch"
-  command_topic: "cmnd/kitchen_light_switch/POWER"
-  state_topic: "stat/kitchen_light_switch/POWER"
+  command_topic: "cmnd/dining_light_switch/POWER"
+  state_topic: "stat/dining_light_switch/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
@@ -286,33 +286,6 @@
   payload_on: "ON"
   payload_off: "OFF"
   retain: false
-## Lounge Fan Switch High ##
-- platform: mqtt
-  name: "Lounge Fan Switch High"
-  command_topic: "cmnd/lounge_fan_switch/POWER1"
-  state_topic: "stat/lounge_fan_switch/POWER1"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  retain: false
-## Lounge Fan Switch Med ##
-- platform: mqtt
-  name: "Lounge Fan Switch Med"
-  command_topic: "cmnd/lounge_fan_switch/POWER2"
-  state_topic: "stat/lounge_fan_switch/POWER2"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  retain: false
-## Lounge Fan Switch Low ##
-- platform: mqtt
-  name: "Lounge Fan Switch Low"
-  command_topic: "cmnd/lounge_fan_switch/POWER3"
-  state_topic: "stat/lounge_fan_switch/POWER3"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  retain: false
 ## Lounge Light Switch ##
 - platform: mqtt
   name: "Lounge Light Switch"
@@ -325,35 +298,8 @@
 ## Master Light Switch ##
 - platform: mqtt
   name: "Master Light Switch"
-  command_topic: "cmnd/sonoff-master-bedroom/POWER4"
-  state_topic: "stat/sonoff-master-bedroom/POWER4"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  retain: false
-## Master Fan Switch High ##
-- platform: mqtt
-  name: "Master Fan Switch High"
-  command_topic: "cmnd/sonoff-master-bedroom/POWER1"
-  state_topic: "stat/sonoff-master-bedroom/POWER1"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  retain: false
-## Master Fan Switch Med ##
-- platform: mqtt
-  name: "Master Fan Switch Med"
-  command_topic: "cmnd/sonoff-master-bedroom/POWER2"
-  state_topic: "stat/sonoff-master-bedroom/POWER2"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  retain: false
-## Master Fan Switch Low ##
-- platform: mqtt
-  name: "Master Fan Switch Low"
-  command_topic: "cmnd/sonoff-master-bedroom/POWER3"
-  state_topic: "stat/sonoff-master-bedroom/POWER3"
+  command_topic: "cmnd/bedroom_light/POWER"
+  state_topic: "stat/bedroom_light/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
@@ -361,8 +307,8 @@
 ## Master Wardrobe Switch ##
 - platform: mqtt
   name: "Master Wardrobe Switch"
-  command_topic: "cmnd/sonoff-master-wardrobe/POWER"
-  state_topic: "stat/sonoff-master-wardrobe/POWER"
+  command_topic: "cmnd/walk-in_light/POWER"
+  state_topic: "stat/walk-in_light/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
@@ -376,15 +322,25 @@
   payload_on: "ON"
   payload_off: "OFF"
   retain: false
+## Laundry Light Switch ##
 - platform: mqtt
-  name: "XMAS Lights"
-  command_topic: "cmnd/sonoff-s20-xmas/POWER"
-  state_topic: "stat/sonoff-s20-xmas/POWER"
+  name: "Laundry Light Switch"
+  command_topic: "cmnd/playroom_light/POWER1"
+  state_topic: "stat/playroom_light/POWER1"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
-  retain: true
-  ## Toilet Light Bulb ##
+  retain: false
+## Laundry Light Switch ##
+- platform: mqtt
+  name: "Playroom Light Switch"
+  command_topic: "cmnd/playroom_light/POWER1"
+  state_topic: "stat/playroom_light/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+## Toilet Light Bulb ##
 - platform: mqtt
   name: "Upstairs Toilet Bulb"
   state_topic: "stat/sonoff-light-toilet/POWER"
