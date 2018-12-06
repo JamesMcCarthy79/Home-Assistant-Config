@@ -8,7 +8,7 @@
 <p align="center">Be sure to :star: my repo!</p>
 <p align="center">
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.81.0-brightgreen.svg"/>
+  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.83.3-brightgreen.svg"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/issues"><img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <href="http://unlicense.org/"><img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
@@ -26,7 +26,8 @@
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/configurator"><img src="https://img.shields.io/badge/Configurator-v2.0-5294E2.svg"/>
-  <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v6.0-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v8.0-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0-5294E2.svg"/>
 </p>
 <hr --- </hr> 
 
