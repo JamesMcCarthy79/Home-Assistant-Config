@@ -22,6 +22,16 @@ homeassistant:
       icon: 'mdi:home-variant'
     sensor.next_bus:
       icon: 'mdi:bus-clock'
+    device_tracker.james_keys:
+      icon: 'fas:key'
+    device_tracker.james_car:
+      icon: 'fas:car'
+    device_tracker.james_bag:
+      icon: 'fas:briefcase'
+    device_tracker.huawei_mate_10:
+      icon: 'fas:bluetooth'
+    device_tracker.huawei_h10:
+      icon: 'fas:globe-asia'
  
 #################################################################
 #                                                               #
@@ -43,6 +53,7 @@ group:
       - sensor.commute_to_work
       - sensor.commute_from_work
       - sensor.james_to_home
+      - sensor.next_bus
       
   family:
     name: Family
@@ -50,23 +61,7 @@ group:
     entities:
       - sensor.james
       - sensor.tina
-      
-  ble_tracker_james:
-    name: BLE Tracker James
-    view: no
-    entities:
-      - sensor.james_downstairs
-      - sensor.james_upstairs
-      - sensor.james_outside
-      
-  ble_tracker_tina:
-    name: BLE Tracker Tina
-    view: no
-    entities:
-      - sensor.tina_downstairs
-      - sensor.tina_upstairs
-      - sensor.tina_outside
-
+   
 #################################################################
 #                                                               #
 #                      Device Trackers                          #
@@ -76,11 +71,10 @@ group:
 device_tracker:
   - platform: ping
     hosts:
-      james_phone: 10.0.5.2
-      tina_phone: 10.0.5.1
-      
-  - platform: owntracks
-    max_gps_accuracy: 200
+      james_ping: 10.0.5.2
+      tina_ping: 10.0.5.1
+    
+  - platform: gpslogger
     
   - platform: bluetooth_tracker
     request_rssi: true
@@ -91,82 +85,123 @@ device_tracker:
 #                                                               #
 ################################################################# 
 
-## Batteries
+
 sensor:
+## Trackers
   - platform: mqtt
-    state_topic: "owntracks/ha/huawei"
-    name: "Battery James"
-    unit_of_measurement: "%"
-    value_template: '{{ value_json.batt }}'
-    device_class: battery
+    state_topic: 'tracker/downstairs/34:2D:24:E9:AA:9F'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'James Keys'
     
   - platform: mqtt
-    state_topic: "owntracks/ha/samsung"
-    name: "Battery Tina"
-    unit_of_measurement: "%"
-    value_template: '{{ value_json.batt }}'
-    device_class: battery
- 
-##BLE Tracking Sensors 
-  - platform: mqtt_room
-    device_id: 342d24e9aa9f
-    name: 'BLE James'
-    state_topic: 'room_presence'
-    timeout: 5
-    away_timeout: 60
-
-  - platform: mqtt_room
-    device_id: 174f24f2acfc
-    name: 'BLE Tina'
-    state_topic: 'room_presence'
-    timeout: 5
-    away_timeout: 60
+    state_topic: 'tracker/downstairs/17:4F:24:F2:AC:FC'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'Tina Keys'
+    
+  - platform: mqtt
+    state_topic: 'tracker/downstairs/EB:44:53:B4:1E:3E'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'Trash Bin'
+    
+  - platform: mqtt
+    state_topic: 'tracker/downstairs/C2:B2:76:3E:5E:38'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'James Car'
+    
+  - platform: mqtt
+    state_topic: 'tracker/downstairs/C8:FA:19:16:36:66'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'James Bag'
+    
+## Charging State
+  - platform: mqtt
+    name: "James Charging"
+    state_topic: "james/charging/huawei"
+    
+  - platform: mqtt
+    name: "Tina Charging"
+    state_topic: "tina/charging/samsung"
     
 ## Create Sensor for Display in UI      
   - platform: template
     sensors:
+      battery_james:
+        friendly_name: "Battery James"
+        value_template: "{{ states.device_tracker.huawei_h10.attributes.battery|int }}"
+        icon_template: >-
+          {% if is_state('sensor.james_charging', 'Charging') %}
+            mdi:battery-charging
+          {% endif %}
+        unit_of_measurement: "%"
+        device_class: battery
+        
+      speed_james:
+        friendly_name: "Speed James"
+        value_template: "{{ states.device_tracker.huawei_h10.attributes.speed|int }}"
+        unit_of_measurement: "km/h"
+        
+      battery_tina:
+        friendly_name: "Battery Tina"
+        value_template: "{{ states.device_tracker.galaxy_tina.attributes.battery|int }}"
+        icon_template: >-
+          {% if is_state('sensor.tina_charging', 'Charging') %}
+            mdi:battery-charging
+          {% endif %}
+        unit_of_measurement: "%"
+        device_class: battery
+        
+      speed_tina:
+        friendly_name: "Speed Tina"
+        value_template: "{{ states.device_tracker.galaxy_s8.attributes.speed|int }}"
+        unit_of_measurement: "km/h"
+        
       james:
         friendly_name: "James"
         value_template: >-
           {% if is_state('device_tracker.james_bayesian', 'home') %}
             Home
-          {% elif is_state('device_tracker.ha_huawei', 'Powertec') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Powertec') %}
             Powertec
-          {% elif is_state('device_tracker.ha_huawei', 'Kindy') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Kindy') %}
             Kindy
-          {% elif is_state('device_tracker.ha_huawei', 'Stocklands') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Stocklands') %}
             Stocklands
-          {% elif is_state('device_tracker.ha_huawei', 'Parlour') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Parlour') %}
             Parlour
-          {% elif is_state('device_tracker.ha_huawei', 'Work Home Beacon 25mins') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 25mins') %}
             25mins Away
-          {% elif is_state('device_tracker.ha_huawei', 'Work Home Beacon 15mins') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 15mins') %}
             15mins Away
-          {% elif is_state('device_tracker.ha_huawei', 'Work Home Beacon 5mins') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 5mins') %}
             5mins Away
-          {% elif is_state('device_tracker.ha_huawei', 'Darwin') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Darwin') %}
             Darwin
-          {% elif is_state('device_tracker.ha_huawei', 'Brisbane') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Brisbane') %}
             Brisbane
-          {% elif is_state('device_tracker.ha_huawei', 'Sydney') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Sydney') %}
             Sydney
-          {% elif is_state('device_tracker.ha_huawei', 'Melbourne') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Melbourne') %}
             Melbourne
-          {% elif is_state('device_tracker.ha_huawei', 'Perth') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Perth') %}
             Perth
-          {% elif is_state('device_tracker.ha_huawei', 'Adelaide') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Adelaide') %}
             Adelaide
-          {% elif is_state('device_tracker.ha_huawei', 'Tasmania') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Tasmania') %}
             Tasmania
-          {% elif is_state('device_tracker.ha_huawei', 'UK') %}
+          {% elif is_state('device_tracker.huawei_h10', 'UK') %}
             UK
-          {% elif is_state('device_tracker.ha_huawei', 'France') %}
+          {% elif is_state('device_tracker.huawei_h10', 'France') %}
             France
-          {% elif is_state('device_tracker.ha_huawei', 'Netherlands') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Netherlands') %}
             Netherlands
-          {% elif is_state('device_tracker.ha_huawei', 'Switzerland') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Switzerland') %}
             Switzerland
-          {% elif is_state('device_tracker.ha_huawei', 'Italy') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Italy') %}
             Italy
           {% else %}
             Away
@@ -176,43 +211,43 @@ sensor:
             /local/james.jpg
           {% endif %}
         icon_template: >-
-          {% if is_state('device_tracker.ha_huawei', 'Powertec') %}
+          {% if is_state('device_tracker.huawei_h10', 'Powertec') %}
             mdi:briefcase
-          {% elif is_state('device_tracker.ha_huawei', 'Kindy') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Kindy') %}
             mdi:school
-          {% elif is_state('device_tracker.ha_huawei', 'Stocklands') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Stocklands') %}
             mdi:cart
-          {% elif is_state('device_tracker.ha_huawei', 'Parlour') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Parlour') %}
             mdi:coffee
-          {% elif is_state('device_tracker.ha_huawei', 'Work Home Beacon 25mins') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 25mins') %}
             mdi:car
-          {% elif is_state('device_tracker.ha_huawei', 'Work Home Beacon 15mins') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 15mins') %}
             mdi:car
-          {% elif is_state('device_tracker.ha_huawei', 'Work Home Beacon 5mins') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 5mins') %}
             mdi:car
-          {% elif is_state('device_tracker.ha_huawei', 'Darwin') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Darwin') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Brisbane') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Brisbane') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Sydney') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Sydney') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Melbourne') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Melbourne') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Perth') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Perth') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Adelaide') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Adelaide') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Tasmania') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Tasmania') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'UK') %}
+          {% elif is_state('device_tracker.huawei_h10', 'UK') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'France') %}
+          {% elif is_state('device_tracker.huawei_h10', 'France') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Netherlands') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Netherlands') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Switzerland') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Switzerland') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_huawei', 'Italy') %}
+          {% elif is_state('device_tracker.huawei_h10', 'Italy') %}
             mdi:airplane
           {% else %}
             mdi:walk
@@ -223,35 +258,35 @@ sensor:
         value_template: >-
           {% if is_state('device_tracker.tina_bayesian', 'home') %}
             Home
-          {% elif is_state('device_tracker.ha_samsung', 'Kindy') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Kindy') %}
             Kindy
-          {% elif is_state('device_tracker.ha_samsung', 'Stocklands') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Stocklands') %}
             Stocklands
-          {% elif is_state('device_tracker.ha_samsung', 'Parlour') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Parlour') %}
             Parlour
-          {% elif is_state('device_tracker.ha_samsung', 'Darwin') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Darwin') %}
             Darwin
-          {% elif is_state('device_tracker.ha_samsung', 'Brisbane') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Brisbane') %}
             Brisbane
-          {% elif is_state('device_tracker.ha_samsung', 'Sydney') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Sydney') %}
             Sydney
-          {% elif is_state('device_tracker.ha_samsung', 'Melbourne') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Melbourne') %}
             Melbourne
-          {% elif is_state('device_tracker.ha_samsung', 'Perth') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Perth') %}
             Perth
-          {% elif is_state('device_tracker.ha_samsung', 'Adelaide') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Adelaide') %}
             Adelaide
-          {% elif is_state('device_tracker.ha_samsung', 'Tasmania') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Tasmania') %}
             Tasmania
-          {% elif is_state('device_tracker.ha_samsung', 'UK') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'UK') %}
             UK
-          {% elif is_state('device_tracker.ha_samsung', 'France') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'France') %}
             France
-          {% elif is_state('device_tracker.ha_samsung', 'Netherlands') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Netherlands') %}
             Netherlands
-          {% elif is_state('device_tracker.ha_samsung', 'Switzerland') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Switzerland') %}
             Switzerland
-          {% elif is_state('device_tracker.ha_samsung', 'Italy') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Italy') %}
             Italy
           {% else %}
             Away
@@ -261,166 +296,73 @@ sensor:
             /local/tina.jpg
           {% endif %}
         icon_template: >-
-          {% if is_state('device_tracker.ha_samsung', 'Kindy') %}
+          {% if is_state('device_tracker.galaxy_tina', 'Kindy') %}
             mdi:school
-          {% elif is_state('device_tracker.ha_samsung', 'Stocklands') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Stocklands') %}
             mdi:cart
-          {% elif is_state('device_tracker.ha_samsung', 'Parlour') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Parlour') %}
             mdi:coffee
-          {% elif is_state('device_tracker.ha_samsung', 'Darwin') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Darwin') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Brisbane') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Brisbane') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Sydney') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Sydney') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Melbourne') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Melbourne') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Perth') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Perth') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Adelaide') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Adelaide') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Tasmania') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Tasmania') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'UK') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'UK') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'France') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'France') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Netherlands') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Netherlands') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Switzerland') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Switzerland') %}
             mdi:airplane
-          {% elif is_state('device_tracker.ha_samsung', 'Italy') %}
+          {% elif is_state('device_tracker.galaxy_tina', 'Italy') %}
             mdi:airplane
           {% else %}
             mdi:walk
           {% endif %}
 
 ## Room Assistant Sensors          
-      ble_james_downstairs:
-        friendly_name: "BLE James Downstairs"
+      ble_james:
+        friendly_name: "BLE James"
         value_template: >-
-          {% if is_state('sensor.james_downstairs', 'home') %}
-            {{statessensor.james_downstairs.attributes.rssi}}
+          {% if is_state('device_tracker.huawei_mate_10', 'home') %}
+            {{states.device_tracker.huawei_mate_10.attributes.rssi}}
           {% endif %}
           
-      ble_james_upstairs:
-        friendly_name: "BLE James Upstairs"
+      ble_tina:
+        friendly_name: "BLE Tina"
         value_template: >-
-          {% if is_state('sensor.james_upstairs', 'home') %}
-            {{states.sensor.james_upstairs.attributes.rssi}}
-          {% endif %}
-          
-      ble_james_outside:
-        friendly_name: "BLE James Outside"
-        value_template: >-
-          {% if is_state('sensor.james_outside', 'home') %}
-            {{states.sensor.james_outside.attributes.rssi}}
-          {% endif %}
-          
-      ble_tina_downstairs:
-        friendly_name: "BLE Tina Downstairs"
-        value_template: >-
-          {% if is_state('sensor.tina_downstairs', 'home') %}
-            {{states.sensor.tina_downstairs.attributes.rssi}}
-          {% endif %}
-          
-      ble_tina_bedroom:
-        friendly_name: "BLE Tina Upstairs"
-        value_template: >-
-          {% if is_state('sensor.tina_upstairs', 'home') %}
-            {{states.sensor.tina_upstairs.attributes.rssi}}
-          {% endif %}
-          
-      ble_tina_outside:
-        friendly_name: "BLE Tina Outside"
-        value_template: >-
-          {% if is_state('sensor.tina_outside', 'home') %}
-            {{states.sensor.tina_outside.attributes.rssi}}
+          {% if is_state('device_tracker.galaxy_s8', 'home') %}
+            {{states.device_tracker.galaxy_s8.attributes.rssi}}
           {% endif %}
 
-## UI Sensor to show which location I am in the house          
-      james_castle_location:
-        friendly_name: "Kingia Castle Location"
-        value_template: >-
-          {% if is_state('sensor.ble_james', 'not_home') %}
-            Not Home
-          {% elif (states.sensor.ble_james_downstairs.state | float) < 5 %}
-            Downstairs
-          {% elif (states.sensor.ble_james_upstairs.state | float) < 5 %}
-            Upstairs
-          {% elif (states.sensor.ble_james_outside.state | float) < 5 %}
-            Outside
-          {% elif is_state('device_tracker.galaxy_s8', 'home') %}
-            Just Arrived
-          {% else %}
-            Not Home
-          {% endif %}
-        icon_template: >-
-          {% if is_state('sensor.james_castle_location', 'Just Arrived') %}
-            mdi:castle
-          {% elif is_state('sensor.james_castle_location', 'Downstairs') %}
-            mdi:sofa
-          {% elif is_state('sensor.james_castle_location', 'Upstairs') %}
-            mdi:hotel
-          {% elif is_state('sensor.james_castle_location', 'Outside') %}
-            mdi:flower
-          {% else %}
-            mdi:walk
-          {% endif %}
-          
-      tina_castle_location:
-        friendly_name: "Kingia Castle Location"
-        value_template: >-
-          {% if is_state('sensor.ble_tina', 'not_home') %}
-            Not Home
-          {% elif (states.sensor.ble_tina_downstairs.state | float) < 5 %}
-            Downstairs
-          {% elif (states.sensor.ble_tina_upstairs.state | float) < 5 %}
-            Upstairs
-          {% elif (states.sensor.ble_tina_outside.state | float) < 5 %}
-            Outside
-          {% elif is_state('device_tracker.admin_iphone', 'home') %}
-            Just Arrived
-          {% else %}
-            Not Home
-          {% endif %}
-        icon_template: >-
-          {% if is_state('sensor.tina_castle_location', 'Just Arrived') %}
-            mdi:castle
-          {% elif is_state('sensor.tina_castle_location', 'Downstairs') %}
-            mdi:sofa
-          {% elif is_state('sensor.tina_castle_location', 'Upstairs') %}
-            mdi:hotel
-          {% elif is_state('sensor.tina_castle_location', 'Outside') %}
-            mdi:flower
-          {% else %}
-            mdi:walk
-          {% endif %}
-            
-## Google Travel Time
-  - platform: google_travel_time
-    api_key: !secret google_maps
+## Waze Travel Time
+  - platform: waze_travel_time
     name: 'Commute to Work'
-    origin: your origin
-    destination: your destination
+    origin: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    destination: 16/511 Olsen Ave, Southport QLD 4215, Australia
+    region: 'NA'
     
-  - platform: google_travel_time
-    api_key: !secret google_maps
-    name: 'Commute from Work'
-    origin: your origin
-    destination: your destination
-    
-  - platform: google_travel_time
-    api_key: !secret google_maps
+  - platform: waze_travel_time
     name: 'James to Home'
-    origin: device_tracker.admin_samsung
-    destination: your destination
+    origin: device_tracker.huawei_h10
+    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    region: 'AU'
     
-  - platform: google_travel_time
-    api_key: !secret google_maps
+  - platform: waze_travel_time
     name: 'Tina to Home'
-    origin: device_tracker.admin_samsung
-    destination: your destination
+    origin: device_tracker.ha_samsung
+    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    region: 'AU'
     
   - platform: template
     sensors:
@@ -438,68 +380,263 @@ sensor:
 ################################################################# 
 
 binary_sensor:
-  - platform: bayesian
-    prior: 0.5
-    name: 'James Presence'
-    probability_threshold: 0.9
-    observations:
-      - entity_id: 'device_tracker.james_phone'
-        prob_given_true: 0.9
-        prob_given_false: 0.1
-        platform: 'state'
-        to_state: 'home'
-      - entity_id: 'device_tracker.huawei_mate_10'
-        prob_given_true: 0.9
-        prob_given_false: 0.2
-        platform: 'state'
-        to_state: 'home'
-      - entity_id: 'device_tracker.ha_huawei'
-        prob_given_true: 0.9
-        prob_given_false: 0.4
-        platform: 'state'
-        to_state: 'home'
-      #- entity_id: 'device_tracker.james_nodered'
-      #  prob_given_true: 0.8
-      #  prob_given_false: 0.2
-      #  platform: 'state'
-      #  to_state: 'home'
-      #- entity_id: 'device_tracker.james_keys'
-      #  prob_given_true: 0.8
-      #  prob_given_false: 0.4
-      #  platform: 'state'
-      #  to_state: 'home'
-      
-  - platform: bayesian
-    prior: 0.5
-    name: 'Tina Presence'
-    probability_threshold: 0.9
-    observations:
-      - entity_id: 'device_tracker.tina_phone'
-        prob_given_true: 0.9
-        prob_given_false: 0.1
-        platform: 'state'
-        to_state: 'home'
-      - entity_id: 'device_tracker.galaxy_s8'
-        prob_given_true: 0.9
-        prob_given_false: 0.2
-        platform: 'state'
-        to_state: 'home'
-      - entity_id: 'device_tracker.ha_samsung'
-        prob_given_true: 0.9
-        prob_given_false: 0.4
-        platform: 'state'
-        to_state: 'home'
-      #- entity_id: 'device_tracker.james_nodered'
-      #  prob_given_true: 0.8
-      #  prob_given_false: 0.2
-      #  platform: 'state'
-      #  to_state: 'home'
-      #- entity_id: 'device_tracker.james_keys'
-      #  prob_given_true: 0.8
-      #  prob_given_false: 0.4
-      #  platform: 'state'
-      #  to_state: 'home'
+  - platform: template
+    sensors:
+      james_gps_status:
+        friendly_name: James GPS
+        device_class: connectivity
+        entity_id: device_tracker.huawei_h10
+        value_template: "{{ is_state('device_tracker.huawei_h10', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.huawei_h10', 'home') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Powertec') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Kindy') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Stocklands') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Parlour') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 25mins') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 15mins') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 5mins') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Darwin') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Brisbane') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Sydney') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Melbourne') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Perth') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Adelaide') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Tasmania') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'UK') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'France') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Netherlands') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Switzerland') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'Italy') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.huawei_h10', 'not_home') %}
+            mdi:crosshairs-gps
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      james_ble_status:
+        friendly_name: James BLE
+        device_class: connectivity
+        entity_id: device_tracker.huawei_mate_10
+        value_template: "{{ is_state('device_tracker.huawei_mate_10', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.huawei_mate_10', 'home') %}
+            mdi:bluetooth-audio
+          {% elif is_state('device_tracker.huawei_mate_10', 'not_home') %}
+            mdi:bluetooth-audio
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      james_keys_status:
+        friendly_name: James Keys
+        device_class: connectivity
+        entity_id: device_tracker.james_keys
+        value_template: "{{ is_state('device_tracker.james_keys', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.james_keys', 'home') %}
+            mdi:key
+          {% elif is_state('device_tracker.james_keys', 'not_home') %}
+            mdi:key
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      james_car_status:
+        friendly_name: James Car
+        device_class: connectivity
+        entity_id: device_tracker.james_car
+        value_template: "{{ is_state('device_tracker.james_car', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.james_car', 'home') %}
+            mdi:car-side
+          {% elif is_state('device_tracker.james_car', 'not_home') %}
+            mdi:car-side
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      james_bag_status:
+        friendly_name: James Bag
+        device_class: connectivity
+        entity_id: device_tracker.james_bag
+        value_template: "{{ is_state('device_tracker.james_bag', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.james_bag', 'home') %}
+            mdi:briefcase
+          {% elif is_state('device_tracker.james_bag', 'not_home') %}
+            mdi:briefcase
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      tina_gps_status:
+        friendly_name: Tina GPS
+        device_class: connectivity
+        entity_id: device_tracker.galaxy_tina
+        value_template: "{{ is_state('device_tracker.galaxy_tina', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.galaxy_tina', 'home') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Powertec') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Kindy') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Stocklands') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Parlour') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Work Home Beacon 25mins') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Work Home Beacon 15mins') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Work Home Beacon 5mins') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Darwin') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Brisbane') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Sydney') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Melbourne') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Perth') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Adelaide') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Tasmania') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'UK') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'France') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Netherlands') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Switzerland') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'Italy') %}
+            mdi:crosshairs-gps
+          {% elif is_state('device_tracker.galaxy_tina', 'not_home') %}
+            mdi:crosshairs-gps
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      tina_ble_status:
+        friendly_name: Tina BLE
+        device_class: connectivity
+        entity_id: device_tracker.galaxy_s8
+        value_template: "{{ is_state('device_tracker.galaxy_s8', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.galaxy_s8', 'home') %}
+            mdi:bluetooth-audio
+          {% elif is_state('device_tracker.galaxy_s8', 'not_home') %}
+            mdi:bluetooth-audio
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      tina_keys_status:
+        friendly_name: Tina Keys
+        device_class: connectivity
+        entity_id: device_tracker.tina_keys
+        value_template: "{{ is_state('device_tracker.tina_keys', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.tina_keys', 'home') %}
+            mdi:key
+          {% elif is_state('device_tracker.tina_keys', 'not_home') %}
+            mdi:key
+          {% else %}
+            mdi:alert
+          {% endif %}
 
+#################################################################
+#                                                               #
+#                        Input Boolean                          #
+#                                                               #
+#################################################################
+
+input_boolean:        
+  james_tts:
+    name: James TTS
+    initial: on
+    icon: mdi:delete-variant
+
+  james_tts_1:
+    name: James TTS 1
+    initial: off
+    icon: mdi:delete-variant
+    
+  james_tts_2:
+    name: James TTS 2
+    initial: off
+    icon: mdi:delete-variant
+    
+  james_tts_3:
+    name: James TTS 3
+    initial: off
+    icon: mdi:delete-variant
+    
+  james_tts_4:
+    name: James TTS 4
+    initial: off
+    icon: mdi:delete-variant
+    
+  james_tts_5:
+    name: James TTS 5
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts:
+    name: Tina TTS
+    initial: on
+    icon: mdi:delete-variant
+
+  tina_tts_1:
+    name: Tina TTS 1
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts_2:
+    name: Tina TTS 2
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts_3:
+    name: Tina TTS 3
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts_4:
+    name: Tina TTS 4
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts_5:
+    name: Tina TTS 5
+    initial: off
+    icon: mdi:delete-variant
+    
 #################################################################
 #                                                               #
 #                         Automations                           #
