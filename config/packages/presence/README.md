@@ -8,7 +8,7 @@
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">Room Assistant - https://github.com/mKeRix/room-assistant</br>
+<p align="left">Monitor - https://github.com/andrewjfreyer/monitor#an-example-use-with-home-assistant</br>
 <p align="left">HA Forum - https://community.home-assistant.io/t/reliable-multi-user-distributed-bluetooth-occupancy-presence-detection/50674/285</br>
 <p align+"left">Brad - https://diyfuturism.com/index.php/2017/11/26/presence-detection-with-home-assistant-bayesian-probability/<br/>
 <hr --- </hr>
