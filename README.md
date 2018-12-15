@@ -25,7 +25,7 @@
 <p align="center">
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1-5294E2.svg"/>
-  <href="https://www.home-assistant.io/addons/configurator"><img src="https://img.shields.io/badge/Configurator-v2.0-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/ide"><img src="https://img.shields.io/badge/IDE-v0.7.1-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v8.0-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0-5294E2.svg"/>
 </p>
