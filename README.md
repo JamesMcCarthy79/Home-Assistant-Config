@@ -8,7 +8,7 @@
 <p align="center">Be sure to :star: my repo!</p>
 <p align="center">
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.84.2-brightgreen.svg"/>
+  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.84.4-brightgreen.svg"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/issues"><img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <href="http://unlicense.org/"><img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
@@ -16,7 +16,7 @@
 <p align="center">
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-1.2.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v1.2.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v1.2.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v1.2.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.6.0-5294E2.svg"/>
   <href="https://github.com/mKeRix/room-assistant"><img src="https://img.shields.io/badge/RoomAssistant-1.0.1-5294E2.svg"/>
@@ -25,7 +25,7 @@
 <p align="center">
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1-5294E2.svg"/>
-  <href="https://www.home-assistant.io/addons/ide"><img src="https://img.shields.io/badge/IDE-v0.7.1-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/ide"><img src="https://img.shields.io/badge/IDE-v0.7.2-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v8.0-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0-5294E2.svg"/>
 </p>
@@ -62,6 +62,7 @@
 <hr --- </hr>
 
 <h3 align="left">Home Assistant Hardware</h3> 
+<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/nuc_logo.png" width="110"/>
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Rasp%20Pi%20Logo.png" width="200"/> 
 <p align="left">There is nothing special regarding the hardware used when I start to notice available hardware resources becoming exhausted I will look to move to another platform. 
 <hr --- </hr>
@@ -74,7 +75,7 @@
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/HA%20logo%202%20.png" width="200"/>
 <p align="left">Lately I have started to notice the automations becoming sluggish and this is due to the resources of my HA Server becoming occupied with background tasks like device tracking and sensor polling. With the recent release of HASSIO on its new operating system HASSOS I decided now was a good time to upgrade and splinter my automations off my main HA instance onto a dedicated RPi. Splitting my HA tasks across 3 Pis has made a huge difference and myautomations have become snappy again whilst all my sensors can run in the background not effecting the performance of my essential tasks. I used the MQTT Statestream to keep all the Pis insync with each other. I have used Hassio with standard Add-On store packages which include Appdaemon for use with HaDashboard, Mosquitto Broker for MQTT Broker & Node-RED for more complex Automation flows. I have now installed a stand alone RPi with Grafana, InfluxDB and Node-RED to take the strain off resources on my HA device and to also have access to a larger hdd for database storage. My config in this repo is a combination of all my Pi's as if you were running it all of the same device to save confusion message me if you would like more info on how I splintered off the automations to a dedicated device.</p>
 <p align="center">
-  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/HA%20Device%20Topo%202.png"/>
+  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/HA%20Device%20Topo%203.png"/>
 </p>
 <hr --- </hr>
 
