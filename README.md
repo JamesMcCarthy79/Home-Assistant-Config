@@ -8,7 +8,7 @@
 <p align="center">Be sure to :star: my repo!</p>
 <p align="center">
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.84.5-brightgreen.svg"/>
+  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.84.6-brightgreen.svg"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/issues"><img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <href="http://unlicense.org/"><img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
@@ -20,7 +20,7 @@
   <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v1.2.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.6.0-5294E2.svg"/>
   <href="https://github.com/mKeRix/room-assistant"><img src="https://img.shields.io/badge/RoomAssistant-1.0.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v3.5.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v3.6.0-5294E2.svg"/>
 </p>
 <p align="center">
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
