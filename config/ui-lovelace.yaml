@@ -1,23 +1,23 @@
 resources:
   - url: /local/custom_ui/dark-sky-weather-card.js?v=4
     type: js
-  - url: /local/custom_ui/gauge-card.js?v=1
+  - url: /local/custom_ui/mini-media-player-bundle.js?v=0.9.8
+    type: module
+  - url: /local/custom_ui/tracker-card.js?v=0.1.5
     type: js
-  - url: /local/custom_ui/alarm_control_panel-card.js?v=1
+  - url: /local/custom_ui/surveillance-card.js?v=0.0.1
+    type: module
+  - url: /local/custom_ui/mini-graph-card-bundle.js?v=0.1.0
+    type: module
+  - url: /local/custom_ui/card-modder.js?v=35eb37
+    type: module
+  - url: /local/custom_ui/slider-entity-row.js?v=d6da75
     type: js
-  - url: /local/custom_ui/mini-media-player.js?v=0.8.7
-    type: module
-  - url: /local/custom_ui/tracker-card.js?v=0
+  - url: /local/custom_ui/card-tools.js?v=0a97d3
     type: js
-  - url: /local/custom_ui/surveillance-card.js?v=0
-    type: module
-  - url: /local/custom_ui/mini-graph-card/mini-graph-card.js?v=0.0.4
-    type: module
-  - url: /local/custom_ui/card-modder.js
-    type: module
-#  - url: /local/custom_ui/irrigation-zone-card?v=0
-#    type: module
-  - url: /local/slider-entity-row.js?v=2d9e00
+  - url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.2.0
+    type: js
+  - url: /local/custom_ui/waze-card.js?v=1.1.0
     type: js
 
 #################################################################
@@ -36,6 +36,7 @@ views:
       - id: 950562a85936431382144510c71945db  # Automatically created id
         type: vertical-stack
         cards:
+        
 #################################################################
 #                                                               #
 #                           Presence                            #
@@ -47,42 +48,69 @@ views:
               - type: custom:card-modder
                 card:          
                   type: picture-elements
-                  image: /local/lovelace/home/james_3.jpg
+                  image: /local/lovelace/home/james_10.jpg
                   elements:
                     - type: state-label
                       entity: sensor.james
                       prefix: 'James -- '
-                      style: {color: white, left: 30%, top: 93%}
+                      style: {color: white, left: 30%, top: 90%}
                     - type: state-icon
                       entity: sensor.battery_james
-                      style: {color: white, left: 73%, top: 92%}
+                      tap_action: more_info
+                      style: {color: white, left: 73%, top: 90%}
                     - type: state-label
                       entity: sensor.battery_james
-                      style: {color: white, left: 87%, top: 93%}
+                      style: {color: white, left: 87%, top: 91%}
+                    - type: state-icon
+                      entity: binary_sensor.james_gps_status
+                      style: {color: white, left: 92%, top: 10%}
+                    - type: state-icon
+                      entity: binary_sensor.james_ble_status
+                      style: {color: white, left: 92%, top: 25%}
+                    - type: state-icon
+                      entity: binary_sensor.james_keys_status
+                      style: {color: white, left: 92%, top: 40%}
+                    - type: state-icon
+                      entity: binary_sensor.james_bag_status
+                      style: {color: white, left: 92%, top: 55%}
+                    - type: state-icon
+                      entity: binary_sensor.james_car_status
+                      style: {color: white, left: 92%, top: 70%}
                 style:                 
                   border-radius: 20px
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
+                  overflow: hidden
                   
               - type: custom:card-modder
                 card:          
                   type: picture-elements
-                  image: /local/lovelace/home/tina_2.jpg
+                  image: /local/lovelace/home/tina_4.jpg
                   elements:
                     - type: state-label
                       entity: sensor.tina
                       prefix: 'Tina -- '
-                      style: {color: white, left: 30%, top: 93%}
+                      style: {color: white, left: 27%, top: 89%}
                     - type: state-icon
                       entity: sensor.battery_tina
-                      style: {color: white, left: 73%, top: 92%}
+                      style: {color: white, left: 73%, top: 89%}
                     - type: state-label
                       entity: sensor.battery_tina
-                      style: {color: white, left: 87%, top: 93%}
+                      style: {color: white, left: 87%, top: 90%}
+                    - type: state-icon
+                      entity: binary_sensor.tina_gps_status
+                      style: {color: white, left: 92%, top: 10%}
+                    - type: state-icon
+                      entity: binary_sensor.tina_ble_status
+                      style: {color: white, left: 92%, top: 25%}
+                    - type: state-icon
+                      entity: binary_sensor.tina_keys_status
+                      style: {color: white, left: 92%, top: 40%}
                 style:                 
                   border-radius: 20px
                   border: solid 1px rgba(100,100,100,0.3)
-                  box-shadow: 3px 3px rgba(0,0,0,0.4)                     
+                  box-shadow: 3px 3px rgba(0,0,0,0.4)       
+                  overflow: hidden
 
 #################################################################
 #                                                               #
@@ -96,10 +124,10 @@ views:
               image: /local/lovelace/home/house_4.png
               elements:
                 - type: state-icon
-                  icon: mdi:lightbulb
                   entity: binary_sensor.lights
-                  tap_action: toggle
-                  navigation_path: /lovelace/2
+                  tap_action: call-service
+                  service: homeassistant.turn_off
+                  service_data: {"entity_id": "group.downstairs_lights"}
                   style: {color: white, left: 52%, top: 88%}
                 - type: state-icon
                   entity: binary_sensor.alarm
@@ -148,6 +176,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
 #################################################################
 #                                                               #
@@ -212,13 +241,9 @@ views:
             style:                 
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
-              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)    
+              overflow: hidden
               
-          #- type: custom:tracker-card
-          #  title:
-          #  trackers:
-          #    - sensor.custom_card_tracker
-          #    - sensor.custom_component_tracker
 #################################################################
 #                                                               #
 #                            Weather                            #
@@ -268,83 +293,32 @@ views:
 
 #################################################################
 #                                                               #
-#                           Currency                            #
+#                         Date & Time                           #
 #                                                               #
 ################################################################# 
 
           - type: custom:card-modder
             card:
-              type: entities
-              #title: Currency
+              type: custom:waze-card
               entities:
-                - sensor.aud_to_usd
-                - sensor.aud_to_gbp
-                - sensor.bitcoin_round
+                - entity: sensor.james_to_home
+                  zone: zone.home
+                  name: James
+                - entity: sensor.tina_to_home
+                  zone: zone.home
+                  name: Tina
+                - entity: sensor.commute_to_work
+                  zone: zone.powertec
+                  name: Work
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/home/waze_5.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 160px
+              background-size: 100% 400px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
-              color: "#999999"
-              box-shadow: 3px 3px rgba(0,0,0,0.4)
-
-#################################################################
-#                                                               #
-#                         Date & Time                           #
-#                                                               #
-################################################################# 
-      - id: cb489d24f3c64db1a6a96cdc70a4cc26  # Automatically created id
-        type: vertical-stack
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: custom:card-modder
-                card:
-                  type: picture-entity
-                  entity: sensor.date
-                  image: https://images.pexels.com/photos/9352/glass-time-watch-business.jpg?cs=srgb&dl=clock-hours-minutes-9352.jpg&fm=jpg
-                  tap_action: more-info
-                style:                 
-                  border-radius: 20px
-                  border: solid 1px rgba(100,100,100,0.3)
-                  box-shadow: 3px 3px rgba(0,0,0,0.4)  
-                  
-              - type: custom:card-modder
-                card:
-                  type: picture-entity
-                  entity: sensor.time
-                  image: https://images.pexels.com/photos/9352/glass-time-watch-business.jpg?cs=srgb&dl=clock-hours-minutes-9352.jpg&fm=jpg
-                  tap_action: more-info
-                style:                 
-                  border-radius: 20px
-                  border: solid 1px rgba(100,100,100,0.3)
-                  box-shadow: 3px 3px rgba(0,0,0,0.4)  
-
-          - type: horizontal-stack
-            cards:
-              - type: custom:card-modder
-                card:
-                  type: picture-entity
-                  entity: sensor.claire_time
-                  image: https://images.pexels.com/photos/9352/glass-time-watch-business.jpg?cs=srgb&dl=clock-hours-minutes-9352.jpg&fm=jpg
-                  tap_action: more-info
-                style:                 
-                  border-radius: 20px
-                  border: solid 1px rgba(100,100,100,0.3)
-                  box-shadow: 3px 3px rgba(0,0,0,0.4)
-                  
-              - type: custom:card-modder
-                card:    
-                  type: picture-entity
-                  entity: sensor.mum_time
-                  image: https://images.pexels.com/photos/9352/glass-time-watch-business.jpg?cs=srgb&dl=clock-hours-minutes-9352.jpg&fm=jpg
-                  tap_action: more-info
-                style:                 
-                  border-radius: 20px
-                  border: solid 1px rgba(100,100,100,0.3)
-                  box-shadow: 3px 3px rgba(0,0,0,0.4)
+              #color: "#999999"
+              box-shadow: 3px 3px rgba(0,0,0,0.4)  
 
           - type: custom:card-modder
             card:
@@ -361,7 +335,75 @@ views:
             style:                 
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4) 
+              overflow: hidden
+
+#################################################################
+#                                                               #
+#                         Card Tracker                          #
+#                                                               #
+################################################################# 
+      - id: cb489d24f3c64db1a6a96cdc70a4cc26  # Automatically created id
+        type: vertical-stack
+        cards:
+          - type: custom:card-modder
+            card:
+              type: picture-entity
+              entity: camera.bom_radar
+            style:                 
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              color: "#999999"
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+          - type: custom:card-modder
+            card:
+              type: custom:tracker-card
+              title:
+              trackers:
+                - sensor.custom_card_tracker
+                - sensor.custom_component_tracker
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 525px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              color: "#999999"
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+          
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/home/steps_2.png
+            #title: Steps
+              elements:
+                - type: state-icon
+                  entity: sensor.james_steps
+                  style: {color: white, left: 12%, top: 90%}
+                - type: service-button
+                  title: James
+                  service: python_script.github_scaper
+                  style: {color: white, left: 23%, top: 90%}
+                - type: state-label
+                  entity: sensor.james_steps
+                  style: {color: white, left: 35%, top: 90%}
+                - type: state-icon
+                  entity: sensor.tina_steps
+                  style: {color: white, left: 63%, top: 90%}
+                - type: service-button
+                  title: Tina
+                  service: python_script.github_scaper
+                  style: {color: white, left: 74%, top: 90%}
+                - type: state-label
+                  entity: sensor.tina_steps
+                  style: {color: white, left: 85%, top: 90%}
+            style:                 
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4) 
+              overflow: hidden
+          
 
 #################################################################
 #                                                               #
@@ -380,7 +422,7 @@ views:
           - type: custom:card-modder
             card:
               type: picture-elements
-              title: Alarm Panel
+              #title: Alarm Panel
               image: /local/lovelace/security/alarm_3.jpg
               elements:
                 - type: state-icon
@@ -398,11 +440,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)      
+              overflow: hidden
                   
           - type: custom:card-modder
             card:
               type: picture-elements
-              title: Smoke Detectors
+              #title: Smoke Detectors
               image: /local/lovelace/security/smoke_4.jpg
               elements:
                 - type: state-icon
@@ -427,6 +470,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
       - id: ad5dc57a687f470b98788a358279a7a3  # Automatically created id
         type: vertical-stack
@@ -434,7 +478,7 @@ views:
           - type: custom:card-modder
             card:
               type: picture-elements
-              title: Doors
+              #title: Doors
               image: /local/lovelace/security/door_3.png
               elements:
                 - type: state-icon
@@ -472,12 +516,13 @@ views:
               background-size: 100% 68px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
-              box-shadow: 3px 3px rgba(0,0,0,0.4)      
+              box-shadow: 3px 3px rgba(0,0,0,0.4)    
+              overflow: hidden
                   
           - type: custom:card-modder
             card:
               type: picture-elements
-              title: Windows
+              #title: Windows
               image: /local/lovelace/security/window_2.jpg
               elements:
                 - type: state-icon
@@ -513,7 +558,7 @@ views:
                   style: {color: white, left: 25%, top: 8%}
                 - type: state-label
                   entity: binary_sensor.door_window_sensor_158d0001f36741
-                  prefix: 'Bathroom: '
+                  prefix: 'Bedroom: '
                   style: {color: white, left: 25%, top: 18%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
@@ -523,6 +568,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
       - id: c66b0f53f9e748ebbbeaae6e32d049a1  # Automatically created id
         type: vertical-stack
@@ -530,7 +576,7 @@ views:
           - type: custom:card-modder
             card:
               type: picture-elements
-              title: Motion Sensors
+              #title: Motion Sensors
               image: /local/lovelace/security/motion_3.jpg
               elements:
                 - type: state-icon
@@ -604,6 +650,37 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              #title: Smoke Detectors
+              image: /local/lovelace/security/leak_2.png
+              elements:
+                - type: state-icon
+                  entity: binary_sensor.water_leak_sensor_158d0002338651
+                  style: {color: white, left: 15%, top: 88%}
+                - type: state-label
+                  entity: binary_sensor.water_leak_sensor_158d0002338651
+                  prefix: 'Kitchen: '
+                  style: {color: white, left: 32%, top: 89%}
+                - type: state-icon
+                  entity: binary_sensor.water_leak_sensor_158d00026e26dc
+                  style: {color: white, left: 60%, top: 88%}
+                - type: state-label
+                  entity: binary_sensor.water_leak_sensor_158d00026e26dc
+                  prefix: 'Bathroom: '
+                  style: {color: white, left: 77%, top: 89%}
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
 #################################################################
 #                                                               #
@@ -746,9 +823,10 @@ views:
           - type: custom:card-modder
             card:
               type: picture-entity
-              entity: input_select.lounge_fan
+              #entity: input_select.lounge_fan
+              entity: fan.lounge_fan
               name: Fan
-              tap_action: toggle
+              tap_action: select_next
               image: /local/lovelace/bedrooms/fan.jpg
             style:                 
               border-radius: 20px
@@ -773,6 +851,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
           - type: horizontal-stack
             cards:
@@ -865,7 +944,7 @@ views:
               type: picture-entity
               entity: input_select.lounge_aircon
               name: Climate
-              tap_action: toggle
+              tap_action: select_next
               image: /local/lovelace/bedrooms/bed-ac.jpg
             style:                 
               border-radius: 20px
@@ -889,7 +968,7 @@ views:
               type: picture-entity
               entity: light.gateway_light_7811dcfd812f
               name: TV Backlight
-              #tap_action: toggle
+              tap_action: toggle
               image: /local/lovelace/downstairs/tv-light_2.jpg
             style:                 
               border-radius: 20px
@@ -901,7 +980,7 @@ views:
               type: picture-entity
               entity: light.gateway_light_7811dce13ad6
               name: PC Lighting
-              #tap_action: toggle
+              tap_action: toggle
               image: /local/lovelace/downstairs/pc-light_2.jpg
             style:                 
               border-radius: 20px
@@ -913,7 +992,9 @@ views:
               type: picture-entity
               entity: scene.livingroom_bright
               name: Brighten
-              tap_action: toggle
+              tap_action: call-service
+              service: scene.turn_on
+              service_data: { "entity_id": "scene.livingroom_bright" }
               show_state: false
               image: /local/lovelace/downstairs/bright.png
             style:                 
@@ -956,6 +1037,7 @@ views:
             card:
               type: entities
               title: Motion
+              show_header_toggle: off
               entities:
                 - binary_sensor.motion_sensor_158d0001e5cf11
             style:                 
@@ -1004,6 +1086,7 @@ views:
             card:
               type: entities
               title: Dryer Status
+              show_header_toggle: off
               entities:
                 - sensor.dryer_status
             style:                 
@@ -1017,15 +1100,79 @@ views:
 
           - type: custom:card-modder
             card:
-              type: picture-entity
-              entity: input_select.playroom_fan_speed
-              name: Fan
-              tap_action: toggle
-              image: /local/lovelace/playroom/playroom-fan.jpg
+              type: picture-elements
+              image: /local/lovelace/playroom/playroom-fan_2.jpg
+              elements:
+                - type: state-icon
+                  entity: fan.xiaomi_smart_fan
+                  style: {color: white, left: 5%, top: 88%}
+                - type: state-label
+                  entity: fan.xiaomi_smart_fan
+                  style: {color: white, left: 11%, top: 89%}
+                - type: state-label
+                  entity: sensor.playroom_fan_speed_level
+                  style: {color: white, left: 20%, top: 89%}
+                - type: state-label
+                  entity: sensor.playroom_fan_speed
+                  style: {color: white, left: 35%, top: 89%}
+                  prefix: "Speed : "
+                - type: state-label
+                  entity: sensor.playroom_fan_angle
+                  style: {color: white, left: 54%, top: 89%}
+                  prefix: "Angle : "
+                - type: state-label
+                  entity: sensor.playroom_fan_oscillate
+                  style: {color: white, left: 74%, top: 89%}
+                  prefix: "Oscillate : "
+                - type: state-icon
+                  entity: sensor.playroom_fan_battery
+                  style: {color: white, left: 88%, top: 88%}
+                - type: state-label
+                  entity: sensor.playroom_fan_battery
+                  style: {color: white, left: 94%, top: 89%}
+                  
+                - type: state-label
+                  entity: sensor.playroom_fan_temperature
+                  style:
+                    top: 12%
+                    left: 5%
+                    color: rgb(255, 255, 255)
+                    transform: translate(0%,-50%)
+                    pointer-events: none
+                    text-shadow: 1px 1px black
+                    font-family: Trebuchet MS
+                    font-size: 90%
+                    font-weight: bold
+                    border-left-style: solid
+                    border-color: rgb(34, 154, 210)
+                    background-color: rgb(54, 65, 78)
+                    opacity: 0.8
+
+                - type: state-label
+                  entity: sensor.playroom_fan_humidity
+                  style:
+                    top: 12%
+                    right: 5%
+                    color: rgb(255, 255, 255)
+                    transform: translate(0%,-50%)
+                    pointer-events: none
+                    text-shadow: 1px 1px black
+                    font-family: Trebuchet MS
+                    font-size: 90%
+                    font-weight: bold
+                    border-right-style: solid
+                    border-color: rgb(34, 154, 210)
+                    background-color: rgb(54, 65, 78)
+                    opacity: 0.8
             style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
       - id: 0f19f48e9f5c48748596c87f083dcc0b  # Automatically created id
         type: vertical-stack
@@ -1052,6 +1199,7 @@ views:
             card:
               type: entities
               title: Door Status
+              show_header_toggle: off
               entities:
                 - binary_sensor.door_window_sensor_158d0001e73c09
             style:                 
@@ -1110,6 +1258,7 @@ views:
             card:
               type: entities
               title: Motion
+              show_header_toggle: off
               entities:
                 - binary_sensor.motion_sensor_158d000200ea5b
             style:                 
@@ -1210,6 +1359,7 @@ views:
             card:
               type: entities
               title: Door Status
+              show_header_toggle: off
               entities:
                 - binary_sensor.door_window_sensor_158d000225432d
             style:                 
@@ -1269,6 +1419,7 @@ views:
             card:
               type: entities
               title: Motion
+              show_header_toggle: off
               entities:
                 - binary_sensor.motion_sensor_158d0001e63803
             style:                 
@@ -1309,7 +1460,7 @@ views:
               - type: custom:card-modder
                 card:
                   type: picture-entity
-                  entity: switch.bedroom_wardrobe_switch
+                  entity: switch.master_wardrobe_switch
                   name: Walk In
                   tap_action: toggle
                   image: /local/lovelace/bedrooms/walk-in-light_2.jpg
@@ -1358,6 +1509,7 @@ views:
             card:
               type: entities
               title: Bed Sensor James
+              show_header_toggle: off
               entities:
                 - sensor.bathroom_occupancy
             style:                 
@@ -1372,9 +1524,9 @@ views:
           - type: custom:card-modder
             card:
               type: picture-entity
-              entity: input_select.bedroom_fan
+              entity: fan.bedroom_fan
               name: Fan
-              tap_action: toggle
+              tap_action: select_next
               image: /local/lovelace/bedrooms/fan.jpg
             style:                 
               border-radius: 20px
@@ -1426,6 +1578,7 @@ views:
             card:
               type: entities
               title: Bed Sensor Tina
+              show_header_toggle: off
               entities:
                 - sensor.bathroom_occupancy
             style:                 
@@ -1442,7 +1595,7 @@ views:
               type: picture-entity
               entity: input_select.master_bedroom_aircon
               name: Climate
-              tap_action: toggle
+              tap_action: select_next
               image: /local/lovelace/bedrooms/bed-ac.jpg
             style:                 
               border-radius: 20px
@@ -1489,6 +1642,7 @@ views:
             card:
               type: entities
               title: Motion
+              show_header_toggle: off
               entities:
                 - binary_sensor.motion_sensor_158d000201351c
             style:                 
@@ -1537,6 +1691,7 @@ views:
             card:
               type: entities
               title: Bed Sensor Jackson
+              show_header_toggle: off
               entities:
                 - sensor.bathroom_occupancy
             style:                 
@@ -1585,6 +1740,7 @@ views:
             card:
               type: entities
               title: Motion
+              show_header_toggle: off
               entities:
                 - binary_sensor.motion_sensor_158d000201351c
             style:                 
@@ -1599,9 +1755,9 @@ views:
           - type: custom:card-modder
             card:
               type: picture-entity
-              entity: input_select.lounge_fan
+              entity: fan.jackson_fan
               name: Fan
-              tap_action: toggle
+              tap_action: select_next
               image: /local/lovelace/bedrooms/fan.jpg
             style:                 
               border-radius: 20px
@@ -1644,6 +1800,7 @@ views:
             card:
               type: entities
               title: Motion
+              show_header_toggle: off
               entities:
                 - binary_sensor.motion_sensor_158d0002006d46
             style:                 
@@ -1692,6 +1849,7 @@ views:
             card:
               type: entities
               title: Bed Sensor Hudson
+              show_header_toggle: off
               entities:
                 - sensor.bathroom_occupancy
             style:                 
@@ -1740,6 +1898,7 @@ views:
             card:
               type: entities
               title: Motion
+              show_header_toggle: off
               entities:
                 - binary_sensor.motion_sensor_158d0002006d46
             style:                 
@@ -1754,7 +1913,7 @@ views:
           - type: custom:card-modder
             card:
               type: picture-entity
-              entity: input_select.lounge_fan
+              entity: fan.hudson_fan
               name: Fan
               tap_action: toggle
               image: /local/lovelace/bedrooms/fan.jpg
@@ -1866,6 +2025,7 @@ views:
             card:
               type: entities
               title: Bathroom Occupancy
+              show_header_toggle: off
               entities:
                 - sensor.bathroom_occupancy
             style:                 
@@ -1914,6 +2074,7 @@ views:
             card:    
               type: entities
               title: Motion
+              show_header_toggle: off
               entities:
               - binary_sensor.motion_sensor_158d000200e4ab
             style:                 
@@ -2016,6 +2177,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
           - type: custom:card-modder
             card:
@@ -2028,10 +2190,10 @@ views:
                   style: {color: white, left: 50%, top: 8%, font-size: 115%, font-weight: bold}
 
                 - type: state-icon
-                  entity: sensor.disk_use_
+                  entity: sensor.disk_use_percent_
                   style: {color: white, left: 29%, top: 84%}
                 - type: state-label
-                  entity: sensor.disk_use_
+                  entity: sensor.disk_use_percent_
                   prefix: 'HASSIO ----- '
                   style: {color: white, left: 20%, top: 93%, font-size: 115%, font-weight: bold}
 
@@ -2059,6 +2221,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
           - type: custom:card-modder
             card:
@@ -2103,6 +2266,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
       - id: 9016cfb90b4c4e37a5fdbf3cc192b35f  # Automatically created id
         type: vertical-stack
@@ -2130,6 +2294,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)    
+              overflow: hidden
 
           - type: custom:card-modder
             card:
@@ -2155,6 +2320,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
           - type: custom:card-modder
             card:
@@ -2167,7 +2333,7 @@ views:
                   style: {color: white, left: 32%, top: 6%, font-size: 115%, font-weight: bold}
 
                 - type: state-icon
-                  entity: sensor.disk_use_
+                  entity: sensor.disk_use_percent_
                   style: {color: white, left: 34%, top: 84%}
                 - type: state-label
                   entity: sensor.automation_server_disk
@@ -2198,6 +2364,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
       - id: a1fbe13d346445148f8bc31171746990  # Automatically created id
         type: vertical-stack
@@ -2245,6 +2412,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
           - type: custom:card-modder
             card:
@@ -2257,7 +2425,7 @@ views:
                   style: {color: white, left: 32%, top: 8%, font-size: 115%, font-weight: bold}
 
                 - type: state-icon
-                  entity: sensor.disk_use_
+                  entity: sensor.disk_use_percent_
                   style: {color: white, left: 34%, top: 84%}
                 - type: state-label
                   entity: sensor.addon_server_disk
@@ -2288,6 +2456,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
 #################################################################
 #                                                               #
@@ -2309,10 +2478,10 @@ views:
               title: Firmware
               tap_action: toggle
               entities:
-                - binary_sensor.new_podcast_available
-                - binary_sensor.ha_update_available
-                - binary_sensor.new_routeros_available
-                - binary_sensor.sonoff_update_available
+                - input_boolean.ha_update_available
+                - input_boolean.new_podcast_available
+                - input_boolean.new_routeros_available
+                - input_boolean.sonoff_update_available
               image: /local/lovelace/things/firmware_2.jpg
             style:                 
               border-radius: 20px
@@ -2407,11 +2576,14 @@ views:
               title: Wall Switches
               tap_action: toggle
               entities:
-                - binary_sensor.lounge_fan_switch
-                - binary_sensor.kitchen_dining_light_switch
+                - binary_sensor.bedroom_light_switch
+                - binary_sensor.kitchen_light_switch
+                - binary_sensor.dining_light_switch
                 - binary_sensor.patio_light_switch
                 - binary_sensor.lounge_light_switch
-                - binary_sensor.master_bedroom_fan_switch
+                - binary_sensor.playroom_light_switch
+                - binary_sensor.bedroom_light_switch
+                - binary_sensor.walkin_light_switch
               image: /local/lovelace/things/switch_2.jpg
             style:                 
               border-radius: 20px
@@ -2430,6 +2602,26 @@ views:
                 - binary_sensor.entry_light_bulb
                 - binary_sensor.bedroom_light_bulb
               image: /local/lovelace/things/lights_2.png
+            style:                 
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              
+          - type: custom:card-modder
+            card:
+              type: picture-glance
+              title: Fans
+              tap_action: toggle
+              entities:
+                - binary_sensor.bedroom_fan
+                - binary_sensor.bedroom_fan_switch
+                - binary_sensor.lounge_fan
+                - binary_sensor.lounge_fan_switch
+                - binary_sensor.jackson_fan
+                - binary_sensor.jackson_fan_switch
+                - binary_sensor.hudson_fan
+                - binary_sensor.hudson_fan_switch
+              image: /local/lovelace/things/fans.png
             style:                 
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
@@ -2604,6 +2796,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
 #################################################################
 #                                                               #
@@ -2654,6 +2847,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
                   
 #################################################################
 #                                                               #
@@ -2674,10 +2868,10 @@ views:
                   entity: binary_sensor.trash
                   style: {color: white, left: 19%, top: 65%}
 
-                - type: state-icon
-                  icon: mdi:delete
-                  entity: binary_sensor.trash
-                  style: {color: white, left: 26%, top: 65%}
+                #- type: state-icon
+                #  icon: mdi:recycle
+                #  entity: device_tracker.trash_bin
+                #  style: {color: white, left: 26%, top: 65%}
  
                 - type: state-icon
                   icon: mdi:recycle
@@ -2702,6 +2896,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
 #################################################################
 #                                                               #
@@ -2789,7 +2984,7 @@ views:
             card:
               type: picture-elements
               image: /local/lovelace/garden/bougainvillea_4.jpg
-              title: Bougainvillea
+              #title: Bougainvillea
               elements:
                 - type: state-icon
                   entity: sensor.bougainvillea_moisture
@@ -2838,12 +3033,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4) 
+              overflow: hidden
 
           - type: custom:card-modder
             card:
               type: picture-elements
               image: /local/lovelace/garden/veggie_patch_6.jpg
-              title: Veggie Patch
+              #title: Veggie Patch
               elements:
                 - type: state-icon
                   entity: sensor.veggie_patch_moisture
@@ -2892,12 +3088,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
           - type: custom:card-modder
             card:
               type: picture-elements
               image: /local/lovelace/garden/herbs_3.jpg
-              title: Herb Patch
+              #title: Herb Patch
               elements:
                 - type: state-icon
                   entity: sensor.herb_patch_moisture
@@ -2946,6 +3143,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
       - id: 6ad6c3a07b484ce7828989ce0ac6fa18  # Automatically created id
         type: vertical-stack
@@ -2954,7 +3152,7 @@ views:
             card:
               type: picture-elements
               image: /local/lovelace/garden/star_jasmine_2.jpg
-              title: Star Jasmine
+              #title: Star Jasmine
               elements:
                 - type: state-icon
                   entity: sensor.star_jasmine_moisture
@@ -3003,12 +3201,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
           - type: custom:card-modder
             card:
               type: picture-elements
               image: /local/lovelace/garden/top_bed_4.jpg
-              title: Top Bed
+              #title: Top Bed
               elements:
                 - type: state-icon
                   entity: sensor.top_bed_moisture
@@ -3057,12 +3256,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
               
           - type: custom:card-modder
             card:
               type: picture-elements
               image: /local/lovelace/garden/dracaena_5.jpg
-              title: Lounge Plant
+              #title: Lounge Plant
               elements:
                 - type: state-icon
                   entity: sensor.dracaena_moisture
@@ -3111,6 +3311,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
       - id: 9d2a6fe99eec4f19a2691e210632482e  # Automatically created id
         type: vertical-stack
@@ -3119,7 +3320,7 @@ views:
             card:
               type: picture-elements
               image: /local/lovelace/garden/chilli_3.jpg
-              title: Purple Mumba Chilli
+              #title: Purple Mumba Chilli
               elements:
                 - type: state-icon
                   entity: sensor.chilli_moisture
@@ -3168,12 +3369,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
           - type: custom:card-modder
             card:
               type: picture-elements
               image: /local/lovelace/garden/citrus_5.jpg
-              title: Citrus Bed
+              #title: Citrus Bed
               elements:
                 - type: state-icon
                   entity: sensor.citrus_bed_moisture
@@ -3222,12 +3424,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
           - type: custom:card-modder
             card:
               type: picture-elements
               image: /local/lovelace/garden/fern_3.jpg
-              title: Bathroom Fern
+              #title: Bathroom Fern
               elements:
                 - type: state-icon
                   entity: sensor.bathroom_fern_moisture
@@ -3276,3 +3479,4 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
