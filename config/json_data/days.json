@@ -1,0 +1,37 @@
+{
+  "MAJOR_AUS": {
+    "static": {
+      "1/1": "New Year's Day",
+      "28/1": "Australia Day",     
+      "14/2": "Valentine's Day",
+      "17/3": "St. Patrick's Day",
+      "25/4": "ANZAC Day",
+	  "6/5": "Labour Day",
+	  "6/5": "Jackson Birthday",
+	  "26/5": "Christina Birthday",
+	  "6/6": "Hudson Birthday",
+	  "4/7": "James Birthday",
+	  "28/7": "Rebecca Birthday",
+	  "30/8": "Gold Coast Show Day",
+	  "7/10": "Queen's Birthday",
+	  "12/10": "anniversary",
+      "31/10": "Halloween",
+	  "2/12": "Dad Birthday",
+      "24/12": "Christmas Eve",
+      "25/12": "Christmas Day",
+      "31/12": "New Year's Eve"
+    },
+    "dynamic": {
+      "19/4/2019": "Good Friday",
+      "10/4/2020": "Good Friday",
+      "21/4/2019": "Easter Sunday",
+      "12/4/2020": "Easter Sunday",
+      "12/5/2019": "Mother's Day",
+      "10/5/2020": "Mother's Day",
+      "9/5/2021": "Mother's Day",
+      "1/9/2019": "Father's Day",
+      "6/9/2020": "Father's Day",
+      "5/9/2021": "Father's Day"
+    }
+  }
+}
