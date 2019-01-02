@@ -133,7 +133,7 @@ group:
 
 alarm_control_panel:
   - platform: manual_mqtt
-    code: !secret alarm_code
+    #code: !secret alarm_code
     state_topic: home/alarm
     command_topic: home/alarm/set
     
@@ -153,7 +153,20 @@ sensor:
         value_template: >-
            {{ states.binary_sensor | selectattr('state', 'eq', 'on') | selectattr('attributes.device_class', 'eq', 'window') | list | count | int }}
 
-### For Lovelace UI ###           
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+
+### For Lovelace UI ###
+
+####################################################
+#                                                  #
+#             Binary Sensor - Template             #
+#                                                  #
+####################################################
+           
 binary_sensor:
   - platform: template
     sensors:
@@ -165,21 +178,21 @@ binary_sensor:
         value_template: "{{ is_state('group.doors', 'on') }}"
         icon_template: >-
           {% if is_state('group.doors', 'on') %}
-            mdi:door-open
+            fas:door-open
           {% elif is_state('group.doors', 'off') %}
-            mdi:door         
+            fas:door-closed         
           {% else %}
             mdi:alert
           {% endif %}
       windows:
         friendly_name: Windows
         device_class: window
-        entity_id: group.windows_ll
-        value_template: "{{ is_state('group.windows_ll', 'on') }}"
+        entity_id: group.windows
+        value_template: "{{ is_state('group.windows', 'on') }}"
         icon_template: >-
-          {% if is_state('group.windows_ll', 'on') %}
+          {% if is_state('group.windows', 'on') %}
             mdi:window-open
-          {% elif is_state('group.windows_ll', 'off') %}
+          {% elif is_state('group.windows', 'off') %}
             mdi:window-closed       
           {% else %}
             mdi:alert
@@ -213,204 +226,11 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-          
+
 #################################################################
 #                                                               #
-#                         Automations                           #
+#                          Automations                          #
 #                                                               #
 #################################################################
 
-## This will simply play a TTS message if we set the Alarm but cancel it before it arms mainly to annoy my wife as we always have to cancel and get something she has forgotten
-
-automation:
-  - alias: 'Alarm Pending Cancel'
-    trigger:
-    - platform: state
-      entity_id: alarm_control_panel.ha_alarm
-      from: pending
-      to: disarmed
-    action:
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: What did you forget this time?
-        
-## This will notify if any doors are open it requires the [sensor.door_count] **it won't allow you to arm the alarm until all windows are closed**
-
-  - alias: Open Doors Notification On Alarm Set
-    trigger:
-    - platform: state
-      entity_id: alarm_control_panel.ha_alarm
-      to: pending
-    condition:
-    - condition: numeric_state
-      above: '1'
-      entity_id: sensor.door_count
-    action:
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: There are still doors open maybe you should close them first.
-    - service: alarm_control_panel.alarm_disarm
-     
-## This will notify if any windows are open it requires the [sensor.window_count] **it won't allow you to arm the alarm until all windows are closed**
-
-  - alias: Open Windows Notification on Alarm Set
-    trigger:
-    - platform: state
-      entity_id: alarm_control_panel.ha_alarm
-      to: pending
-    condition:
-    - condition: numeric_state
-      above: '0'
-      entity_id: sensor.window_count
-    action:
-    - delay: 00:00:20
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: There are still windows open maybe you should close them first.
-    - service: alarm_control_panel.alarm_disarm
-    
-## This will use the Xiaomi Gateway to sound an alarm if the system has been triggered
-
-  - alias: Start Siren on Alarm Trigger
-    trigger:
-    - platform: state
-      entity_id: alarm_control_panel.ha_alarm
-      to: triggered
-    action:
-    - service: xiaomi_aqara.play_ringtone
-      data:
-        gw_mac: !secret xiaomimac
-        ringtone_id: 0
-        ringtone_vol: 80
-    - service: light.turn_on
-      entity_id: group.downstairs_lights
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: Alarm triggered you have 2 minutes to reset or police will be contacted!
-    - service: switch.turn_on
-      data:
-        entity_id: switch.away_alarm_triggered
-        
-## This will stop the siren once the correct alarm code has been entered
-
-  - alias: Stop Alarm Siren
-    trigger:
-    - platform: state
-      entity_id: alarm_control_panel.ha_alarm
-      from: triggered
-    action:
-    - service: xiaomi_aqara.stop_ringtone
-      data:
-        gw_mac: !secret xiaomimac
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: Alarm deactivated!
-    - service: switch.turn_on
-      data:
-        entity_id: switch.alarm_deactivated
-    
-## This will set the input sensors used to trigger the alarm whilst it is armed away
-
-  - alias: Trigger Alarm While Armed Away
-    trigger:
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d00022016b2
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d000225432d
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e73c09
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e73af4
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e73a73
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e73aad
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e74875
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001f36741
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001e5d118
-      to: 'on'
-    - platform: state 
-      entity_id: binary_sensor.motion_sensor_158d0001e5cf11
-      to: 'on'
-    - platform: state 
-      entity_id: binary_sensor.motion_sensor_158d00022c2f21
-      to: 'on'
-    - platform: state 
-      entity_id: binary_sensor.motion_sensor_158d000201351c
-      to: 'on'
-    - platform: state 
-      entity_id: binary_sensor.motion_sensor_158d0002006d46
-      to: 'on'
-    - platform: state 
-      entity_id: binary_sensor.motion_sensor_158d000200e4ab
-      to: 'on'
-    - platform: state 
-      entity_id: binary_sensor.motion_sensor_158d0001e63803
-      to: 'on'
-    condition:
-    - condition: state
-      entity_id: alarm_control_panel.ha_alarm
-      state: armed_away
-    action:
-    - service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.ha_alarm
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: Alarm triggered you have 60 seconds to reset or siren will sound!
-
-## This will set the input sensors used to trigger the alarm whilst it is armed home
-
-  - alias: Trigger Alarm While Armed Home
-    trigger:
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d00022016b2
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d000225432d
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e73c09
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e73af4
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e73a73
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e73aad
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001e74875
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_window_sensor_158d0001f36741
-      to: 'on'
-    condition:
-    - condition: state
-      entity_id: alarm_control_panel.ha_alarm
-      state: armed_home
-    action:
-    - service: alarm_control_panel.alarm_trigger
-      entity_id: alarm_control_panel.ha_alarm
-    - service: tts.google_say
-      data:
-        entity_id: media_player.tts_kodi
-        message: Alarm triggered you have 60 seconds to reset or siren will sound!
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
