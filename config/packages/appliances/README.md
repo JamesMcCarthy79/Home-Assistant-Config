@@ -29,9 +29,9 @@
 <h4 align="left">Washer/Dryer State</h4>
 <p align="left">These automations set the state of the Washer/Dryer according to the state of the load power of the smart plug they are connected to. If above 10 set to running, if below 6 set to finishing, if on finishing wait one minute and then set to clean. Once clean we get a TTS notification to tell us that it has finished.</br>
 <h4 align="left">Charge Appliances Overnight</h4>
-<p align="left">I have a bunch of appliances plugged into a smart power strip and I just simply allow it to turn on at 1am and off again at 4am which is enough time to charge them back to full for the next days opperation.</br>
+<p align="left">I have a bunch of appliances plugged into a smart power strip and I just simply allow it to turn on at 3am and use the battery state of both the RoboVac and the Smart Fan to turn it off again. I discovered once I started to monitor power consumption that these appliances being constantly charging is drawing more power then my clothes dryer over a 7 day period, so when both of my smart devices batteries are at 100% then the power to them is turned off.</br>
 <h4 align="left">Robovac Error Notification</h4>
-<p align="left">Anyone with a Xiaomi product knows that all notifications happen in Chinese these announcements can mean its finished, stuck, needs a filter change, charging etc, so in case of my Robovac encoutering an error I monitor that state and send a pushbullet notification to tell me there is an issu with the Robovac.</p>
+<p align="left">Anyone with a Xiaomi product knows that all notifications happen in Chinese these announcements can mean its finished, stuck, needs a filter change, charging etc, so in case of my Robovac encoutering an error I monitor that state and send a pushbullet notification to tell me there is an issue with the Robovac.</p>
 <hr --- </hr>
 
 | Automations! | [Node-RED-Flow](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages/appliances/Node-RED-Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/appliances/appliances.yaml) |
