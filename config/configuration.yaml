@@ -1,8 +1,8 @@
-###################################################
-#                                                 #
-#     Home Assistant Main Configuration File      #
-#                                                 #
-###################################################
+#################################################################
+#                                                               #
+#           Home Assistant Main Configuration File              #
+#                                                               #
+#################################################################
 
 homeassistant:
   name: !secret name
@@ -14,60 +14,22 @@ homeassistant:
   elevation: 6
   customize: !include includes/customize.yaml
   packages: !include_dir_named packages
-  
-###################################################
-#                                                 #
-#                     Panel                       #
-#                                                 #
-################################################### 
-
-panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:wrench
-    url: configurator url
-  nodered:
-    title: Node-Red
-    icon: mdi:shuffle-variant
-    url: node red url
-  sonweb:
-    title: SonWEB
-    icon: mdi:lightbulb-on
-    url:  sonweb url
+  whitelist_external_dirs:
+    - /config
 
 ####################################################
 #                                                  #
-#                     Enables                      #
+#                      Cloud                       #
 #                                                  #
 ####################################################
 
-config:
+cloud:
 
-hassio:
-api:
-  api_password: !secret api_password
-  
-http:
-  api_password: !secret http_password
-  trusted_networks:
-    - x.x.x.x
-
-  cors_allowed_origins:
-    - http://x.x.x.x
-    - http://x.x.x.x:xxxxx
-
-updater:
-discovery:
-conversation:
-history:
-logbook:
-map:
-
-####################################################
-#                                                  #
-#                 Customizations                   #
-#                                                  #
-####################################################
+#################################################################
+#                                                               #
+#                        Customizations                         #
+#                                                               #
+#################################################################
 
 #customizer:
 #  custom_ui: local
@@ -78,8 +40,70 @@ frontend:
     - /local/custom_ui/fontawesome/hass-fontawesome-solid.html
     - /local/custom_ui/fontawesome/hass-fontawesome-regular.html
     - /local/custom_ui/fontawesome/hass-fontawesome-brands.html
+    
+lovelace:
+  mode: yaml
 
-custom_updater: 
+custom_updater:
+  show_installable: false
+  hide_sensor: false
+  track:
+    - components
+    - cards
+    - python_scripts
+  component_urls:
+    #- https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
+  card_urls:
+    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
+    - https://raw.githubusercontent.com/maykar/custom-lovelace/master/tracker.json
+    - https://raw.githubusercontent.com/ljmerza/waze-card/master/updater.json
+    
+#################################################################
+#                                                               #
+#                           Enables                             #
+#                                                               #
+#################################################################
+
+config:
+
+hassio:
+
+api:
+  api_password: !secret api_password
+
+http:
+  api_password: !secret http_password
+  trusted_networks:
+    - trusted networks here
+  cors_allowed_origins:
+    - cors allowed here
+
+updater:
+
+discovery:
+  ignore:
+    - samsung_tv
+    
+conversation:
+
+history:
+
+logbook:
+
+map:
+
+####################################################
+#                                                  #
+#                    Includes                      #
+#                                                  #
+####################################################
+
+#input_select: !include includes/input_select.yaml
+python_script: !include_dir_named python_scripts
+script: !include includes/scripts.yaml
+switch: !include includes/switches.yaml
+zone: !include includes/zones.yaml
 
 ####################################################
 #                                                  #
@@ -88,39 +112,8 @@ custom_updater:
 ####################################################
 
 logger:
-  #default: warn
-  #logs:
-  #  custom_components.fan.xiaomi_miio_fan: debug
-  #  miio: debug
-    
-####################################################
-#                                                  #
-#                     Recorder                     #
-#                                                  #
-####################################################
-
-recorder:
-  purge_interval: 2
-  purge_keep_days: 5
-
-####################################################
-#                                                  #
-#                      Cloud                       #
-#                                                  #
-####################################################
-
-cloud:
-  alexa:
-    filter:
-      include_entities:
-        - group.all_lights
-        - group.downstairs_lights
-        - group.outside_lights
-      include_domains:
-        - switch
-        - cover
-        - input_boolean
-
+  default: error
+  
 ####################################################
 #                                                  #
 #                      MQTT                        #
@@ -128,36 +121,37 @@ cloud:
 ####################################################
 
 mqtt: 
-  broker: myip
-  port: myport
-  username: !secret mqttuser
-  password: !secret mqttpass
+  broker: !secret broker
+  port: !secret broker_port
+  username: !secret broker_user
+  password: !secret broker_pass
   
-mqtt_statestream:
-  base_topic: ha-main
-  publish_attributes: true
-  publish_timestamps: true
-  
+#################################################################
+#                                                               #
+#                            Panel                              #
+#                                                               #
+#################################################################
+
+panel_iframe:
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: !secret ide_url
+  nodered:
+    title: Node-RED
+    icon: mdi:sitemap
+    url: !secret node_red_url
+  sonweb:
+    title: SonWEB
+    icon: mdi:lightbulb-on
+    url: !secret sonweb_url
+
 ####################################################
 #                                                  #
-#                    Includes                      #
+#                     Recorder                     #
 #                                                  #
 ####################################################
 
-automation: !include includes/automations.yaml
-camera: !include includes/cameras.yaml
-fan: !include includes/fans.yaml
-group: !include includes/groups.yaml
-input_boolean: !include includes/input_boolean.yaml
-input_select: !include includes/input_select.yaml
-light: !include includes/lights.yaml
-media_player: !include includes/media_players.yaml
-notify: !include includes/notify.yaml
-python_script: !include_dir_named python_scripts
-scene: !include includes/scenes.yaml
-script: !include includes/scripts.yaml
-sensor: !include includes/sensors.yaml
-switch: !include includes/switches.yaml
-vacuum: !include includes/vacuums.yaml
-xiaomi_aqara: !include includes/xiaomi.yaml
-zone: !include includes/zones.yaml
+recorder:
+  purge_interval: 1
+  purge_keep_days: 14
