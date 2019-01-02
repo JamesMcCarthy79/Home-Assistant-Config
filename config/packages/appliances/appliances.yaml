@@ -135,31 +135,61 @@ input_select:
 #################################################################  
 
 sensor:
-- platform: template
-  sensors:
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
 ## Washing Machine Status
       washing_machine_status:
         value_template: '{{ states.input_select.washing_machine_status.state}}'
         friendly_name: 'Washing Machine Status'
 ## Washing Machine Power Usage
       waching_machine_power:
-        entity_id: switch.plug_158d0001bc2b6d
-        value_template: '{{ state.attributes.load_power }}'
-        friendly_name: 'Washing Machine Power'
+        value_template: '{{ states.switch.plug_158d0001bc2b6d.attributes.load_power|int }}'  
+        friendly_name: 'Washing Machine Power' 
 ## Dryer Status
       dryer_status:
         value_template: '{{ states.input_select.dryer_status.state}}'
         friendly_name: 'Dryer Status'
 ## Dryer Power Usage
       dryer_power:
-        entity_id: switch.plug_158d00022ae069
-        value_template: '{{ state.attributes.load_power }}'
-        friendly_name: 'Dryer Power'
-        
+        value_template: '{{ states.switch.plug_158d00022ae069.attributes.load_power|int }}'  
+        friendly_name: 'Dryer Power'     
+
+#### Lovelace-UI ####
+
+## Washer Power Graph
+      waching_machine_load:
+        value_template: 'Power: {{ states.switch.plug_158d0001bc2b6d.attributes.load_power|int }}'  
+        friendly_name: 'Washer Power' 
+        unit_of_measurement: 'W'
+## Washer Status
+      washer_status:
+        value_template: 'Washer: {{ states.input_select.washing_machine_status.state}}'
+        friendly_name: 'Washing Machine Status'
+## Dryer Power Graph
+      dryer_load:
+        value_template: 'Power: {{ states.switch.plug_158d00022ae069.attributes.load_power|int }}'  
+        friendly_name: 'Dryer Power'  
+        unit_of_measurement: 'W'   
+## Dryer Status
+      clothes_dryer_status:
+        value_template: 'Dryer: {{ states.input_select.dryer_status.state}}'
+        friendly_name: 'Dryer Status'        
+## Appliance Power Usage
+      appliance_load:
+        value_template: '{{ states.switch.plug_158d00022ae22d.attributes.load_power|int }}'
+        friendly_name: 'Appliance Power'
+        unit_of_measurement: 'W'
 ## Robovac Things
       robovac_status:
         friendly_name: "Status"
-        value_template: "{{ states.vacuum.robovac.attributes.status }}"
+        value_template: "Status: {{ states.vacuum.robovac.attributes.status }}"
         icon_template: >-
           {% if is_state('sensor.robovac_status', 'Cleaning') %}
             mdi:robot-vacuum
@@ -180,7 +210,7 @@ sensor:
         friendly_name: "Battery"
         unit_of_measurement: "%"
         device_class: battery
-        value_template: "{{ states.vacuum.robovac.attributes.battery_level }}"
+        value_template: "Battery: {{ states.vacuum.robovac.attributes.battery_level }}"
       robovac_cleaning_time:
         friendly_name: "Cleaning Time"
         unit_of_measurement: "Mins"
@@ -200,12 +230,41 @@ sensor:
       robovac_cleaning_count:
         friendly_name: "Cleaning Count"
         value_template: "{{ states.vacuum.robovac.attributes.cleaning_count }}"
+        
+#################################################################
+#                                                               #
+#                           Vacuums                             #
+#                                                               #
+#################################################################
+
+vacuum:
+
+####################################################
+#                                                  #
+#                 Vacuums - Xiaomi                 #
+#                                                  #
+####################################################
+
+  - platform: xiaomi_miio
+    host: !secret xiaomi_vac_ip
+    token: !secret xiaomi_vac_token
+    name: RoboVac
   
 #################################################################
 #                                                               #
-#                          Automations                          #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##  
+
+#################################################################
+#                                                               #
+#                      Automations - Legacy                     #
 #                                                               #
 ################################################################# 
+
+##                 [Last Validated  - v 0.79.1]                ##
 
 automation:
 ## When power is detected, and the washing machine is not in
