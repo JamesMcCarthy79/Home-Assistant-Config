@@ -1,3 +1,9 @@
+#################################################################
+#                                                               #
+#                            Groups                             #
+#                                                               #
+#################################################################
+
 ####################################################
 #                                                  #
 #                      Home                        #
@@ -43,6 +49,7 @@ downstairs:
     - group.downstairs_lights
     - group.outside_lights
     - group.music
+    - fan.lounge_fan
     
 tv:
   name: Scenes
@@ -59,6 +66,21 @@ tv:
     - input_number.hall_brightness
     - switch.goodnight
   control: hidden
+  
+upstairs:
+  name: Upstairs
+  view: no
+  entities:
+    - switch.master_light_switch
+    - switch.bedroom_wardrobe_switch     
+    - switch.bathroom_light_switch
+    - switch.bathroom_fan_switch
+    - switch.bathroom_heat_switch
+    - switch.upstairs_toilet_light_switch
+    - switch.jackson_light_switch
+    - fan.jackson_fan
+    - fan.bedroom_fan
+    - fan.hudson_fan
     
 ####################################################
 #                                                  #
@@ -337,3 +359,6 @@ windows_ll:
     - binary_sensor.door_window_sensor_158d0001e73af4
     - binary_sensor.door_window_sensor_158d0001e74875
     - binary_sensor.door_window_sensor_158d0001f36741
+    
+    
+    

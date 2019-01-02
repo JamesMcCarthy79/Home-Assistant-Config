@@ -1,0 +1,121 @@
+#################################################################
+#                                                               #
+#                            Zones                              #
+#                                                               #
+#################################################################
+
+- name: Powertec
+  latitude: !secret james_work_latitude
+  longitude: !secret james_work_longitude
+  radius: 50
+  icon: mdi:briefcase
+  
+- name: Kindy
+  latitude: !secret kindy_latitude
+  longitude: !secret kindy_longitude
+  radius: 25
+  icon: mdi:school
+  
+- name: Stocklands
+  latitude: !secret stocklands_latitude
+  longitude: !secret stocklands_longitude
+  radius: 200
+  icon: mdi:cart
+  
+- name: Parlour
+  latitude: !secret parlour_latitude
+  longitude: !secret parlour_longitude
+  radius: 50
+  icon: mdi:coffee
+  
+- name: Work Home Beacon 25mins
+  latitude: !secret workhome25mins_latitude
+  longitude: !secret workhome25mins_longitude
+  radius: 50
+  icon: mdi:car
+  
+- name: Work Home Beacon 15mins
+  latitude: !secret workhome15mins_latitude
+  longitude: !secret workhome15mins_longitude
+  radius: 50
+  icon: mdi:car
+  
+- name: Work Home Beacon 5mins
+  latitude: !secret workhome5mins_latitude
+  longitude: !secret workhome5mins_longitude
+  radius: 50
+  icon: mdi:car
+  
+##Cities Travel
+
+- name: Darwin
+  latitude: -12.4518565
+  longitude: 130.8811208
+  radius: 50000
+  icon: mdi:airplane
+  
+- name: Brisbane
+  latitude: -27.3812533
+  longitude: 152.7130149
+  radius: 50000
+  icon: mdi:car
+  
+- name: Sydney
+  latitude: -33.867888
+  longitude: 151.2012372
+  radius: 50000
+  icon: mdi:airplane
+  
+- name: Melbourne
+  latitude: -37.8274512
+  longitude: 144.9527565
+  radius: 50000
+  icon: mdi:airplane
+  
+- name: Perth
+  latitude: -32.0397559
+  longitude: 115.6813467
+  radius: 50000
+  icon: mdi:airplane
+  
+- name: Adelaide
+  latitude: -34.9256023
+  longitude: 138.5832589
+  radius: 50000
+  icon: mdi:airplane
+  
+- name: Tasmania
+  latitude: -42.8823241
+  longitude: 147.3198016
+  radius: 50000
+  icon: mdi:airplane 
+  
+- name: UK
+  latitude: 51.5287718
+  longitude: -0.2416804
+  radius: 100000
+  icon: mdi:earth
+  
+- name: France
+  latitude: 48.8589507
+  longitude: 2.2770197
+  radius: 100000
+  icon: mdi:earth
+  
+- name: Netherlands
+  latitude: 52.354775
+  longitude: 4.7585386
+  radius: 100000
+  icon: mdi:earth
+  
+- name: Switzerland
+  latitude: 47.3775499
+  longitude: 8.4666747
+  radius: 100000
+  icon: mdi:earth
+  
+- name: Italy
+  latitude: 41.9102415
+  longitude: 12.3959117
+  radius: 100000
+  icon: mdi:earth

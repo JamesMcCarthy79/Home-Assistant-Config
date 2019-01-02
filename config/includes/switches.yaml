@@ -1,3 +1,9 @@
+#################################################################
+#                                                               #
+#                           Switches                            #
+#                                                               #
+#################################################################
+
 ####################################################
 #                                                  #
 #                    Broadlink                     #
@@ -5,8 +11,8 @@
 ####################################################
 
 - platform: broadlink
-  host: 10.0.30.1
-  mac: '34:EA:34:88:DA:06'
+  host: !secret broadlink_ip_1
+  mac: !secret broadlink_mac_1
   timeout: 15
   switches:
     aircon_power:
@@ -82,8 +88,8 @@
       command_on: 'JgDqAJOUEzcSOBI3ExISExITEhMSEhM3EzcSNxUQExISExITEhMRExM3EhMSOBISExITNxITEjcTEhM3EhMSNxM3ExISOBISExITEhMSEgAFc5SUEjgSNxM3EhMSExISEhMSExI4EjcTNxITEhMSExISExITEhI4EhMSNxMSEhMSOBISEzcSExI4EhITNxI4EhMSNxMSEhMSExITEgAFc5OUEzcSOBI3ExITEhITEhMSEhM3EzcSNxMSEhMSExITEhMRExM3EhMSOBISExITNxITEjcTEhM3EhMROBM3EhMSNxMSExISExITEgANBQAAAAAAAAAAAAAAAAAA'
       
 - platform: broadlink
-  host: 10.0.30.2
-  mac: '34:EA:34:41:40:D3'
+  host: !secret broadlink_ip_2
+  mac: !secret broadlink_mac_2
   timeout: 15
   switches:
     fairy_light_power:
@@ -99,8 +105,8 @@
       command_on: 'JgBQAAABJ5MTEhMSExITEhMSExITEhQRFDYTNhM2FDYTNhM3EzYTNhMSFDYTNhQ2EzYUEhM2ExIUNhMSExITEhMSEzYTEhM3EwAFGAABJkkUAA0FAAAAAAAAAAA='
       
 - platform: broadlink
-  host: 10.0.30.3
-  mac: '78:0F:77:00:75:4C'
+  host: !secret broadlink_ip_3
+  mac: !secret broadlink_mac_3
   timeout: 15
   switches:
     bedroom_aircon_power:
@@ -121,7 +127,11 @@
       command_off: 'JgCMAJWWEzcSOBI5EhMSExITEhMSExI4EjkSOBITEhMSExIUERQSOBI4EhMSORITEhMSExITEhMSExI5EhMSOBI4EjkSOBIABhGVlhE5EjgSOBIUERQSExITEhMSOBI5EjgSExITEhMTExEUEjgTNxMSEjkRFBITEhMSExITEhMTOBITEjgSOBI5EjgSAA0FAAAAAAAAAAAAAAAA'
     bedroom_tv_source:
       friendly_name: "Bedroom TV Source"
-      command_on: 'JgCMAJWWEzcSOBI5EhMSExITEhMSExI4EjkSOBITEhMSExIUERQSOBI4EhMSORITEhMSExITEhMSExI5EhMSOBI4EjkSOBIABhGVlhE5EjgSOBIUERQSExITEhMSOBI5EjgSExITEhMTExEUEjgTNxMSEjkRFBITEhMSExITEhMTOBITEjgSOBI5EjgSAA0FAAAAAAAAAAAAAAAA'
+      command_on: 'JgCMAJWWEzcSOBI5EhMSExITEhMSExI4EjkSOBITEhMSExIUERQSOBI4EhMSORITEhMSExITEhMSExI5EhMSOBI4EjkSOBIABhGVlhE5EjgSOBIUERQSExITEhMSOBI5EjgSExITEhMTExEUEjgTNxMSEjkRFBITEhMSExITEhMTOBITEjgSOBI5EjgSAA0FAAAAAAAAAAAAAAAA'     
+    fairy_light_front:
+      friendly_name: "Fairy Light Front"
+      command_on: 'JgBYAAABJpQTEhMSExITEhMSExITEhMSEzYTNhM3EzYTNhM2EzcTNhM2ExITNxMSExITEhM2ExITEhM2FRATNxM2EzYTEhM3EwAFGwABJkkTAAxQAAEnSRMADQU='
+      command_off: 'JgBYAAABKJIVEBUQFRAVEBUQFRAVEBUQFTQVNBY0FTQVNBU1FTQVNRU0FTQVNRUQFRAVEBU0FRAVEBUQFRAVNRQ1FTQWDxY0FQAFFwABKUcWAAxJAAEpRxUADQU=' 
       
 ####################################################
 #                                                  #
@@ -136,23 +146,11 @@
       command_on: python3 /config/python_scripts/spotifykitchen.py
       command_off: python3 /config/python_scripts/spotifykitchenoff.py
       
-#- platform: command_line
-#  switches:
-#    away_alarm_triggered:
-#      friendly_name: "Away Alarm Triggered"
-#      command_on: python3 /config/python_scripts/away_alarm_trigger.py
-      
-#- platform: command_line
-#  switches:
-#    alarm_deactivated:
-#      friendly_name: "Alarm Deactivated"
-#      command_on: python3 /config/python_scripts/alarm_deactivated.py
-      
-#- platform: command_line
-#  switches:
-#    goodnight:
-#      friendly_name: "Goodnight"
-#      command_on: python3 /config/python_scripts/goodnight.py
+- platform: command_line
+  switches:
+    james_refresh:
+      friendly_name: "James Refresh"
+      command_on: python3 /config/python_scripts/loc_refresh_james.py
       
 ####################################################
 #                                                  #
@@ -163,8 +161,8 @@
 ## Bathroom Fan Switch##
 - platform: mqtt
   name: "Bathroom Fan Switch"
-  command_topic: "cmnd/sonoff-bathroom/POWER2"
-  state_topic: "stat/sonoff-bathroom/POWER2"
+  command_topic: "cmnd/sonoff-bathroom-fan/POWER"
+  state_topic: "stat/sonoff-bathroom-fan/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
@@ -172,8 +170,8 @@
 ## Bathroom Heat Switch ##
 - platform: mqtt
   name: "Bathroom Heat Switch"
-  command_topic: "cmnd/sonoff-bathroom/POWER3"
-  state_topic: "stat/sonoff-bathroom/POWER3"
+  command_topic: "cmnd/sonoff-bathroom-heat/POWER"
+  state_topic: "stat/sonoff-bathroom-heat/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
@@ -181,8 +179,8 @@
 ## Bathroom Light Switch ##
 - platform: mqtt
   name: "Bathroom Light Switch"
-  command_topic: "cmnd/sonoff-bathroom/POWER1"
-  state_topic: "stat/sonoff-bathroom/POWER1"
+  command_topic: "cmnd/sonoff-bathroom-light/POWER"
+  state_topic: "stat/sonoff-bathroom-light/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
@@ -325,17 +323,44 @@
 ## Laundry Light Switch ##
 - platform: mqtt
   name: "Laundry Light Switch"
-  command_topic: "cmnd/playroom_light/POWER1"
-  state_topic: "stat/playroom_light/POWER1"
+  command_topic: "cmnd/sonoff-laundry-light/POWER"
+  state_topic: "stat/sonoff-laundry-light/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
   retain: false
-## Laundry Light Switch ##
+## Playroom Light Switch ##
 - platform: mqtt
   name: "Playroom Light Switch"
-  command_topic: "cmnd/playroom_light/POWER1"
-  state_topic: "stat/playroom_light/POWER1"
+  command_topic: "cmnd/sonoff-playroom-light/POWER"
+  state_topic: "stat/sonoff-playroom-light/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+## Downstairs Toilet Light Switch ##
+- platform: mqtt
+  name: "Downstairs Toilet Light Switch"
+  command_topic: "cmnd/sonoff-downstairs-toilet/POWER"
+  state_topic: "stat/sonoff-downstairs-toilet/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+## Upstairs Toilet Light Switch ##
+- platform: mqtt
+  name: "Upstairs Toilet Light Switch"
+  command_topic: "cmnd/sonoff-upstairs-toilet/POWER"
+  state_topic: "stat/sonoff-upstairs-toilet/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+## Jackson Light Switch ##
+- platform: mqtt
+  name: "Jackson Heat Switch"
+  command_topic: "cmnd/sonoff-jackson-light/POWER"
+  state_topic: "stat/sonoff-jackson-light/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
@@ -358,7 +383,7 @@
 
 - platform: xiaomi_miio
   name: RPi Switch
-  host: ip
-  token: token
+  host: 10.0.70.1
+  token: !secret xiaomi_sw_token_1
   model: chuangmi.plug.m1
 
