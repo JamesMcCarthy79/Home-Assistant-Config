@@ -4,11 +4,11 @@
 <h1 align="center">Alarm System Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
 <hr *** </hr>
-<p align="center">This package utilises the MQTT Control Panel in conjunction with my Xiaomi Gateway and Door, Window & Motion Sensors to act as an Alarm System. You can use the automations within the yaml file or use the Node-RED Flow in the link below.</p>
+<p align="center">This package utilises the MQTT Control Panel in conjunction with my Xiaomi Gateway and Door, Window & Motion Sensors to act as an Alarm System. You can use the automations within the yaml file or use the Node-RED Flow in the link below. **I have removed yaml automation from package as Node-RED handles all automations for this package now.</p>
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">Stanvx - https://github.com/stanvx/Home-Assistant-Configuration</br>
+<p align="left">If you have any ideas for improvement then your name will go here :+1:</br>
 
 <hr --- </hr>
 
@@ -34,6 +34,10 @@
 <p align="left">This automation uses the to "triggered" alarm state to trigger the Xiaomi Gateway to start playing the siren sound. It also plays a TTS message over the in-house  system to let the intruder know the police have been notified. Lastly it will trigger the command_line switch which uses a python script that notifies my Android phone that Alarm has been triggered.</p>
 <h4 align="left">Stop Alarm Siren</h4>
 <p align="left">This automation uses the from "triggered" alarm state to trigger the Xiaomi Gateway to stop playing the siren sound. It also plays a TTS message over the in-house system to let us know the alarm has been deactivated. Lastly it will trigger the command_line switch which uses a python script that notifies my Android phone that Alarm has been deactivated.</p>
+<h4 align="left">Smoke Detection Alarm</h4>
+<p align="left">This automation is triggered if any of my smoke detectors have triggered to on and the smoke density is above a certain threshold to avoid it triggering every time, we burn some toast. It will provide a TTS message over the Alexa eco system I have as well as play alarm on both my Xiaomi Gateways, if the detection occurred upstairs it will also play over my media players I have for that area. If no one is home, it will send me a notification via push bullet.</p>
+<h4 align="left">Water Leak Detection Alarm</h4>
+<p align="left">This automation is triggered if any of my water leak detectors have triggered to on. It will provide a TTS message over the Alexa eco system I have as well as play alarm on both my Xiaomi Gateways, if the detection occurred upstairs it will also play over my media players I have for that area. If no one is home, it will send me a notification via push bullet.</p>
 <hr --- </hr>
 
 | Automations! | [Node-RED-Flow](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages/alarm_system/Node-RED-Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/alarm_system/alarm_system.yaml) |
