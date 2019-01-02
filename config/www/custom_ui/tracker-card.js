@@ -77,7 +77,7 @@ class TrackerCard extends HTMLElement {
   }
 
   _filterCards(attributes) {
-    return Object.entries(attributes).filter(elem => (elem[0] != "friendly_name" && elem[0] != "homebridge_hidden" && elem[0] != "domain" && elem[0] != "repo" && elem[0] != "hidden"));
+    return Object.entries(attributes).filter(elem => (elem[0] != "friendly_name" && elem[0] != "homebridge_hidden" && elem[0] != "domain" && elem[0] != "has_update" && elem[0] != "repo" && elem[0] != "hidden"));
   }
 
   set hass(hass) {

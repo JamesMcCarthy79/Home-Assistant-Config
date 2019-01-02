@@ -1,69 +1,62 @@
-import {html, LitElement} from "https://unpkg.com/@polymer/lit-element?module";
+var LitElement = LitElement || Object.getPrototypeOf(customElements.get('hui-error-entity-row'));
 class CardModder extends LitElement {
 
-  static get properties() {
-    return {
-      hass: Object,
-      config: Object,
-    };
-  }
+  setConfig(config) {
+    if(!window.cardTools) throw new Error(`Can't find card-tools. See https://github.com/thomasloven/lovelace-card-tools`);
+    window.cardTools.checkVersion(0.2);
 
-  render()
-  {
-    return html`${this.card}`;
-  }
-
-  async setConfig(config) {
-    this.config = config;
-
-    let tag = this.config.card.type;
-    if(tag.startsWith("custom:"))
-      tag = tag.substr(7);
-    else
-      tag = `hui-${tag}-card`;
-    this.card = document.createElement(tag);
-    this.card.setConfig(config.card);
-
-    if(this.card.updateComplete) {
-      await this.card.updateComplete;
+    if(!config || !config.card) {
+      throw new Error("Card config incorrect");
     }
+    if(Array.isArray(config.card)) {
+      throw new Error("It says 'card', not 'cardS'. Remove the dash.");
+    }
+    this._config = config;
+    this.card = window.cardTools.createCard(config.card);
+    this.templated = [];
+  }
+
+  render() {
+    return window.cardTools.litHtml`
+    <div id="root">${this.card}</div>
+    `;
+  }
+
+  firstUpdated() {
     this._cardMod();
   }
 
-  async _cardMod() {
-    let target = this.card;
+  _cardMod() {
+    if(!this._config.style) return;
 
-    let maxDelay = 5000;
-    while(maxDelay) {
-      if(this.card.shadowRoot &&
-          this.card.shadowRoot.querySelector("ha-card")) {
-        target = this.card.shadowRoot.querySelector("ha-card");
-        break;
-      } else if(this.card.querySelector("ha-card")) {
-        target = this.card.querySelector("ha-card");
-        break;
-      } else if(this.card.firstChild && this.card.firstChild.shadowRoot &&
-          this.card.firstChild.shadowRoot.querySelector("ha-card")) {
-        target = this.card.firstChild.shadowRoot.querySelector("ha-card");
-        break;
-      }
+    let target = null;
+    target = target || this.card.querySelector("ha-card");
+    target = target || this.card.shadowRoot && this.card.shadowRoot.querySelector("ha-card");
+    target = target || this.card.firstChild && this.card.firstChild.shadowRoot && this.card.firstChild.shadowRoot.querySelector("ha-card");
+    target = target || this.card;
 
-      maxDelay -= 100;
-      await new Promise(resolve => setTimeout( () => resolve() , 100));
+    for(var k in this._config.style) {
+      if(window.cardTools.hasTemplate(this._config.style[k]))
+        this.templated.push(k);
+      target.style.setProperty(k, window.cardTools.parseTemplate(this._config.style[k]));
     }
-
-    for(var k in this.config.style) {
-      target.style.setProperty(k, this.config.style[k]);
-    }
-
+    this.target = target;
   }
 
   set hass(hass) {
     if(this.card) this.card.hass = hass;
+    if(this.templated)
+      this.templated.forEach((k) => {
+        this.target.style.setProperty(k, window.cardTools.parseTemplate(this._config.style[k], ''));
+      });
   }
 
   getCardSize() {
-    return this.card.getCardSize();
+    if(this._config && this._config.report_size)
+      return this._config.report_size;
+    if(this.card)
+      return typeof this.card.getCardSize === "function" ? this.card.getCardSize() : 1;
+    return 1;
   }
 }
 
