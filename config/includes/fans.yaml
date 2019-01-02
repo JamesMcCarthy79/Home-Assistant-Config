@@ -1,4 +1,0 @@
-- platform: xiaomi_miio_fan
-  name: Xiaomi Smart Fan
-  host: !secret fan_ip
-  token: !secret fan_token
