@@ -15,9 +15,9 @@ resources:
     type: js
   - url: /local/custom_ui/card-tools.js?v=0a97d3
     type: js
-  - url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.2.0
+  - url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.2.4
     type: js
-  - url: /local/custom_ui/waze-card.js?v=1.1.0
+  - url: /local/custom_ui/waze-card.js?v=1.1.1
     type: js
 
 #################################################################
@@ -192,52 +192,80 @@ views:
                 - type: service-button
                   title: Stargazers
                   service: python_script.github_scaper
-                  style: {color: white, left: 12%, top: 12%}
+                  style: {color: white, left: 13%, top: 10%, font-size: 125%}
                 - type: state-label
-                  entity: sensor.git_stars_now
-                  style: {color: white, left: 25%, top: 12%}
+                  entity: sensor.stars
+                  style: {color: white, left: 28%, top: 10%, font-size: 125%}
+                - type: service-button
+                  title: Subscribers
+                  service: python_script.github_scaper
+                  style: {color: white, left: 45%, top: 10%, font-size: 125%}
+                - type: state-label
+                  entity: sensor.subscribers
+                  style: {color: white, left: 59%, top: 10%, font-size: 125%}
+                - type: service-button
+                  title: Forks
+                  service: python_script.github_scaper
+                  style: {color: white, left: 69%, top: 10%, font-size: 125%}
+                - type: state-label
+                  entity: sensor.forks
+                  style: {color: white, left: 78%, top: 10%, font-size: 125%}
+                - type: service-button
+                  title: Issues
+                  service: python_script.github_scaper
+                  style: {color: white, left: 88%, top: 10%, font-size: 125%}
+                - type: state-label
+                  entity: sensor.issues
+                  style: {color: white, left: 97%, top: 10%, font-size: 125%}
                 - type: service-button
                   title: Next Target
                   service: python_script.github_scaper
-                  style: {color: white, left: 12%, top: 22%}
+                  style: {color: white, left: 12%, top: 25%}
                 - type: state-label
                   entity: sensor.git_stars_next_dif
-                  style: {color: white, left: 25%, top: 22%}
+                  style: {color: white, left: 25%, top: 25%}
                 - type: service-button
                   title: Last Target
                   service: python_script.github_scaper
-                  style: {color: white, left: 12%, top: 32%}
+                  style: {color: white, left: 12%, top: 35%}
                 - type: state-label
                   entity: sensor.git_stars_last_dif
-                  style: {color: white, left: 25%, top: 32%}
+                  style: {color: white, left: 25%, top: 35%}
+                - type: service-button
+                  title: Trending
+                  service: python_script.github_scaper
+                  style: {color: white, left: 10%, top: 45%}
+                - type: state-label
+                  entity: sensor.git_stars_trend_dif
+                  style: {color: white, left: 25%, top: 45%}
                 - type: service-button
                   title: This Month
                   service: python_script.github_scaper
-                  style: {color: white, left: 82%, top: 12%}
+                  style: {color: white, left: 82%, top: 25%}
                 - type: state-label
                   entity: sensor.stars_this_month
-                  style: {color: white, left: 95%, top: 12%}
+                  style: {color: white, left: 95%, top: 25%}
                 - type: service-button
                   title: Last Month
                   service: python_script.github_scaper
-                  style: {color: white, left: 82%, top: 22%}
+                  style: {color: white, left: 82%, top: 35%}
                 - type: state-label
                   entity: sensor.stars_last_month
-                  style: {color: white, left: 95%, top: 22%}
+                  style: {color: white, left: 95%, top: 35%}
                 - type: service-button
                   title: This Week
                   service: python_script.github_scaper
-                  style: {color: white, left: 83%, top: 32%}
+                  style: {color: white, left: 83%, top: 45%}
                 - type: state-label
                   entity: sensor.stars_this_week
-                  style: {color: white, left: 95%, top: 32%}
+                  style: {color: white, left: 95%, top: 45%}
                 - type: service-button
                   title: Last Week
                   service: python_script.github_scaper
-                  style: {color: white, left: 83%, top: 42%}
+                  style: {color: white, left: 83%, top: 55%}
                 - type: state-label
                   entity: sensor.stars_last_week
-                  style: {color: white, left: 95%, top: 42%}
+                  style: {color: white, left: 95%, top: 55%}
             style:                 
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
@@ -3480,3 +3508,4 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
