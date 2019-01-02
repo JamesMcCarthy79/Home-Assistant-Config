@@ -30,8 +30,9 @@
   <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0-5294E2.svg"/>
 </p>
 <hr --- </hr> 
-    
-### Kingia Castle Smart Home Statistics:
+
+<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Kingia%20Castle.png" width="125"/>
+
 | Components - Standard | Components - Custom |Network Devices | Automations | Scripts |
 |:---------------------:|:-------------------:|:--------------:|:-----------:|:-------:|
 | 87                    |6                    |83              |16           |36       |
@@ -40,7 +41,8 @@
 |:--------------:|:-------:|:----:|:------:|:-------------:|:------:|:-------:|:--------:|
 |153             |7        |5     |8       |10             |9       |153      |59        |
 
-### Xiaomi Devices:
+<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Xiaomi%20Logo.png" width="150"/>
+
 | Gateways | Door/Window Sensors | Motion Sensors | Smoke Sensors | Smart Switches | Water Leak Sensors |
 |:--------:|:-------------------:|:--------------:|:-------------:|:--------------:|:------------------:|
 |2         |10                   |12              |2              |7               |2                   |
@@ -49,7 +51,8 @@
 |:------------------:|:-------------:|:-------------:|:----------------:|:-----------:|:----------:|:-----:| 
 |5                   |4              |10             |7                 |7            |4           |1      |
 
-### Sonoff Devices:
+<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Sonoff%20Logo.png" width="180"/>
+
 | Basic | POW2 | iFan02 | Wall Switch (Touch) |
 |:-----:|:----:|:------:|:-------------------:|
 |15     |2     |4       |20                   |
