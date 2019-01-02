@@ -1,9 +1,0 @@
-  discovery_retry: 5
-  gateways:
-    - mac: !secret xiaomimac
-      key: !secret xiaomikey
-      host: 10.0.20.6      
-    - mac: !secret xiaomimac2
-      key: !secret xiaomikey2
-      host: 10.0.20.9
-      
