@@ -8,7 +8,8 @@
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">HASS Community - https://community.home-assistant.io/t/how-to-connect-your-apc-ups-to-rpi-and-home-assistant-using-apcupsd/10609</br>
+
+HASS Community - [APC UPS](https://community.home-assistant.io/t/how-to-connect-your-apc-ups-to-rpi-and-home-assistant-using-apcupsd/10609)
 
 <hr --- </hr>
 
