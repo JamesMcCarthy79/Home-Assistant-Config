@@ -30,6 +30,32 @@
   <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0-5294E2.svg"/>
 </p>
 <hr --- </hr> 
+    
+### Kingia Castle Smart Home Statistics:
+| Components - Standard | Components - Custom |Network Devices | Automations | Scripts |
+|:---------------------:|:-------------------:|:--------------:|:-----------:|:-------:|
+| 87                    |6                    |83              |16           |36       |
+
+| Binary Sensors | Cameras | Fans | Lights | Media Players | Plants | Sensors | Switches |
+|:--------------:|:-------:|:----:|:------:|:-------------:|:------:|:-------:|:--------:|
+|153             |7        |5     |8       |10             |9       |153      |59        |
+
+### Xiaomi Devices:
+| Gateways | Door/Window Sensors | Motion Sensors | Smoke Sensors | Smart Switches | Water Leak Sensors |
+|:--------:|:-------------------:|:--------------:|:-------------:|:--------------:|:------------------:|
+|2         |10                   |12              |2              |7               |2                   |
+
+| Philips Light Bulb | Yi Light Bulb | Plant Sensors | Temp/Hum Sensors | Smart Plugs | Appliances | Lamps |
+|:------------------:|:-------------:|:-------------:|:----------------:|:-----------:|:----------:|:-----:| 
+|5                   |4              |10             |7                 |7            |4           |1      |
+
+### Sonoff Devices:
+| Basic | POW2 | iFan02 | Wall Switch (Touch) |
+|:-----:|:----:|:------:|:-------------------:|
+|15     |2     |4       |20                   |
+
+The wall switches are not actually used they are brand new in box they don't fit properly and I decided before they arrived that I preferred the standard wall switch look as our house is in a hampton style and these were a bit too modern looking. If you are interested I'd be happy to sell them at half cost price message me over in the forum [jimpower](https://community.home-assistant.io/u/jimpower/summary).
+<hr --- </hr> 
 
 | [Topology](https://github.com/JamesMcCarthy79/Home-Assistant-Config#smart-home-hardware-topology) | [HA Hardware](https://github.com/JamesMcCarthy79/Home-Assistant-Config#home-assistant-hardware) | [HA Software](https://github.com/JamesMcCarthy79/Home-Assistant-Config#home-assistant-software) | [Network](https://github.com/JamesMcCarthy79/Home-Assistant-Config#kingia-castle-network) | [Voice Control](https://github.com/JamesMcCarthy79/Home-Assistant-Config#voice-control--tts) |  [Gateways](https://github.com/JamesMcCarthy79/Home-Assistant-Config#gateways) | [Sensors](https://github.com/JamesMcCarthy79/Home-Assistant-Config#sensors) | [Fan & Lighting](https://github.com/JamesMcCarthy79/Home-Assistant-Config#fan--lighting-control) |
 | --- | --- | --- | --- | --- |--- | --- | --- |
@@ -85,12 +111,19 @@
 
 <h4 align="left">Home Assistant:</h4>
 <p align="left">As I am still new to Home Assistant (and always learning), I decided to install HASSIO. I have been using HASSIO since December 2017, for anyone new to HA I recommend this type of installation and once you are more comfortable with it I would then look to move onto some of the other methods of installation.</p>
+
 <h4 align="left">MQTT Broker:</h4>
-One of the first things I needed to do once I got HA up and running was to setup a MQTT Broker, I decided to use CloudMQTT (https://www.cloudmqtt.com/) as I found this helpful guide from BRUH (https://www.youtube.com/watch?v=VaWdvVVYU3A) and was up and running in 15mins. The main problem I had with this method was using a cloud-based service to control my MQTT based light switches. I decided to install Mosquitto Broker from the Hass.io Add-On Store. Doing this means I can host the MQTT Broker locally therefore having control of who can access my devices and data.
+
+One of the first things I needed to do once I got HA up and running was to setup a MQTT Broker, I decided to use [CloudMQTT](https://www.cloudmqtt.com/) as I found this helpful guide from [BRUH](https://www.youtube.com/watch?v=VaWdvVVYU3A) and was up and running in 15mins. The main problem I had with this method was using a cloud-based service to control my MQTT based light switches. I decided to install Mosquitto Broker from the Hass.io Add-On Store. Doing this means I can host the MQTT Broker locally therefore having control of who can access my devices and data.
+
 <h4 align="left">AppDaemon3 - HADashboard:</h4>
+
 I have a bunch of wall mounted tablets (Android & IOS) as well as RPi with 7" touchscreens and whilst I like the standard HA UI there is way too much going on for my wife and guests who need to interact with the smart home system. In cometh HADashboard, it wraps up your basic controls (lights, cooling, heating, music etc) into nice looking widgets that make using the smart home controls a breeze for any non-tech person in the house (everyone but me). 
+
 <h4 align="left">Node-RED:</h4>
-After using HA for a few months, I began to really enjoy the sometimes-complicated methods of using automations, I also came to realise some of the limitations in its implementations. I found a good repo with an easy to follow installation guide by NotoriousBDG (https://github.com/notoriousbdg/hassio-addons/tree/master/node-red) this handles any of my more complicated flows and conditioning required for my Automations.
+
+After using HA for a few months, I began to really enjoy the sometimes-complicated methods of using automations, I also came to realise some of the limitations in its implementations. I found a good repo with an easy to follow installation guide by [NotoriousBDG](https://github.com/notoriousbdg/hassio-addons/tree/master/node-red) this handles any of my more complicated flows and conditioning required for my Automations.
+
 <hr --- </hr>
 <hr --- </hr>
 
@@ -158,7 +191,8 @@ The big bonus with Altai is their antenna design and ability to cover a great di
 | <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Xiaomi%20Logo.png" width="150"/> | <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/SmartThings%20Logo.png" width="200"/> |
 | --- | --- |
 
-<p align="left">At the moment the majority of my sensors are Xiaomi, so I need to use their Gateway to integrate them with HA. I also have a Smart Things Hub which I will use to connect any Z-Wave devices. I would prefer to move away from third party cloud-based Gateways such as the 2 above, I am following this thread (https://community.home-assistant.io/t/zigbee2mqtt-getting-rid-of-your-proprietary-zigbee-bridges-xiaomi-hue-tradfri/52108) with interest currently and plan to move over to this platform removing the need to use the Xiaomi Gateway altogether.</p>
+At the moment the majority of my sensors are Xiaomi, so I need to use their Gateway to integrate them with HA. I also have a Smart Things Hub which I will use to connect any Z-Wave devices. I would prefer to move away from third party cloud-based Gateways such as the 2 above, I am following this [thread](https://community.home-assistant.io/t/zigbee2mqtt-getting-rid-of-your-proprietary-zigbee-bridges-xiaomi-hue-tradfri/52108) with interest currently and plan to move over to this platform removing the need to use the Xiaomi Gateway altogether.
+
 <hr --- </hr>
 
 | [Xiaomi Gateway](https://www.banggood.com/Original-Xiaomi-Upgrade-Smart-Home-WiFi-Remote-Control-Multi-functional-Gateway-p-1047282.html?rmmds=search) | [Zigbee](http://www.zigbee.org/what-is-zigbee/) | [SmartThings Hub](https://www.amazon.com/Samsung-SmartThings-Smart-Home-Hub/dp/B010NZV0GE) | [Z-Wave](http://www.z-wave.com/) |
@@ -248,8 +282,11 @@ The big bonus with Altai is their antenna design and ability to cover a great di
 <p align="left">This vacuum actually does a pretty good job of the day to day pickups of random crumbs my boys seem to generate at will. We still use the Dyson stick for a weekly clean or a big spill, but the RoboVac is set to clean twice a day and it just goes about its business we have lots of obstacles which it navigates with ease including the large dining table with 6 chairs. There is a new zone cleaning feature which I would like to take advantage of but in order to do that I would need to upgrade my app version and I'm still adding devices to HA which I lost this ability moving to newer versions of the app.</p>
 <h4 align="left">Smart Mop:</h4>
 <p align="left">This mop is not our main one as we have a steam mop for the tiled and bamboo flooring which is needed with two boys rampaging throughout the place. The thing I like about this mop is it has a built in light and is easy to whip out on those liquid spills that haven’t dried hard yet. As for smart features it really only has battery level indicators and alerts when it’s time to change over the mop pad.</p>
+
 <h4 align="left">Smart Fan:</h4>
-<p align="left">I was excited to get this fan as it was to go into the playroom for the kids the room has no windows or is quiet closed off so airflow isn't the best. When it arrived I went to integrate it with HA to realise that it is one of the few Xioami devices that didn't have auto discovery or a custom component for it. I reached out to the community and our very own @syssi had a component for me to do testing with in the matter of hours. We are actually only about 50% through this as it is waiting for me to finish testing the remainder of its functions and it will be added in future release. (https://community.home-assistant.io/t/mi-smart-pedestal-fan/49998/52)</p>
+
+I was excited to get this fan as it was to go into the playroom for the kids the room has no windows or is quiet closed off so airflow isn't the best. When it arrived I went to integrate it with HA to realise that it is one of the few Xioami devices that didn't have auto discovery or a custom component for it. I reached out to the community and our very own @syssi had a component for me to do testing with in the matter of hours. We are actually only about 50% through this as it is waiting for me to finish testing the remainder of its functions and it will be added in future release. [Smart Pedestal Fan](https://community.home-assistant.io/t/mi-smart-pedestal-fan/49998/52).
+
 <h4 align="left">Power Switches:</h4>
 <p align="left">I have lost count of how many of these things I have around the place, I use single plugs for those higher power consumers like the washer/dryer & fridges. The rest I have a heap of smart power strips powering everything else to give me insights into power consumption but mainly to control when devices are allowed to be on and consuming power. I have a strip setup in the laundry that all my battery appliances plug into (all the mentioned above) and this only turns during between 1-4am and only for long enough to charge all connected devices to 100%. I also do the same for my outdoor lighting they are all connected back to these strips and I then automate them to turn on x time after sunset for x amount of time and turn off again. Once bed time script is enabled they are then set to turn on upon motion in their areas. I also use one for my Christmas lighting to ensure they are on for the kids to enjoy (as I used to forget to turn them on until after they are in bed) and turn off by midnight.</p>
 <hr --- </hr>
@@ -310,7 +347,8 @@ In this area I have a RPi Model B+ and I initially connected it to the 32" Samsu
 <h3 align="left">Security</h3> 
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Android%20Things.png" width="200"/>
 
-<p align="left">There are many takes on Alarm Panels in the HA Forums I decided to go with this one (https://community.home-assistant.io/t/mqtt-alarm-control-panel-for-raspberry-pi-and-android/26484) which utilises the HA Manual Alarm Panel component. It was really easy to setup with great detailed instructions, installed this on the recommended hardware metioned in the project.</p>
+There are many takes on Alarm Panels in the HA Forums I decided to go with this one [MQTT Alarm Control Panel](https://community.home-assistant.io/t/mqtt-alarm-control-panel-for-raspberry-pi-and-android/26484) which utilises the HA Manual Alarm Panel component. It was really easy to setup with great detailed instructions, installed this on the recommended hardware metioned in the project.
+
 <hr --- </hr>
 
 | [MQTT Alarm Control Panel](https://www.hackster.io/thanksmister/mqtt-alarm-control-panel-for-home-assistant-a206cc) | [Raspberry Pi 3+ Touch Screen Kit](https://core-electronics.com.au/raspberry-pi-3-touch-screen-kit.html) | [Design Spark Rpi Enclosure](https://au.rs-online.com/web/p/development-board-enclosures/9064665/) | [Raspberry Pi Camera Board](https://core-electronics.com.au/raspberry-pi-camera-board-v2-8-megapixels-38552.html) |
