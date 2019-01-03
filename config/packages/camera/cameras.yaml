@@ -1,0 +1,50 @@
+#################################################################
+#                                                               #
+#                      Packages/Cameras                         #
+#                                                               #
+#################################################################
+
+camera:
+
+####################################################
+#                                                  #
+#                TP-Link Cameras                   #
+#                                                  #
+####################################################
+
+  - platform: generic
+    still_image_url: !secret tplink_cam_1
+    name: Baby Monitor
+    username: admin
+    password: !secret camera_password
+    authentication: digest
+ 
+####################################################
+#                                                  #
+#                 Xiaomi Cameras                   #
+#                                                  #
+####################################################
+ 
+  - platform: ffmpeg
+    name: Dining
+    input: !secret xiaomi_cam_1
+  
+  - platform: ffmpeg
+    name: Living
+    input: !secret xiaomi_cam_2
+  
+  - platform: ffmpeg
+    name: Bedroom
+    input: !secret xiaomi_cam_3
+  
+  - platform: ffmpeg
+    name: Jackson
+    input: !secret xiaomi_cam_4
+  
+  - platform: ffmpeg
+    name: Hudson
+    input: !secret xiaomi_cam_5
+  
+  - platform: ffmpeg
+    name: Stairscase
+    input: !secret xiaomi_cam_6
