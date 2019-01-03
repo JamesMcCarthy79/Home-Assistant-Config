@@ -101,198 +101,7 @@ group:
       - sensor.illumination_158d0001e5cf11
       - fan.xiaomi_smart_fan
       #- input_select.playroom_fan
-      
-#################################################################
-#                                                               #
-#                        User Inputs                            #
-#                                                               #
-#################################################################
 
-input_select:
-## Downstairs Air Conditioner
-  lounge_aircon:
-    name: Lounge Climate
-    options:
-      - Climate Off
-      - Cool
-      - Heat
-    initial: Climate Off
-    #icon: mdi:snowflake
-    
-## Lounge Fan  
-  lounge_fan:
-    name: Lounge Fan 
-    options:
-      - Fan Off
-      - Low 
-      - Medium
-      - High
-    initial: Fan Off
-    #icon: mdi:fan
-    
-## Master Bedroom Air Conditioner
-  master_bedroom_aircon:
-    name: Master Bedroom Climate
-    options:
-      - Climate Off
-      - Cool
-      - Heat
-    initial: Climate Off
-    #icon: mdi:snowflake
-
-## Master Bedroom Fan    
-  bedroom_fan:
-    name: Bedroom Fan 
-    options:
-      - Fan Off
-      - Low 
-      - Medium
-      - High
-    initial:  Fan Off
-    #icon: mdi:fan 
-    
-## Playroom
-
-#################################################################
-#                                                               #
-#                             Fans                              #
-#                                                               #
-#################################################################
-
-#fan:
-## Playroom Fan
-#  - platform: xiaomi_miio_fan
-#    name: Xiaomi Smart Fan
-#    host: 10.0.100.1
-#    token: 2f4d188389e9425a7cc2d77947413e24
-
-#################################################################
-#                                                               #
-#                   Custom Broadlink Climate                    #
-#                                                               #
-#################################################################
-
-climate:
-  - platform: broadlink
-    name: Downstairs Climate
-    host: 10.0.30.1
-    mac: '34:EA:34:88:DA:06'
-    ircodes_ini: 'broadlink_climate_codes/gree.ini'
-    min_temp: 16
-    max_temp: 30
-    target_temp: 20
-    target_temp_step: 1
-    temp_sensor: sensor.temperature_158d0001f558f5
-    default_operation: 'off'
-    default_fan_mode: mid
-    customize:
-      operations:
-        - 'off'
-        - cool
-        - heat
-      fan_modes:
-        - low
-        - mid
-        - high
-        - auto
-        
-  - platform: broadlink
-    name: Upstairs Climate
-    host: 10.0.30.3
-    mac: '78:0F:77:00:75:4C'
-    ircodes_ini: 'broadlink_climate_codes/panasonic.ini'
-    min_temp: 16
-    max_temp: 30
-    target_temp: 20
-    target_temp_step: 1
-    temp_sensor: sensor.temperature_158d0001f53de9
-    default_operation: 'off'
-    default_fan_mode: mid
-    customize:
-      operations:
-        - 'off'
-        - cool
-        - heat
-      fan_modes:
-        - low
-        - mid
-        - high
-        - auto
-    
-#################################################################
-#                                                               #
-#                            Scenes                             #
-#                                                               #
-#################################################################
-
-scene:
-## Downstairs Air Conditioner
-  - name: "Climate Cool"
-    entities:
-      switch.aircon_mode_cool: on
-
-  - name: "Climate Heat"
-    entities:
-      switch.aircon_mode_heat: on
-
-  - name: "Climate Off"
-    entities:
-      switch.aircon_power: off
-      
-## Upstairs Air Conditioner - This Section needs to be fixed before summer ir codes are incorrect
-  - name: "Bedroom Climate Mode"
-    entities:
-      switch.bedroom_aircon_mode: on
-
-  - name: "Bedroom Climate Off"
-    entities:
-      switch.bedroom_aircon_power: off
-
-  - name: "Bedroom Climate On"
-    entities:
-      switch.bedroom_aircon_power: on
-      
-#################################################################
-#                                                               #
-#                           Sensors                             #
-#                                                               #
-#################################################################
-
-sensor:
-  - platform: min_max
-    name: "Lower Temperature"
-    type: mean
-    round_digits: 1
-    entity_ids:
-      - sensor.temperature_158d0001f558f5
-      - sensor.temperature_158d0001f56682
-      
-  - platform: min_max
-    name: "Upstairs Temperature"
-    type: mean
-    round_digits: 1
-    entity_ids:
-      - sensor.temperature_158d0001f534e1
-      - sensor.temperature_158d0001f53de9
-      - sensor.temperature_158d0001f54df3
-      - sensor.temperature_158d00022c7248
-      
-  - platform: mqtt
-    name: "Lounge Fan Switch"
-    state_topic: "lounge_fan"
-    
-  - platform: mqtt
-    name: "Bedroom Fan Switch"
-    state_topic: "bedroom_fan"
-    
-  - platform: mqtt
-    name: "Jackson Fan Switch"
-    state_topic: "jackson_fan"
-    
-  - platform: mqtt
-    name: "Hudson Fan Switch"
-    state_topic: "hudson_fan"
-    
 #################################################################
 #                                                               #
 #                             Fan                               #
@@ -300,6 +109,12 @@ sensor:
 #################################################################
 
 fan:
+
+####################################################
+#                                                  #
+#                    Fan - MQTT                    #
+#                                                  #
+####################################################
 
 ### Bedroom Fan ###
   - platform: mqtt  
@@ -360,10 +175,10 @@ fan:
 ### Jackson Fan ###
   - platform: mqtt  
     name: "Jackson Fan"
-    command_topic: "cmnd/jackson_fan/FanSpeed"
-    speed_command_topic: "cmnd/jackson_fan/FanSpeed"    
-    state_topic: "stat/jackson_fan/RESULT"
-    speed_state_topic: "stat/jackson_fan/RESULT"
+    command_topic: "cmnd/jackson-fan/FanSpeed"
+    speed_command_topic: "cmnd/jackson-fan/FanSpeed"    
+    state_topic: "stat/jackson-fan/RESULT"
+    speed_state_topic: "stat/jackson-fan/RESULT"
     state_value_template: >
       {% if value_json.FanSpeed is defined %}
         {% if value_json.FanSpeed == 0 -%}0{%- elif value_json.FanSpeed > 0 -%}4{%- endif %}
@@ -371,7 +186,7 @@ fan:
         {% if states.fan.jackson_fan.state == 'off' -%}0{%- elif states.fan.jackson_fan.state == 'on' -%}4{%- endif %}
       {% endif %}
     speed_value_template: "{{ value_json.FanSpeed }}"
-    availability_topic: tele/jackson_fan/LWT
+    availability_topic: tele/jackson-fan/LWT
     payload_off: "0"
     payload_on: "4"
     payload_low_speed: "1"
@@ -388,10 +203,10 @@ fan:
 ### Hudson Fan ###
   - platform: mqtt  
     name: "Hudson Fan"
-    command_topic: "cmnd/hudson_fan/FanSpeed"
-    speed_command_topic: "cmnd/hudson_fan/FanSpeed"    
-    state_topic: "stat/hudson_fan/RESULT"
-    speed_state_topic: "stat/hudson_fan/RESULT"
+    command_topic: "cmnd/hudson-fan/FanSpeed"
+    speed_command_topic: "cmnd/hudson-fan/FanSpeed"    
+    state_topic: "stat/hudson-fan/RESULT"
+    speed_state_topic: "stat/hudson-fan/RESULT"
     state_value_template: >
       {% if value_json.FanSpeed is defined %}
         {% if value_json.FanSpeed == 0 -%}0{%- elif value_json.FanSpeed > 0 -%}4{%- endif %}
@@ -399,7 +214,7 @@ fan:
         {% if states.fan.hudson_fan.state == 'off' -%}0{%- elif states.fan.hudson_fan.state == 'on' -%}4{%- endif %}
       {% endif %}
     speed_value_template: "{{ value_json.FanSpeed }}"
-    availability_topic: tele/hudson_fan/LWT
+    availability_topic: tele/hudson-fan/LWT
     payload_off: "0"
     payload_on: "4"
     payload_low_speed: "1"
@@ -412,3 +227,237 @@ fan:
       - low
       - medium
       - high
+
+####################################################
+#                                                  #
+#                   Fan - Xiaomi                   #
+#                                                  #
+####################################################
+
+  - platform: xiaomi_miio_fan
+    name: Xiaomi Smart Fan
+    host: !secret xiaomi_fan_ip
+    token: !secret xiaomi_fan_token
+    
+#################################################################
+#                                                               #
+#                           Inputs                              #
+#                                                               #
+#################################################################
+
+input_select:
+## Downstairs Air Conditioner
+  lounge_aircon:
+    name: Lounge Climate
+    options:
+      - Climate Off
+      - Cool
+      - Heat
+    initial: Climate Off
+    #icon: mdi:snowflake
+    
+## Lounge Fan  
+  lounge_fan:
+    name: Lounge Fan 
+    options:
+      - Fan Off
+      - Low 
+      - Medium
+      - High
+    initial: Fan Off
+    #icon: mdi:fan
+    
+## Master Bedroom Air Conditioner
+  master_bedroom_aircon:
+    name: Master Bedroom Climate
+    options:
+      - Climate Off
+      - Cool
+      - Heat
+    initial: Climate Off
+    #icon: mdi:snowflake
+
+## Master Bedroom Fan    
+  bedroom_fan:
+    name: Bedroom Fan 
+    options:
+      - Fan Off
+      - Low 
+      - Medium
+      - High
+    initial:  Fan Off
+    #icon: mdi:fan 
+    
+## Jackson Bedroom Fan    
+  jackson_fan:
+    name: Jackson Fan 
+    options:
+      - Fan Off
+      - Low 
+      - Medium
+      - High
+    initial:  Fan Off
+    
+## Hudson Bedroom Fan    
+  hudson_fan:
+    name: Hudson Fan 
+    options:
+      - Fan Off
+      - Low 
+      - Medium
+      - High
+    initial:  Fan Off
+    
+#################################################################
+#                                                               #
+#                            Scenes                             #
+#                                                               #
+#################################################################
+
+scene:
+## Downstairs Air Conditioner
+  - name: "Climate Cool"
+    entities:
+      switch.aircon_mode_cool: on
+
+  - name: "Climate Heat"
+    entities:
+      switch.aircon_mode_heat: on
+
+  - name: "Climate Off"
+    entities:
+      switch.aircon_power: off
+      
+## Upstairs Air Conditioner - This Section needs to be fixed before summer ir codes are incorrect
+  - name: "Bedroom Climate Mode"
+    entities:
+      switch.bedroom_aircon_mode: on
+
+  - name: "Bedroom Climate Off"
+    entities:
+      switch.bedroom_aircon_power: off
+
+  - name: "Bedroom Climate On"
+    entities:
+      switch.bedroom_aircon_power: on
+      
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                Sensors - Min/Max                 #
+#                                                  #
+####################################################
+
+  - platform: min_max
+    name: "Lower Temperature"
+    type: mean
+    round_digits: 1
+    entity_ids:
+      - sensor.temperature_158d0001f558f5
+      - sensor.temperature_158d0001f56682
+      
+  - platform: min_max
+    name: "Upstairs Temperature"
+    type: mean
+    round_digits: 1
+    entity_ids:
+      - sensor.temperature_158d0001f534e1
+      - sensor.temperature_158d0001f53de9
+      - sensor.temperature_158d0001f54df3
+      - sensor.temperature_158d00022c7248
+      
+####################################################
+#                                                  #
+#                  Sensors - MQTT                  #
+#                                                  #
+####################################################
+
+  - platform: mqtt
+    name: "Lounge Fan Switch"
+    state_topic: "downstairs_fan"
+    
+  - platform: mqtt
+    name: "Bedroom Fan Switch"
+    state_topic: "bedroom_fan"
+    
+  - platform: mqtt
+    name: "Jackson Fan Switch"
+    state_topic: "jackson_fan"
+    
+  - platform: mqtt
+    name: "Hudson Fan Switch"
+    state_topic: "hudson_fan"
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      playroom_fan_speed:
+        friendly_name: "Speed"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.speed }}"
+        
+      playroom_fan_oscillate:
+        friendly_name: "Oscillate"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.oscillate }}"
+        
+      playroom_fan_speed_level:
+        friendly_name: "Speed Level"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.speed_level }}"
+        
+      playroom_fan_angle:
+        friendly_name: "Angle"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.angle }}"
+        unit_of_measurement: "°"
+        
+      playroom_fan_power:
+        friendly_name: "Power"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.ac_power }}"
+        
+      playroom_fan_temperature:
+        friendly_name: "Temperature"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.temperature }}"
+        unit_of_measurement: "°"
+        
+      playroom_fan_humidity:
+        friendly_name: "Humidity"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.humidity }}"
+        unit_of_measurement: "%"
+        
+      playroom_fan_battery:
+        friendly_name: "Battery"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.battery }}"
+        unit_of_measurement: "%"
+        device_class: battery
+        icon_template: >-
+          {% if is_state('sensor.playroom_fan_battery_charge', 'progress') and is_state('sensor.playroom_fan_power', 'True') %}
+            mdi:battery-charging
+          {% elif is_state('sensor.playroom_fan_battery_charge', 'complete') and is_state('sensor.playroom_fan_power', 'True') %}
+            mdi:power-plug
+          {% endif %}
+        
+      playroom_fan_battery_charge:
+        friendly_name: "Battery Charge"
+        value_template: "{{ states.fan.xiaomi_smart_fan.attributes.battery_charge }}"
+        device_class: battery
+    
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
+
+automation:
