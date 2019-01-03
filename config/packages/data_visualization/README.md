@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Visualizations.png"/>
+  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/data_visual.png"/>
 </p>
 <h1 align="center">Data Visualization Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
@@ -8,8 +8,10 @@
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">InfluxDB - https://github.com/hassio-addons/addon-influxdb</br>
-<p align="left">Grafana - https://github.com/hassio-addons/addon-grafana</br>
+
+[InfluxDB](https://github.com/hassio-addons/addon-influxdb)
+
+[Grafana](https://github.com/hassio-addons/addon-grafana)
 
 <hr --- </hr>
 
