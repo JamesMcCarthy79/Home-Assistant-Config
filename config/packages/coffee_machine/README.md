@@ -8,7 +8,10 @@
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">me :bowtie: - will create a seperate repo with code used</br>
+
+me :bowtie: - will create a seperate repo with code used
+
+This [Repo](https://github.com/JamesMcCarthy79/Garage-Door-Sensor) has similar code and could be used to get you going :mail: me if you need help.
 
 <hr --- </hr>
 
