@@ -20,11 +20,11 @@ resources:
   - url: /local/custom_ui/waze-card.js?v=1.1.1
     type: js
 
-#################################################################
-#                                                               #
-#                             Home                              #
-#                                                               #
-################################################################# 
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                               VIEW 0 - HOME                                                               #
+#                                                                                                                                           #
+#############################################################################################################################################  
 
 name: Kingia Castle
 views:
@@ -33,16 +33,16 @@ views:
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Home
     cards:
-      - id: 950562a85936431382144510c71945db  # Automatically created id
-        type: vertical-stack
-        cards:
-        
+    
 #################################################################
 #                                                               #
-#                           Presence                            #
+#                     Home - Presence Card                      #
 #                                                               #
 ################################################################# 
 
+      - id: 950562a85936431382144510c71945db  # Automatically created id
+        type: vertical-stack
+        cards:
           - type: horizontal-stack
             cards:
               - type: custom:card-modder
@@ -114,7 +114,7 @@ views:
 
 #################################################################
 #                                                               #
-#                            Glance                             #
+#                     Home - Glance Card                        #
 #                                                               #
 ################################################################# 
 
@@ -180,7 +180,7 @@ views:
               
 #################################################################
 #                                                               #
-#                            Github                             #
+#                       Home - Github Card                      #
 #                                                               #
 ################################################################# 
           
@@ -274,9 +274,9 @@ views:
               
 #################################################################
 #                                                               #
-#                            Weather                            #
+#                      Home - Weather Card                      #
 #                                                               #
-################################################################# 
+#################################################################
 
       - id: 3f7cfc0b210d4e408f5737d92108a358  # Automatically created id
         type: vertical-stack
@@ -321,7 +321,7 @@ views:
 
 #################################################################
 #                                                               #
-#                         Date & Time                           #
+#                   Home - Waze Travel Card                     #
 #                                                               #
 ################################################################# 
 
@@ -348,6 +348,12 @@ views:
               #color: "#999999"
               box-shadow: 3px 3px rgba(0,0,0,0.4)  
 
+#################################################################
+#                                                               #
+#                     Home - Next Bus Card                      #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-elements
@@ -368,9 +374,10 @@ views:
 
 #################################################################
 #                                                               #
-#                         Card Tracker                          #
+#                     Home - BOM Radar Card                     #
 #                                                               #
-################################################################# 
+#################################################################
+
       - id: cb489d24f3c64db1a6a96cdc70a4cc26  # Automatically created id
         type: vertical-stack
         cards:
@@ -399,7 +406,13 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               color: "#999999"
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+
+#################################################################
+#                                                               #
+#                  Home - Steps Tracker Card                    #
+#                                                               #
+#################################################################
+              
           - type: custom:card-modder
             card:
               type: picture-elements
@@ -432,18 +445,24 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4) 
               overflow: hidden
           
-
-#################################################################
-#                                                               #
-#                           Security                            #
-#                                                               #
-################################################################# 
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                             VIEW 1 - SECURITY                                                             #
+#                                                                                                                                           #
+############################################################################################################################################# 
 
   - id: 1  # Automatically created id
     icon: mdi:security-home
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Security
     cards:
+    
+#################################################################
+#                                                               #
+#                     Security - Alarm Card                     #
+#                                                               #
+#################################################################
+
       - id: 45f2fa1745ff4a9ea0539c698836c4c4  # Automatically created id
         type: vertical-stack
         cards:
@@ -469,7 +488,13 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)      
               overflow: hidden
-                  
+
+#################################################################
+#                                                               #
+#                  Security - Smoke Alarm Card                  #
+#                                                               #
+#################################################################
+              
           - type: custom:card-modder
             card:
               type: picture-elements
@@ -499,6 +524,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#################################################################
+#                                                               #
+#                  Security - Door Status Card                  #
+#                                                               #
+#################################################################
               
       - id: ad5dc57a687f470b98788a358279a7a3  # Automatically created id
         type: vertical-stack
@@ -546,7 +577,13 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)    
               overflow: hidden
-                  
+
+#################################################################
+#                                                               #
+#                 Security - Window Status Card                 #
+#                                                               #
+#################################################################   
+           
           - type: custom:card-modder
             card:
               type: picture-elements
@@ -597,6 +634,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#################################################################
+#                                                               #
+#                 Security - Motion Sensor Card                 #
+#                                                               #
+#################################################################
               
       - id: c66b0f53f9e748ebbbeaae6e32d049a1  # Automatically created id
         type: vertical-stack
@@ -679,11 +722,17 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
-              
+  
+#################################################################
+#                                                               #
+#               Security - Water Leak Sensor Card               #
+#                                                               #
+#################################################################
+  
           - type: custom:card-modder
             card:
               type: picture-elements
-              #title: Smoke Detectors
+              #title: Water Leak Detectors
               image: /local/lovelace/security/leak_2.png
               elements:
                 - type: state-icon
@@ -709,18 +758,26 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                              VIEW 2 - CAMERAS                                                             #
+#                                                                                                                                           #
+#############################################################################################################################################
               
-#################################################################
-#                                                               #
-#                             CCTV                              #
-#                                                               #
-#################################################################
   - id: 2  # Automatically created id
     title: Surveillance
     icon: mdi:cctv
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     panel: true
     cards:
+    
+#################################################################
+#                                                               #
+#                             CCTV                              #
+#                                                               #
+#################################################################
+   
       - id: f7445f719d25463788d385ee2ad55d93  # Automatically created id
         type: picture-entity
         entity: camera.living
@@ -734,11 +791,12 @@ views:
       #      motion_entity: binary_sensor.motion_sensor_158d0001e5d118
       #    - entity: camera.baby_monitor
       #      motion_entity: binary_sensor.motion_sensor_158d0001e63803
-#################################################################
-#                                                               #
-#                          Downstairs                           #
-#                                                               #
-#################################################################
+      
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                            VIEW 3 - DOWNSTAIRS                                                            #
+#                                                                                                                                           #
+#############################################################################################################################################
 
   - id: 3  # Automatically created id
     icon: mdi:sofa
@@ -746,6 +804,13 @@ views:
     name: Downstairs
     #panel: true
     cards:
+    
+#################################################################
+#                                                               #
+#             Downstairs - Temperature Graph Card               #
+#                                                               #
+#################################################################
+
       - id: 30cb280dfea9438ca580e1ec4c50ac9a  # Automatically created id
         type: vertical-stack
         cards:
@@ -767,6 +832,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
             
+#################################################################
+#                                                               #
+#                Downstairs - Light Group Card                  #
+#                                                               #
+#################################################################
+            
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -778,6 +849,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                Downstairs - Lounge Light Card                 #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -791,6 +868,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                Downstairs - Dining Light Card                 #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -802,6 +885,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#               Downstairs - Kitchen Light Card                 #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -815,6 +904,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#            Downstairs - Outside Light Group Card              #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -826,6 +921,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#               Downstairs - Humidity Graph Card                #
+#                                                               #
+#################################################################
 
       - id: 521584174ea7447fa05e6e816031895b  # Automatically created id
         type: vertical-stack
@@ -848,6 +949,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
           
+#################################################################
+#                                                               #
+#                 Downstairs - Lounge Fan Card                  #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -860,6 +967,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#            Downstairs - Lounge Media Player Card              #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -881,6 +994,12 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#              Downstairs - Morning Routine Card                #
+#                                                               #
+#################################################################
+
           - type: horizontal-stack
             cards:
               - type: custom:card-modder
@@ -895,6 +1014,12 @@ views:
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                 Downstairs - Evening TV Card                  #
+#                                                               #
+#################################################################
+
               - type: custom:card-modder
                 card:
                   type: picture-entity
@@ -906,6 +1031,12 @@ views:
                   border-radius: 20px
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                 Downstairs - Super Rugby Card                 #
+#                                                               #
+#################################################################
 
           - type: horizontal-stack
             cards:
@@ -921,6 +1052,12 @@ views:
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                  Downstairs - Lounge TV Card                  #
+#                                                               #
+#################################################################
+
               - type: custom:card-modder
                 card:
                   type: picture-entity
@@ -932,6 +1069,12 @@ views:
                   border-radius: 20px
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#               Downstairs - Night Routine Card                 #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -945,6 +1088,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#              Downstairs - Lounge LUX Graph Card               #
+#                                                               #
+#################################################################
 
       - id: 4b8f43c43a8343dea8a3dad539573b99  # Automatically created id
         type: vertical-stack
@@ -966,7 +1115,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+
+#################################################################
+#                                                               #
+#               Downstairs - Lounge Aircon Card                 #
+#                                                               #
+#################################################################
+              
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -978,6 +1133,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#              Downstairs - Kitchen Spotify Card                #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -991,6 +1152,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                Downstairs - TV Backlight Card                 #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1003,6 +1170,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                Downstairs - PC Backlight Card                 #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1014,6 +1187,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#               Downstairs - Lights Bright Card                 #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -1030,16 +1209,24 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
-#################################################################
-#                                                               #
-#                           Playroom                            #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                             VIEW 4 - PLAYROOM                                                             #
+#                                                                                                                                           #
+#############################################################################################################################################
+
   - id: 4  # Automatically created id
     icon: mdi:soccer
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Play Room
     cards:
+    
+#################################################################
+#                                                               #
+#               Playroom - Temperature Graph Card               #
+#                                                               #
+#################################################################
+
       - id: 710ded9cf391474b86e3403137d02e73  # Automatically created id
         type: vertical-stack
         cards:
@@ -1061,6 +1248,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
           
+#################################################################
+#                                                               #
+#                 Playroom - Motion Sensor Card                 #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: entities
@@ -1077,6 +1270,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                     Playroom - Light Card                     #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1088,6 +1287,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                 Playroom - Humidity Graph Card                #
+#                                                               #
+#################################################################
 
       - id: e8f204e657984b9898cdc276da91af1e  # Automatically created id
         type: vertical-stack
@@ -1109,7 +1314,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+    
+#################################################################
+#                                                               #
+#                 Playroom - Dryer Statue Card                  #
+#                                                               #
+#################################################################
+    
           - type: custom:card-modder
             card:
               type: entities
@@ -1125,6 +1336,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                   Playroom - Smart Fan Card                   #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -1202,6 +1419,12 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                Playroom - LUX Level Graph Card                #
+#                                                               #
+#################################################################
+
       - id: 0f19f48e9f5c48748596c87f083dcc0b  # Automatically created id
         type: vertical-stack
         cards:
@@ -1223,6 +1446,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
           
+#################################################################
+#                                                               #
+#                  Playroom - Door Status Card                  #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: entities
@@ -1239,6 +1468,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                 Playroom - Laundry Light Card                 #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1251,16 +1486,24 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
-#################################################################
-#                                                               #
-#                             Patio                             #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                               VIEW 5 - PATIO                                                              #
+#                                                                                                                                           #
+#############################################################################################################################################
+
   - id: 5  # Automatically created id
     icon: mdi:glass-cocktail
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Patio
     cards:
+    
+#################################################################
+#                                                               #
+#                 Patio - Temperature Graph Card                #
+#                                                               #
+#################################################################
+
       - id: 743f96f9a2f14fc1b4415cab27bcd208  # Automatically created id
         type: vertical-stack
         cards:
@@ -1281,7 +1524,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+   
+#################################################################
+#                                                               #
+#                   Patio - Motion Sensor Card                  #
+#                                                               #
+#################################################################
+   
           - type: custom:card-modder
             card:
               type: entities
@@ -1298,6 +1547,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                       Patio - Light Card                      #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1309,6 +1564,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                  Patio - Humidity Graph Card                  #
+#                                                               #
+#################################################################
 
       - id: 48f64918baaf4a91b2d9546c6c06862f  # Automatically created id
         type: vertical-stack
@@ -1331,6 +1592,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
          
+#################################################################
+#                                                               #
+#                   Patio - Media Player Card                   #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: custom:mini-media-player
@@ -1350,6 +1617,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#               Patio - Entertainment Lights Card               #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1361,6 +1634,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                  Patio - LUX Level Graph Card                 #
+#                                                               #
+#################################################################
 
       - id: 60cc19dc20304735a9c75f44aa2ea199  # Automatically created id
         type: vertical-stack
@@ -1382,7 +1661,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-         
+ 
+#################################################################
+#                                                               #
+#                    Patio - Door Status Card                   #
+#                                                               #
+#################################################################
+ 
           - type: custom:card-modder
             card:
               type: entities
@@ -1399,6 +1684,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                    Patio - Fairy Lights Card                  #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1411,17 +1702,24 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
-#################################################################
-#                                                               #
-#                        Master Bedroom                         #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                          VIEW 6 - MASTER BEDROOM                                                          #
+#                                                                                                                                           #
+#############################################################################################################################################
 
   - id: 6  # Automatically created id
     icon: mdi:hotel
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Master Bedroom
     cards:
+
+#################################################################
+#                                                               #
+#            Master Bedroom - Temperature Graph Card            #
+#                                                               #
+#################################################################
+
       - id: 2eb796b3ccb541599ae026eb1978674f  # Automatically created id
         type: vertical-stack
         cards:
@@ -1442,7 +1740,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+
+#################################################################
+#                                                               #
+#              Master Bedroom - Motion Sensor Card              #
+#                                                               #
+#################################################################
+              
           - type: custom:card-modder
             card:
               type: entities
@@ -1459,6 +1763,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#               Master Bedroom - Light Group Card               #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1470,6 +1780,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                Master Bedroom - Main Light Card               #
+#                                                               #
+#################################################################
 
           - type: horizontal-stack
             cards:
@@ -1485,6 +1801,12 @@ views:
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#              Master Bedroom - Walk In Light Card              #
+#                                                               #
+#################################################################
+
               - type: custom:card-modder
                 card:
                   type: picture-entity
@@ -1496,6 +1818,12 @@ views:
                   border-radius: 20px
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                Master Bedroom - Light Bulb Card               #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -1511,6 +1839,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#              Master Bedroom - Humidity Graph Card             #
+#                                                               #
+#################################################################
 
       - id: b236e7716421483290eff512d070111c  # Automatically created id
         type: vertical-stack
@@ -1532,7 +1866,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+ 
+#################################################################
+#                                                               #
+#           Master Bedroom - James Bed Occupancy Card           #
+#                                                               #
+#################################################################
+ 
           - type: custom:card-modder
             card:
               type: entities
@@ -1549,6 +1889,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#               Master Bedroom - Ceiling Fan Card               #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1560,6 +1906,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#               Master Bedroom - Media Player Card              #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -1580,6 +1932,11 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#             Master Bedroom - LUX Level Graph Card             #
+#                                                               #
+#################################################################
 
       - id: c96689cbaf31493181c536d9c2206ce6  # Automatically created id
         type: vertical-stack
@@ -1601,7 +1958,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-         
+ 
+#################################################################
+#                                                               #
+#           Master Bedroom - Tina Bed Occupancy Card            #
+#                                                               #
+#################################################################
+ 
           - type: custom:card-modder
             card:
               type: entities
@@ -1630,21 +1993,24 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
-          #- type: picture-entity
-          #  entity: camera.baby_monitor
-          #  name: Bedroom
-          #  show_state: false
-#################################################################
-#                                                               #
-#                            Jackson                            #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                         VIEW 7 - JACKSON BEDROOM                                                          #
+#                                                                                                                                           #
+#############################################################################################################################################
 
   - id: 7  # Automatically created id
     icon: mdi:chess-knight
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Jackson Bedroom
     cards:
+    
+#################################################################
+#                                                               #
+#                Jackson - Temperature Graph Card               #
+#                                                               #
+#################################################################
+
       - id: 74335c1324c3421f803ec01df7d78285  # Automatically created id
         type: vertical-stack
         cards:
@@ -1665,7 +2031,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+ 
+#################################################################
+#                                                               #
+#                  Jackson - Motion Sensor Card                 #
+#                                                               #
+#################################################################
+ 
           - type: custom:card-modder
             card:
               type: entities
@@ -1682,6 +2054,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                  Jackson - Light Switch Card                  #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1693,6 +2071,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                 Jackson - Humidity Graph Card                 #
+#                                                               #
+#################################################################
 
       - id: 262c076b9d694362850670d872536549  # Automatically created id
         type: vertical-stack
@@ -1714,7 +2098,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+ 
+#################################################################
+#                                                               #
+#                  Jackson - Bed Occupancy Card                 #
+#                                                               #
+#################################################################
+ 
           - type: custom:card-modder
             card:
               type: entities
@@ -1731,6 +2121,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                   Jackson - Story Time Card                   #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1742,6 +2138,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                 Jackson - LUX Level Graph Card                #
+#                                                               #
+#################################################################
 
       - id: 9805ae710c1948558491f55bee9b2579  # Automatically created id
         type: vertical-stack
@@ -1763,7 +2165,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+ 
+#################################################################
+#                                                               #
+#                   Jackson - Temp Filler Card                  #
+#                                                               #
+#################################################################
+ 
           - type: custom:card-modder
             card:
               type: entities
@@ -1780,6 +2188,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                   Jackson - Ceiling Fan Card                  #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1792,17 +2206,24 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
-#################################################################
-#                                                               #
-#                            Hudson                             #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                         VIEW 8 - HuDSON BEDROOM                                                           #
+#                                                                                                                                           #
+#############################################################################################################################################
 
   - id: 8  # Automatically created id
     icon: mdi:chess-rook
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Hudson Bedroom
     cards:
+    
+#################################################################
+#                                                               #
+#                Hudson - Temperature Graph Card                #
+#                                                               #
+#################################################################
+
       - id: dfb3e0e8c8a048caa22293516643bc95  # Automatically created id
         type: vertical-stack
         cards:
@@ -1823,7 +2244,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-              
+    
+#################################################################
+#                                                               #
+#                  Hudson - Motion Sensor Card                  #
+#                                                               #
+#################################################################
+    
           - type: custom:card-modder
             card:
               type: entities
@@ -1840,10 +2267,16 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                   Hudson - Light Switch Card                  #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
-              entity: switch.patio_light_switch
+              entity: switch.hudson_light_switch
               name: Lights
               tap_action: toggle
               image: /local/lovelace/bedrooms/kids-light_1.jpg
@@ -1851,6 +2284,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                  Hudson - Humidity Graph Card                 #
+#                                                               #
+#################################################################
 
       - id: 4102a9c63f5645a1a6f744284d40f56f  # Automatically created id
         type: vertical-stack
@@ -1873,6 +2312,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
             
+#################################################################
+#                                                               #
+#                  Hudson - Bed Occupancy Card                  #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: entities
@@ -1889,6 +2334,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                   Hudson - Story Time Card                    #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1900,6 +2351,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                 Hudson - LUX Level Graph Card                 #
+#                                                               #
+#################################################################
 
       - id: fdb28340f47146639a12424baf837d72  # Automatically created id
         type: vertical-stack
@@ -1921,7 +2378,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+       
+#################################################################
+#                                                               #
+#                   Hudson - Temp Filler Card                   #
+#                                                               #
+#################################################################
+       
           - type: custom:card-modder
             card:
               type: entities
@@ -1938,6 +2401,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                   Hudson - Ceiling Fan Card                   #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1950,17 +2419,24 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
-#################################################################
-#                                                               #
-#                           Bathroom                            #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                             VIEW 9 - BATHROOM                                                             #
+#                                                                                                                                           #
+#############################################################################################################################################
 
   - id: 9  # Automatically created id
     icon: mdi:shower
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Bathroom
     cards:
+    
+#################################################################
+#                                                               #
+#               Bathroom - Temperature Graph Card               #
+#                                                               #
+#################################################################
+
       - id: c3926ce745204fc0bb805ec3f25bda08  # Automatically created id
         type: vertical-stack
         cards:
@@ -1981,7 +2457,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+        
+#################################################################
+#                                                               #
+#                 Bathroom - Switches Group Card                #
+#                                                               #
+#################################################################
+        
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -1992,6 +2474,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                 Bathroom - Light Switch Card                  #
+#                                                               #
+#################################################################
 
           - type: horizontal-stack
             cards:
@@ -2006,6 +2494,12 @@ views:
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                  Bathroom - Exhaust Fan Card                  #
+#                                                               #
+#################################################################
+
               - type: custom:card-modder
                 card:
                   type: picture-entity
@@ -2017,6 +2511,12 @@ views:
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                 Bathroom - Heating Switch Card                #
+#                                                               #
+#################################################################
+
               - type: custom:card-modder
                 card:
                   type: picture-entity
@@ -2027,6 +2527,12 @@ views:
                   border-radius: 20px
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                 Bathroom - Humidity Graph Card                #
+#                                                               #
+#################################################################
 
       - id: e84ffc1909494a868c8ec321dd0992f3  # Automatically created id
         type: vertical-stack
@@ -2048,7 +2554,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-          
+
+#################################################################
+#                                                               #
+#                   Bathroom - Occupancy Card                   #
+#                                                               #
+#################################################################
+              
           - type: custom:card-modder
             card:
               type: entities
@@ -2065,6 +2577,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                    Bathroom - Spotify Card                    #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-entity
@@ -2076,6 +2594,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                Bathroom - LUX Level Graph Card                #
+#                                                               #
+#################################################################
 
       - id: e17ff7f9535345e9916a1603476c57eb  # Automatically created id
         type: vertical-stack
@@ -2097,7 +2621,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-              
+ 
+#################################################################
+#                                                               #
+#                 Bathroom - Motion Sensor Card                 #
+#                                                               #
+#################################################################
+ 
           - type: custom:card-modder
             card:    
               type: entities
@@ -2113,6 +2643,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                 Bathroom - James Toggle Card                  #
+#                                                               #
+#################################################################
 
           - type: vertical-stack
             cards:
@@ -2130,6 +2666,12 @@ views:
                       border: solid 1px rgba(100,100,100,0.3)
                       box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                  Bathroom - Tina Toggle Card                  #
+#                                                               #
+#################################################################
+
                   - type: custom:card-modder
                     card:
                       type: picture-entity
@@ -2142,12 +2684,24 @@ views:
                       border: solid 1px rgba(100,100,100,0.3)
                       box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                  Bathroom - Bous Toggle Card                  #
+#                                                               #
+#################################################################
+
               - type: custom:card-modder
                 card:
                   type: picture-entity
                   entity: input_boolean.bathroom_boys
                   tap_action: toggle
                   image: /local/lovelace/bathroom/boys_4.png
+
+#################################################################
+#                                                               #
+#                 Bathroom - Guest Toggle Card                  #
+#                                                               #
+#################################################################
 
               - type: custom:card-modder
                 card:
@@ -2160,16 +2714,24 @@ views:
                   border: solid 1px rgba(100,100,100,0.3)
                   box-shadow: 3px 3px rgba(0,0,0,0.4)
 
-#################################################################
-#                                                               #
-#                         System Status                         #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                          VIEW 10 - SYSTEM STATUS                                                          #
+#                                                                                                                                           #
+#############################################################################################################################################
+
   - id: 10  # Automatically created id
     icon: mdi:settings
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: System Status
     cards:
+    
+#################################################################
+#                                                               #
+#                  System Status - Internet Card                #
+#                                                               #
+#################################################################
+
       - id: 9ebe6c65640040679121fd570ae8877f  # Automatically created id
         type: vertical-stack
         cards:
@@ -2206,6 +2768,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#################################################################
+#                                                               #
+#               System Status - NUC Resources Card              #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -2251,6 +2819,12 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
               
+#################################################################
+#                                                               #
+#               System Status - UPS Resources Card              #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-elements
@@ -2295,6 +2869,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#################################################################
+#                                                               #
+#              System Status - Network Status Card              #
+#                                                               #
+#################################################################
               
       - id: 9016cfb90b4c4e37a5fdbf3cc192b35f  # Automatically created id
         type: vertical-stack
@@ -2324,6 +2904,12 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)    
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                System Status - Core Devices Card              #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: entity-filter
@@ -2349,7 +2935,13 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
-              
+       
+#################################################################
+#                                                               #
+#               System Status - Space Filler Card               #
+#                                                               #
+#################################################################
+       
           - type: custom:card-modder
             card:
               type: picture-elements
@@ -2394,6 +2986,12 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                System Status - HA Devices Card                #
+#                                                               #
+#################################################################
+
       - id: a1fbe13d346445148f8bc31171746990  # Automatically created id
         type: vertical-stack
         cards:
@@ -2419,6 +3017,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#               System Status - Media Devices Card              #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: entity-filter
@@ -2442,6 +3046,12 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
               
+#################################################################
+#                                                               #
+#           System Status - MQTT Server Resources Card          #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-elements
@@ -2486,17 +3096,24 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
-#################################################################
-#                                                               #
-#                         Things Status                         #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                          VIEW 11 - THINGS STATUS                                                          #
+#                                                                                                                                           #
+#############################################################################################################################################
 
   - id: 11  # Automatically created id
     icon: mdi:cogs
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Things Status
     cards:
+    
+#################################################################
+#                                                               #
+#              Things Status - Firmware Status Card             #
+#                                                               #
+#################################################################
+
       - id: 25aad39dc1af41a594ad584aa34c0db2  # Automatically created id
         type: vertical-stack
         cards:
@@ -2516,6 +3133,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#              Things Status - Battery Status Card              #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-glance
@@ -2529,6 +3152,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#               Things Status - Camera Status Card              #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
@@ -2549,6 +3178,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#             Things Status - IR Blaster Status Card            #
+#                                                               #
+#################################################################
+
       - id: 3ad092cc808640d386247543e0c25ec6  # Automatically created id
         type: vertical-stack
         cards:
@@ -2567,6 +3202,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#            Things Status - BLE Tracker Status Card            #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-glance
@@ -2581,6 +3222,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#             Things Status - ESP Sensor Status Card            #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-glance
@@ -2594,6 +3241,12 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#            Things Status - Wall Switch Status Card            #
+#                                                               #
+#################################################################
 
       - id: 266679a3ea68406da4e7493b8e39e487  # Automatically created id
         type: vertical-stack
@@ -2618,6 +3271,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#             Things Status - Light Bulb Status Card            #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-glance
@@ -2635,6 +3294,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               
+#################################################################
+#                                                               #
+#             Things Status - Smart Fan Status Card             #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-glance
@@ -2654,12 +3319,13 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+    
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                            VIEW 12 - APPLIANCES                                                           #
+#                                                                                                                                           #
+#############################################################################################################################################
 
-#################################################################
-#                                                               #
-#                          Appliances                           #
-#                                                               #
-#################################################################
   - id: 12  # Automatically created id
     icon: mdi:washing-machine
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
@@ -2668,9 +3334,10 @@ views:
 
 #################################################################
 #                                                               #
-#                       Appliance Switch                        #
+#             Appliances -  Charging Toggle Card                #
 #                                                               #
 #################################################################  
+
       - id: 3092dc2bdae64b219117f9dcc8e83d54  # Automatically created id
         type: vertical-stack
         cards:
@@ -2687,9 +3354,9 @@ views:
 
 #################################################################
 #                                                               #
-#                           Kitchen                             #
+#          Appliances -  Coffe Machine Status Card              #
 #                                                               #
-#################################################################
+#################################################################  
 
           - type: custom:card-modder
             card:
@@ -2703,9 +3370,10 @@ views:
 
 #################################################################
 #                                                               #
-#                           Robovac                             #
+#                 Appliances -  RoboVac Card                    #
 #                                                               #
-#################################################################
+#################################################################  
+
       - id: 445c7a9f338b44098577ed3ac4af173a  # Automatically created id
         type: vertical-stack
         cards:
@@ -2828,9 +3496,9 @@ views:
 
 #################################################################
 #                                                               #
-#                           Laundry                             #
+#              Appliances -  Laundry Status Card                #
 #                                                               #
-#################################################################
+#################################################################  
 
           - type: custom:card-modder
             card:
@@ -2879,9 +3547,9 @@ views:
                   
 #################################################################
 #                                                               #
-#                            Trash                              #
+#                Appliances -  Trash Day Card                   #
 #                                                               #
-#################################################################
+#################################################################  
 
       - id: ca340363e4584233aaeca0f1755ddb75  # Automatically created id
         type: vertical-stack
@@ -2896,10 +3564,10 @@ views:
                   entity: binary_sensor.trash
                   style: {color: white, left: 19%, top: 65%}
 
-                #- type: state-icon
-                #  icon: mdi:recycle
-                #  entity: device_tracker.trash_bin
-                #  style: {color: white, left: 26%, top: 65%}
+                - type: state-icon
+                  icon: mdi:recycle
+                  entity: device_tracker.trash_bin
+                  style: {color: white, left: 26%, top: 65%}
  
                 - type: state-icon
                   icon: mdi:recycle
@@ -2926,11 +3594,11 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
-#################################################################
-#                                                               #
-#                           Xiaomi                              #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                        VIEW 13 - XIAOMI SENSOR STATUS                                                     #
+#                                                                                                                                           #
+#############################################################################################################################################
 
   - id: 13  # Automatically created id
     icon: mdi:server
@@ -2938,6 +3606,13 @@ views:
     name: Xiaomi Sensors
     panel: true
     cards:
+    
+#################################################################
+#                                                               #
+#                           Xiaomi                              #
+#                                                               #
+#################################################################
+
       - id: 63f0f14db1694c5aa6e7c67d06f58088  # Automatically created id
         type: vertical-stack
         cards:
@@ -2994,65 +3669,72 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
-#################################################################
-#                                                               #
-#                           Garden                              #
-#                                                               #
-#################################################################
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                        VIEW 13 - GARDEN PLANT STATUS                                                      #
+#                                                                                                                                           #
+#############################################################################################################################################
 
   - id: 14  # Automatically created id
     icon: mdi:flower
-    background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
+    background: center / cover no-repeat url("/local/lovelace/garden_2.jpg") fixed
     name: Garden
     cards:
+    
+#################################################################
+#                                                               #
+#                       Bougainvillea                           #
+#                                                               #
+#################################################################
+
       - id: 8ddb8b8a69b6431f813e8e364b73bb35  # Automatically created id
         type: vertical-stack
         cards:
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/bougainvillea_4.jpg
-              #title: Bougainvillea
+              image: /local/lovelace/garden/bougainvillea_8.png
+              title: Bougainvillea
               elements:
                 - type: state-icon
                   entity: sensor.bougainvillea_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  style: {color: white, left: 10%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bougainvillea_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.bougainvillea_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bougainvillea_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  style: {color: white, left: 30%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.bougainvillea_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bougainvillea_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.bougainvillea_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  style: {color: white, left: 70%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bougainvillea_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.bougainvillea_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bougainvillea_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
@@ -3063,51 +3745,57 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4) 
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                        Veggie Patch                           #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/veggie_patch_6.jpg
-              #title: Veggie Patch
+              image: /local/lovelace/garden/veggie_patch_7.png
+              title: Veggie Patch
               elements:
                 - type: state-icon
                   entity: sensor.veggie_patch_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  style: {color: white, left: 10%, top: 60%}
 
                 - type: state-label
                   entity: sensor.veggie_patch_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.veggie_patch_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
                   entity: sensor.veggie_patch_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  style: {color: white, left: 30%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.veggie_patch_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
                   entity: sensor.veggie_patch_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.veggie_patch_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  style: {color: white, left: 70%, top: 60%}
 
                 - type: state-label
                   entity: sensor.veggie_patch_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.veggie_patch_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
                   entity: sensor.veggie_patch_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
@@ -3118,51 +3806,57 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                      Front Door Plant                         #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/herbs_3.jpg
-              #title: Herb Patch
+              image: /local/lovelace/garden/front_plant_1.png
+              title: Front Door Plant
               elements:
                 - type: state-icon
-                  entity: sensor.herb_patch_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  entity: sensor.front_door_plant_moisture
+                  style: {color: white, left: 10%, top: 60%}
 
                 - type: state-label
-                  entity: sensor.herb_patch_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  entity: sensor.front_door_plant_moisture
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
-                  entity: sensor.herb_patch_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  entity: sensor.front_door_plant_temperature
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
-                  entity: sensor.herb_patch_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  entity: sensor.front_door_plant_temperature
+                  style: {color: white, left: 30%, top: 85%}
 
                 - type: state-icon
-                  entity: sensor.herb_patch_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  entity: sensor.front_door_plant_conductivity
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
-                  entity: sensor.herb_patch_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  entity: sensor.front_door_plant_conductivity
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
-                  entity: sensor.herb_patch_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  entity: sensor.front_door_plant_light_intensity
+                  style: {color: white, left: 70%, top: 60%}
 
                 - type: state-label
-                  entity: sensor.herb_patch_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  entity: sensor.front_door_plant_light_intensity
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
-                  entity: sensor.herb_patch_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  entity: sensor.front_door_plant_battery
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
-                  entity: sensor.herb_patch_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  entity: sensor.front_door_plant_battery
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
@@ -3173,54 +3867,60 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                         Star Jasmine                          #
+#                                                               #
+#################################################################
+              
       - id: 6ad6c3a07b484ce7828989ce0ac6fa18  # Automatically created id
         type: vertical-stack
         cards:
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/star_jasmine_2.jpg
-              #title: Star Jasmine
+              image: /local/lovelace/garden/star_jasmine_4.png
+              title: Star Jasmine
               elements:
                 - type: state-icon
                   entity: sensor.star_jasmine_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  style: {color: white, left: 10%, top: 60%}
 
                 - type: state-label
                   entity: sensor.star_jasmine_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.star_jasmine_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
                   entity: sensor.star_jasmine_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  style: {color: white, left: 30%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.star_jasmine_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
                   entity: sensor.star_jasmine_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.star_jasmine_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  style: {color: white, left: 70%, top: 60%}
 
                 - type: state-label
                   entity: sensor.star_jasmine_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.star_jasmine_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
                   entity: sensor.star_jasmine_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
@@ -3230,52 +3930,58 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#################################################################
+#                                                               #
+#                        Top Garden Bed                         #
+#                                                               #
+#################################################################
 
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/top_bed_4.jpg
-              #title: Top Bed
+              image: /local/lovelace/garden/top_bed_5.png
+              title: Top Bed
               elements:
                 - type: state-icon
                   entity: sensor.top_bed_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  style: {color: white, left: 10%, top: 60%}
                   
                 - type: state-label
                   entity: sensor.top_bed_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.top_bed_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
                   entity: sensor.top_bed_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  style: {color: white, left: 30%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.top_bed_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
                   entity: sensor.top_bed_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.top_bed_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  style: {color: white, left: 70%, top: 60%}
 
                 - type: state-label
                   entity: sensor.top_bed_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.top_bed_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
                   entity: sensor.top_bed_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
@@ -3285,52 +3991,58 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#################################################################
+#                                                               #
+#                         Indoor Plant                          #
+#                                                               #
+#################################################################
               
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/dracaena_5.jpg
-              #title: Lounge Plant
+              image: /local/lovelace/garden/dracaena_6.png
+              title: Lounge Plant
               elements:
                 - type: state-icon
                   entity: sensor.dracaena_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  style: {color: white, left: 10%, top: 60%}
 
                 - type: state-label
                   entity: sensor.dracaena_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.dracaena_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
                   entity: sensor.dracaena_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  style: {color: white, left: 30%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.dracaena_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
                   entity: sensor.dracaena_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.dracaena_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  style: {color: white, left: 70%, top: 60%}
 
                 - type: state-label
                   entity: sensor.dracaena_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.dracaena_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
                   entity: sensor.dracaena_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
@@ -3340,6 +4052,12 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#################################################################
+#                                                               #
+#                         Purple Mumba                          #
+#                                                               #
+#################################################################
 
       - id: 9d2a6fe99eec4f19a2691e210632482e  # Automatically created id
         type: vertical-stack
@@ -3347,48 +4065,48 @@ views:
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/chilli_3.jpg
-              #title: Purple Mumba Chilli
+              image: /local/lovelace/garden/chilli_4.png
+              title: Purple Mumba Chilli
               elements:
                 - type: state-icon
                   entity: sensor.chilli_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  style: {color: white, left: 10%, top: 60%}
 
                 - type: state-label
                   entity: sensor.chilli_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.chilli_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
                   entity: sensor.chilli_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  style: {color: white, left: 30%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.chilli_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
                   entity: sensor.chilli_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.chilli_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  style: {color: white, left: 70%, top: 60%}
 
                 - type: state-label
                   entity: sensor.chilli_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.chilli_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
                   entity: sensor.chilli_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
@@ -3399,51 +4117,57 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                      Citrus Garden Bed                        #
+#                                                               #
+#################################################################
+
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/citrus_5.jpg
-              #title: Citrus Bed
+              image: /local/lovelace/garden/citrus_6.png
+              title: Citrus Bed
               elements:
                 - type: state-icon
                   entity: sensor.citrus_bed_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  style: {color: white, left: 10%, top: 60%}
 
                 - type: state-label
                   entity: sensor.citrus_bed_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.citrus_bed_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
                   entity: sensor.citrus_bed_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  style: {color: white, left: 30%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.citrus_bed_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
                   entity: sensor.citrus_bed_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.citrus_bed_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  style: {color: white, left: 70%, top: 60%}
 
                 - type: state-label
                   entity: sensor.citrus_bed_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.citrus_bed_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
                   entity: sensor.citrus_bed_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
@@ -3454,51 +4178,57 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                        Bathroom Fern                          #
+#                                                               #
+#################################################################              
+
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/garden/fern_3.jpg
-              #title: Bathroom Fern
+              image: /local/lovelace/garden/fern_4.png
+              title: Bathroom Fern
               elements:
                 - type: state-icon
                   entity: sensor.bathroom_fern_moisture
-                  style: {color: white, left: 10%, top: 40%}
+                  style: {color: white, left: 10%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bathroom_fern_moisture
-                  style: {color: white, left: 10%, top: 65%}
+                  style: {color: white, left: 10%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.bathroom_fern_temperature
-                  style: {color: white, left: 30%, top: 40%}
+                  style: {color: white, left: 30%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bathroom_fern_temperature
-                  style: {color: white, left: 30%, top: 65%}
+                  style: {color: white, left: 30%, top: 85%}
    
                 - type: state-icon
                   entity: sensor.bathroom_fern_conductivity
-                  style: {color: white, left: 50%, top: 40%}
+                  style: {color: white, left: 50%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bathroom_fern_conductivity
-                  style: {color: white, left: 50%, top: 65%}
+                  style: {color: white, left: 50%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.bathroom_fern_light_intensity
-                  style: {color: white, left: 70%, top: 40%}
+                  style: {color: white, left: 70%, top: 60%}
   
                 - type: state-label
                   entity: sensor.bathroom_fern_light_intensity
-                  style: {color: white, left: 70%, top: 65%}
+                  style: {color: white, left: 70%, top: 85%}
 
                 - type: state-icon
                   entity: sensor.bathroom_fern_battery
-                  style: {color: white, left: 90%, top: 40%}
+                  style: {color: white, left: 90%, top: 60%}
 
                 - type: state-label
                   entity: sensor.bathroom_fern_battery
-                  style: {color: white, left: 90%, top: 65%}
+                  style: {color: white, left: 90%, top: 85%}
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
