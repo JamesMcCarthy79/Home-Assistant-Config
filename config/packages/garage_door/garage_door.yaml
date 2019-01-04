@@ -37,13 +37,26 @@ group:
 #################################################################
 
 sensor: 
+
+####################################################
+#                                                  #
+#                  Sensors - MQTT                  #
+#                                                  #
+####################################################
+
   - platform: mqtt
     name: "Garage Door Status"
     state_topic: "garagedoor"
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
     
   - platform: template
     sensors:
-      garage:
+      garage_door:
         friendly_name: "Garage Door"
         value_template: >-
           {% if is_state('sensor.garage_door_status', 'Open') %}
@@ -61,6 +74,32 @@ sensor:
           {% else %}
             mdi:garage-alert
           {% endif %}
+
+####################################################
+#                                                  #
+#                  Binary Sensors                  #
+#                                                  #
+####################################################
+          
+binary_sensor:
+  - platform: template
+    sensors:
+## Door Sensors
+      garage:
+        friendly_name: Garage
+        device_class: door
+        entity_id: sensor.garage_door
+        value_template: "{{ is_state('sensor.garage_door', 'Open') }}"
+        icon_template: >-
+          {% if is_state('sensor.garage_door', 'Open') %}
+            mdi:garage-open
+          {% elif is_state('sensor.garage_door', 'Obstruction') %}
+            mdi:garage-alert     
+          {% elif is_state('sensor.garage_door', 'Closed') %}
+            mdi:garage     
+          {% else %}
+            mdi:alert
+          {% endif %}
     
 #################################################################
 #                                                               #
@@ -69,6 +108,6 @@ sensor:
 #################################################################
 
 
-## Once my Good Morning script kicks in this automation will check the water level in the coffee machine and tell me if I need to fill up the water reservoir
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
  
 automation:
