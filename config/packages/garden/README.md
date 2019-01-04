@@ -13,12 +13,13 @@
 <hr --- </hr>
 
 <h4 align="left">Package Dependencies:</h4>
-<p align="left">- Bluetooth Addon</br>
-<p align="left">- Xiaomi Component configured in HA</br>
+<p align="left">- MiFlora Component</br>
 <p align="left">- Irrigation Parts - 12v Solenoid & Sonoff POW</br>
 <h4 align="left">Package Sensors:</h4>
 <h4 align="left">Mi Flora Plant Sensors</h4>
-<p align="left">Due to the location of my HASSIO Server I could not get a bluetooth connection out to my garden beds. I flashed a Raspberry Pi Zero with HASSIO and installed it out in my Patio area where it can connect to all of my plant sensors. I then use the HASSIO API to get sensor states into my main HA Server.</br>
+
+Due to the location of my HASSIO Server I could not get a bluetooth connection out to my garden beds. I flashed a Raspberry Pi Zero with HASSIO and installed it out in my Patio area where it can connect to all of my plant sensors [Config Here](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/garden/pi-zero.yaml). I then use the HASSIO API to get sensor states into my main HA Server
+
 <p align="left">Each Mi Flora Sensor has the following monitored conditions :-</br>
 Temperature
 - Humidity
@@ -35,6 +36,9 @@ It uses time of the day to trigger the automation so the watering occurs at the 
 This Automation will only fire if the following conditions are met, if season is Summer run twice daily or winter run every third day.</br>
 It also needs to met conditions around the Plant Sensor moisture levels if they are higher then 12% then the automation won't fire also will check the weather forecast for afternoon/evening showers and won't fire if there is a greater then 60% chance of rain. Where I live if rain is predicted it will normally be a heavy shower so there is not point watering the plants.</p>
 <hr --- </hr>
+
+| Automations! | [Node-RED-Flow](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages/garden/Node-RED-Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/garden/garden.yaml) |
+| --- | --- | --- |
 
 | Take me back to the packages thanks!| [Packages](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages) | 
 | --- | --- |
