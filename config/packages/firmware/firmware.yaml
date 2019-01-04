@@ -12,14 +12,6 @@
 
 homeassistant:
   customize:
-    binary_sensor.ha_update_available:
-      icon: mdi:cloud-download
-    binary_sensor.sonoff_update_available:
-      icon: mdi:lightbulb-on
-    binary_sensor.new_podcast_available:
-      icon: mdi:podcast
-    binary_sensor.new_routeros_available:
-      icon: mdi:router-wireless
 
 #################################################################
 #                                                               #
@@ -36,6 +28,33 @@ group:
       - binary_sensor.ha_update_available
       - binary_sensor.new_routeros_available
       - binary_sensor.sonoff_update_available
+      
+#################################################################
+#                                                               #
+#                        Input Boolean                          #
+#                                                               #
+#################################################################
+
+input_boolean:        
+  ha_update_available:
+    name: HA Update Avaiable
+    initial: off
+    icon: mdi:cloud-download
+    
+  new_podcast_available:
+    name: New Podcast Avaiable
+    initial: off
+    icon: mdi:podcast
+    
+  sonoff_update_available:
+    name: Sonoff Update Avaiable
+    initial: off
+    icon: mdi:lightbulb-on
+
+  new_routeros_available:
+    name: RouterOS Update Avaiable
+    initial: off
+    icon: mdi:router-wireless
     
 #################################################################
 #                                                               #
@@ -43,39 +62,40 @@ group:
 #                                                               #
 #################################################################
 
-#########################  HA Update  ###########################
 sensor:
+
+####################################################
+#                                                  #
+#                  HASSIO Version                  #
+#                                                  #
+####################################################
+
 ## Check Latest HA Version
-  - platform: scrape
-    resource: https://www.home-assistant.io
+  - platform: rest
+    resource: https://s3.amazonaws.com/hassio-version/stable.json
     name: Latest HA Version
-    select: ".current-version h1"
-    value_template: '{{ value.split(":")[1] }}'
+    value_template: "{{ value_json.homeassistant.default }}"
+    scan_interval: 3600
 
-## Check HA Version Installed    
-  - platform: template
-    sensors:
-      installed_ha_version:
-        value_template: '{% if is_state("device_tracker.rpi", "home") %}0.80.3{% else %}On{% endif %}'
-        friendly_name: 'HA Installed Firmware'
-
-#########################  HA Podcast  ##########################
+####################################################
+#                                                  #
+#                    HA Podcast                    #
+#                                                  #
+####################################################
 
 ## Check Latest HA Podcast
   - platform: scrape
     resource: https://hasspodcast.io/feed/podcast
     name: Latest HA Podcast
     select: 'enclosure:nth-of-type(1)'
-    value_template: '{{ value.split("/")[5] }}'
+    value_template: '{{ value.split("/")[7] }}'
     attribute: url
-    
-## Check Latest Watched Podcast
-  - platform: template
-    sensors:
-      latest_watched_podcast:
-        value_template: '{% if is_state("sensor.latest_ha_podcast", "ha036.mp3") %}ha036.mp3{% else %}On{% endif %}'
 
-###########################  Sonoff  ############################
+####################################################
+#                                                  #
+#                  Sonoff Version                  #
+#                                                  #
+####################################################
 
 ## Check Latest Sonoff Firmware Version
   - platform: command_line
@@ -83,14 +103,11 @@ sensor:
     command: /config/html/versionsonoffhtml.sh
     scan_interval: 21600
 
-## Check Latest Sonoff Firmware Installed    
-  - platform: template
-    sensors:
-      sonoff_installed_firmware:
-        value_template: '{% if is_state("device_tracker.lounge_light_switch", "home") %}v6.2.1{% else %}On{% endif %}'
-        friendly_name: 'Sonoff Installed Firmware'
-
-##########################  Mikrotik  ###########################      
+####################################################
+#                                                  #
+#                 RouterOS Version                 #
+#                                                  #
+#################################################### 
 
 ## Check Latest Mikrotik Firmware
   - platform: feedparser
@@ -119,50 +136,6 @@ sensor:
     host: 10.0.0.1
     baseoid: 1.3.6.1.4.1.14988.1.1.4.4.0
     name: Installed RouterOS
-    
-#########################  Github Stars  ##########################
-
-## Check Github Stars
-  - platform: rest
-    resource: https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers
-    name: Github Stars
-    #value_template: '{{ value_json.state }}'
-    #unit_of_measurement: "GiB"
-    
-###########  Compare Latest Against Current Version  ############
-
-#########################  HA Update  ###########################
-binary_sensor:
-  - platform: template
-    sensors:
-      ha_update_available:
-        value_template: >-
-          {{ states.sensor.latest_ha_version.state != states.sensor.installed_ha_version.state and states.sensor.latest_ha_version.state != 'unavailable' }}
-        friendly_name: HA Update Available
-       
-###########################  Sonoff  ############################
-  - platform: template
-    sensors:
-      sonoff_update_available:
-        value_template: >-
-          {{ states.sensor.sonoff_firmware_version.state != states.sensor.sonoff_installed_firmware.state and states.sensor.sonoff_firmware_version.state != 'unavailable' }}
-        friendly_name: Sonoff Update Available
-        
-#########################  HA Podcast  ##########################        
-  - platform: template
-    sensors:
-      new_podcast_available:
-        value_template: >-
-          {{ states.sensor.latest_ha_podcast.state != states.sensor.latest_watched_podcast.state and states.sensor.latest_ha_podcast.state != 'unavailable' }}
-        friendly_name: New Podcast Available
-        
-##########################  Mikrotik  ###########################        
-  - platform: template
-    sensors:
-      new_routeros_available:
-        value_template: >-
-          {{ states.sensor.next_router_os_release != states.sensor.installed_routeros.state and next_router_os_release != 'unavailable' }}
-        friendly_name: New RouterOS Available
 
 #################################################################
 #                                                               #
@@ -170,44 +143,5 @@ binary_sensor:
 #                                                               #
 #################################################################
 
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
 automation:
-## Notify of New HA Update Available
-  - alias: HA Update Available Notification
-    trigger:
-      platform: state
-      entity_id: binary_sensor.ha_update_available
-      to: 'on'
-      for:
-        minutes: 2
-    action:
-      - service: notify.pushbullet
-        data:
-          title: 'HA HASSIO Server'
-          message: 'New Update Available for HA {{states.sensor.latest_ha_version.state}}'
-            
-## Notify of New HA Podcast
-  - alias: HA Podcast Update Available Notification
-    trigger:
-      platform: state
-      entity_id: binary_sensor.new_podcast_available
-      to: 'on'
-      for:
-        minutes: 2
-    action:
-      - service: notify.pushbullet
-        data:
-          title: 'HA HASSIO Server'
-          message: 'New Podcast Available for HA'
-          data:
-            url: http://hasspodcast.io/
-          
-## Notify of New Sonoff Version
-  - alias: Sonoff Firmware Update Available Notification
-    trigger:
-      platform: state
-      entity_id: sensor.sonoff_firmware_version
-    action:
-      - service: notify.pushbullet
-        data:
-          title: 'HA HASSIO Server'
-          message: 'New Firmware Available for SONOFF'
