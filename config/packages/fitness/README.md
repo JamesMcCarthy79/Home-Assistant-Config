@@ -38,7 +38,7 @@ Tasker Task                                                                     
 ![](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Tasker%20Task%201.jpg)  |  ![](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Tasker%20Task%202.jpg)
 <h4 align="left">Things to be added in future</h4>
 
-I have a MiBand 3 which I'm able to get metrics into google fit app via the use of a 3rd party app called [Notify & Fitness](https://play.google.com/store/apps/details?id=com.mc.miband1) From there I was trying to use a custom component for google fit to extract those metrics into Home Assistant. 
+I have a MiBand 3 which I'm able to get metrics into google fit app via the use of a 3rd party app called [Notify & Fitness](https://play.google.com/store/apps/details?id=com.mc.miband1) From there I was trying to use a custom component for google fit to extract those metrics into Home Assistant. This component is having troubles with authentication and requires some more work. 
 What can I do with these once I can get them well for starters I would track my steps and exercise with InfluxBD and Grafana.
 I would then use the sleep tracker to notify HA when I'm in a deep sleep and turn off things like ceiling fans etc.
 
