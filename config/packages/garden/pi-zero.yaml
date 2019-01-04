@@ -1,0 +1,200 @@
+#################################################################
+#                                                               #
+#                        Packages/Mi Flora                      #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: miflora
+    mac: 'C4:7C:8D:66:1A:18'
+    name: Bougainvillea
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
+      
+  - platform: miflora
+    mac: 'C4:7C:8D:66:21:0B'
+    name: Star Jasmine
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
+      
+  - platform: miflora
+    mac: 'C4:7C:8D:66:17:E6'
+    name: Chilli
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
+      
+  - platform: miflora
+    mac: 'C4:7C:8D:66:17:EC'
+    name: Veggie Patch
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
+      
+  - platform: miflora
+    mac: 'C4:7C:8D:66:1C:05'
+    name: Top Bed
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
+      
+  - platform: miflora
+    mac: 'C4:7C:8D:66:1A:F9'
+    name: Citrus Bed
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery
+      
+#################################################################
+#                                                               #
+#                       Plant Monitors                          #
+#                                                               #
+#################################################################
+
+plant:
+  Bougainvillea:
+    sensors:
+      moisture: sensor.bougainvillea_moisture
+      battery: sensor.bougainvillea_battery
+      temperature: sensor.bougainvillea_temperature
+      conductivity: sensor.bougainvillea_conductivity
+      brightness: sensor.bougainvillea_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Star Jasmine:
+    sensors:
+      moisture: sensor.star_jasmine_moisture
+      battery: sensor.star_jasmine_battery
+      temperature: sensor.star_jasmine_temperature
+      conductivity: sensor.star_jasmine_conductivity
+      brightness: sensor.star_jasmine_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Purple Mumba Chilli:
+    sensors:
+      moisture: sensor.chilli_moisture
+      battery: sensor.chilli_battery
+      temperature: sensor.chilli_temperature
+      conductivity: sensor.chilli_conductivity
+      brightness: sensor.chilli_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Veggie Patch:
+    sensors:
+      moisture: sensor.veggie_patch_moisture
+      battery: sensor.veggie_patch_battery
+      temperature: sensor.veggie_patch_temperature
+      conductivity: sensor.veggie_patch_conductivity
+      brightness: sensor.veggie_patch_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Top Bed:
+    sensors:
+      moisture: sensor.top_bed_moisture
+      battery: sensor.top_bed_battery
+      temperature: sensor.top_bed_temperature
+      conductivity: sensor.top_bed_conductivity
+      brightness: sensor.top_bed_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+  Citrus Bed:
+    sensors:
+      moisture: sensor.citrus_bed_moisture
+      battery: sensor.citrus_bed_battery
+      temperature: sensor.citrus_bed_temperature
+      conductivity: sensor.citrus_bed_conductivity
+      brightness: sensor.citrus_bed_light_intensity
+    min_moisture: 10
+    min_battery: 15
+    
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  bougainvillea:
+    name: Bougainvillea
+    view: no
+    entities:
+      - sensor.bougainvillea_moisture
+      - sensor.bougainvillea_conductivity
+      - sensor.bougainvillea_battery
+      - sensor.bougainvillea_temperature
+      - sensor.bougainvillea_light_intensity
+      
+  chilli:
+    name: Purple Mumba Chilli
+    view: no
+    entities:
+      - sensor.chilli_moisture
+      - sensor.chilli_conductivity
+      - sensor.chilli_battery
+      - sensor.chilli_temperature
+      - sensor.chilli_light_intensity
+    
+  citrus:
+    name: Citrus Bed
+    view: no
+    entities:
+      - sensor.citrus_bed_moisture
+      - sensor.citrus_bed_conductivity
+      - sensor.citrus_bed_battery
+      - sensor.citrus_bed_temperature
+      - sensor.citrus_bed_light_intensity
+    
+  jasmine:
+    name: Jasmine Bed
+    view: no
+    entities:
+      - sensor.star_jasmine_moisture
+      - sensor.star_jasmine_conductivity
+      - sensor.star_jasmine_battery
+      - sensor.star_jasmine_temperature
+      - sensor.star_jasmine_light_intensity
+    
+  top_bed:
+    name: Top Bed
+    view: no
+    entities:
+      - sensor.top_bed_moisture
+      - sensor.top_bed_conductivity
+      - sensor.top_bed_battery
+      - sensor.top_bed_temperature
+      - sensor.top_bed_light_intensity
+    
+  veggie_patch:
+    name: Veggie Patch
+    view: no
+    entities:
+      - sensor.veggie_patch_moisture
+      - sensor.veggie_patch_conductivity
+      - sensor.veggie_patch_battery  
+      - sensor.veggie_patch_temperature
+      - sensor.veggie_patch_light_intensity
