@@ -28,4 +28,4 @@
 
 <h3 align="left">Setup Guide</h3> 
 
-Full details can be found here https://github.com/JamesMcCarthy79/Garage-Door-Sensor
+Full details can be found here [Garage Door Sensor Repo](https://github.com/JamesMcCarthy79/Garage-Door-Sensor)
