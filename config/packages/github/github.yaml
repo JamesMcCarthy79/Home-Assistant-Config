@@ -1,0 +1,131 @@
+#################################################################
+#                                                               #
+#                        Packages/Github                        #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+      
+#################################################################
+#                                                               #
+#                            Sensors                            #
+#                                                               #
+#################################################################
+
+sensor:
+
+#################################################################
+#                                                               #
+#                         Command Line                          #
+#                                                               #
+#################################################################
+
+  - platform: command_line
+    command: 'curl https://api.github.com/repos/JamesMcCarthy79/Home-Assistant-Config'
+    name: github
+    scan_interval: 3600
+    value_template: '{{ value_json.name }}'
+    json_attributes:
+      - open_issues
+      - subscribers_count
+      - forks
+      - stargazers_count
+      
+#################################################################
+#                                                               #
+#                            Template                           #
+#                                                               #
+#################################################################
+
+  - platform: template
+    sensors:
+    
+      issues:
+        value_template: "{{ state_attr('sensor.github', 'open_issues') }}"
+        entity_id: sensor.github
+
+      subscribers:
+        value_template: "{{ state_attr('sensor.github', 'subscribers_count') }}"
+        entity_id: sensor.github
+
+      forks:
+        value_template: "{{ state_attr('sensor.github', 'forks') }}"
+        entity_id: sensor.github
+
+      stars:
+        value_template: "{{ state_attr('sensor.github', 'stargazers_count') }}"
+        entity_id: sensor.github
+        
+      stars_next:
+        value_template: "{{ state_attr('sensor.github_next', 'stargazers_count') }}"
+        entity_id: sensor.github_next
+        
+      stars_previous:
+        value_template: "{{ state_attr('sensor.github_previous', 'stargazers_count') }}"
+        entity_id: sensor.github_previous
+        
+      stars_trending:
+        value_template: "{{ state_attr('sensor.github_trending', 'stargazers_count') }}"
+        entity_id: sensor.github_trending
+        
+      stars_this_week:
+        value_template: "{{ states.sensor.stars_this_week_mean.attributes.change|int }}"
+        friendly_name: 'This Week'
+        
+      stars_last_week:
+        value_template: "{{ states('sensor.stars_this_week_mean.attributes.min_value')|int - states('sensor.stars_last_week_mean.attributes.min_value')|int }}"
+        friendly_name: 'Last Week'
+        
+      stars_this_month:
+        value_template: "{{ states.sensor.stars_this_month_mean.attributes.change|int }}"
+        friendly_name: 'This Month'
+        
+      stars_last_month:
+        value_template: "{{ states('sensor.stars_this_month_mean.attributes.min_value')|int - states('sensor.stars_last_month_mean.attributes.min_value')|int }}"
+        friendly_name: 'Last Month'
+        
+#################################################################
+#                                                               #
+#                           Statistics                          #
+#                                                               #
+#################################################################
+        
+  - platform: statistics
+    name: Stars This Week
+    entity_id: sensor.stars
+    max_age:
+      days: 7
+      
+  - platform: statistics
+    name: Stars Last Week
+    entity_id: sensor.stars
+    max_age:
+      days: 14
+      
+  - platform: statistics
+    name: Stars This Month
+    entity_id: sensor.stars
+    max_age:
+      days: 30
+      
+  - platform: statistics
+    name: Stars Last Month
+    entity_id: sensor.stars
+    max_age:
+      days: 60
+      
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
+automation:
