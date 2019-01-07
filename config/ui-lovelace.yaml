@@ -19,7 +19,8 @@ resources:
     type: js
   - url: /local/custom_ui/waze-card.js?v=1.1.1
     type: js
-
+  - url: /local/custom_ui/circle-sensor-card.js?v=1.2.0
+    type: module
 #############################################################################################################################################
 #                                                                                                                                           # 
 #                                                               VIEW 0 - HOME                                                               #
@@ -28,7 +29,7 @@ resources:
 
 name: Kingia Castle
 views:
-  - id: 0  # Automatically created id
+  - id: 0
     icon: mdi:castle
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Home
@@ -125,9 +126,10 @@ views:
               elements:
                 - type: state-icon
                   entity: binary_sensor.lights
-                  tap_action: call-service
-                  service: homeassistant.turn_off
-                  service_data: {"entity_id": "group.downstairs_lights"}
+                  tap_action: 
+                    action: call-service
+                    service: homeassistant.toggle
+                    service_data: {"entity_id": "group.downstairs_lights"}
                   style: {color: white, left: 52%, top: 88%}
                 - type: state-icon
                   entity: binary_sensor.alarm
@@ -192,31 +194,31 @@ views:
                 - type: service-button
                   title: Stargazers
                   service: python_script.github_scaper
-                  style: {color: white, left: 13%, top: 10%, font-size: 125%}
+                  style: {color: white, left: 13%, top: 10%, font-size: 120%}
                 - type: state-label
                   entity: sensor.stars
-                  style: {color: white, left: 28%, top: 10%, font-size: 125%}
+                  style: {color: white, left: 28%, top: 10%, font-size: 120%}
                 - type: service-button
                   title: Subscribers
                   service: python_script.github_scaper
-                  style: {color: white, left: 45%, top: 10%, font-size: 125%}
+                  style: {color: white, left: 45%, top: 10%, font-size: 120%}
                 - type: state-label
                   entity: sensor.subscribers
-                  style: {color: white, left: 59%, top: 10%, font-size: 125%}
+                  style: {color: white, left: 59%, top: 10%, font-size: 120%}
                 - type: service-button
                   title: Forks
                   service: python_script.github_scaper
-                  style: {color: white, left: 69%, top: 10%, font-size: 125%}
+                  style: {color: white, left: 69%, top: 10%, font-size: 120%}
                 - type: state-label
                   entity: sensor.forks
-                  style: {color: white, left: 78%, top: 10%, font-size: 125%}
+                  style: {color: white, left: 78%, top: 10%, font-size: 120%}
                 - type: service-button
                   title: Issues
                   service: python_script.github_scaper
-                  style: {color: white, left: 88%, top: 10%, font-size: 125%}
+                  style: {color: white, left: 88%, top: 10%, font-size: 120%}
                 - type: state-label
                   entity: sensor.issues
-                  style: {color: white, left: 97%, top: 10%, font-size: 125%}
+                  style: {color: white, left: 97%, top: 10%, font-size: 120%}
                 - type: service-button
                   title: Next Target
                   service: python_script.github_scaper
@@ -406,44 +408,6 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               color: "#999999"
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-
-#################################################################
-#                                                               #
-#                  Home - Steps Tracker Card                    #
-#                                                               #
-#################################################################
-              
-          - type: custom:card-modder
-            card:
-              type: picture-elements
-              image: /local/lovelace/home/steps_2.png
-            #title: Steps
-              elements:
-                - type: state-icon
-                  entity: sensor.james_steps
-                  style: {color: white, left: 12%, top: 90%}
-                - type: service-button
-                  title: James
-                  service: python_script.github_scaper
-                  style: {color: white, left: 23%, top: 90%}
-                - type: state-label
-                  entity: sensor.james_steps
-                  style: {color: white, left: 35%, top: 90%}
-                - type: state-icon
-                  entity: sensor.tina_steps
-                  style: {color: white, left: 63%, top: 90%}
-                - type: service-button
-                  title: Tina
-                  service: python_script.github_scaper
-                  style: {color: white, left: 74%, top: 90%}
-                - type: state-label
-                  entity: sensor.tina_steps
-                  style: {color: white, left: 85%, top: 90%}
-            style:                 
-              border-radius: 20px
-              border: solid 1px rgba(100,100,100,0.3)
-              box-shadow: 3px 3px rgba(0,0,0,0.4) 
-              overflow: hidden
           
 #############################################################################################################################################
 #                                                                                                                                           # 
@@ -451,7 +415,7 @@ views:
 #                                                                                                                                           #
 ############################################################################################################################################# 
 
-  - id: 1  # Automatically created id
+  - id: 1
     icon: mdi:security-home
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Security
@@ -765,7 +729,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
               
-  - id: 2  # Automatically created id
+  - id: 2  
     title: Surveillance
     icon: mdi:cctv
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
@@ -798,7 +762,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 3  # Automatically created id
+  - id: 3
     icon: mdi:sofa
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Downstairs
@@ -843,7 +807,8 @@ views:
               type: picture-entity
               entity: group.downstairs_lights
               name: Lights
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/downstairs/living-room-lights_1.jpg
             style:                 
               border-radius: 20px
@@ -861,7 +826,8 @@ views:
               type: picture-entity
               entity: switch.lounge_light_switch
               name: Lounge
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/downstairs/lounge-light_2.png
             style:                 
               border-radius: 20px
@@ -879,7 +845,8 @@ views:
               type: picture-entity
               entity: switch.dining_light_switch
               name: Dining
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/downstairs/dining-light_2.jpg
             style:                 
               border-radius: 20px
@@ -897,7 +864,8 @@ views:
               type: picture-entity
               entity: switch.kitchen_light_switch
               name: Kitchen
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/downstairs/kitchen-light_2.jpg
             style:                 
               border-radius: 20px
@@ -915,7 +883,8 @@ views:
               type: picture-entity
               entity: group.outside_lights
               name: Outside Lights
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/downstairs/outside-lights_1.jpg
             style:                 
               border-radius: 20px
@@ -958,10 +927,10 @@ views:
           - type: custom:card-modder
             card:
               type: picture-entity
-              #entity: input_select.lounge_fan
-              entity: fan.lounge_fan
+              entity: input_select.lounge_fan
               name: Fan
-              tap_action: select_next
+              tap_action: 
+                action: select_next
               image: /local/lovelace/bedrooms/fan.jpg
             style:                 
               border-radius: 20px
@@ -1007,7 +976,8 @@ views:
                   type: picture-entity
                   entity: script.1521695976118
                   name: Morning Cartoons
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/downstairs/morning-cartoons_1.jpg
                 style:                 
                   border-radius: 20px
@@ -1025,7 +995,8 @@ views:
                   type: picture-entity
                   entity: script.1521694771100
                   name: Evening TV
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/downstairs/evening-tv_3.jpg
                 style:                 
                   border-radius: 20px
@@ -1045,7 +1016,8 @@ views:
                   type: picture-entity
                   entity: script.1521696758169
                   name: Super Rugby
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/downstairs/rugby_1.jpg
                 style:                 
                   border-radius: 20px
@@ -1063,7 +1035,8 @@ views:
                   type: picture-entity
                   entity: switch.tvpower
                   name: Media TV
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/downstairs/tv-switch_1.jpg
                 style:                 
                   border-radius: 20px
@@ -1081,7 +1054,8 @@ views:
               type: picture-entity
               entity: switch.goodnight
               name: Goodnight
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               #show_state: false
               image: /local/lovelace/downstairs/goodnight_2.jpg
             style:                 
@@ -1127,7 +1101,8 @@ views:
               type: picture-entity
               entity: input_select.lounge_aircon
               name: Climate
-              tap_action: select_next
+              tap_action: 
+                action: select_next
               image: /local/lovelace/bedrooms/bed-ac.jpg
             style:                 
               border-radius: 20px
@@ -1145,7 +1120,8 @@ views:
               type: picture-entity
               entity: switch.spotify_kitchen
               title: Spotify
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/downstairs/spotify_6.png
             style:                 
               border-radius: 20px
@@ -1163,7 +1139,8 @@ views:
               type: picture-entity
               entity: light.gateway_light_7811dcfd812f
               name: TV Backlight
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/downstairs/tv-light_2.jpg
             style:                 
               border-radius: 20px
@@ -1181,7 +1158,8 @@ views:
               type: picture-entity
               entity: light.gateway_light_7811dce13ad6
               name: PC Lighting
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/downstairs/pc-light_2.jpg
             style:                 
               border-radius: 20px
@@ -1199,9 +1177,10 @@ views:
               type: picture-entity
               entity: scene.livingroom_bright
               name: Brighten
-              tap_action: call-service
-              service: scene.turn_on
-              service_data: { "entity_id": "scene.livingroom_bright" }
+              tap_action: 
+                action: call-service
+                service: scene.turn_on
+                service_data: { "entity_id": "scene.livingroom_bright" }
               show_state: false
               image: /local/lovelace/downstairs/bright.png
             style:                 
@@ -1215,7 +1194,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 4  # Automatically created id
+  - id: 4  
     icon: mdi:soccer
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Play Room
@@ -1281,7 +1260,8 @@ views:
               type: picture-entity
               entity: switch.playroom_light_switch
               name: Playroom Light
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/playroom/playroom-light.jpg
             style:                 
               border-radius: 20px
@@ -1479,7 +1459,8 @@ views:
               type: picture-entity
               entity: switch.laundry_light_switch
               name: Laundry Light
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/playroom/laundry-light.jpg
             style:                 
               border-radius: 20px
@@ -1492,7 +1473,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 5  # Automatically created id
+  - id: 5  
     icon: mdi:glass-cocktail
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Patio
@@ -1558,7 +1539,8 @@ views:
               type: picture-entity
               entity: switch.patio_light_switch
               name: Light
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/patio/patio-light.png
             style:                 
               border-radius: 20px
@@ -1628,7 +1610,8 @@ views:
               type: picture-entity
               entity: switch.plug_158d0001f24e2b
               name: Entertainment Lights
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/patio/patio-lights.jpg
             style:                 
               border-radius: 20px
@@ -1695,7 +1678,8 @@ views:
               type: picture-entity
               entity: switch.fairy_light_power
               name: Fairy Lights
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/patio/fairy-lights.jpg
             style:                 
               border-radius: 20px
@@ -1708,7 +1692,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 6  # Automatically created id
+  - id: 6  
     icon: mdi:hotel
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Master Bedroom
@@ -1774,7 +1758,8 @@ views:
               type: picture-entity
               entity: group.master_bedroom_lights
               name: Light
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/bedrooms/bed-light.jpg
             style:                 
               border-radius: 20px
@@ -1794,7 +1779,8 @@ views:
                   type: picture-entity
                   entity: switch.master_light_switch
                   name: Bedroom
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/bedrooms/main-bed-light_2.jpg
                 style:                 
                   border-radius: 20px
@@ -1812,7 +1798,8 @@ views:
                   type: picture-entity
                   entity: switch.master_wardrobe_switch
                   name: Walk In
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/bedrooms/walk-in-light_2.jpg
                 style:                 
                   border-radius: 20px
@@ -1898,9 +1885,10 @@ views:
           - type: custom:card-modder
             card:
               type: picture-entity
-              entity: fan.bedroom_fan
+              entity: input_select.bedroom_fan
               name: Fan
-              tap_action: select_next
+              tap_action: 
+                action: select_next
               image: /local/lovelace/bedrooms/fan.jpg
             style:                 
               border-radius: 20px
@@ -1986,7 +1974,8 @@ views:
               type: picture-entity
               entity: input_select.master_bedroom_aircon
               name: Climate
-              tap_action: select_next
+              tap_action: 
+                action: select_next
               image: /local/lovelace/bedrooms/bed-ac.jpg
             style:                 
               border-radius: 20px
@@ -1999,7 +1988,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 7  # Automatically created id
+  - id: 7 
     icon: mdi:chess-knight
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Jackson Bedroom
@@ -2065,7 +2054,8 @@ views:
               type: picture-entity
               entity: switch.jackson_light_switch
               name: Lights
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/bedrooms/kids-light_1.jpg
             style:                 
               border-radius: 20px
@@ -2132,7 +2122,8 @@ views:
               type: picture-entity
               entity: scene.story_time
               name: Story Time
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/bedrooms/story.jpg
             style:                 
               border-radius: 20px
@@ -2199,7 +2190,8 @@ views:
               type: picture-entity
               entity: fan.jackson_fan
               name: Fan
-              tap_action: select_next
+              tap_action: 
+                action: select_next
               image: /local/lovelace/bedrooms/fan.jpg
             style:                 
               border-radius: 20px
@@ -2208,11 +2200,11 @@ views:
 
 #############################################################################################################################################
 #                                                                                                                                           # 
-#                                                         VIEW 8 - HuDSON BEDROOM                                                           #
+#                                                         VIEW 8 - HUDSON BEDROOM                                                           #
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 8  # Automatically created id
+  - id: 8  
     icon: mdi:chess-rook
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Hudson Bedroom
@@ -2278,7 +2270,8 @@ views:
               type: picture-entity
               entity: switch.hudson_light_switch
               name: Lights
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/bedrooms/kids-light_1.jpg
             style:                 
               border-radius: 20px
@@ -2345,7 +2338,8 @@ views:
               type: picture-entity
               entity: scene.story_time
               name: Story Time
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/bedrooms/story.jpg
             style:                 
               border-radius: 20px
@@ -2412,7 +2406,8 @@ views:
               type: picture-entity
               entity: fan.hudson_fan
               name: Fan
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/bedrooms/fan.jpg
             style:                 
               border-radius: 20px
@@ -2425,7 +2420,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 9  # Automatically created id
+  - id: 9 
     icon: mdi:shower
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Bathroom
@@ -2468,7 +2463,8 @@ views:
             card:
               type: picture-entity
               entity: group.bathroom_switches
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/bathroom/bath-main_2.jpg
             style:                 
               border-radius: 20px
@@ -2487,7 +2483,8 @@ views:
                 card:
                   type: picture-entity
                   entity: switch.bathroom_light_switch
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/bathroom/bath-light.jpg
                 style:                 
                   border-radius: 20px
@@ -2504,7 +2501,8 @@ views:
                 card:
                   type: picture-entity
                   entity: switch.bathroom_fan_switch
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/bathroom/bath-fan.jpg
                 style:                 
                   border-radius: 20px
@@ -2521,7 +2519,8 @@ views:
                 card:
                   type: picture-entity
                   entity: switch.bathroom_heat_switch
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/bathroom/bath-heat.jpg
                 style:                 
                   border-radius: 20px
@@ -2588,7 +2587,8 @@ views:
               type: picture-entity
               entity: switch.spotify_kitchen
               name: Spotify
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               image: /local/lovelace/bathroom/spotify_3.png
             style:                 
               border-radius: 20px
@@ -2659,7 +2659,8 @@ views:
                       type: picture-entity
                       entity: input_boolean.bathroom_james
                       name: Daddy
-                      tap_action: toggle
+                      tap_action: 
+                        action: toggle
                       image: /local/lovelace/bathroom/daddy_5.png
                     style:                 
                       border-radius: 20px
@@ -2677,7 +2678,8 @@ views:
                       type: picture-entity
                       entity: input_boolean.bathroom_tina
                       name: Mummy
-                      tap_action: toggle
+                      tap_action: 
+                        action: toggle
                       image: /local/lovelace/bathroom/mummy_6.jpg
                     style:                 
                       border-radius: 20px
@@ -2694,7 +2696,8 @@ views:
                 card:
                   type: picture-entity
                   entity: input_boolean.bathroom_boys
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/bathroom/boys_4.png
 
 #################################################################
@@ -2707,7 +2710,8 @@ views:
                 card:
                   type: picture-entity
                   entity: input_boolean.bathroom_guest
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   image: /local/lovelace/bathroom/guest.png
                 style:                 
                   border-radius: 20px
@@ -2720,7 +2724,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 10  # Automatically created id
+  - id: 10  
     icon: mdi:settings
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: System Status
@@ -2893,7 +2897,7 @@ views:
                 - binary_sensor.5g_ac_media_tv
                 - binary_sensor.5g_ac_upstairs
               state_filter:
-                - off
+                - 'off'
               card:
                 type: picture-glance
                 title: Core Network
@@ -2916,7 +2920,6 @@ views:
               entities:
                 - binary_sensor.nas_movies
                 - binary_sensor.nas_tv
-                - binary_sensor.nas_3
                 - binary_sensor.smart_things_hub
                 - binary_sensor.xiaomi_gateway
                 - binary_sensor.xiaomi_gateway_2
@@ -2925,7 +2928,7 @@ views:
                 - binary_sensor.main_pc
                 - binary_sensor.printer
               state_filter:
-                - off
+                - 'off'
               card:
                 type: picture-glance
                 title: Core Devices
@@ -3007,7 +3010,7 @@ views:
                 - binary_sensor.kitchen_dashboard
                 - binary_sensor.upstairs_dashboard
               state_filter:
-                - off
+                - 'off'
               card:
                 type: picture-glance
                 title: HA Devices
@@ -3016,6 +3019,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
 #################################################################
 #                                                               #
@@ -3035,7 +3039,7 @@ views:
                 - binary_sensor.bedroom_kodi
                 - binary_sensor.patio_kodi
               state_filter:
-                - off
+                - 'off'
               card:
                 type: picture-glance
                 title: Media Devices
@@ -3102,7 +3106,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 11  # Automatically created id
+  - id: 11
     icon: mdi:cogs
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Things Status
@@ -3215,7 +3219,6 @@ views:
               tap_action: toggle
               entities:
                 - binary_sensor.ble_tracker_downstairs
-                - binary_sensor.ble_tracker_upstairs
               image: /local/lovelace/things/ble_2.jpg
             style:                 
               border-radius: 20px
@@ -3255,7 +3258,8 @@ views:
             card:
               type: picture-glance
               title: Wall Switches
-              tap_action: toggle
+              tap_action: 
+                action: toggle
               entities:
                 - binary_sensor.bedroom_light_switch
                 - binary_sensor.kitchen_light_switch
@@ -3265,6 +3269,13 @@ views:
                 - binary_sensor.playroom_light_switch
                 - binary_sensor.bedroom_light_switch
                 - binary_sensor.walkin_light_switch
+                - binary_sensor.laundry_light_switch
+                - binary_sensor.playroom_light_switch
+                - binary_sensor.jackson_light_switch
+                - binary_sensor.upstairs_toilet_switch
+                - binary_sensor.bathroom_light_switch
+                - binary_sensor.bathroom_heat_switch
+                - binary_sensor.bathroom_fan_switch
               image: /local/lovelace/things/switch_2.jpg
             style:                 
               border-radius: 20px
@@ -3288,6 +3299,7 @@ views:
                 - binary_sensor.dining_light_bulb
                 - binary_sensor.entry_light_bulb
                 - binary_sensor.bedroom_light_bulb
+                - binary_sensor.patio_light_bulb
               image: /local/lovelace/things/lights_2.png
             style:                 
               border-radius: 20px
@@ -3326,7 +3338,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 12  # Automatically created id
+  - id: 12 
     icon: mdi:washing-machine
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Appliances
@@ -3346,7 +3358,8 @@ views:
               type: picture-entity
               entity: switch.plug_158d00022ae22d
               image: /local/lovelace/appliances/power_on_off_2.jpg
-              tap_action: toggle
+              tap_action: 
+                action: toggle
             style:                 
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
@@ -3384,30 +3397,34 @@ views:
               elements:
                 - type: icon
                   icon: mdi:bell-ring
-                  tap_action: call-service
-                  entity: vacuum.robovac
-                  service: vacuum.locate
+                  tap_action: 
+                    action: call-service
+                    entity: vacuum.robovac
+                    service: vacuum.locate
                   style: {color: white, left: 80%, top: 81%}
 
                 - type: icon
-                  tap_action: call-service
                   icon: mdi:home
-                  entity: vacuum.robovac
-                  service: vacuum.return_to_base
+                  tap_action: 
+                    action: call-service
+                    entity: vacuum.robovac
+                    service: vacuum.return_to_base
                   style: {color: white, left: 60%, top: 81%, --paper-item-icon-color: rgb(115, 122, 130)}
 
                 - type: icon
                   icon: mdi:play-pause
-                  tap_action: call-service
-                  entity: vacuum.robovac
-                  service: vacuum.start_pause
+                  tap_action: 
+                    action: call-service
+                    entity: vacuum.robovac
+                    service: vacuum.start_pause
                   style: {color: white, left: 40%, top: 81%, --paper-item-icon-color: rgb(115, 122, 130)}
 
                 - type: icon
                   icon: mdi:stop
-                  tap_action: call-service
-                  entity: vacuum.robovac
-                  service: vacuum.stop
+                  tap_action: 
+                    action: call-service
+                    entity: vacuum.robovac
+                    service: vacuum.stop
                   style: {color: white, left: 20%, top: 81%, --paper-item-icon-color: rgb(115, 122, 130)}
 
                 - type: icon
@@ -3507,7 +3524,8 @@ views:
               elements:
                 - type: state-icon
                   icon: mdi:washing-machine
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   entity: switch.plug_158d0001bc2b6d
                   style: {color: white, left: 17%, top: 88%}
                 - type: state-icon
@@ -3522,7 +3540,8 @@ views:
                   style: {color: white, left: 18%, top: 15%}
                 - type: state-icon
                   icon: mdi:tumble-dryer
-                  tap_action: toggle
+                  tap_action: 
+                    action: toggle
                   entity: switch.plug_158d00022ae069
                   style: {color: white, left: 48%, top: 88%}
                 - type: state-icon
@@ -3566,8 +3585,12 @@ views:
 
                 - type: state-icon
                   icon: mdi:recycle
-                  entity: device_tracker.trash_bin
+                  entity: sensor.trash_bin_location
                   style: {color: white, left: 26%, top: 65%}
+                  
+                - type: state-label
+                  entity: sensor.trash_bin_location
+                  style: {color: white, left: 26%, top: 35%}
  
                 - type: state-icon
                   icon: mdi:recycle
@@ -3575,7 +3598,7 @@ views:
                   style: {color: white, left: 47%, top: 65%}
 
                 - type: state-icon
-                  icon: mdi:delete
+                  icon: mdi:recycle
                   entity: binary_sensor.recycle
                   style: {color: white, left: 54%, top: 65%}
 
@@ -3585,7 +3608,7 @@ views:
                   style: {color: white, left: 75%, top: 65%}
 
                 - type: state-icon
-                  icon: mdi:delete
+                  icon: mdi:recycle
                   entity: binary_sensor.green
                   style: {color: white, left: 83%, top: 65%}
             style:                 
@@ -3600,7 +3623,7 @@ views:
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 13  # Automatically created id
+  - id: 13 
     icon: mdi:server
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Xiaomi Sensors
@@ -3659,7 +3682,7 @@ views:
                 - binary_sensor.dryer_switch_plug
                 - binary_sensor.appliance_switch_plug
               state_filter:
-                - off
+                - 'off'
               card:
                 type: picture-glance
                 title: Xiaomi Offline Sensors
@@ -3671,11 +3694,11 @@ views:
 
 #############################################################################################################################################
 #                                                                                                                                           # 
-#                                                        VIEW 13 - GARDEN PLANT STATUS                                                      #
+#                                                        VIEW 14 - GARDEN PLANT STATUS                                                      #
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 14  # Automatically created id
+  - id: 14 
     icon: mdi:flower
     background: center / cover no-repeat url("/local/lovelace/garden_2.jpg") fixed
     name: Garden
@@ -4238,4 +4261,166 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                          VIEW 15 - FITNESS TRACKING                                                       #
+#                                                                                                                                           #
+#############################################################################################################################################
+
+  - id: 15
+    icon: fas:running
+    background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
+    name: Fitness
+    cards:
+    
+#################################################################
+#                                                               #
+#                Fitness - Steps Tracker Card                   #
+#                                                               #
+#################################################################
+
+      - id: 8ddb8b8a69b6431f813e8e364b73bb35  # Automatically created id
+        type: vertical-stack
+        cards:
+          - type: custom:card-modder
+            card:              
+              type: picture-elements
+              image: /local/lovelace/fitness/google_fit_1.png
+              elements:
+                - type: custom:circle-sensor-card
+                  entity: sensor.target_weight
+                  max: 15
+                  min: 0
+                  stroke_width: 15
+                  gradient: true
+                  fill: '#383C45'
+                  name: target
+                  units: 'kg'
+                  font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                  style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
+              
+                - type: custom:circle-sensor-card
+                  entity: sensor.james_steps
+                  max: 8000
+                  min: 0
+                  stroke_width: 15
+                  gradient: true
+                  fill: '#383C45'
+                  name: steps
+                  units: ' '
+                  font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                  color_stops: {1: '#09C7E8', 10000: '#0BDF0E'}
+                  style: {top: 81%, left: 10%, width: 4em, height: 4em, transform: none}
+                  
+                - type: custom:circle-sensor-card
+                  entity: sensor.distance
+                  max: 10
+                  min: 0
+                  stroke_width: 15
+                  gradient: true
+                  fill: '#383C45'
+                  name: km's
+                  units: ' '
+                  font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                  color_stops: {1: '#09C7E8', 10000: '#0BDF0E'}
+                  style: {top: 81%, left: 33.33%, width: 4em, height: 4em, transform: none}
+                  
+                - type: custom:circle-sensor-card
+                  entity: sensor.calories
+                  max: 3000
+                  min: 0
+                  stroke_width: 15
+                  gradient: true
+                  fill: '#383C45'
+                  name: cals
+                  shadow: true
+                  units: ' '
+                  font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                  color_stops: {1: '#09C7E8', 10000: '#0BDF0E'}
+                  style: {top: 81%, left: 56.66%, width: 4em, height: 4em, transform: none}
+                  
+                - type: custom:circle-sensor-card
+                  entity: sensor.time_2
+                  max: 60
+                  min: 0
+                  stroke_width: 15
+                  gradient: true
+                  fill: '#383C45'
+                  name: active
+                  units: ' '
+                  font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                  color_stops: {1: '#09C7E8', 10000: '#0BDF0E'}
+                  style: {top: 81%, left: 80%, width: 4em, height: 4em, transform: none}
+                  
+                - type: custom:hui-markdown-card
+                  content: >
+                    James
+                  style:
+                    top: 6%
+                    left: 1%
+                    font-size: 18px
+                    color: white
+                    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
+                    "--paper-card-background-color": none
+                    "--paper-material-elevation-1_-_box-shadow": none
+                    "--shadow-elevation-2dp_-_box-shadow": none
+                    transform: translate(0%,-50%)
+                - type: state-icon
+                  entity: sensor.weight
+                  title: Weight
+                  style: {top: 9%, left: 3%, "--iron-icon-fill-color": '#5294E2', transform: none}
+                - type: state-label
+                  entity: sensor.weight
+                  title: Weight
+                  style: {top: 10%, left: 12%, color: white, transform: none}
+
+                - type: state-icon
+                  entity: sensor.james_bmi
+                  title: BMI
+                  style: {top: 9%, left: 31%, "--iron-icon-fill-color": '#5294E2', transform: none}
+                - type: state-label
+                  entity: sensor.james_bmi
+                  title: BMI
+                  style: {top: 10%, left: 40%, color: white, transform: none}
+
+                - type: state-icon
+                  entity: sensor.body_fat
+                  title: Body Fat
+                  style: {top: 9%, left: 59%, "--iron-icon-fill-color": '#5294E2', transform: none}
+                - type: state-label
+                  entity: sensor.body_fat
+                  title: Body Fat
+                  style: {top: 10%, left: 67%, color: white, transform: none}
+                  
+                - type: state-icon
+                  entity: sensor.james_miband_battery
+                  title: MiBand Battery
+                  style: {top: 0%, left: 17%, width: 24px, height: 24px, transform: none}
+                - type: state-label
+                  entity: sensor.james_miband_battery
+                  title: Body Fat
+                  style: {top: 1%, left: 22%, color: white, transform: none}
+
+                - type: state-label
+                  entity: sensor.james_miband_status
+                  title: Status
+                  prefix: 'Status : '
+                  style: {top: 1%, left: 36%, color: white, transform: none}
+                  
+                - type: state-icon
+                  entity: sensor.james_heart_rate
+                  title: Heart Rate
+                  style: {top: 21%, left: 3%, "--iron-icon-fill-color": red, transform: none}
+                - type: state-label
+                  entity: sensor.james_heart_rate
+                  title: Heart Rate
+                  style: {top: 22%, left: 12%, color: white, transform: none}
+                  
+            style:                 
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4) 
+              overflow: hidden
+
 
