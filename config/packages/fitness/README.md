@@ -255,7 +255,7 @@ All of the Tasker actions we just created will now be waiting for you on your Br
 
 I have set up a target weight sensor also you will need to adjust according to your own target weight.
 
-<h4 align="left">Gain Weight</h4>
+<h4 align="left">Weight Gain Sensor</h4>
 
 ```
 ####################################################
@@ -272,7 +272,7 @@ I have set up a target weight sensor also you will need to adjust according to y
         value_template: "{{ 85 - states.sensor.weight.state|int }}"
 ```
 
-<h4 align="left">Loss Weight</h4>
+<h4 align="left">Weight Loss Sensor</h4>
 
 ```
 ####################################################
