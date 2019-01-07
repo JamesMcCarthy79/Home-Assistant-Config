@@ -14,8 +14,18 @@ homeassistant:
   customize:
     sensor.james_steps:
       icon: fas:walking
+    sensor.weight:
+      icon: fas:weight
     sensor.tina_steps:
       icon: fas:walking
+    sensor.target_weight:
+      icon: fas:weight
+    sensor.body_fat:
+      icon: fas:walking
+    sensor.james_bmi:
+      icon: fas:walking
+    sensor.james_heart_rate:
+      icon: fas:heartbeat
 
 #################################################################
 #                                                               #
@@ -31,9 +41,10 @@ sensor:
 #                                                  #
 ####################################################
 
-#  - platform: google_fit
-#    client_id: !secret google_fit_client_id
-#    client_secret: !secret google_fit_client_secret
+  - platform: google_fit
+    client_id: !secret google_fit_client_id
+    client_secret: !secret google_fit_client_secret
+    scan_interval: 30
     
 ####################################################
 #                                                  #
@@ -46,7 +57,45 @@ sensor:
     state_topic: "steps/james/huawei"
     
   - platform: mqtt
+    name: "James BMI"
+    state_topic: "bmi/james/huawei"
+    unit_of_measurement: "BMI"
+    
+  - platform: mqtt
+    name: "James Heart Rate"
+    state_topic: "hr/james/huawei"
+    unit_of_measurement: "bpm"
+    
+  - platform: mqtt
+    name: "James MiBand Battery"
+    device_class: battery
+    state_topic: "mibatt/james/huawei"
+    unit_of_measurement: "%"
+    
+  - platform: mqtt
+    name: "James MiBand Status"
+    state_topic: "mistatus/james/huawei"
+    
+  - platform: mqtt
     name: "Tina Steps"
     state_topic: "steps/tina/samsung"
+    unit_of_measurement: "steps"
 
- 
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      target_weight:
+        friendly_name: Target Weight
+        entity_id: sensor.weight
+        value_template: "{{ 85 - states.sensor.weight.state|int }}"
+        
+      body_fat:
+        friendly_name: Body Fat
+        entity_id: sensor.weight
+        value_template: "{{ ((1.20 * states.sensor.james_bmi.state|int) + (0.23 * 39) - 16.2)|round }}"
+        unit_of_measurement: '%'
