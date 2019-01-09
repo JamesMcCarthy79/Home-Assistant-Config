@@ -30,15 +30,6 @@ homeassistant:
     sensor.stats_work:
       icon: mdi:domain
       friendly_name: 'Working (7 days)'
-    sensor.git_stars:
-      icon: mdi:github-face
-      friendly_name: 'Stargazers'
-    sensor.next_target:
-      icon: mdi:arrow-up-bold
-      #friendly_name: 'Stargazers'
-    sensor.previous_target:
-      icon: mdi:arrow-down-bold
-      #friendly_name: 'Stargazers'
 
 #################################################################
 #                                                               #
@@ -68,7 +59,14 @@ group:
 #                                                               #
 ################################################################# 
 
-sensor:  
+sensor: 
+
+####################################################
+#                                                  #
+#             Sensors - Alpha Vantage              #
+#                                                  #
+#################################################### 
+
   - platform: alpha_vantage
     api_key: !secret alphavantage_key
     foreign_exchange:
@@ -81,6 +79,36 @@ sensor:
       - from: BTC
         to: AUD
         name: Bitcoin
+        
+####################################################
+#                                                  #
+#             Sensors - History Stats              #
+#                                                  #
+####################################################
+
+  - platform: history_stats
+    name: stats_tv
+    entity_id: media_player.media_4k_tv
+    state: 'on'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      days: 7
+   
+  - platform: history_stats
+    name: stats_work
+    entity_id: sensor.james
+    state: 'Powertec'
+    type: time
+    end: '{{ now() }}'
+    duration:
+      days: 7
+        
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
         
 ## AUS to GBP Conversion - Did this as for some reason alpha vantage doesn't provide AUD to GBP Rates propably due to being USD based site
   - platform: template
@@ -101,88 +129,3 @@ sensor:
         unit_of_measurement: 'AUD'
         value_template: "{{ states.sensor.bitcoin.state|round }}"
         friendly_name: 'Bitcoin'
-      stars_this_week:
-        value_template: "{{ states.sensor.stars_this_week_mean.attributes.change|int }}"
-        friendly_name: 'This Week'
-      stars_last_week:
-        value_template: "{{ states('sensor.stars_this_week_mean.attributes.min_value')|int - states('sensor.stars_last_week_mean.attributes.min_value')|int }}"
-        friendly_name: 'Last Week'
-      stars_this_month:
-        value_template: "{{ states.sensor.stars_this_month_mean.attributes.change|int }}"
-        friendly_name: 'This Month'
-      stars_last_month:
-        value_template: "{{ states('sensor.stars_this_month_mean.attributes.min_value')|int - states('sensor.stars_last_month_mean.attributes.min_value')|int }}"
-        friendly_name: 'Last Month'
-      git_stars_now:
-        value_template: "{{ states.sensor.git_stars.state.split()[0] }}"
-        friendly_name: 'Git Stars'
-      git_stars_next:
-        value_template: "{{ states.sensor.git_stars.state.split()[1] }}"
-        friendly_name: 'Next Target'
-      git_stars_last:
-        value_template: "{{ states.sensor.git_stars.state.split()[2] }}"
-        friendly_name: 'Last Target'
-      git_stars_next_dif:
-        value_template: "{{ states('sensor.git_stars_next')|int - states('sensor.git_stars_now')|int }}"
-        friendly_name: 'Next Target'  
-      git_stars_last_dif:
-        value_template: "{{ states('sensor.git_stars_now')|int - states('sensor.git_stars_last')|int }}"
-        friendly_name: 'Next Target'
-        
-  - platform: history_stats
-    name: stats_tv
-    entity_id: media_player.media_4k_tv
-    state: 'on'
-    type: time
-    end: '{{ now() }}'
-    duration:
-      days: 7
-   
-  - platform: history_stats
-    name: stats_work
-    entity_id: sensor.james
-    state: 'Powertec'
-    type: time
-    end: '{{ now() }}'
-    duration:
-      days: 7
-      
-  - platform: statistics
-    name: Stars This Week
-    entity_id: sensor.git_stars_now
-    max_age:
-      days: 7
-      
-  - platform: statistics
-    name: Stars Last Week
-    entity_id: sensor.git_stars_now
-    max_age:
-      days: 14
-      
-  - platform: statistics
-    name: Stars This Month
-    entity_id: sensor.git_stars_now
-    max_age:
-      days: 30
-      
-  - platform: statistics
-    name: Stars Last Month
-    entity_id: sensor.git_stars_now
-    max_age:
-      days: 60
-      
-  - platform: statistics
-    name: Target Next Change
-    entity_id: sensor.git_stars_next_dif
-    max_age:
-      days: 7
-      
-  - platform: statistics
-    name: Target Last Change
-    entity_id: sensor.git_stars_last_dif
-    max_age:
-      days: 7
-
-  - platform: command_line
-    name: Git Stars
-    command: "python3 /config/python_scripts/github_scaper.py"
