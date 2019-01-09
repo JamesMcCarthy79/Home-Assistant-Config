@@ -491,6 +491,49 @@ views:
 
 #################################################################
 #                                                               #
+#                  Security - Air Quality Card                  #
+#                                                               #
+#################################################################
+              
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              #title: Smoke Detectors
+              image: /local/lovelace/security/air_8.png
+              elements:
+                - type: image
+                  entity: sensor.us_air_pollution_level_2
+                  image: https://www.airvisual.com/assets/aqi/ic-face-1-green.svg
+                  style: {left: 12%, top: 30%, transform: none, width: 80px, height: 80px}
+                  
+                - type: state-label
+                  entity: sensor.us_air_pollution_level_2
+                  style: {color: "#718b3a", left: 36%, top: 50%, font-size: 20px, font-weight: 600}
+                  
+                - type: state-label
+                  entity: sensor.aqi
+                  style: {color: "#718b3a", left: 70%, top: 50%, font-size: 104px, line-height: 50px}
+                  
+                - type: state-icon
+                  entity: sensor.us_main_pollutant_2
+                  style: {color: white, left: 52%, top: 80%}
+                  
+                - type: state-label
+                  entity: sensor.us_main_pollutant_2
+                  style: {color: white, left: 72%, top: 81%, font-size: 18px, font-weight: 500}
+                  suffix: " | 7.2 ug/m3"
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+#################################################################
+#                                                               #
 #                  Security - Door Status Card                  #
 #                                                               #
 #################################################################
@@ -791,7 +834,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -913,7 +956,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -937,6 +980,30 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                  Downstairs - Mold Indicator                  #
+#                                                               #
+#################################################################
+              
+          - type: custom:card-modder
+            card:
+              type: custom:mini-graph-card
+              entity: sensor.lounge_mold_indicator
+              height: 10
+              line_width: 2
+              font_size: 70
+              hours_to_show: 168
+              line_color: '#32cd32'
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 180px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              
 #################################################################
 #                                                               #
 #            Downstairs - Lounge Media Player Card              #
@@ -1085,7 +1152,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1222,7 +1289,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1244,7 +1311,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1267,7 +1334,29 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-
+              
+#################################################################
+#                                                               #
+#                 Playroom - Dryer Statue Card                  #
+#                                                               #
+#################################################################
+    
+          - type: custom:card-modder
+            card:
+              type: entities
+              title: Dryer Status
+              show_header_toggle: off
+              entities:
+                - sensor.dryer_status
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 150px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              
 #################################################################
 #                                                               #
 #                 Playroom - Humidity Graph Card                #
@@ -1290,32 +1379,35 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
     
 #################################################################
 #                                                               #
-#                 Playroom - Dryer Statue Card                  #
+#                   Playroom - Mold Indicator                   #
 #                                                               #
 #################################################################
-    
+              
           - type: custom:card-modder
             card:
-              type: entities
-              title: Dryer Status
-              show_header_toggle: off
-              entities:
-                - sensor.dryer_status
+              type: custom:mini-graph-card
+              entity: sensor.playroom_mold_indicator
+              height: 10
+              line_width: 2
+              font_size: 70
+              hours_to_show: 168
+              line_color: '#32cd32'
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 180px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+
 
 #################################################################
 #                                                               #
@@ -1401,6 +1493,28 @@ views:
 
 #################################################################
 #                                                               #
+#                Playroom - Washer Statue Card                  #
+#                                                               #
+#################################################################
+    
+          - type: custom:card-modder
+            card:
+              type: entities
+              title: Washer Status
+              show_header_toggle: off
+              entities:
+                - sensor.washer_status
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 150px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)      
+        
+#################################################################
+#                                                               #
 #                Playroom - LUX Level Graph Card                #
 #                                                               #
 #################################################################
@@ -1421,7 +1535,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1443,7 +1557,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1501,7 +1615,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1523,7 +1637,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1569,32 +1683,31 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-         
+ 
 #################################################################
 #                                                               #
-#                   Patio - Media Player Card                   #
+#                     Patio - Mold Indicator                    #
 #                                                               #
 #################################################################
-
+              
           - type: custom:card-modder
             card:
-              type: custom:mini-media-player
-              entity: media_player.patio_kodi
-              artwork: cover
-              power_color: true
-              show_source: true
-              show_progress: true
-              group: true
-              #background: /local/lovelace/downstairs/evening-tv_3.jpg
+              type: custom:mini-graph-card
+              entity: sensor.patio_mold_indicator
+              height: 10
+              line_width: 2
+              font_size: 70
+              hours_to_show: 168
+              line_color: '#32cd32'
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100%
+              background-size: 100% 180px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1620,6 +1733,31 @@ views:
 
 #################################################################
 #                                                               #
+#                   Patio - Media Player Card                   #
+#                                                               #
+#################################################################
+
+          - type: custom:card-modder
+            card:
+              type: custom:mini-media-player
+              entity: media_player.patio_kodi
+              artwork: cover
+              power_color: true
+              show_source: true
+              show_progress: true
+              group: true
+              #background: /local/lovelace/downstairs/evening-tv_3.jpg
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100%
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              
+#################################################################
+#                                                               #
 #                  Patio - LUX Level Graph Card                 #
 #                                                               #
 #################################################################
@@ -1640,7 +1778,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1662,7 +1800,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1720,7 +1858,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1742,7 +1880,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1849,7 +1987,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1866,12 +2004,12 @@ views:
               title: Bed Sensor James
               show_header_toggle: off
               entities:
-                - sensor.bathroom_occupancy
+                - sensor.james_bed
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1942,7 +2080,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1959,12 +2097,12 @@ views:
               title: Bed Sensor Tina
               show_header_toggle: off
               entities:
-                - sensor.bathroom_occupancy
+                - sensor.tina_bed
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -1978,6 +2116,30 @@ views:
                 action: select_next
               image: /local/lovelace/bedrooms/bed-ac.jpg
             style:                 
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              
+#################################################################
+#                                                               #
+#                    Bedroom - Mold Indicator                   #
+#                                                               #
+#################################################################
+              
+          - type: custom:card-modder
+            card:
+              type: custom:mini-graph-card
+              entity: sensor.bedroom_mold_indicator
+              height: 45
+              line_width: 2
+              font_size: 70
+              hours_to_show: 168
+              line_color: '#32cd32'
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 180px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2016,7 +2178,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2038,7 +2200,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2084,7 +2246,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2101,16 +2263,40 @@ views:
               title: Bed Sensor Jackson
               show_header_toggle: off
               entities:
-                - sensor.bathroom_occupancy
+                - sensor.james_bed
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                    Jackson - Mold Indicator                   #
+#                                                               #
+#################################################################
+              
+          - type: custom:card-modder
+            card:
+              type: custom:mini-graph-card
+              entity: sensor.jackson_mold_indicator
+              height: 65
+              line_width: 2
+              font_size: 70
+              hours_to_show: 168
+              line_color: '#32cd32'
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 200px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              
 #################################################################
 #                                                               #
 #                   Jackson - Story Time Card                   #
@@ -2152,7 +2338,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2174,7 +2360,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2232,7 +2418,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2254,7 +2440,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2300,7 +2486,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2317,16 +2503,40 @@ views:
               title: Bed Sensor Hudson
               show_header_toggle: off
               entities:
-                - sensor.bathroom_occupancy
+                - sensor.james_bed
             style:                 
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
 
+#################################################################
+#                                                               #
+#                    Hudson - Mold Indicator                    #
+#                                                               #
+#################################################################
+              
+          - type: custom:card-modder
+            card:
+              type: custom:mini-graph-card
+              entity: sensor.hudson_mold_indicator
+              height: 65
+              line_width: 2
+              font_size: 70
+              hours_to_show: 168
+              line_color: '#32cd32'
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 200px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              
 #################################################################
 #                                                               #
 #                   Hudson - Story Time Card                    #
@@ -2368,7 +2578,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2390,7 +2600,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2448,11 +2658,35 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
+              background-size: 100% 200px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+
+#################################################################
+#                                                               #
+#                   Bathroom - Mold Indicator                   #
+#                                                               #
+#################################################################
+              
+          - type: custom:card-modder
+            card:
+              type: custom:mini-graph-card
+              entity: sensor.bathroom_mold_indicator
+              height: 10
+              line_width: 2
+              font_size: 70
+              hours_to_show: 168
+              line_color: '#32cd32'
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
               background-size: 100% 180px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-        
+              
 #################################################################
 #                                                               #
 #                 Bathroom - Switches Group Card                #
@@ -2571,7 +2805,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2594,7 +2828,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
-
+             
 #################################################################
 #                                                               #
 #                Bathroom - LUX Level Graph Card                #
@@ -2617,7 +2851,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 180px
+              background-size: 100% 200px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2639,7 +2873,7 @@ views:
               background-image: url("/local/lovelace/cardbackK.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 130px
+              background-size: 100% 150px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -2688,7 +2922,7 @@ views:
 
 #################################################################
 #                                                               #
-#                  Bathroom - Bous Toggle Card                  #
+#                  Bathroom - Boys Toggle Card                  #
 #                                                               #
 #################################################################
 
@@ -3691,6 +3925,7 @@ views:
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
 
 #############################################################################################################################################
 #                                                                                                                                           # 
@@ -4423,6 +4658,155 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4) 
               overflow: hidden
 
+              
+              ################  Below this line is still DEV this config is not yet complete and may be removed  ###############
+              
+              
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                         VIEW 16 - KEY DATES TRACKER                                                       #
+#                                                                                                                                           #
+#############################################################################################################################################
+
+  - id: 15
+    icon: fas:calendar-alt
+    background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
+    name: Fitness
+    cards:
+    
+#################################################################
+#                                                               #
+#               Dates Tracker - Valentine Card                  #
+#                                                               #
+#################################################################
+
+      - id: 9d2a6fe99eec4f19a2691e210632482e  # Automatically created id
+        type: vertical-stack
+        cards:
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/dates/valday_2.png
+              #title: Valentines Day
+              elements:
+                - type: state-label
+                  entity: sensor.valentines_day
+                  style: {color: black, left: 50%, top: 50%, font-size: 60px}
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+#################################################################
+#                                                               #
+#              Dates Tracker - Mothers Day Card                 #
+#                                                               #
+#################################################################
+
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/dates/motherday_2.png
+              #title: Mothers Day
+              elements:
+                - type: state-label
+                  entity: sensor.mother_day
+                  style: {color: black, left: 50%, top: 50%, font-size: 60px}
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+#################################################################
+#                                                               #
+#               Dates Tracker - Bali Trip Card                  #
+#                                                               #
+#################################################################
+
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/dates/bali_2.png
+              #title: Mothers Day
+              elements:
+                - type: state-label
+                  entity: sensor.bali_trip
+                  style: {color: black, left: 50%, top: 50%, font-size: 60px}
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+
+#################################################################
+#                                                               #
+#                 Dates Tracker - Easter Card                   #
+#                                                               #
+#################################################################
+
+      - id: 9d2a6fe99eec4f19a2691e210632482e  # Automatically created id
+        type: vertical-stack
+        cards:
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/dates/easter_2.png
+              #title: Valentines Day
+              elements:
+                - type: state-label
+                  entity: sensor.easter_camping
+                  style: {color: black, left: 50%, top: 50%, font-size: 60px}
+            style:                 
+              background-image: url("/local/lovelace/cardbackK.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 68px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+
+
+
+
+
+
+
+
+
+      - id: 8ddb8b8a69b6431f813e8e364b73bb35  # Automatically created id
+        type: vertical-stack
+        cards:
+          - type: custom:card-modder
+            card:              
+              type: entities
+              title: Days Remaining
+              show_header_toggle: false
+              entities:
+                - sensor.valentines_day
+                - sensor.easter_camping
+                - sensor.jackson_bday
+                - sensor.mother_day
+                - sensor.tina_bday
+                - sensor.hudson_bday
+                - sensor.bali_trip
+                - sensor.anniversary
+                - sensor.xmas_day
+                - sensor.days_left
 
 
 
