@@ -1,0 +1,106 @@
+#################################################################
+#                                                               #
+#                 Packages/Holidays-Birthdays                   #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                  Sensors - Rest                  #
+#                                                  #
+####################################################
+
+  - platform: rest
+    resource: https://raw.githubusercontent.com/JamesMcCarthy79/Home-Assistant-Config/master/config/json_data/days.json
+    name: Holiday
+    scan_interval: 14400
+    value_template: >
+      {% set today = now().day  ~ '/' ~ now().month  %}
+      {% set holiday =  value_json.MAJOR_AUS.static[ today ] %}
+      {% if holiday | trim == "" %}
+        {% set today = now().day  ~ '/' ~ now().month ~ '/' ~ now().year %}
+        {% set holiday =  value_json.MAJOR_AUS.dynamic[ today ] %}
+      {% endif %}
+      {{ holiday }}
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+
+      valentines_day:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-02-14 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      bali_trip:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-07-01 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      easter_camping:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-04-19 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      jackson_bday:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-05-06 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      mother_day:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-05-12 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      tina_bday:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-05-26 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      hudson_bday:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-06-06 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      anniversary:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-10-12 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      xmas_day:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2019-12-25 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+        
+      days_left:
+        unit_of_measurement: 'Days'
+        value_template: '{{ (( as_timestamp(strptime("2020-01-01 00:00:00" , "%Y-%m-%dT%H:%M:%S")) - as_timestamp(now()) )/ (3600*24)) | round(0) }}'
+
+#################################################################
+#                                                               #
+#                          Automations                          #
+#                                                               #
+################################################################# 
+
+automation:
+  - alias: "Holiday and Birthday Notification"
+    hide_entity: false
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.holiday
+    condition:
+      - condition: template
+        value_template: "{{ states('sensor.holiday') != 'unknown' }}"
+      - condition: template
+        value_template: "{{ states.sensor.holiday.state | trim != '' }}"
+    action:
+      - service: notify.pushbullet
+        data:
+          message: 'Today is {{ states.sensor.holiday.state }}.'
+          title: '{{ states.sensor.holiday.state }}'
