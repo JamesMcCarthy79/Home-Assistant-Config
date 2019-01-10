@@ -8,19 +8,19 @@
 <p align="center">Be sure to :star: my repo!</p>
 <p align="center">
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.84.6-brightgreen.svg"/>
+  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.85.0-brightgreen.svg"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/issues"><img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <href="http://unlicense.org/"><img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
 </p>
 <p align="center">
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-1.2.2-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-1.2.3-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v1.2.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v1.2.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.6.0-5294E2.svg"/>
   <href="https://github.com/mKeRix/room-assistant"><img src="https://img.shields.io/badge/RoomAssistant-1.0.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v3.6.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v3.7.0-5294E2.svg"/>
 </p>
 <p align="center">
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
@@ -35,7 +35,7 @@
 
 | Components - Standard | Components - Custom |Network Devices | Automations | Scripts |
 |:---------------------:|:-------------------:|:--------------:|:-----------:|:-------:|
-| 87                    |6                    |83              |16           |36       |
+| 90                    |6                    |83              |16           |36       |
 
 | Binary Sensors | Cameras | Fans | Lights | Media Players | Plants | Sensors | Switches |
 |:--------------:|:-------:|:----:|:------:|:-------------:|:------:|:-------:|:--------:|
