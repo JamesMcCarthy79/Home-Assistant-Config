@@ -11,7 +11,7 @@
 
 hemantkamalakar - [Google Fit Custom Component](https://github.com/hemantkamalakar/haconfigs/blob/master/custom_components/sensor/google_fit.py)
 
-Joakim Sørensen - [Inspiration gained from this Fitbit Card](https://sharethelove.io/picture-elements-cards/fitbit-card)
+iantrich - [Inspiration gained from this Fitbit Card](https://sharethelove.io/picture-elements-cards/fitbit-card)
 
 <hr --- </hr>
 
