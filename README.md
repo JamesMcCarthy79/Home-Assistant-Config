@@ -7,13 +7,13 @@
   I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/au.png"/>, and therefor my links are for where I purchased from. There may be better (and most likely cheaper) sites in your local regions.</p>
 <p align="center">Be sure to :star: my repo!</p>
 <p>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/stargazers"><img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/badge/HA--Version-0.85.0-brightgreen.svg"/>
-  <href="https://img.shields.io/maintenance/yes/2018.svg"><img src="https://img.shields.io/maintenance/yes/2019.svg"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config"><img src="https://img.shields.io/github/commit-activity/y/JamesMcCarthy79/Home-Assistant-Config.svg"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/commits/master"><img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <href="https://github.com/JamesMcCarthy79/Home-Assistant-Config/issues"><img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
-  <href="http://unlicense.org/"><img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
+  <img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
+  <img src="https://img.shields.io/badge/HA--Version-0.85.0-brightgreen.svg"/>
+  <img src="https://img.shields.io/maintenance/yes/2019.svg"/>
+  <img src="https://img.shields.io/github/commit-activity/y/JamesMcCarthy79/Home-Assistant-Config.svg"/>
+  <img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
+  <img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
+  <img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
 </p>
 <p>
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
