@@ -67,6 +67,15 @@ sensor:
 #                                                  #
 #################################################### 
 
+  - platform: aftership
+    api_key: !secret aftership_key
+    
+####################################################
+#                                                  #
+#             Sensors - Alpha Vantage              #
+#                                                  #
+#################################################### 
+
   - platform: alpha_vantage
     api_key: !secret alphavantage_key
     foreign_exchange:
