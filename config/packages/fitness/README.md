@@ -16,7 +16,7 @@ iantrich - [Inspiration gained from this Fitbit Card](https://sharethelove.io/pi
 <hr --- </hr>
 
 <p align="center">
-  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Google_Fit.png"/>
+  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/fitness/Fitness%20Pics/google_fit_2.png"/>
 </p>
 
 <h4 align="left">Package Dependencies:</h4>
@@ -228,11 +228,6 @@ All of the Tasker actions we just created will now be waiting for you on your Br
     state_topic: "steps/james/huawei"
     
   - platform: mqtt
-    name: "James BMI"
-    state_topic: "bmi/james/huawei"
-    unit_of_measurement: "BMI"
-    
-  - platform: mqtt
     name: "James Heart Rate"
     state_topic: "hr/james/huawei"
     unit_of_measurement: "bpm"
@@ -289,7 +284,7 @@ I have set up a target weight sensor also you will need to adjust according to y
         value_template: "{{ states.sensor.weight.state|int - 15 }}"
 ```
 
-Lastly I was not able to get BMI directly from any source, as this figure doesn't fluctuate to greatly I have decided to put it in manually so I can calculate my body fat %. Once you have got you BMI you can use it to calculate your body fat % with the below sensor.
+Lastly we use the information gathered from our weight and height to calculate BMI. Once you have got your BMI you can use it to calculate your body fat % with the below sensor, the body fat calculation is calibrated for a male by using 0.23 and then your age don't use 39 unless you know are as old as me :+1:
 
 ```
 ####################################################
@@ -300,6 +295,11 @@ Lastly I was not able to get BMI directly from any source, as this figure doesn'
 
   - platform: template
     sensors:
+      james_bmi:
+        friendly_name: "James BMI"
+        #entity_id: sensor.weight
+        value_template: "{{ ((states.sensor.weight.state | float) / (((states.sensor.height.state) | float /100)*((states.sensor.height.state) | float /100))) | round(1)}}"
+        unit_of_measurement: 'BMI'
       body_fat:
         friendly_name: Body Fat
         entity_id: sensor.weight
@@ -388,7 +388,7 @@ I wan't to be able to pull in my sleep statistics also which will require some a
                   content: >
                     James
                   style:
-                    top: 6%
+                    top: 8%
                     left: 1%
                     font-size: 18px
                     color: white
@@ -397,56 +397,57 @@ I wan't to be able to pull in my sleep statistics also which will require some a
                     "--paper-material-elevation-1_-_box-shadow": none
                     "--shadow-elevation-2dp_-_box-shadow": none
                     transform: translate(0%,-50%)
+                    
                 - type: state-icon
                   entity: sensor.weight
                   title: Weight
-                  style: {top: 9%, left: 3%, "--iron-icon-fill-color": '#5294E2', transform: none}
+                  style: {top: 16%, left: 6%, "--iron-icon-fill-color": '#5294E2', transform: none}
                 - type: state-label
                   entity: sensor.weight
                   title: Weight
-                  style: {top: 10%, left: 12%, color: white, transform: none}
+                  style: {top: 17%, left: 17%, color: white, transform: none}
 
-                - type: state-icon
+                - type: image
                   entity: sensor.james_bmi
-                  title: BMI
-                  style: {top: 9%, left: 31%, "--iron-icon-fill-color": '#5294E2', transform: none}
+                  image: https://apprecs.org/gp/images/app-icons/300/b7/com.despdev.weight_loss_calculator.jpg
+                  style: {top: 31%, left: 6%, transform: none, width: 40px, height: 40px}
                 - type: state-label
                   entity: sensor.james_bmi
                   title: BMI
-                  style: {top: 10%, left: 40%, color: white, transform: none}
+                  style: {top: 32%, left: 17%, color: white, transform: none}
 
-                - type: state-icon
+                - type: image
                   entity: sensor.body_fat
-                  title: Body Fat
-                  style: {top: 9%, left: 59%, "--iron-icon-fill-color": '#5294E2', transform: none}
+                  image: https://cdn6.aptoide.com/imgs/f/3/9/f393c40a8435f88b403e5a2d7f8a60c7_icon.png?w=240
+                  style: {top: 49%, left: 6%, transform: none, width: 33px, height: 33px}
                 - type: state-label
                   entity: sensor.body_fat
                   title: Body Fat
-                  style: {top: 10%, left: 67%, color: white, transform: none}
+                  style: {top: 48%, left: 17%, color: white, transform: none}
                   
                 - type: state-icon
                   entity: sensor.james_miband_battery
                   title: MiBand Battery
-                  style: {top: 0%, left: 17%, width: 24px, height: 24px, transform: none}
+                  style: {top: 1%, left: 17%, width: 24px, height: 24px, transform: none}
                 - type: state-label
                   entity: sensor.james_miband_battery
-                  title: Body Fat
-                  style: {top: 1%, left: 22%, color: white, transform: none}
+                  title: MiBand Battery
+                  style: {top: 3%, left: 22%, color: white, transform: none}
 
                 - type: state-label
                   entity: sensor.james_miband_status
                   title: Status
                   prefix: 'Status : '
-                  style: {top: 1%, left: 36%, color: white, transform: none}
+                  style: {top: 3%, left: 36%, color: white, transform: none, font-size: 18px}
                   
                 - type: state-icon
                   entity: sensor.james_heart_rate
                   title: Heart Rate
-                  style: {top: 21%, left: 3%, "--iron-icon-fill-color": red, transform: none}
+                  style: {top: 38%, left: 68%, "--iron-icon-fill-color": red, transform: none, --iron-icon-height: 42px, --iron-icon-width: 42px}
                 - type: state-label
                   entity: sensor.james_heart_rate
                   title: Heart Rate
-                  style: {top: 22%, left: 12%, color: white, transform: none}
+                  style: {top: 39%, left: 77%, color: white, transform: none, font-size: 20px}
                   
             style:                 
               border-radius: 20px
