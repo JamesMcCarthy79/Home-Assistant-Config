@@ -3182,41 +3182,63 @@ views:
           - type: custom:card-modder
             card:
               type: picture-elements
-              image: /local/lovelace/settings/node_2.png
+              image: /local/lovelace/settings/ha_system_2.png
               elements:
                 - type: state-label
-                  entity: sensor.automation_time_online
-                  prefix: 'System Uptime ----- '
-                  style: {color: white, left: 32%, top: 6%, font-size: 115%, font-weight: bold}
+                  entity: sensor.automation_count
+                  prefix: 'AUTOMATIONS --- '
+                  style: {color: white, left: 23%, top: 15%, font-size: 115%, font-weight: bold}
 
-                - type: state-icon
-                  entity: sensor.disk_use_percent_
-                  style: {color: white, left: 34%, top: 84%}
                 - type: state-label
-                  entity: sensor.automation_server_disk
-                  prefix: 'AUTOMATIONS - '
-                  style: {color: white, left: 21%, top: 93%, font-size: 115%, font-weight: bold}
-
-                - type: state-icon
-                  entity: sensor.memory_use_percent
-                  style: {color: white, left: 51%, top: 84%}
+                  entity: sensor.binary_sensor_count
+                  prefix: 'BINARY SENSORS --- '
+                  style: {color: white, left: 26%, top: 30%, font-size: 115%, font-weight: bold}
+                  
                 - type: state-label
-                  entity: sensor.automation_server_memory
-                  style: {color: white, left: 52%, top: 93%, font-size: 115%, font-weight: bold}
-
-                - type: state-icon
-                  entity: sensor.processor_use
-                  style: {color: white, left: 68%, top: 84%}
+                  entity: sensor.camera_count
+                  prefix: 'CAMERAS --- '
+                  style: {color: white, left: 18%, top: 45%, font-size: 115%, font-weight: bold}
+                  
                 - type: state-label
-                  entity: sensor.automation_server_cpu
-                  style: {color: white, left: 68%, top: 93%, font-size: 115%, font-weight: bold}
-
-                - type: state-icon
-                  entity: sensor.cpu_temperature
-                  style: {color: white, left: 85%, top: 84%}
+                  entity: sensor.fan_count
+                  prefix: 'FANS --- '
+                  style: {color: white, left: 14.5%, top: 75%, font-size: 115%, font-weight: bold}
+                  
                 - type: state-label
-                  entity: sensor.automation_server_cpu_temp
-                  style: {color: white, left: 86%, top: 93%, font-size: 115%, font-weight: bold}
+                  entity: sensor.lights_count
+                  prefix: 'LIGHTS --- '
+                  style: {color: white, left: 16%, top: 60%, font-size: 115%, font-weight: bold}
+                  
+                - type: state-label
+                  entity: sensor.tracker_count
+                  prefix: 'TRACKED DEVICES --- '
+                  style: {color: white, left: 47%, top: 90%, font-size: 115%, font-weight: bold}
+                  
+                - type: state-label
+                  entity: sensor.media_player_count
+                  prefix: 'MEDIA PLAYERS --- '
+                  style: {color: white, left: 70%, top: 15%, font-size: 115%, font-weight: bold}
+                  
+                - type: state-label
+                  entity: sensor.plant_count
+                  prefix: 'PLANTS --- '
+                  style: {color: white, left: 63%, top: 30%, font-size: 115%, font-weight: bold}
+                  
+                - type: state-label
+                  entity: sensor.script_count
+                  prefix: 'SCRIPTS --- '
+                  style: {color: white, left: 64.5%, top: 45%, font-size: 115%, font-weight: bold}
+                  
+                - type: state-label
+                  entity: sensor.sensor_count
+                  prefix: 'SENSORS --- '
+                  style: {color: white, left: 66%, top: 60%, font-size: 115%, font-weight: bold}
+                  
+                - type: state-label
+                  entity: sensor.switch_count
+                  prefix: 'SWITCHES --- '
+                  style: {color: white, left: 66%, top: 75%, font-size: 115%, font-weight: bold}
+                  
             style:                 
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
@@ -3851,6 +3873,35 @@ views:
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#            Appliances -  Package Tracking Card                #
+#                                                               #
+#################################################################  
+
+      - id: ca340363e4584233aaeca0f1755ddb75  # Automatically created id
+        type: vertical-stack
+        cards:
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/appliances/tracking_2.png
+              elements:
+              
+                - type: state-icon
+                  entity: sensor.aftership
+                  style: {color: white, left: 15%, top: 92%}
+                  
+                - type: state-label
+                  entity: sensor.aftership
+                  style: {color: white, left: 28%, top: 92%}
+                  
+            style:                 
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
 #############################################################################################################################################
 #                                                                                                                                           # 
 #                                                        VIEW 13 - XIAOMI SENSOR STATUS                                                     #
