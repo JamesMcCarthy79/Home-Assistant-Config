@@ -4,12 +4,14 @@
 <h1 align="center">Trash Recycle Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
 <hr *** </hr>
-<p align="center">This package is designed to remind you to take out the bins but more importantly remind if it is also a recycle bin week as their pickups are normally every other week. This package was originally created by skalavala and has been modified to fit my purpose.</p>
+<p align="center">This package is designed to remind you to take out the bins but more importantly remind if it is also a recycle bin week as their pickups are normally every other week. This package was originally created by skalavala and has been modified to fit my purpose. I now use a Bluetooth Beacon to track whether my bin is in or out on the curb fully automated bin notifications just need to make a robot to take it to the curb for me :)</p>
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">skalavala - https://github.com/skalavala/smarthome</br>
-<p align="left">Stanvx - https://github.com/stanvx/Home-Assistant-Configuration</br>
+
+[skalavala](https://github.com/skalavala/smarthome)
+
+[Stanvx](https://github.com/stanvx/Home-Assistant-Configuration)
 
 <hr --- </hr>
 
