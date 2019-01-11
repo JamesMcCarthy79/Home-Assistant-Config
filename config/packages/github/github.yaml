@@ -55,7 +55,7 @@ sensor:
       - stargazers_count
       
   - platform: command_line
-    command: 'curl https://github.com/frenck/home-assistant-config'
+    command: 'curl https://api.github.com/repos/frenck/home-assistant-config'
     name: Github Trending
     scan_interval: 3600
     value_template: '{{ value_json.name }}'
