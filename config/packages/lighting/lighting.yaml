@@ -80,6 +80,8 @@ group:
       - switch.kitchen_light_switch
       - switch.dining_light_switch
       - input_number.dining_brightness
+      - switch.playroom_light_switch
+      - switch.laundry_light_switch
       
   outside lights:
     name: Outside Lights
@@ -94,7 +96,7 @@ group:
     entities:
       - switch.master_light_switch
       - input_number.bedroom_brightness
-      - switch.bedroom_wardrobe_switch
+      - switch.master_wardrobe_switch
       
   bathroom switches:
     name: Bathroom Switches
@@ -105,6 +107,42 @@ group:
       - switch.bathroom_fan_switch
       - switch.bathroom_heat_switch
       
+  upstairs lights:
+    name: Upstairs Lights
+    view: no
+    entities:
+      - switch.master_light_switch
+      - switch.bedroom_wardrobe_switch
+      - switch.bathroom_light_switch
+      - switch.bathroom_fan_switch
+      - switch.bathroom_heat_switch
+      - switch.upstairs_toilet_light_switch
+      - switch.jackson_light_switch
+      
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+      
+binary_sensor:
+  - platform: template
+    sensors:
+## Door Sensors
+      lights:
+        friendly_name: Lights
+        device_class: light
+        entity_id: group.downstairs_lights
+        value_template: "{{ is_state('group.downstairs_lights', 'on') }}"
+        icon_template: >-
+          {% if is_state('group.downstairs_lights', 'on') %}
+            fas:lightbulb
+          {% elif is_state('group.downstairs_lights', 'off') %}
+            fas:lightbulb       
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
 #################################################################
 #                                                               #
 #                           Inputs                              #
@@ -153,36 +191,164 @@ input_number:
     min: 0
     max: 254
     step: 1
-    
-#################################################################
-#                                                               #
-#                       Binary Sensors                          #
-#                                                               #
-#################################################################
-      
-binary_sensor:
-  - platform: template
-    sensors:
-## Door Sensors
-      lights:
-        friendly_name: Lights
-        device_class: light
-        entity_id: group.downstairs_lights
-        value_template: "{{ is_state('group.downstairs_lights', 'on') }}"
-        icon_template: >-
-          {% if is_state('group.downstairs_lights', 'on') %}
-            mdi:lightbulb
-          {% elif is_state('group.doors', 'off') %}
-            mdi:lightbulb       
-          {% else %}
-            mdi:alert
-          {% endif %}
       
 #################################################################
 #                                                               #
-#                Automations moved to Node_RED                  #
+#                           Lights                              #
 #                                                               #
 #################################################################
+
+light:
+
+####################################################
+#                                                  #
+#                  Lights - MQTT                   #
+#                                                  #
+####################################################
+  
+  - platform: mqtt
+    name: "Upstairs Toilet Bulb"
+    state_topic: "stat/sonoff-light-toilet/POWER"
+    command_topic: "cmnd/sonoff-light-toilet/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: false
+
+####################################################
+#                                                  #
+#                Lights - Phillips                 #
+#                                                  #
+####################################################
+
+  - platform: xiaomi_miio
+    name: Entrance Bulb
+    host: !secret xiaomi_bulb_1
+    token: !secret xiaomi_bulb_1_token
+    model: philips.light.bulb
+  
+  - platform: xiaomi_miio
+    name: Lounge Bulb
+    host: !secret xiaomi_bulb_2
+    token: !secret xiaomi_bulb_2_token
+    model: philips.light.bulb
+  
+  - platform: xiaomi_miio
+    name: Dining Bulb
+    host: !secret xiaomi_bulb_3
+    token: !secret xiaomi_bulb_3_token
+    model: philips.light.bulb
+  
+  - platform: xiaomi_miio
+    name: Hall Bulb
+    host: !secret xiaomi_bulb_4
+    token: !secret xiaomi_bulb_4_token
+    model: philips.light.bulb
+  
+  - platform: xiaomi_miio
+    name: Bedroom Bulb
+    host: !secret xiaomi_bulb_5
+    token: !secret xiaomi_bulb_5_token
+    model: philips.light.bulb
+
+####################################################
+#                                                  #
+#                Lights - Yeelight                 #
+#                                                  #
+####################################################
+
+  - platform: yeelight
+    devices:
+      10.0.50.7:
+        name: Patio
+        model: color1
+
+#################################################################
+#                                                               #
+#                            Scenes                             #
+#                                                               #
+#################################################################
+
+scene:
+
+  - name: Livingroom normal
+    entities:
+      light.lounge_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 75
+        color_temp: 333
+      light.dining_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 85
+        color_temp: 333
+          
+  - name: Livingroom dim
+    entities:
+      light.lounge_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 15
+        color_temp: 333
+      light.dining_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 25
+        color_temp: 333
+          
+  - name: Hall dim 
+    entities:
+      light.hall_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 15
+          
+  - name: Hall normal 
+    entities:
+      light.hall_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 75
+          
+  - name: Hall dusk 
+    entities:
+      light.hall_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 50
+          
+  - name: Livingroom Bright
+    entities:
+      light.dining_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 100
+        color_temp: 175
+      light.lounge_bulb:
+        state: on
+        transition: 2
+        brightness_pct: 100
+        color_temp: 175
+          
+  - name: Backlights Night
+    entities:
+      light.gateway_light_7811dcfd812f:
+        state: on
+        brightness: 255
+        rgb_color: [0,0,255]
+      light.gateway_light_7811dce13ad6:
+        state: on
+        brightness: 255
+        rgb_color: [0,0,255]
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+## Some automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
 
 automation:
   - alias: Lounge Light - Adjust Brightness
