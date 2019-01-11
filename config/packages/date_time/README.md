@@ -21,6 +21,8 @@ Standard Home Assistant Components
 
 Sensor - [Time_Date](https://www.home-assistant.io/components/sensor.time_date/)
 
+Sensor - [Workday](https://www.home-assistant.io/components/binary_sensor.workday/)
+
 Sensor - [WorldClock](https://www.home-assistant.io/components/sensor.worldclock/)
 
 <h4 align="left">Package Automations:</h4>
