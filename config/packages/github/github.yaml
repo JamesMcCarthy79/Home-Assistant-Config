@@ -38,6 +38,30 @@ sensor:
       - forks
       - stargazers_count
       
+  - platform: command_line
+    command: 'curl https://api.github.com/repos/bruhautomation/BRUH3-Home-Assistant-Configuration'
+    name: Github Next
+    scan_interval: 3600
+    value_template: '{{ value_json.name }}'
+    json_attributes:
+      - stargazers_count
+      
+  - platform: command_line
+    command: 'curl https://api.github.com/repos/stanvx/Home-Assistant-Configuration'
+    name: Github Previous
+    scan_interval: 3600
+    value_template: '{{ value_json.name }}'
+    json_attributes:
+      - stargazers_count
+      
+  - platform: command_line
+    command: 'curl https://github.com/frenck/home-assistant-config'
+    name: Github Trending
+    scan_interval: 3600
+    value_template: '{{ value_json.name }}'
+    json_attributes:
+      - stargazers_count
+      
 #################################################################
 #                                                               #
 #                            Template                           #
@@ -91,6 +115,18 @@ sensor:
         value_template: "{{ states('sensor.stars_this_month_mean.attributes.min_value')|int - states('sensor.stars_last_month_mean.attributes.min_value')|int }}"
         friendly_name: 'Last Month'
         
+      git_stars_next_dif:
+        value_template: "{{ states('sensor.stars_next')|int - states('sensor.stars')|int }}"
+        friendly_name: 'Next Target' 
+        
+      git_stars_last_dif:
+        value_template: "{{ states('sensor.stars')|int - states('sensor.stars_previous')|int }}"
+        friendly_name: 'Next Target'
+        
+      git_stars_trend_dif:
+        value_template: "{{ states('sensor.stars')|int - states('sensor.stars_trending')|int }}"
+        friendly_name: 'Trending Target'
+        
 #################################################################
 #                                                               #
 #                           Statistics                          #
@@ -120,6 +156,18 @@ sensor:
     entity_id: sensor.stars
     max_age:
       days: 60
+      
+  - platform: statistics
+    name: Target Next Change
+    entity_id: sensor.stars_next
+    max_age:
+      days: 7
+      
+  - platform: statistics
+    name: Target Last Change
+    entity_id: sensor.stars_last
+    max_age:
+      days: 7
       
 #################################################################
 #                                                               #
