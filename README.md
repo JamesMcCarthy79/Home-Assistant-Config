@@ -8,7 +8,7 @@
 <p align="center">Be sure to :star: my repo!</p>
 <p>
   <img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <img src="https://img.shields.io/badge/HA--Version-0.85.0-brightgreen.svg"/>
+  <img src="https://img.shields.io/badge/HA--Version-0.85.1-brightgreen.svg"/>
   <img src="https://img.shields.io/maintenance/yes/2019.svg"/>
   <img src="https://img.shields.io/github/commit-activity/y/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
@@ -36,7 +36,7 @@
 
 | Components - Standard | Components - Custom |Network Devices | Automations | Scripts |
 |:---------------------:|:-------------------:|:--------------:|:-----------:|:-------:|
-| 90                    |6                    |83              |16           |36       |
+| 92                    |6                    |83              |16           |36       |
 
 | Binary Sensors | Cameras | Fans | Lights | Media Players | Plants | Sensors | Switches |
 |:--------------:|:-------:|:----:|:------:|:-------------:|:------:|:-------:|:--------:|
