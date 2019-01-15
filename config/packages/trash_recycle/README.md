@@ -17,7 +17,7 @@
 
 <h4 align="left">Package Dependencies:</h4>
 <p align="left">- MQTT Broker</br>
-<p align="left">- Sensors for Time & Date please see my sensor.yaml for details</br>
+<p align="left">- Sensors for Time & Date please see my date_time Package for details</br>
 <p align="left">- Everything else required is already in the package</br>
 <h4 align="left">Package Sensors:</h4>
 <p align="left">The sensors in this package will determine if it's an even or odd week of the year, and track day of the week to set reminders for trash and recycle days respectively. </br>
