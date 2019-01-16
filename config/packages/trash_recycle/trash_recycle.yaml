@@ -432,7 +432,194 @@ binary_sensor:
 
 ## Some automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
 
+#################################################################
+#                                                               #
+#                     Legacy Automations                        #
+#                                                               #
+#################################################################
+
 automation:
+
+##  The schedule can be changed via UI. The updated schedules are saved in MQTT
+##  The input_selects don't maintain state automatically - hence this code
+##  These automations are hidden - no interaction with user is required.
+##  Save & Restore Functionality
+
+  - alias: Trash Pickup Day Changed
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: state
+      entity_id: input_select.trash_pickup_day
+    action:
+    - service: mqtt.publish
+      data_template:
+        topic: "/home/trashpickupday"
+        retain: true
+        payload: '{{ states.input_select.trash_pickup_day.state }}'
+
+  - alias: Recycle Pickup Day Changed
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_select.recycle_pickup_day
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "/home/recyclepickupday"
+          retain: true
+          payload: '{{ states.input_select.recycle_pickup_day.state }}'
+
+  - alias: Recycle Pickup Week Changed
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_select.recycle_pickup_week
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "/home/recyclepickupweek"
+          retain: true
+          payload: '{{ states.input_select.recycle_pickup_week.state }}'
+          
+  - alias: Green Pickup Day Changed
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_select.green_pickup_day
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "/home/greenpickupday"
+          retain: true
+          payload: '{{ states.input_select.green_pickup_day.state }}'
+
+  - alias: Green Pickup Week Changed
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_select.green_pickup_week
+    action:
+      - service: mqtt.publish
+        data_template:
+          topic: "/home/greenpickupweek"
+          retain: true
+          payload: '{{ states.input_select.green_pickup_week.state }}'
+
+  - alias: Restore Trash Recycle Settings on Startup
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - delay:
+          minutes: 1
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.trash_pickup_day
+          option: "{{states.sensor.trash_pickup_day.state}}"
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.recycle_pickup_day
+          option: "{{states.sensor.recycle_pickup_day.state}}"
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.recycle_pickup_week
+          option: "{{states.sensor.recycle_pickup_week.state}}"
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.green_pickup_day
+          option: "{{states.sensor.green_pickup_day.state}}"
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.green_pickup_week
+          option: "{{states.sensor.green_pickup_week.state}}"
+
+##  Reminder code - Reminds 5 times every hour starting 4 PM
+##  Conditions: Only notifies when someone is at home
+
+  - alias: Trash Pickup Reminder
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - at: '17:00'
+      platform: time
+    - at: '21:00'
+      platform: time
+    condition:
+      condition: and
+      conditions:
+      - condition: template
+        value_template: '{{ states.input_boolean.trash_reminders.state == "on" }}'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.trash_day
+            state: 'yes'
+    action:
+      - service: tts.google_say
+        data:
+          message: "Attention! Tomorrow is the Trash Pickup day. Please don't forget to put the trash bin outside tonight!"
+          entity_id: media_player.tts_kodi
+          
+  - alias: Recycle Pickup Reminder
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - at: '16:59'
+      platform: time
+    - at: '20:59'
+      platform: time
+    condition:
+      condition: and
+      conditions:
+      - condition: template
+        value_template: '{{ states.input_boolean.trash_reminders.state == "on" }}'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: sensor.recycle_day
+            state: 'yes'
+    action:
+      - service: tts.google_say
+        data:
+          message: "Attention! Tomorrow is the Recycle Pickup day. Please don't forget to put the recycle bin outside tonight!"
+          entity_id: media_player.tts_kodi
+
+  - alias: Bins Taken Out
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_select.trash_reminders
+      to: Bins Taken Out
+    action:
+      - service: tts.google_say
+        data:
+          message: "Great job, Thank you!"
+          entity_id: media_player.tts_kodi
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.trash_reminders
+
+  - alias: Remind later
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_select.trash_reminders
+      to: Remind Later
+    action:
+      - service: tts.google_say
+        data:
+          message: "Ok lazy, Will remind you again before bed!"
+          entity_id: media_player.tts_kodi
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.trash_reminders
 
   - alias: Reset Trash Reminders
     initial_state: true
