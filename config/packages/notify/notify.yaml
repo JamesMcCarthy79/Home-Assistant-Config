@@ -11,20 +11,50 @@
 #################################################################
 
 notify:
+
+####################################################
+#                                                  #
+#                 Notify - Android                 #
+#                                                  #
+####################################################
+
+  - name: Galaxy_Tab_A_(2016)
+    platform: lannouncer
+    host: !secret galaxy_tab
+    
+####################################################
+#                                                  #
+#               Notify - Pushbullet                #
+#                                                  #
+####################################################
+
   - name: Pushbullet
     platform: pushbullet
-    api_key: o.hBPgrZLbNGUpPHGhC7ZXc2Ad52VUzFRB
+    api_key: !secret push_api
     
-#  - name: Galaxy_Tab_A_(2016)
-#    platform: lannouncer
-#    host: 10.0.6.3
+####################################################
+#                                                  #
+#                   Notify - Kodi                  #
+#                                                  #
+####################################################
     
   - platform: kodi
-    host: 10.0.3.1   
-    port: 8080                   
+    host: !secret notify_kodi_ip  
+    port: !secret notify_kodi_port                 
     name: TTS_Kodi                    
-    username: kodi            
-    password: kodi
+    username: !secret notify_kodi_user       
+    password: !secret notify_kodi_pass
+
+####################################################
+#                                                  #
+#                  Notify - Slack                  #
+#                                                  #
+####################################################
+
+  - name: Slack
+    platform: slack
+    api_key: !secret slack_api
+    default_channel: '#ha'
 
 #################################################################
 #                                                               #
@@ -45,9 +75,9 @@ script:
   james_briefing:
     alias: James Briefing
     sequence:
-      - service: tts.google_say
+      - service: media_player.alexa_tts
         data_template:
-          entity_id: media_player.tts_kodi
+          entity_id: media_player.kingia_main
           message: >
             {% if now().strftime("%H")|int < 12 %}
             Good morning James.
@@ -56,17 +86,18 @@ script:
             {% else %}
             Good evening James.
             {% endif %}
-            It's currently {{states.sensor.pws_temp_c.state|round}} degrees in Burleigh but feels like {{states.sensor.pws_feelslike_c.state|round}} degrees. Today will be {{states.sensor.pws_weather_1d_metric.state|replace(".", "")}}.
+            It's currently {{states.sensor.temperature_158d0001f56350.state|round}} degrees outside. Today will be {{states.sensor.bom_gc_forecast_detailed_summary_0.state|replace(".", "")}} with a {{states.sensor.bom_gc_forecast_chance_of_rain_0.state}} percent chance of rain.
             {% if now().strftime("%H")|int < 9 and now().strftime("%w")|int > 0and now().strftime("%w")|int < 6 %}
             The current drive to Powertec in traffic is {{states.sensor.commute_to_work.state}}
             {% endif %}
-            
+
+## Need to add bus time until next one leaves into breifing and then add reminder TTS for those days            
   tina_briefing:
     alias: Tina Briefing
     sequence:
-      - service: tts.google_say
+      - service: media_player.alexa_tts
         data_template:
-          entity_id: media_player.tts_kodi
+          entity_id: media_player.kingia_main
           message: >
             {% if now().strftime("%H")|int < 12 %}
             Good morning Tina.
@@ -75,17 +106,17 @@ script:
             {% else %}
             Good evening Tina.
             {% endif %}
-            It's currently {{states.sensor.pws_temp_c.state|round}} degrees in Burleigh but feels like {{states.sensor.pws_feelslike_c.state|round}} degrees. Today will be {{states.sensor.pws_weather_1d_metric.state|replace(".", "")}}.
+            It's currently {{states.sensor.temperature_158d0001f56350.state|round}} degrees outside. Today will be {{states.sensor.bom_gc_forecast_detailed_summary_0.state|replace(".", "")}} with a {{states.sensor.bom_gc_forecast_chance_of_rain_0.state}} percent chance of rain.
             {% if now().strftime("%H")|int < 9 and now().strftime("%w")|int > 0and now().strftime("%w")|int < 4 %}
-            Jackson has kindy today
+            Jackson has kindy today, the next bus will arrive in {{states.sensor.next_bus.state}}
             {% endif %}
             
   overnight_briefing:
     alias: Overnight Briefing
     sequence:
-      - service: tts.google_say
+      - service: media_player.alexa_tts
         data_template:
-          entity_id: media_player.tts_kodi
+          entity_id: media_player.kingia_main
           message: >
             {% if now().strftime("%H")|int < 12 %}
             Good morning.
@@ -94,4 +125,4 @@ script:
             {% else %}
             Good evening.
             {% endif %}
-            It's currently {{states.sensor.pws_temp_c.state|round}} degrees in Burleigh but feels like {{states.sensor.pws_feelslike_c.state|round}} degrees. Overnight the temperature is expected to drop to {{states.sensor.pws_temp_low_2d_c.state|round}} degrees.
+            It's currently {{states.sensor.temperature_158d0001f56350.state|round}} degrees outside. Overnight the temperature is expected to drop to {{states.sensor.bom_gc_forecast_min_temp_c_1}} degrees.
