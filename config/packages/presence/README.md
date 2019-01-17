@@ -51,6 +51,9 @@
 <p align="left">This automation plays a TTS message to let my wife know I'm at the shops and to send me a list of anything else we might need. I will be updating this with another project that puts a Pi with camera in the fridge using machinebox to create a shopping list based on the status of the fridge contents.</p>
 <hr --- </hr>
 
+| Automations! | [Node-RED-Flow](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages/presence/Node-RED%20Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/presence/presence.yaml) |
+| --- | --- | --- |
+
 | Take me back to the packages thanks!| [Packages](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages) | 
 | --- | --- |
 
