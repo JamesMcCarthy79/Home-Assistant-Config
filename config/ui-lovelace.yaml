@@ -9,7 +9,7 @@ resources:
     type: module
   - url: /local/custom_ui/mini-graph-card-bundle.js?v=0.1.0
     type: module
-  - url: /local/custom_ui/card-modder.js?v=35eb37
+  - url: /local/custom_ui/card-modder.js?v=fadc03
     type: module
   - url: /local/custom_ui/slider-entity-row.js?v=d6da75
     type: js
