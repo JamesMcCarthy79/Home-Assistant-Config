@@ -28,6 +28,9 @@
 <p align="left">If after 7pm but before 4am and kodi changes state from 'playing' to 'idle' the lights in the lounge amd dining area are turned up to around 75% by using a script to select lights and brightness. There is also an automation that brightens the lights if the state changes from 'playing' to 'paused'</p>
 <hr --- </hr>
 
+| Automations! | [Node-RED-Flow](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages/media/Node-RED%20Flow) | [YAML](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/media/media.yaml) |
+| --- | --- | --- |
+
 | Take me back to the packages thanks!| [Packages](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages) | 
 | --- | --- |
 
