@@ -52,22 +52,70 @@ input_select:
       - FTA TV
     initial:  TV Off
     icon: mdi:television  
+    
+#################################################################
+#                                                               #
+#                         Media Players                         #
+#                                                               #
+#################################################################
+
+media_player:
+
+####################################################
+#                                                  #
+#               Media Player - Alexa               #
+#                                                  #
+####################################################
+
+  - platform: alexa
+    email: !secret alexa_user
+    password: !secret alexa_pass
+    url: amazon.com.au
+
+####################################################
+#                                                  #
+#               Media Player - Kodi                #
+#                                                  #
+####################################################
+
+  - platform: kodi
+    host: 10.0.1.1
+    name: Media 4K Kodi
   
-#################################################################
-#                                                               #
-#                          Sensors                              #
-#                                                               #
-#################################################################
+  - platform: kodi
+    host: 10.0.1.2
+    name: Bedroom Kodi
+    
+  - platform: kodi
+    host: 10.0.1.3
+    name: Patio Kodi
+    
+  - platform: kodi
+    host: 10.0.1.4
+    name: Bathroom Kodi
+  
+  - platform: kodi
+    host: 10.0.3.1
+    name: TTS Kodi
+    username: kodi
+    password: kodi
+  
+####################################################
+#                                                  #
+#             Media Player - Samsung TV            #
+#                                                  #
+####################################################
 
-sensor:
-  - platform: history_stats
-    name: Total TV Time
-    entity_id: media_player.media_4k_tv
-    state: 'on'
-    type: time
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-    end: '{{ now() }}'
-
+  - platform: samsungtv
+    host: 10.0.2.1
+    port: 8001
+    name: Media 4K TV
+    mac: !secret samsungtv_mac_1
+  
+  - platform: samsungtv
+    host: 10.0.2.2
+    name: Bedroom TV
+  
 #################################################################
 #                                                               #
 #                        Rest Commands                          #
@@ -87,7 +135,39 @@ rest_command:
   media_tv_app_spotify:
     method: POST
     url: 'http://10.0.2.1:8080/ws/app/com.spotify.Spotify.TV'
-    
+
+#################################################################
+#                                                               #
+#                            Scenes                             #
+#                                                               #
+#################################################################
+
+scene:
+
+  - name: "Media TV 7"
+    entities:
+      switch.media_tv_7: on
+      
+  - name: "Media TV 0"
+    entities:
+      switch.media_tv_0: on
+      
+  - name: "Media TV 3"
+    entities:
+      switch.media_tv_3: on
+      
+  - name: "Media TV Right"
+    entities:
+      switch.media_tv_right: on
+      
+  - name: "Media TV Select"
+    entities:
+      switch.media_tv_select: on
+      
+  - name: "Media TV Blue"
+    entities:
+      switch.media_tv_blue: on
+
 #################################################################
 #                                                               #
 #                          Scripts                              #
@@ -110,10 +190,42 @@ script:
   media_tv_app_spotify:
     sequence:
       - service: rest_command.media_tv_app_spotify
+      
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#             Sensors - History Stats              #
+#                                                  #
+####################################################
+
+  - platform: history_stats
+    name: Total TV Time
+    entity_id: media_player.media_4k_tv
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
     
 #################################################################
 #                                                               #
 #                         Automations                           #
+#                                                               #
+#################################################################
+
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
+
+automation:
+
+#################################################################
+#                                                               #
+#                     Legacy Automations                        #
 #                                                               #
 #################################################################
 
