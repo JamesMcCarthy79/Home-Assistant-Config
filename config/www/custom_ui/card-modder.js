@@ -14,6 +14,7 @@ class CardModder extends LitElement {
     this._config = config;
     this.card = window.cardTools.createCard(config.card);
     this.templated = [];
+    this.attempts = 0;
   }
 
   render() {
@@ -33,6 +34,9 @@ class CardModder extends LitElement {
     target = target || this.card.querySelector("ha-card");
     target = target || this.card.shadowRoot && this.card.shadowRoot.querySelector("ha-card");
     target = target || this.card.firstChild && this.card.firstChild.shadowRoot && this.card.firstChild.shadowRoot.querySelector("ha-card");
+    if(!target && !this.attempts) // Try twice
+      setTimeout(() => this._cardMod(), 100);
+    this.attempts++;
     target = target || this.card;
 
     for(var k in this._config.style) {
