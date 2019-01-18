@@ -13,7 +13,7 @@ resources:
     type: module
   - url: /local/custom_ui/slider-entity-row.js?v=d6da75
     type: js
-  - url: /local/custom_ui/card-tools.js?v=0a97d3
+  - url: /local/custom_ui/card-tools.js?v=6ce5d0
     type: js
   - url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.2.7
     type: js
@@ -21,6 +21,9 @@ resources:
     type: js
   - url: /local/custom_ui/circle-sensor-card.js?v=1.2.0
     type: module
+  - url: /local/custom_ui/monster-card.js?v=0.2.3
+    type: js
+    
 #############################################################################################################################################
 #                                                                                                                                           # 
 #                                                               VIEW 0 - HOME                                                               #
@@ -34,7 +37,7 @@ views:
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Home
     cards:
-    
+
 #################################################################
 #                                                               #
 #                     Home - Presence Card                      #
@@ -3912,7 +3915,7 @@ views:
     icon: mdi:server
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     name: Xiaomi Sensors
-    panel: true
+    #panel: true
     cards:
     
 #################################################################
@@ -3966,6 +3969,8 @@ views:
                 - binary_sensor.entertainment_switch_plug
                 - binary_sensor.dryer_switch_plug
                 - binary_sensor.appliance_switch_plug
+                - binary_sensor.bathroom_leak_sensor
+                - binary_sensor.kitchen_leak_sensor
               state_filter:
                 - 'off'
               card:
@@ -3977,6 +3982,45 @@ views:
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
+          
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/settings/xiaomi_2.png
+              elements:
+                - type: state-icon
+                  entity: sensor.xiaomi_gw_1_add_device
+                  tap_action: 
+                    action: call-service
+                    service: xiaomi_aqara.add_device
+                    service_data: {"gw_mac": "78:11:DC:FD:81:2F"}
+                  style: {color: white, left: 18%, top: 89%}
+                  
+                - type: state-icon
+                  entity: input_select.aqara_remove_device
+                  style: {color: white, left: 36%, top: 89%}
+                  
+                - type: state-icon
+                  entity: input_select.aqara_play_ringtone
+                  style: {color: white, left: 51%, top: 89%}
+                  
+                - type: state-icon
+                  entity: input_select.aqara_stop_ringtone
+                  tap_action: 
+                    action: call-service
+                    service: xiaomi_aqara.stop_ringtone
+                    service_data: {"gw_mac": "78:11:DC:FD:81:2F"}
+                  style: {color: white, left: 66%, top: 89%}
+                  
+                - type: state-icon
+                  entity: light.gateway_light_7811dcfd812f
+                  style: {color: white, left: 81%, top: 89%}
+                  
+            style:                 
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden  
 
 #############################################################################################################################################
 #                                                                                                                                           # 
