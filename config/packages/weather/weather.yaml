@@ -125,7 +125,7 @@ sensor:
   
 ## Weather Dark Sky
   - platform: darksky
-    api_key: 2395af4f72c2143ebe21cb8c4a8eb6e0
+    api_key: !secret darksky
     forecast:
       - 1
       - 2
