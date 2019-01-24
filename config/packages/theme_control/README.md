@@ -8,7 +8,8 @@
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">marcelhoffs - https://community.home-assistant.io/t/midnight-theme/28598</br>
+
+[marcelhoffs - Midnight](https://community.home-assistant.io/t/midnight-theme/28598)
 
 <hr --- </hr>
 
