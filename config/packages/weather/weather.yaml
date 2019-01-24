@@ -12,7 +12,20 @@
 
 homeassistant:
   customize:
-
+    sensor.bathroom_mold_indicator:
+      icon: fab:empire
+    sensor.lounge_mold_indicator:
+      icon: fab:empire
+    sensor.paatio_mold_indicator:
+      icon: fab:empire
+    sensor.playroom_mold_indicator:
+      icon: fab:empire
+    sensor.bedroom_mold_indicator:
+      icon: fab:empire
+    sensor.jackson_mold_indicator:
+      icon: fab:empire
+    sensor.hudson_mold_indicator:
+      icon: fab:empire
   
 #################################################################
 #                                                               #
@@ -46,7 +59,18 @@ group:
       - sensor.pws_temp_high_2d_c
       - sensor.pws_temp_high_3d_c
       - sensor.pws_temp_high_4d_c
-      
+
+#################################################################
+#                                                               #
+#                           Radar                               #
+#                                                               #
+#################################################################
+
+camera:
+  - platform: 'bom_radar'
+    name: "Bom Radar"
+    product_id: 'IDR663'
+    
 #################################################################
 #                                                               #
 #                            Sensors                            #
@@ -54,11 +78,54 @@ group:
 #################################################################
 
 sensor:
-  - platform: moon
+
+####################################################
+#                                                  #
+#                 Sensor - AirVisual               #
+#                                                  #
+####################################################
+
+  - platform: airvisual
+    api_key: !secret airviskey
+    monitored_conditions:
+      - us
+    show_on_map: false
+    #scan_interval: 30
+    city: Southport
+    state: Queensland
+    country: Australia
+
+####################################################
+#                                                  #
+#               Sensor - BOM Forecast              #
+#                                                  #
+####################################################
+      
+## BOM Forecast
+  - platform: bom_forecast
+    product_id: IDQ10610
+    name: GC Forecast
+    forecast_days: 5
+    rest_of_today: True
+    friendly: False
+    friendly_state_format: '{max}, {summary}'
+    monitored_conditions:
+      - 'max'
+      - 'min'
+      - 'chance_of_rain'
+      - 'possible_rainfall'
+      - 'summary'
+      - 'detailed_summary'
+
+####################################################
+#                                                  #
+#                  Sensor - Darksky                #
+#                                                  #
+####################################################
   
 ## Weather Dark Sky
   - platform: darksky
-    api_key: 
+    api_key: 2395af4f72c2143ebe21cb8c4a8eb6e0
     forecast:
       - 1
       - 2
@@ -90,50 +157,85 @@ sensor:
       - visibility
     update_interval:
       minutes: 5
+
+####################################################
+#                                                  #
+#                   Sensor - Mold                  #
+#                                                  #
+####################################################
+
+  - platform: mold_indicator
+    name: Bathroom Mold Indicator
+    indoor_temp_sensor: sensor.temperature_158d00022c7248
+    indoor_humidity_sensor: sensor.humidity_158d00022c7248
+    outdoor_temp_sensor: sensor.temperature_158d0001f56350
+    calibration_factor: 2.0
+    
+  - platform: mold_indicator
+    name: Lounge Mold Indicator
+    indoor_temp_sensor: sensor.temperature_158d0001f558f5
+    indoor_humidity_sensor: sensor.humidity_158d0001f558f5
+    outdoor_temp_sensor: sensor.temperature_158d0001f56350
+    calibration_factor: 2.0
+    
+  - platform: mold_indicator
+    name: Playroom Mold Indicator
+    indoor_temp_sensor: sensor.temperature_158d0001f56682
+    indoor_humidity_sensor: sensor.humidity_158d0001f56682
+    outdoor_temp_sensor: sensor.temperature_158d0001f56350
+    calibration_factor: 2.0
+    
+  - platform: mold_indicator
+    name: Patio Mold Indicator
+    indoor_temp_sensor: sensor.bom_temp
+    indoor_humidity_sensor: sensor.humidity_158d0001f56350
+    outdoor_temp_sensor: sensor.temperature_158d0001f56350
+    calibration_factor: 2.0
+    
+  - platform: mold_indicator
+    name: Bedroom Mold Indicator
+    indoor_temp_sensor: sensor.temperature_158d0001f53de9
+    indoor_humidity_sensor: sensor.humidity_158d0001f53de9
+    outdoor_temp_sensor: sensor.temperature_158d0001f56350
+    calibration_factor: 2.0
+    
+  - platform: mold_indicator
+    name: Jackson Mold Indicator
+    indoor_temp_sensor: sensor.temperature_158d0001f534e1
+    indoor_humidity_sensor: sensor.humidity_158d0001f534e1
+    outdoor_temp_sensor: sensor.temperature_158d0001f56350
+    calibration_factor: 2.0
+    
+  - platform: mold_indicator
+    name: Hudson Mold Indicator
+    indoor_temp_sensor: sensor.temperature_158d0001f54df3
+    indoor_humidity_sensor: sensor.humidity_158d0001f54df3
+    outdoor_temp_sensor: sensor.temperature_158d0001f56350
+    calibration_factor: 2.0
+
+####################################################
+#                                                  #
+#                   Sensor - Moon                  #
+#                                                  #
+####################################################
+
+  - platform: moon
+  
+####################################################
+#                                                  #
+#                  Sensor - Season                 #
+#                                                  #
+####################################################
+
+  - platform: season
+    type: astronomical
+
+####################################################
+#                                                  #
+#                 Sensor - Template                #
+#                                                  #
+####################################################
       
-## Weather Sensors Weatherunderground
-  - platform: wunderground
-    api_key: !secret wunderground_api
-    pwd_id: !secret wunderground_pws_id
-    monitored_conditions:
-      - relative_humidity
-      - pressure_mb
-      - temp_high_1d_c
-      - temp_c
-      - temp_low_1d_c
-      - precip_1d
-      - precip_1d_mm
-      - precip_today_string
-      - wind_kph
-      - wind_1d_kph
-      - wind_dir
-      - feelslike_c
-      - alerts
-      - temp_high_2d_c
-      - temp_low_2d_c
-      - temp_high_3d_c
-      - temp_high_4d_c
-      - weather_1d_metric
-      - weather_2d_metric
-      - weather_3d_metric
-      - weather_4d_metric
-      
-## BOM Forecast
-  - platform: bom_forecast
-    product_id: IDQ10610
-    name: GC Forecast
-    forecast_days: 5
-    rest_of_today: True
-    friendly: False
-    friendly_state_format: '{max}, {summary}'
-    monitored_conditions:
-      - 'max'
-      - 'min'
-      - 'chance_of_rain'
-      - 'possible_rainfall'
-      - 'summary'
-      - 'detailed_summary'
-     
   - platform: template
     sensors:
       bom_temp:
@@ -166,15 +268,32 @@ sensor:
         #device_class: temperature
         unit_of_measurement: hPa
         
-####################################################
-#                                                  #
-#                     Weather                      #
-#                                                  #
-####################################################
+      aqi:
+        friendly_name: "Air Quality Index"
+        value_template: "{{ states.sensor.us_air_quality_index_2.state }}"
+
+#################################################################
+#                                                               #
+#                              Sun                              #
+#                                                               #
+#################################################################
 
 sun:
 
+#################################################################
+#                                                               #
+#                            Weather                            #
+#                                                               #
+#################################################################
+
 weather:
+
+####################################################
+#                                                  #
+#                   Weather - BOM                  #
+#                                                  #
+####################################################
+
   - platform: bom
     station: IDQ60801.94592
     name: Gold Coast
@@ -205,4 +324,3 @@ weather:
       - wind_dir
       - wind_spd_kmh
       - wind_spd_kt
-  
