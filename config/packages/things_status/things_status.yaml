@@ -13,7 +13,6 @@
 homeassistant:
   customize:
 
-  
 #################################################################
 #                                                               #
 #                           Group                               #
@@ -83,46 +82,54 @@ group:
 #################################################################
 
 device_tracker:
+
+####################################################
+#                                                  #
+#               Device Track - Ping                #
+#                                                  #
+####################################################
+
   - platform: ping
     hosts:
-      baby_monitor_camera: 10.0.10.1
-      dining_camera: 10.0.10.2
-      living_camera: 10.0.10.3
-      bedroom_camera: 10.0.10.4
-      jackson_camera: 10.0.10.5
-      hudson_camera: 10.0.10.6
-      staircase_camera: 10.0.10.7
-      ir_blaster_downstairs: 10.0.30.1
-      ir_blaster_patio: 10.0.30.2
-      ir_blaster_upstairs: 10.0.30.3
-      hall_light_bulb: 10.0.50.1
-      lounge_light_bulb: 10.0.50.2
-      entry_light_bulb: 10.0.50.3
-      dining_light_bulb: 10.0.50.4
-      bedroom_light_bulb: 10.0.50.5
-      bedroom_light_switch: 10.0.60.1
-      kitchen_light_switch: 10.0.60.2
-      patio_light_switch: 10.0.60.3
-      lounge_light_switch: 10.0.60.4
-      walkin_light_switch: 10.0.60.5
-      dining_light_switch: 10.0.60.6
-      bathroom_light_switch: 10.0.60.7
-      playroom_light_switch: 10.0.60.8
-      patio_led_switch: 10.0.70.1
-      garage_door_sensor: 10.0.80.1
-      coffee_machine_sensor: 10.0.80.2
-      ble_tracker_downstairs: 10.0.20.6
-      ble_tracker_upstairs: 10.0.20.7
-      playroom_fan: 10.0.100.1
-      bedroom_fan: 10.0.100.3
-      bedroom_fan_switch: 10.0.100.4
-      lounge_fan: 10.0.100.5
-      lounge_fan_switch: 10.0.100.6
-      jackson_fan: 10.0.100.7
-      jackson_fan_switch: 10.0.100.8
-      hudson_fan: 10.0.100.9
-      hudson_fan_switch: 10.0.100.10
-      robovac: 10.0.110.1
+      baby_monitor_camera: !secret baby_monitor_camera
+      dining_camera: !secret dining_camera
+      living_camera: !secret living_camera
+      bedroom_camera: !secret bedroom_camera
+      jackson_camera: !secret jackson_camera
+      hudson_camera: !secret hudson_camera
+      staircase_camera: !secret staircase_camera
+      ir_blaster_downstairs: !secret ir_blaster_downstairs
+      ir_blaster_patio: !secret ir_blaster_patio
+      ir_blaster_upstairs: !secret ir_blaster_upstairs
+      hall_light_bulb: !secret hall_light_bulb
+      lounge_light_bulb: !secret lounge_light_bulb
+      entry_light_bulb: !secret entry_light_bulb
+      dining_light_bulb: !secret dining_light_bulb
+      bedroom_light_bulb: !secret bedroom_light_bulb
+      patio_light_bulb: !secret patio_light_bulb
+      bedroom_light_switch: !secret bedroom_light_switch
+      kitchen_light_switch: !secret kitchen_light_switch
+      patio_light_switch: !secret patio_light_switch
+      lounge_light_switch: !secret lounge_light_switch
+      walkin_light_switch: !secret walkin_light_switch
+      dining_light_switch: !secret dining_light_switch
+      bathroom_light_switch: !secret bathroom_light_switch
+      playroom_light_switch: !secret playroom_light_switch
+      patio_led_switch: !secret patio_led_switch
+      garage_door_sensor: !secret garage_door_sensor
+      coffee_machine_sensor: !secret coffee_machine_sensor
+      ble_tracker_downstairs: !secret ble_tracker_downstairs
+      ble_tracker_upstairs: !secret ble_tracker_upstairs
+      playroom_fan: !secret playroom_fan
+      bedroom_fan: !secret bedroom_fan
+      bedroom_fan_switch: !secret bedroom_fan_switch
+      lounge_fan: !secret lounge_fan
+      lounge_fan_switch: !secret lounge_fan_switch
+      jackson_fan: !secret jackson_fan
+      jackson_fan_switch: !secret jackson_fan_switch
+      hudson_fan: !secret hudson_fan
+      hudson_fan_switch: !secret hudson_fan_switch
+      robovac: !secret robovac
       
 #################################################################
 #                                                               #
@@ -131,6 +138,13 @@ device_tracker:
 #################################################################
 
 binary_sensor:
+
+####################################################
+#                                                  #
+#            Binary Sensor - Template              #
+#                                                  #
+####################################################
+
   - platform: template
     sensors:
 ## Cameras
@@ -247,13 +261,13 @@ binary_sensor:
             mdi:alert
           {% endif %}
 ## Sonoff Swiches
-      lounge_fan_switch:
-        friendly_name: Lounge Fan Switch
+      bedroom_light_switch:
+        friendly_name: Bedroom Light Switch
         device_class: connectivity
-        entity_id: device_tracker.lounge_fan_switch
-        value_template: "{{ is_state('device_tracker.lounge_fan_switch', 'home') }}"
+        entity_id: device_tracker.bedroom_light_switch
+        value_template: "{{ is_state('device_tracker.bedroom_light_switch', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.lounge_fan_switch', 'home') %}
+          {% if is_state('device_tracker.bedroom_light_switch', 'home') %}
             mdi:toggle-switch
           {% else %}
             mdi:alert
@@ -269,7 +283,7 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-      kitchen_dining_light_switch:
+      dining_light_switch:
         friendly_name: Dining Light Switch
         device_class: connectivity
         entity_id: device_tracker.dining_light_switch
@@ -302,13 +316,24 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-      master_bedroom_fan_switch:
-        friendly_name: Bedroom Fan Switch
+      walkin_light_switch:
+        friendly_name: Walk-In Light Switch
         device_class: connectivity
-        entity_id: device_tracker.master_bedroom_fan_switch
-        value_template: "{{ is_state('device_tracker.master_bedroom_fan_switch', 'home') }}"
+        entity_id: device_tracker.walkin_light_switch
+        value_template: "{{ is_state('device_tracker.walkin_light_switch', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.master_bedroom_fan_switch', 'home') %}
+          {% if is_state('device_tracker.walkin_light_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      playroom_light_switch:
+        friendly_name: Playroom Light Switch
+        device_class: connectivity
+        entity_id: device_tracker.playroom_light_switch
+        value_template: "{{ is_state('device_tracker.playroom_light_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.playroom_light_switch', 'home') %}
             mdi:toggle-switch
           {% else %}
             mdi:alert
@@ -369,6 +394,17 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
+      patio_light_bulb:
+        friendly_name: Patio Light Bulb
+        device_class: connectivity
+        entity_id: device_tracker.patio_light_bulb
+        value_template: "{{ is_state('device_tracker.patio_light_bulb', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.patio_light_bulb', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
 ## BLE Trackers
       ble_tracker_downstairs:
         friendly_name: BLE Tracker Downstairs
@@ -415,4 +451,241 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-      
+## Fan Switches
+      bedroom_fan:
+        friendly_name: Bedroom Fan
+        device_class: connectivity
+        entity_id: device_tracker.bedroom_fan
+        value_template: "{{ is_state('device_tracker.bedroom_fan', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.bedroom_fan', 'home') %}
+            mdi:fan
+          {% else %}
+            mdi:alert
+          {% endif %}
+      bedroom_fan_switch:
+        friendly_name: Bedroom Fan Switch
+        device_class: connectivity
+        entity_id: device_tracker.bedroom_fan_switch
+        value_template: "{{ is_state('device_tracker.bedroom_fan_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.bedroom_fan_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      lounge_fan:
+        friendly_name: Lounge Fan
+        device_class: connectivity
+        entity_id: device_tracker.lounge_fan
+        value_template: "{{ is_state('device_tracker.lounge_fan', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.lounge_fan', 'home') %}
+            mdi:fan
+          {% else %}
+            mdi:alert
+          {% endif %}
+      lounge_fan_switch:
+        friendly_name: Lounge Fan Switch
+        device_class: connectivity
+        entity_id: device_tracker.lounge_fan_switch
+        value_template: "{{ is_state('device_tracker.lounge_fan_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.lounge_fan_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      jackson_fan:
+        friendly_name: Jackson Fan
+        device_class: connectivity
+        entity_id: device_tracker.jackson_fan
+        value_template: "{{ is_state('device_tracker.jackson_fan', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.jackson_fan', 'home') %}
+            mdi:fan
+          {% else %}
+            mdi:alert
+          {% endif %}
+      jackson_fan_switch:
+        friendly_name: Jackson Fan Switch
+        device_class: connectivity
+        entity_id: device_tracker.jackson_fan_switch
+        value_template: "{{ is_state('device_tracker.jackson_fan_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.jackson_fan_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+      hudson_fan:
+        friendly_name: Hudson Fan
+        device_class: connectivity
+        entity_id: device_tracker.hudson_fan
+        value_template: "{{ is_state('device_tracker.hudson_fan', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.hudson_fan', 'home') %}
+            mdi:fan
+          {% else %}
+            mdi:alert
+          {% endif %}
+      hudson_fan_switch:
+        friendly_name: Hudson Fan Switch
+        device_class: connectivity
+        entity_id: device_tracker.hudson_fan_switch
+        value_template: "{{ is_state('device_tracker.hudson_fan_switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.hudson_fan_switch', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                 Sensor - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+    
+      sensor_count:
+        friendly_name: 'Number of Sensors'
+        value_template: >
+          {%- set domains = ['sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      automation_count:
+        friendly_name: 'Number of Automations'
+        value_template: >
+          {%- set domains = ['automation'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      script_count:
+        friendly_name: 'Number of Scripts'
+        value_template: >
+          {%- set domains = ['script'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      switch_count:
+        friendly_name: 'Number of Switches'
+        value_template: >
+          {%- set domains = ['switch'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      binary_sensor_count:
+        friendly_name: 'Number of Binary Sensors'
+        value_template: >
+          {%- set domains = ['binary_sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      lights_count:
+        friendly_name: 'Number of Lights'
+        value_template: >
+          {%- set domains = ['light'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      tracker_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['device_tracker'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      camera_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['camera'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      fan_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['fan'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      media_player_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['media_player'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      plant_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['plant'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
