@@ -23,7 +23,73 @@ homeassistant:
     sensor.speedtest_upload:
       friendly_name: Upload
       icon: mdi:arrow-up-bold
-  
+      
+#################################################################
+#                                                               #
+#                       Device Tracker                          #
+#                                                               #
+#################################################################
+
+device_tracker:
+
+####################################################
+#                                                  #
+#               Device Track - Ping                #
+#                                                  #
+####################################################
+
+  - platform: ping
+    hosts:
+      core_router: !secret core_router
+      nas_movies: !secret nas_movies
+      nas_tv: !secret nas_tv
+      core_switch: !secret core_switch
+      upstairs_switch: !secret upstairs_switch
+      wifi_bridge: !secret wifi_bridge
+      upstairs_ap: !secret upstairs_ap
+      downstairs_ap: !secret downstairs_ap
+      5g_ac_main: !secret 5g_ac_main
+      5g_ac_media_tv: !secret 5g_ac_media_tv
+      5g_ac_upstairs: !secret 5g_ac_upstairs
+      printer: !secret printer
+      media_kodi_4k: !secret media_kodi_4k
+      bedroom_kodi: !secret bedroom_kodi
+      backup_kodi: !secret backup_kodi
+      patio_kodi: !secret patio_kodi
+      hdhomerun: !secret hdhomerun
+      appletv: !secret appletv
+      media_tv: !secret media_tv
+      bedroom_tv: !secret bedroom_tv
+      pc_smart_screen: !secret pc_smart_screen
+      media_tv_old: !secret media_tv_old
+      james_laptop: !secret james_laptop
+      work_laptop: !secret work_laptop
+      tina_iphone_old: !secret tina_iphone_old
+      james_work_phone: !secret james_work_phone
+      upstairs_dashboard: !secret upstairs_dashboard
+      kitchen_dashboard: !secret kitchen_dashboard
+      smart_things_hub: !secret smart_things_hub
+      rPi: !secret rPi
+      garden_pi: !secret garden_pi
+      addon_pi: !secret addon_pi
+      automation_pi: !secret automation_pi
+      xiaomi_gateway: !secret xiaomi_gw_1
+      xiaomi_gateway_2: !secret xiaomi_gw_2
+      alarm_panel: !secret alarm_panel
+
+####################################################
+#                                                  #
+#               Device Track - NMAP                #
+#                                                  #
+####################################################
+
+
+  - platform: nmap_tracker
+    hosts:
+      - !secret nmap_host_1
+      - !secret nmap_host_2
+      - !secret nmap_host_3
+
 #################################################################
 #                                                               #
 #                           Group                               #
@@ -104,148 +170,18 @@ group:
 
 #################################################################
 #                                                               #
-#                       Device Tracker                          #
-#                                                               #
-#################################################################
-
-device_tracker:
-  - platform: ping
-    hosts:
-      core_router: 10.0.0.1
-      nas_movies: 10.0.0.2
-      nas_tv: 10.0.0.3
-      nas_3: 10.0.0.4
-      core_switch: 10.0.0.5
-      upstairs_switch: 10.0.0.6
-      wifi_bridge: 10.0.0.7
-      upstairs_ap: 10.0.0.9
-      downstairs_ap: 10.0.0.10
-      5g_ac_main: 10.0.0.11
-      5g_ac_media_tv: 10.0.0.12
-      5g_ac_upstairs: 10.0.0.13
-      printer: 10.0.0.50
-      media_kodi_4k: 10.0.1.1
-      bedroom_kodi: 10.0.1.2
-      backup_kodi: 10.0.1.3
-      patio_kodi: 10.0.1.4
-      hdhomerun: 10.0.1.10
-      appletv: 10.0.1.11
-      media_tv: 10.0.2.1
-      bedroom_tv: 10.0.2.2
-      pc_smart_screen: 10.0.2.3
-      media_tv_old: 10.0.2.4
-      james_laptop: 10.0.3.2
-      work_laptop: 10.0.3.3
-      tina_iphone_old: 10.0.5.5
-      james_work_phone: 10.0.5.6
-      upstairs_dashboard: 10.0.6.2
-      kitchen_dashboard: 10.0.6.3
-      smart_things_hub: 10.0.40.1
-      rPi: 10.0.20.3
-      garden_pi: 10.0.20.5
-      addon_pi: 10.0.20.2
-      automation_pi: 10.0.20.1
-      xiaomi_gateway: 10.0.90.1
-      xiaomi_gateway_2: 10.0.90.2
-      alarm_panel: 10.0.200.1
-      
-  - platform: nmap_tracker
-    hosts:
-      - 10.0.3.1
-      - 10.0.40.2
-      - 10.0.40.3
-      
-#################################################################
-#                                                               #
-#                           Sensors                             #
-#                                                               #
-#################################################################
-
-sensor:
-  - platform: speedtest
-    hour:
-    - 8
-    - 12
-    - 16
-    - 20
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-      
-  - platform: systemmonitor
-    resources:
-    - type: disk_use
-      arg: /
-    - type: memory_use_percent
-    - type: processor_use
-    - type: last_boot
-  
-  - platform: command_line
-    name: CPU Temperature
-    command: "cat /sys/class/thermal/thermal_zone0/temp"
-    unit_of_measurement: "°C"
-    value_template: '{{ (value | multiply(0.001)) | round(1) }}'
-    
-  - platform: filesize
-    file_paths:
-      - /config/home-assistant_v2.db
-      
-  - platform: rest
-    resource: http://10.0.20.1:8123/api/states/sensor.disk_use_
-    name: Automation Server Disk
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "GiB"
-    
-  - platform: rest
-    resource: http://10.0.20.1:8123/api/states/sensor.memory_use_percent
-    name: Automation Server Memory
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-    
-  - platform: rest
-    resource: http://10.0.20.1:8123/api/states/sensor.processor_use
-    name: Automation Server CPU
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-    
-  - platform: rest
-    resource: http://10.0.20.1:8123/api/states/sensor.cpu_temperature
-    name: Automation Server CPU Temp
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.disk_use_
-    name: Addon Server Disk
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "GiB"
-    
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.memory_use_percent
-    name: Addon Server Memory
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-    
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.processor_use
-    name: Addon Server CPU
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-    
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.cpu_temperature
-    name: Addon Server CPU Temp
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-    
-#################################################################
-#                                                               #
 #                       Binary Sensors                          #
 #                                                               #
 #################################################################
 
 binary_sensor:
+
+####################################################
+#                                                  #
+#            Binary Sensor - Template              #
+#                                                  #
+####################################################
+
   - platform: template
     sensors:
       core_router:
@@ -365,17 +301,6 @@ binary_sensor:
         value_template: "{{ is_state('device_tracker.nas_tv', 'home') }}"
         icon_template: >-
           {% if is_state('device_tracker.nas_tv', 'home') %}
-            mdi:harddisk
-          {% else %}
-            mdi:harddisk
-          {% endif %}
-      nas_3:
-        friendly_name: NAS 3
-        device_class: connectivity
-        entity_id: device_tracker.nas_3
-        value_template: "{{ is_state('device_tracker.nas_3', 'home') }}"
-        icon_template: >-
-          {% if is_state('device_tracker.nas_3', 'home') %}
             mdi:harddisk
           {% else %}
             mdi:harddisk
@@ -611,14 +536,144 @@ binary_sensor:
           {% else %}
             mdi:home-assistant
           {% endif %}
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#              Sensor - Command Line               #
+#                                                  #
+####################################################
+
+
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone1/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ (value | multiply(0.001)) | round(1) }}'
+    
+####################################################
+#                                                  #
+#                Sensor - File Size                #
+#                                                  #
+####################################################
+
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
+      - /config/home-assistant.log
+      
+####################################################
+#                                                  #
+#                  Sensor - Rest                   #
+#                                                  #
+####################################################
+
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.time_online
+    name: Addon Time Online
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "hours"
+
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.disk_use_
+    name: Addon Server Disk
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "GiB"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.memory_use_percent
+    name: Addon Server Memory
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.processor_use
+    name: Addon Server CPU
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.cpu_temperature
+    name: Addon Server CPU Temp
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+
+####################################################
+#                                                  #
+#                Sensor - Speed Test               #
+#                                                  #
+####################################################
+
+  - platform: speedtest
+    server_id: 16329
+    hour:
+    - 8
+    - 12
+    - 16
+    - 20
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+
+####################################################
+#                                                  #
+#             Sensor - System Monitor              #
+#                                                  #
+####################################################
+
+  - platform: systemmonitor
+    resources:
+    - type: disk_use_percent
+      arg: "/"
+    - type: memory_use_percent
+    - type: processor_use
+    - type: last_boot
+
+####################################################
+#                                                  #
+#                 Sensor - Uptime                  #
+#                                                  #
+####################################################
+
+  - platform: uptime
+    name: Time Online
+    unit_of_measurement: hours
+    
+#################################################################
+#                                                               #
+#                        Shell Commmand                         #
+#                                                               #
+################################################################# 
+
+shell_command:
+  ha_start: !secret ha_start
+  
+  ble_monitor_restart: !secret ble_monitor_restart
           
 #################################################################
 #                                                               #
 #                          Automations                          #
 #                                                               #
-################################################################# 
+#################################################################
+
+## Some automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
 
 automation:
+  - alias: homeassistant_start
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - service: shell_command.ha_start
+
 ## Notify of High Disk Use
   - alias: Disk Use Alarm
     initial_state: 'on'
@@ -630,7 +685,7 @@ automation:
       - service: notify.pushbullet
         data:
           title: 'HA HASSIO Server'
-          message: 'Warning - HA Server Disk Use is above 12Gb'
+          message: 'Warning - HA Server Disk Use is {{states.sensor.disk_use_.state}}Gb'
           
 ## Notify of High CPU Usage
   - alias: CPU Use Alarm
@@ -643,7 +698,7 @@ automation:
       - service: notify.pushbullet
         data:
           title: 'HA HASSIO Server'
-          message: 'Warning - HA Server Processor above 85%'
+          message: 'Warning - HA Server Processor {{states.sensor.processor_use.state}}%'
           
 ## Notify if CPU Temperature is High
   - alias: CPU Temp Alarm
@@ -656,7 +711,7 @@ automation:
       - service: notify.pushbullet
         data:
           title: 'HA HASSIO Server'
-          message: 'Warning - HA Server CPU Temp Above 85c'
+          message: 'Warning - HA Server CPU Temp is {{states.sensor.cpu_temperature.state}}c'
           
 ## Notify if ISP Download Speed has dropped
   - alias: Internet Download Speed Drop
@@ -669,17 +724,5 @@ automation:
       - service: notify.pushbullet
         data:
           title: 'HA HASSIO Server'
-          message: 'Warning - ISP Download Speed is lower then 40Mbps'
-          
-## Notify if ISP Download Speed has dropped
-  - alias: HA Restart
-    initial_state: 'on'
-    trigger:
-      platform: homeassistant
-      event: start
-    action:
-      - service: notify.pushbullet
-        data:
-          title: 'HA HASSIO Server'
-          message: 'Main HA Server Restarted'
-         
+          message: 'Warning - ISP Download Speed is {{states.sensor.speedtest_download.state}}Mbps'
+
