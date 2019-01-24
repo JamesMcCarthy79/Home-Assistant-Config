@@ -4,11 +4,12 @@
 <h1 align="center">Snapshots Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
 <hr *** </hr>
-<p align="center">This package utilises the HA snapshots component to automatically create a daily snapshot of my HA. I then use the Dropbox Sync Addon for HASSIO to store those backups away from my limited Raspberry Pi internal storage.</p>
+<p align="center">This package utilises the HA snapshots component to automatically create a daily snapshot of my HA. I then use the Dropbox Sync Addon for HASSIO to store those backups safely in Dropbox.</p>
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">danielwelch - https://github.com/danielwelch/hassio-dropbox-sync</br>
+
+[Dropbox Sync Addon](https://github.com/danielwelch/hassio-dropbox-sync)
 
 <hr --- </hr>
 
