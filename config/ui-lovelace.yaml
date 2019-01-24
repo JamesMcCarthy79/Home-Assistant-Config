@@ -1897,7 +1897,7 @@ views:
           - type: custom:card-modder
             card:
               type: picture-entity
-              entity: group.master_bedroom_lights
+              entity: group.bedroom_lights
               name: Light
               tap_action: 
                 action: toggle
