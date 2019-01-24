@@ -1,6 +1,6 @@
 #################################################################
 #                                                               #
-#                   Packages/Xiaomi Status                      #
+#                       Packages/Xiaomi                         #
 #                                                               #
 #################################################################
 
@@ -12,8 +12,13 @@
 
 homeassistant:
   customize:
+    input_select.aqara_remove_device:
+      icon: fas:minus-square
+    input_select.aqara_play_ringtone:
+      icon: fas:play
+    input_select.aqara_stop_ringtone:
+      icon: fas:stop
 
-  
 #################################################################
 #                                                               #
 #                           Group                               #
@@ -94,6 +99,122 @@ group:
       - binary_sensor.dryer_switch_plug
       - binary_sensor.appliance_switch_plug
       
+  upstairs_motion_sensors:
+    name: Upstairs Motion Sensors
+    view: no
+    entities:
+      - binary_sensor.motion_sensor_158d0001e63803
+      - binary_sensor.motion_sensor_158d0002006d46
+      - binary_sensor.motion_sensor_158d000200e4ab
+      - binary_sensor.motion_sensor_158d000201351c
+      - binary_sensor.motion_sensor_158d00022c2f21
+      
+#################################################################
+#                                                               #
+#                       Input Selects                           #
+#                                                               #
+#################################################################
+
+input_select:
+      
+####################################################
+#                                                  #
+#            Input Select - Remove Device          #
+#                                                  #
+####################################################
+
+  aqara_remove_device:
+    name: Remove Device
+    options:
+      - None
+      - Front Door Sensor
+      - Patio Door Sensor
+      - Back Door Sensor
+      - Washer Door Sensor
+      - Dryer Door Sensor
+      - Kitchen Window Sensor
+      - Jackson Window Sensor
+      - Hudson Window Sensor
+      - Bathroom Window Sensor
+      - Bedroom Window Sensor
+      - Playroom Motion Snesor
+      - Livingroom Motion Sensor
+      - Entrance Motion Sensor
+      - Bedroom Motion Sensor
+      - Hudson Motion Sensor
+      - Bathroom Motion Sensor
+      - Patio Motion Sensor
+      - Jackson Motion Sensor
+      - Staircase Motion Sensor
+      - Wardrobe Motion Sensor
+      - Office Motion Sensor
+      - Downstairs Smoke Alarm
+      - Upstairs Smoke Alarm
+      - Jackson Temperature
+      - Bedroom Temperature
+      - Hudson Temerature
+      - Downstairs Temerature
+      - Patio Temperature
+      - Playroom Temerature
+      - Bathroom Temperature
+      - Lounge Fan Button
+      - Door Button
+      - Hudson Fan Button
+      - Jackson Fan Button
+      - Bedroom Wall Fan Button
+      - Bedside Fan Button
+      - Washer Switch Plug
+      - Entertainment Switch Plug
+      - Dryer Switch Plug
+      - Appliance Switch Plug
+      - Bathroom Leak Sensor
+      - Kitchen Leak Sensor
+      
+####################################################
+#                                                  #
+#            Input Select - Play Ringtone          #
+#                                                  #
+####################################################
+
+  aqara_play_ringtone:
+    name: Play Ringtone
+    options:
+      - None
+      - Police Car 1
+      - Police Car 2
+      - Accident
+      - Countdown
+      - Ghost
+      - Sniper Rifle
+      - Battle
+      - Air Raid
+      - Bark
+      - Doorbell
+      - Knock at a Door
+      - Amuse
+      - Alarm Clock
+      - MiMix
+      - Enthusiastic
+      - Guitar Classic
+      - Ice World Piano
+      - Leisure Time
+      - Childhood
+      - Morning Stream Liet
+      - Music Box
+      - Orange
+      - Thinker
+      
+####################################################
+#                                                  #
+#            Input Select - Stop Ringtone          #
+#                                                  #
+####################################################
+
+  aqara_stop_ringtone:
+    name: Stop Ringtone
+    options:
+      - None
+      
 #################################################################
 #                                                               #
 #                       Binary Sensors                          #
@@ -101,6 +222,13 @@ group:
 #################################################################
 
 binary_sensor:
+
+####################################################
+#                                                  #
+#              Binary Sensor - Template            #
+#                                                  #
+####################################################
+
   - platform: template
     sensors:
 ## Door Sensors
@@ -360,9 +488,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.downstairs_smoke', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.downstairs_smoke', 'on') %}
-            mdi:walk
+            mdi:smoke-detector
           {% elif is_state('sensor.downstairs_smoke', 'off') %}
-            mdi:walk    
+            mdi:smoke-detector
           {% else %}
             mdi:alert
           {% endif %}
@@ -373,68 +501,103 @@ binary_sensor:
         value_template: "{{ is_state('sensor.upstairs_smoke', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.upstairs_smoke', 'on') %}
-            mdi:walk
+            mdi:smoke-detector
           {% elif is_state('sensor.upstairs_smoke', 'off') %}
-            mdi:walk    
+            mdi:smoke-detector  
           {% else %}
             mdi:alert
           {% endif %}
-## Temerature Sensors
+## Temperature Sensors
       jackson_temperature:
-        friendly_name: "Jackson Temperature"
-        value_template: >-
-          {% if is_state('sensor.temperature_158d0001f534e1', 'unavailable') %}
-            off
+        friendly_name: Jackson Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.jackson_temperature
+        value_template: "{{ is_state('sensor.jackson_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.jackson_temperature', 'on') %}
+            mdi:thermometer
+          {% elif is_state('sensor.jackson_temperature', 'off') %}
+            mdi:thermometer      
           {% else %}
-            on
+            mdi:alert
           {% endif %}
       bedroom_temperature:
-        friendly_name: "Bedroom Temperature"
-        value_template: >-
-          {% if is_state('sensor.temperature_158d0001f53de9', 'unavailable') %}
-            off
+        friendly_name: Bedroom Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.bedroom_temperature
+        value_template: "{{ is_state('sensor.bedroom_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bedroom_temperature', 'on') %}
+            mdi:thermometer
+          {% elif is_state('sensor.bedroom_temperature', 'off') %}
+            mdi:thermometer
           {% else %}
-            on
+            mdi:alert
           {% endif %}
       hudson_temperature:
-        friendly_name: "Hudson Temperature"
-        value_template: >-
-          {% if is_state('sensor.temperature_158d0001f54df3', 'unavailable') %}
-            off
+        friendly_name: Hudson Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.hudson_temperature
+        value_template: "{{ is_state('sensor.hudson_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.hudson_temperature', 'on') %}
+            mdi:thermometer
+          {% elif is_state('sensor.hudson_temperature', 'off') %}
+            mdi:thermometer
           {% else %}
-            on
+            mdi:alert
           {% endif %}
       downstairs_temperature:
-        friendly_name: "Downstairs Temperature"
-        value_template: >-
-          {% if is_state('sensor.temperature_158d0001f558f5', 'unavailable') %}
-            off
+        friendly_name: Downstairs Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.downstairs_temperature
+        value_template: "{{ is_state('sensor.downstairs_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.downstairs_temperature', 'on') %}
+            mdi:thermometer
+          {% elif is_state('sensor.downstairs_temperature', 'off') %}
+            mdi:thermometer
           {% else %}
-            on
+            mdi:alert
           {% endif %}
       patio_temperature:
-        friendly_name: "Patio Temperature"
-        value_template: >-
-          {% if is_state('sensor.temperature_158d0001f56350', 'unavailable') %}
-            off
+        friendly_name: Patio Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.patio_temperature
+        value_template: "{{ is_state('sensor.patio_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.patio_temperature', 'on') %}
+            mdi:thermometer
+          {% elif is_state('sensor.patio_temperature', 'off') %}
+            mdi:thermometer
           {% else %}
-            on
+            mdi:alert
           {% endif %}
       playroom_temperature:
-        friendly_name: "Playroom Temperature"
-        value_template: >-
-          {% if is_state('sensor.temperature_158d0001f56682', 'unavailable') %}
-            off
+        friendly_name: Playroom Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.playroom_temperature
+        value_template: "{{ is_state('sensor.playroom_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.playroom_temperature', 'on') %}
+            mdi:thermometer
+          {% elif is_state('sensor.playroom_temperature', 'off') %}
+            mdi:thermometer
           {% else %}
-            on
+            mdi:alert
           {% endif %}
       bathroom_temperature:
-        friendly_name: "Bathroom Temperature"
-        value_template: >-
-          {% if is_state('sensor.temperature_158d00022c7248', 'unavailable') %}
-            off
+        friendly_name: Bathroom Temperature Sensor
+        device_class: connectivity
+        entity_id: sensor.playroom_temperature
+        value_template: "{{ is_state('sensor.bathroom_temperature', 'on') }}"
+        icon_template: >-
+          {% if is_state('sensor.bathroom_temperature', 'on') %}
+            mdi:thermometer
+          {% elif is_state('sensor.bathroom_temperature', 'off') %}
+            mdi:thermometer
           {% else %}
-            on
+            mdi:alert
           {% endif %}
 ## Smart Switches
       lounge_fan_button:
@@ -571,11 +734,18 @@ binary_sensor:
 
 #################################################################
 #                                                               #
-#                      Template Sensors                         #
+#                            Sensors                            #
 #                                                               #
 #################################################################
 
 sensor:
+
+####################################################
+#                                                  #
+#                 Sensor - Template                #
+#                                                  #
+####################################################
+
   - platform: template
     sensors:
 ## Door Sensors
@@ -796,72 +966,58 @@ sensor:
       jackson_temperature:
         friendly_name: "Jackson Temperature"
         value_template: >-
-          {% if is_state('sensor.temperature_158d0001f534e1', 'on') %}
-            on
-          {% elif is_state('sensor.temperature_158d0001f534e1', 'off') %}
-            on
-          {% else %}
+          {% if is_state('sensor.temperature_158d0001f534e1', 'unavailable') %}
             off
+          {% else %}
+            on
           {% endif %}
       bedroom_temperature:
         friendly_name: "Bedroom Temperature"
         value_template: >-
-          {% if is_state('sensor.temperature_158d0001f53de9', 'on') %}
-            on
-          {% elif is_state('sensor.temperature_158d0001f53de9', 'off') %}
-            on
-          {% else %}
+          {% if is_state('sensor.temperature_158d0001f53de9', 'unavailable') %}
             off
+          {% else %}
+            on
           {% endif %}
       hudson_temperature:
         friendly_name: "Hudson Temperature"
         value_template: >-
-          {% if is_state('sensor.temperature_158d0001f54df3', 'on') %}
-            on
-          {% elif is_state('sensor.temperature_158d0001f54df3', 'off') %}
-            on
-          {% else %}
+          {% if is_state('sensor.temperature_158d0001f54df3', 'unavailable') %}
             off
+          {% else %}
+            on
           {% endif %}
       downstairs_temperature:
         friendly_name: "Downstairs Temperature"
         value_template: >-
-          {% if is_state('sensor.temperature_158d0001f558f5', 'on') %}
-            on
-          {% elif is_state('sensor.temperature_158d0001f558f5', 'off') %}
-            on
-          {% else %}
+          {% if is_state('sensor.temperature_158d0001f558f5', 'unavailable') %}
             off
+          {% else %}
+            on
           {% endif %}
       patio_temperature:
         friendly_name: "Patio Temperature"
         value_template: >-
-          {% if is_state('sensor.temperature_158d0001f56350', 'on') %}
-            on
-          {% elif is_state('sensor.temperature_158d0001f56350', 'off') %}
-            on
-          {% else %}
+          {% if is_state('sensor.temperature_158d0001f56350', 'unavailable') %}
             off
+          {% else %}
+            on
           {% endif %}
       playroom_temperature:
         friendly_name: "Playroom Temperature"
         value_template: >-
-          {% if is_state('sensor.temperature_158d0001f56682', 'on') %}
-            on
-          {% elif is_state('sensor.temperature_158d0001f56682', 'off') %}
-            on
-          {% else %}
+          {% if is_state('sensor.temperature_158d0001f56682', 'unavailable') %}
             off
+          {% else %}
+            on
           {% endif %}
       bathroom_temperature:
         friendly_name: "Bathroom Temperature"
         value_template: >-
-          {% if is_state('sensor.temperature_158d00022c7248', 'on') %}
-            on
-          {% elif is_state('sensor.temperature_158d00022c7248', 'off') %}
-            on
-          {% else %}
+          {% if is_state('sensor.temperature_158d00022c7248', 'unavailable') %}
             off
+          {% else %}
+            on
           {% endif %}
 ## Smart Switches
       lounge_fan_button:
@@ -965,3 +1121,438 @@ sensor:
           {% else %}
             off
           {% endif %}
+## Water Leak Sensors
+      bathroom_leak_sensor:
+        friendly_name: "Bathroom Leak Sensor"
+        value_template: >-
+          {% if is_state('binary_sensor.water_leak_sensor_158d0002338651', 'on') %}
+            on
+          {% elif is_state('binary_sensor.water_leak_sensor_158d0002338651', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+      kitchen_leak_sensor:
+        friendly_name: "Bathroom Leak Sensor"
+        value_template: >-
+          {% if is_state('binary_sensor.water_leak_sensor_158d00026e26dc', 'on') %}
+            on
+          {% elif is_state('binary_sensor.water_leak_sensor_158d00026e26dc', 'off') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+## Gateway State Sensors Lovelace UI
+      xiaomi_gw_1_add_device:
+        friendly_name: "Xiaomi Gateway 1 Add"
+        value_template: >-
+          {% if is_state('sensor.persistant_notification', 'Join') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.persistant_notification', 'Join') %}
+            fas:plus-square
+          {% else %}
+            fas:plus-square
+          {% endif %}
+          
+      xiaomi_gw_1_remove_device:
+        friendly_name: "Xiaomi Gateway 1 Remove"
+        value_template: >-
+          {% if is_state('sensor.persistant_notification', 'Join') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.persistant_notification', 'Join') %}
+            fas:plus-square
+          {% else %}
+            fas:plus-square
+          {% endif %}
+         
+## No Motion Since
+      playroom_no_motion_since:
+        friendly_name: "Playroom No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d0001e5cf11.attributes['No motion since'] }}"
+        
+      living_no_motion_since:
+        friendly_name: "Living No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d0001e5d118.attributes['No motion since'] }}"
+        
+      staircase_no_motion_since:
+        friendly_name: "Staircase No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d00022c2f21.attributes['No motion since'] }}"
+        
+      entrance_no_motion_since:
+        friendly_name: "Entrance No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d0001e5d147.attributes['No motion since'] }}"
+        
+      bedroom_no_motion_since:
+        friendly_name: "Bedroom No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d0001e63803.attributes['No motion since'] }}"
+        
+      garage_no_motion_since:
+        friendly_name: "Garage No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d0001fa41fd.attributes['No motion since'] }}"
+        
+      hudson_no_motion_since:
+        friendly_name: "Hudson No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d0002006d46.attributes['No motion since'] }}"
+        
+      bathroom_no_motion_since:
+        friendly_name: "Bathroom No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d000200e4ab.attributes['No motion since'] }}"
+        
+      patio_no_motion_since:
+        friendly_name: "Patio No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d000200ea5b.attributes['No motion since'] }}"
+        
+      jackson_no_motion_since:
+        friendly_name: "Jackson No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d000201351c.attributes['No motion since'] }}"
+        
+      wardrobe_no_motion_since:
+        friendly_name: "Wardrobe No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d0001d56ccb.attributes['No motion since'] }}"
+        
+      office_no_motion_since:
+        friendly_name: "Office No Motion Since"
+        value_template: "{{ states.binary_sensor.motion_sensor_158d0001e5d103.attributes['No motion since'] }}"
+        
+#################################################################
+#                                                               #
+#                         Xiaomi Aqara                          #
+#                                                               #
+#################################################################
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - mac: !secret xiaomimac
+      key: !secret xiaomikey
+      host: !secret xiaomi_gw_1
+    - mac: !secret xiaomimac2
+      key: !secret xiaomikey2
+      host: !secret xiaomi_gw_2
+      
+#################################################################
+#                                                               #
+#                        Automations                            #
+#                                                               #
+#################################################################
+
+automation:
+
+  - id: '1547422886219'
+    alias: Front Door Sensor Remove
+    trigger:
+    - entity_id: input_select.aqara_remove_device
+      platform: state
+      to: Front Door Sensor
+    action:
+    - data:
+        device_id: 158dxxxxxxxxxx
+        gw_mac: '!secret xiaomimac'
+      service: xiaomi_aqara.remove_device
+      
+  - id: 'play_0'
+    alias: Play Police 1 Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Police Car 1
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '0'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_1'
+    alias: Play Police 2 Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Police Car 2
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '1'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_2'
+    alias: Play Accident Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Accident
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '2'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_3'
+    alias: Play Countdown Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Countdown
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '3'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_4'
+    alias: Play Ghost Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Ghost
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '4'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_5'
+    alias: Play Sniper Rifle Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Sniper Rifle
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '5'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_6'
+    alias: Play Battle Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Battle
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '6'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_7'
+    alias: Play Air Raid Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Air Raid
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '7'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_8'
+    alias: Play Bark Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Bark
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '8'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_10'
+    alias: Play Doorbell Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Doorbell
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '10'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_11'
+    alias: Play Knock at a door Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Knock at a Door
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '11'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_12'
+    alias: Play Amuse Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Amuse
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '12'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_13'
+    alias: Play Alarm Clock Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Alarm Clock
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '13'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_20'
+    alias: Play MiMix Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: MiMix
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '20'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_21'
+    alias: Play Enthusiastic Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Enthusiastic
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '21'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_22'
+    alias: Play Guitar Classic Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Guitar Classic
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '22'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_23'
+    alias: Play Ice World Piano Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Ice World Piano
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '23'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_24'
+    alias: Play Leisure Time Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Leisure Time
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '24'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_25'
+    alias: Play Childhood Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Childhood
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '25'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_26'
+    alias: Play Morning Stream Liet Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Morning Stream Liet
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '26'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_27'
+    alias: Play Music Box Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Music Box
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '27'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_28'
+    alias: Play Orange Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Orange
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '28'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
+      
+  - id: 'play_29'
+    alias: Play Thinker Ringtone
+    trigger:
+    - entity_id: input_select.aqara_play_ringtone
+      platform: state
+      to: Thinker
+    action:
+    - data:
+        gw_mac: '!secret xiaomimac'
+        ringtone_id: '29'
+        ringtone_vol: '30'
+      service: xiaomi_aqara.play_ringtone
