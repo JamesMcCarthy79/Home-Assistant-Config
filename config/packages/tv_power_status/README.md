@@ -8,6 +8,7 @@
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
-<p align="left">HA Forum Topic - https://community.home-assistant.io/t/smart-toggle-switch-for-device-using-a-delayed-network-ping-to-detect-power-on-off/52452</br>
+
+[HA Forum Topic](https://community.home-assistant.io/t/smart-toggle-switch-for-device-using-a-delayed-network-ping-to-detect-power-on-off/52452)
 
 <hr --- </hr>
