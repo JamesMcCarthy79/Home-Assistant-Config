@@ -14,6 +14,7 @@
   <img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
+  <img src="http://hits.dwyl.io/JamesMcCarthy79/Home-Assistant-Config.svg"/>
 </p>
 <p>
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
