@@ -374,6 +374,42 @@
   payload_on: "ON"
   payload_off: "OFF"
   retain: false
+## Spiderman Mask ##
+- platform: mqtt
+  name: "Spiderman Mask"
+  command_topic: "cmnd/spiderman_mask/POWER"
+  state_topic: "stat/spiderman_mask/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+## Spiderman Fist ##
+- platform: mqtt
+  name: "Spiderman Fist"
+  command_topic: "cmnd/spiderman_hand/POWER"
+  state_topic: "stat/spiderman_hand/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false  
+## Hulf Mask ##
+- platform: mqtt
+  name: "Hulk Mask"
+  command_topic: "cmnd/hulk_mask/POWER"
+  state_topic: "stat/hulk_mask/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false 
+## Hulf Mask ##
+- platform: mqtt
+  name: "Hulk Fist"
+  command_topic: "cmnd/hulk_fist/POWER"
+  state_topic: "stat/hulk_fist/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false 
   
 ####################################################
 #                                                  #
