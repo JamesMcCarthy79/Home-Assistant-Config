@@ -5,7 +5,11 @@
 <h3 align="center">Home Assistant Configuration &amp; Documentation for my Smart House.</h3>
 <p align="center">
   I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/au.png"/>, and therefor my links are for where I purchased from. There may be better (and most likely cheaper) sites in your local regions.</p>
-<p align="center">Be sure to :star: my repo!</p>
+<p align="center">Be sure to :star: my repo!</p> 
+<p align="center">🎧 Listen to Jimpower on Home Assistant Podcast 43 - https://hasspodcast.io/ha043/</p>
+<p align="center">
+<img src="http://hits.dwyl.io/JamesMcCarthy79/Home-Assistant-Config.svg"/>
+</p>  
 <p>
   <img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <img src="https://img.shields.io/badge/HA--Version-0.85.1-brightgreen.svg"/>
@@ -14,7 +18,6 @@
   <img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
-  <img src="http://hits.dwyl.io/JamesMcCarthy79/Home-Assistant-Config.svg"/>
 </p>
 <p>
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
@@ -26,7 +29,7 @@
 </p>
 <p>
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-1.2.6-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-1.3.0-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v8.0-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v3.7.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.6.1-5294E2.svg"/>
