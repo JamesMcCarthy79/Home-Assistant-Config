@@ -348,20 +348,20 @@ sensor:
 ## Waze Travel Time
   - platform: waze_travel_time
     name: 'Commute to Work'
-    origin: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
-    destination: 16/511 Olsen Ave, Southport QLD 4215, Australia
+    origin: !secret home
+    destination: !secret work
     region: 'NA'
     
   - platform: waze_travel_time
     name: 'James to Home'
     origin: device_tracker.huawei_h10
-    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    destination: !secret home
     region: 'AU'
     
   - platform: waze_travel_time
     name: 'Tina to Home'
     origin: device_tracker.ha_samsung
-    destination: 7/9 Kingia Ct, Burleigh Heads QLD 4220, Australia
+    destination: !secret home
     region: 'AU'
     
   - platform: template
