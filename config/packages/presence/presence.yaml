@@ -32,6 +32,8 @@ homeassistant:
       icon: 'fas:bluetooth'
     device_tracker.huawei_h10:
       icon: 'fas:globe-asia'
+    device_tracker.james_miband:
+      icon: 'mdi:google-fit'
  
 #################################################################
 #                                                               #
@@ -59,8 +61,8 @@ group:
     name: Family
     view: no
     entities:
-      - sensor.james
-      - sensor.tina
+      - device_tracker.huawei_h10
+      - device_tracker.galaxy_tina
    
 #################################################################
 #                                                               #
@@ -69,15 +71,84 @@ group:
 ################################################################# 
 
 device_tracker:
+
+####################################################
+#                                                  #
+#              Device Tracker - Ping               #
+#                                                  #
+####################################################
+
   - platform: ping
     hosts:
       james_ping: 10.0.5.2
       tina_ping: 10.0.5.1
+
+#################################################################
+#                                                               #
+#                        Input Boolean                          #
+#                                                               #
+#################################################################
+
+input_boolean:        
+  james_tts:
+    name: James TTS
+    initial: on
+    icon: mdi:delete-variant
+
+  james_tts_1:
+    name: James TTS 1
+    initial: off
+    icon: mdi:delete-variant
     
-  - platform: gpslogger
+  james_tts_2:
+    name: James TTS 2
+    initial: off
+    icon: mdi:delete-variant
     
-  - platform: bluetooth_tracker
-    request_rssi: true
+  james_tts_3:
+    name: James TTS 3
+    initial: off
+    icon: mdi:delete-variant
+    
+  james_tts_4:
+    name: James TTS 4
+    initial: off
+    icon: mdi:delete-variant
+    
+  james_tts_5:
+    name: James TTS 5
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts:
+    name: Tina TTS
+    initial: on
+    icon: mdi:delete-variant
+
+  tina_tts_1:
+    name: Tina TTS 1
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts_2:
+    name: Tina TTS 2
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts_3:
+    name: Tina TTS 3
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts_4:
+    name: Tina TTS 4
+    initial: off
+    icon: mdi:delete-variant
+    
+  tina_tts_5:
+    name: Tina TTS 5
+    initial: off
+    icon: mdi:delete-variant
     
 #################################################################
 #                                                               #
@@ -85,8 +156,14 @@ device_tracker:
 #                                                               #
 ################################################################# 
 
-
 sensor:
+
+####################################################
+#                                                  #
+#                  Sensor - MQTT                   #
+#                                                  #
+####################################################
+
 ## Trackers
   - platform: mqtt
     state_topic: 'tracker/downstairs/34:2D:24:E9:AA:9F'
@@ -118,6 +195,24 @@ sensor:
     unit_of_measurement: '%'
     name: 'James Bag'
     
+  - platform: mqtt
+    state_topic: 'tracker/downstairs/04:79:70:4A:DC:D7'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'James Phone'
+    
+  - platform: mqtt
+    state_topic: 'tracker/downstairs/CB:BA:4F:D0:D5:42'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'James MiBand'
+    
+  - platform: mqtt
+    state_topic: 'tracker/downstairs/A0:10:81:64:82:CB'
+    value_template: '{{ value_json.confidence }}'
+    unit_of_measurement: '%'
+    name: 'Tina Phone'
+    
 ## Charging State
   - platform: mqtt
     name: "James Charging"
@@ -126,6 +221,12 @@ sensor:
   - platform: mqtt
     name: "Tina Charging"
     state_topic: "tina/charging/samsung"
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
     
 ## Create Sensor for Display in UI      
   - platform: template
@@ -140,11 +241,6 @@ sensor:
         unit_of_measurement: "%"
         device_class: battery
         
-      speed_james:
-        friendly_name: "Speed James"
-        value_template: "{{ states.device_tracker.huawei_h10.attributes.speed|int }}"
-        unit_of_measurement: "km/h"
-        
       battery_tina:
         friendly_name: "Battery Tina"
         value_template: "{{ states.device_tracker.galaxy_tina.attributes.battery|int }}"
@@ -154,11 +250,6 @@ sensor:
           {% endif %}
         unit_of_measurement: "%"
         device_class: battery
-        
-      speed_tina:
-        friendly_name: "Speed Tina"
-        value_template: "{{ states.device_tracker.galaxy_s8.attributes.speed|int }}"
-        unit_of_measurement: "km/h"
         
       james:
         friendly_name: "James"
@@ -345,41 +436,99 @@ sensor:
             {{states.device_tracker.galaxy_s8.attributes.rssi}}
           {% endif %}
 
-## Waze Travel Time
-  - platform: waze_travel_time
-    name: 'Commute to Work'
-    origin: !secret home
-    destination: !secret work
-    region: 'NA'
-    
-  - platform: waze_travel_time
-    name: 'James to Home'
-    origin: device_tracker.huawei_h10
-    destination: !secret home
-    region: 'AU'
-    
-  - platform: waze_travel_time
-    name: 'Tina to Home'
-    origin: device_tracker.ha_samsung
-    destination: !secret home
-    region: 'AU'
-    
-  - platform: template
-    sensors:
+## Time when next bus is due to depart
       next_bus:
         friendly_name: Time to Next Bus
         unit_of_measurement: min
         value_template: >
           {% set min_now = states('sensor.time').split(':')[1]|int %}
           {{ 44 - min_now if min_now < 44 else 104 - min_now }}
+          
+      james_bed:
+        friendly_name: "Occupancy"
+        value_template: >-
+          {% if is_state('sensor.james_miband_status', 'Awake') %}
+            Awake
+          {% elif is_state('sensor.james_miband_status', 'Asleep') %}
+            Asleep
+          {% elif is_state('sensor.james_miband_status', 'Connected') %}
+            Awake
+          {% else %}
+            Unknown
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.james_miband_status', 'Awake') %}
+            fas:walking
+          {% elif is_state('sensor.james_miband_status', 'Asleep') %}
+            fas:bed
+          {% elif is_state('sensor.james_miband_status', 'Connected') %}
+            fas:walking
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      tina_bed:
+        friendly_name: "Occupancy"
+        value_template: >-
+          {% if is_state('sensor.james_miband_status', 'Awake') %}
+            Awake
+          {% elif is_state('sensor.james_miband_status', 'Asleep') %}
+            Asleep
+          {% elif is_state('sensor.james_miband_status', 'Connected') %}
+            Awake
+          {% else %}
+            Unknown
+          {% endif %}
+        icon_template: >-
+          {% if is_state('sensor.james_miband_status', 'Awake') %}
+            fas:walking
+          {% elif is_state('sensor.james_miband_status', 'Asleep') %}
+            fas:bed
+          {% elif is_state('sensor.james_miband_status', 'Connected') %}
+            fas:walking
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+####################################################
+#                                                  #
+#                  Sensors - Waze                  #
+#                                                  #
+####################################################
+
+## Waze Travel Time
+  - platform: waze_travel_time
+    name: 'Commute to Work'
+    origin: zone.home
+    destination: zone.powertec
+    region: 'EU'
     
+  - platform: waze_travel_time
+    name: 'James to Home'
+    origin: device_tracker.huawei_h10
+    destination: zone.home
+    region: 'EU'
+    
+  - platform: waze_travel_time
+    name: 'Tina to Home'
+    origin: device_tracker.galaxy_tina
+    destination: zone.home
+    region: 'EU'
+       
 #################################################################
 #                                                               #
-#                   Bayesian Binary Sensors                     #
+#                       Binary Sensors                          #
 #                                                               #
 ################################################################# 
 
 binary_sensor:
+
+####################################################
+#                                                  #
+#            Binary Sensors - Template             #
+#                                                  #
+####################################################
+
   - platform: template
     sensors:
       james_gps_status:
@@ -437,12 +586,12 @@ binary_sensor:
       james_ble_status:
         friendly_name: James BLE
         device_class: connectivity
-        entity_id: device_tracker.huawei_mate_10
-        value_template: "{{ is_state('device_tracker.huawei_mate_10', 'home') }}"
+        entity_id: device_tracker.james_phone
+        value_template: "{{ is_state('device_tracker.james_phone', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.huawei_mate_10', 'home') %}
+          {% if is_state('device_tracker.james_phone', 'home') %}
             mdi:bluetooth-audio
-          {% elif is_state('device_tracker.huawei_mate_10', 'not_home') %}
+          {% elif is_state('device_tracker.james_phone', 'not_home') %}
             mdi:bluetooth-audio
           {% else %}
             mdi:alert
@@ -545,12 +694,12 @@ binary_sensor:
       tina_ble_status:
         friendly_name: Tina BLE
         device_class: connectivity
-        entity_id: device_tracker.galaxy_s8
-        value_template: "{{ is_state('device_tracker.galaxy_s8', 'home') }}"
+        entity_id: device_tracker.tina_phone
+        value_template: "{{ is_state('device_tracker.tina_phone', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.galaxy_s8', 'home') %}
+          {% if is_state('device_tracker.tina_phone', 'home') %}
             mdi:bluetooth-audio
-          {% elif is_state('device_tracker.galaxy_s8', 'not_home') %}
+          {% elif is_state('device_tracker.tina_phone', 'not_home') %}
             mdi:bluetooth-audio
           {% else %}
             mdi:alert
@@ -569,77 +718,32 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-
-#################################################################
-#                                                               #
-#                        Input Boolean                          #
-#                                                               #
-#################################################################
-
-input_boolean:        
-  james_tts:
-    name: James TTS
-    initial: on
-    icon: mdi:delete-variant
-
-  james_tts_1:
-    name: James TTS 1
-    initial: off
-    icon: mdi:delete-variant
-    
-  james_tts_2:
-    name: James TTS 2
-    initial: off
-    icon: mdi:delete-variant
-    
-  james_tts_3:
-    name: James TTS 3
-    initial: off
-    icon: mdi:delete-variant
-    
-  james_tts_4:
-    name: James TTS 4
-    initial: off
-    icon: mdi:delete-variant
-    
-  james_tts_5:
-    name: James TTS 5
-    initial: off
-    icon: mdi:delete-variant
-    
-  tina_tts:
-    name: Tina TTS
-    initial: on
-    icon: mdi:delete-variant
-
-  tina_tts_1:
-    name: Tina TTS 1
-    initial: off
-    icon: mdi:delete-variant
-    
-  tina_tts_2:
-    name: Tina TTS 2
-    initial: off
-    icon: mdi:delete-variant
-    
-  tina_tts_3:
-    name: Tina TTS 3
-    initial: off
-    icon: mdi:delete-variant
-    
-  tina_tts_4:
-    name: Tina TTS 4
-    initial: off
-    icon: mdi:delete-variant
-    
-  tina_tts_5:
-    name: Tina TTS 5
-    initial: off
-    icon: mdi:delete-variant
-    
+          
+      james_miband_status:
+        friendly_name: James Mi Band
+        device_class: connectivity
+        entity_id: device_tracker.james_miband
+        value_template: "{{ is_state('device_tracker.james_miband', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.james_miband', 'home') %}
+            mdi:google-fit
+          {% elif is_state('device_tracker.james_miband', 'not_home') %}
+            mdi:google-fit
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
 #################################################################
 #                                                               #
 #                         Automations                           #
+#                                                               #
+#################################################################
+
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
+    
+#################################################################
+#                                                               #
+#                    Legacy - Automations                       #
 #                                                               #
 #################################################################
 
