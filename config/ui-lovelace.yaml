@@ -1,27 +1,27 @@
 resources:
-  - url: /local/custom_ui/dark-sky-weather-card.js?v=4
+  - url: /customcards/custom_ui/dark-sky-weather-card.js
     type: js
-  - url: /local/custom_ui/mini-media-player-bundle.js?v=0.9.8
+  - url: /customcards/custom_ui/mini-media-player-bundle.js
     type: module
-  - url: /local/custom_ui/tracker-card.js?v=0.1.5
+  - url: /customcards/custom_ui/tracker-card.js
     type: js
-  - url: /local/custom_ui/surveillance-card.js?v=0.0.1
+  - url: /customcards/custom_ui/surveillance-card.js
     type: module
-  - url: /local/custom_ui/mini-graph-card-bundle.js?v=0.1.0
+  - url: /customcards/custom_ui/mini-graph-card-bundle.js
     type: module
-  - url: /local/custom_ui/card-modder.js?v=fadc03
+  - url: /customcards/custom_ui/card-modder.js?
     type: module
-  - url: /local/custom_ui/slider-entity-row.js?v=d6da75
+  - url: /customcards/custom_ui/slider-entity-row.js
     type: js
-  - url: /local/custom_ui/card-tools.js?v=6ce5d0
+  - url: /customcards/custom_ui/card-tools.js
     type: js
-  - url: /local/custom_ui/compact-custom-header/compact-custom-header.js?v=0.2.7
+  - url: /customcards/custom_ui/compact-custom-header/compact-custom-header.js
     type: js
-  - url: /local/custom_ui/waze-card.js?v=1.1.1
+  - url: /customcards/custom_ui/waze-card.js
     type: js
-  - url: /local/custom_ui/circle-sensor-card.js?v=1.2.0
+  - url: /customcards/custom_ui/circle-sensor-card.js
     type: module
-  - url: /local/custom_ui/monster-card.js?v=0.2.3
+  - url: /customcards/custom_ui/monster-card.js
     type: js
     
 #############################################################################################################################################
