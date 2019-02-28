@@ -52,12 +52,13 @@ custom_updater:
     - cards
     - python_scripts
   component_urls:
-    #- https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
+    - https://raw.githubusercontent.com/keatontaylor/custom_components/master/custom_components.json
   card_urls:
     - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
     - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
     - https://raw.githubusercontent.com/maykar/custom-lovelace/master/tracker.json
     - https://raw.githubusercontent.com/ljmerza/waze-card/master/updater.json
+    - https://raw.githubusercontent.com/iammexx/home-assistant-config/master/ui/darksky/version.json
     
 #################################################################
 #                                                               #
