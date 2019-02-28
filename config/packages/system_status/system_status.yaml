@@ -607,24 +607,6 @@ sensor:
 
 ####################################################
 #                                                  #
-#                Sensor - Speed Test               #
-#                                                  #
-####################################################
-
-  - platform: speedtest
-    server_id: 16329
-    hour:
-    - 8
-    - 12
-    - 16
-    - 20
-    monitored_conditions:
-      - ping
-      - download
-      - upload
-
-####################################################
-#                                                  #
 #             Sensor - System Monitor              #
 #                                                  #
 ####################################################
@@ -657,6 +639,21 @@ shell_command:
   ha_start: !secret ha_start
   
   ble_monitor_restart: !secret ble_monitor_restart
+  
+#################################################################
+#                                                               #
+#                          Speed Test                           #
+#                                                               #
+################################################################# 
+  
+speedtestdotnet:
+  server_id: 16329
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
   
 #################################################################
 #                                                               #
@@ -720,16 +717,3 @@ automation:
         data:
           title: 'HA HASSIO Server'
           message: 'Warning - HA Server CPU Temp is {{states.sensor.cpu_temperature.state}}c'
-          
-## Notify if ISP Download Speed has dropped
-  - alias: Internet Download Speed Drop
-    initial_state: 'on'
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.speedtest_download
-      below: 40
-    action:
-      - service: notify.pushbullet
-        data:
-          title: 'HA HASSIO Server'
-          message: 'Warning - ISP Download Speed is {{states.sensor.speedtest_download.state}}Mbps'
