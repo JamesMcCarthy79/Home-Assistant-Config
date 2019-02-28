@@ -12,7 +12,7 @@
 
 homeassistant:
   customize:
-    sensor.disk_use_:
+    sensor.disk_use:
       friendly_name: Disk Use
     sensor.speedtest_ping:
       friendly_name: Ping
@@ -162,7 +162,7 @@ group:
     name: RPi Resources
     view: no
     entities:
-      - sensor.disk_use_
+      - sensor.disk_use
       - sensor.memory_use_percent
       - sensor.processor_use
       - sensor.cpu_temperature
@@ -582,7 +582,7 @@ sensor:
     unit_of_measurement: "hours"
 
   - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.disk_use_
+    resource: http://10.0.20.2:8123/api/states/sensor.disk_use
     name: Addon Server Disk
     value_template: '{{ value_json.state }}'
     unit_of_measurement: "GiB"
@@ -679,13 +679,13 @@ automation:
     initial_state: 'on'
     trigger:
       platform: numeric_state
-      entity_id: sensor.disk_use_
+      entity_id: sensor.disk_use
       above: 12
     action:
       - service: notify.pushbullet
         data:
           title: 'HA HASSIO Server'
-          message: 'Warning - HA Server Disk Use is {{states.sensor.disk_use_.state}}Gb'
+          message: 'Warning - HA Server Disk Use is {{states.sensor.disk_use.state}}Gb'
           
 ## Notify of High CPU Usage
   - alias: CPU Use Alarm
@@ -725,4 +725,3 @@ automation:
         data:
           title: 'HA HASSIO Server'
           message: 'Warning - ISP Download Speed is {{states.sensor.speedtest_download.state}}Mbps'
-
