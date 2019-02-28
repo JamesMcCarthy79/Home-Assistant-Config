@@ -26,6 +26,8 @@ homeassistant:
       icon: fab:empire
     sensor.hudson_mold_indicator:
       icon: fab:empire
+    sensor.kc_wind_dir:
+      icon: mdi:compass
   
 #################################################################
 #                                                               #
@@ -125,7 +127,7 @@ sensor:
   
 ## Weather Dark Sky
   - platform: darksky
-    api_key: !secret darksky
+    api_key: !secret darksky_api
     forecast:
       - 1
       - 2
@@ -223,12 +225,74 @@ sensor:
   
 ####################################################
 #                                                  #
+#                   Sensor - MQQT                  #
+#                                                  #
+####################################################
+
+  - platform: mqtt
+    name: "Rain Today"
+    state_topic: "weather/rain/today"
+    
+  - platform: mqtt
+    name: "Rain Daily Ave"
+    state_topic: "weather/rain/daily_ave"
+    
+  - platform: mqtt
+    name: "Rain Month"
+    state_topic: "weather/rain/month"
+    
+  - platform: mqtt
+    name: "Delta T"
+    state_topic: "weather/delta_t"
+    
+  - platform: mqtt
+    name: "Dewpoint"
+    state_topic: "weather/dewpoint"
+    
+  - platform: mqtt
+    name: "EVo Short"
+    state_topic: "weather/evo/short"
+    
+  - platform: mqtt
+    name: "EVo Tall"
+    state_topic: "weather/evo/tall"
+    
+  - platform: mqtt
+    name: "Pan Evap"
+    state_topic: "weather/pan/evap"
+    
+####################################################
+#                                                  #
 #                  Sensor - Season                 #
 #                                                  #
 ####################################################
 
   - platform: season
     type: astronomical
+    
+####################################################
+#                                                  #
+#                Sensor - Statistics               #
+#                                                  #
+####################################################
+
+  - platform: statistics
+    name: Stats KC Temp
+    entity_id: sensor.kc_temp
+    max_age:
+      minutes: 1440
+      
+  - platform: statistics
+    name: Stats KC Humd
+    entity_id: sensor.kc_humd
+    max_age:
+      minutes: 1440
+      
+  - platform: statistics
+    name: Stats KC Wind
+    entity_id: sensor.kc_wind
+    max_age:
+      minutes: 1440
 
 ####################################################
 #                                                  #
@@ -271,6 +335,86 @@ sensor:
       aqi:
         friendly_name: "Air Quality Index"
         value_template: "{{ states.sensor.us_air_quality_index_2.state }}"
+        
+      kc_temp:
+        friendly_name: "Kingia Castle Temperature"
+        value_template: "{{ states.sensor.temperature_158d0001f56350.state }}"
+        
+      kc_temp_min:
+        value_template: "{{ states.sensor.stats_kc_temp_mean.attributes.min_value }}"
+        unit_of_measurement: '°C'
+        
+      kc_temp_max:
+        value_template: "{{ states.sensor.stats_kc_temp_mean.attributes.max_value }}"
+        unit_of_measurement: '°C'
+        
+      kc_humd:
+        friendly_name: "Kingia Castle Humidity"
+        value_template: "{{ states.sensor.humidity_158d0001f56350.state }}"
+        
+      kc_humd_min:
+        value_template: "{{ states.sensor.stats_kc_humd_mean.attributes.min_value }}"
+        unit_of_measurement: '%'
+        
+      kc_humd_max:
+        value_template: "{{ states.sensor.stats_kc_humd_mean.attributes.max_value }}"
+        unit_of_measurement: '%'
+        
+      kc_wind:
+        value_template: "{{ states.weather.bom_gold_coast.attributes.wind_speed }}"
+        
+      kc_wind_min:
+        value_template: "{{ states.sensor.stats_kc_wind_mean.attributes.min_value }}"
+        unit_of_measurement: 'km/h'
+        
+      kc_wind_max:
+        value_template: "{{ states.sensor.stats_kc_wind_mean.attributes.max_value }}"
+        unit_of_measurement: 'km/h'
+        
+      kc_wind_bearing:
+        value_template: "{{ states.weather.bom_gold_coast.attributes.wind_bearing }}"
+        
+      kc_wind_dir:
+        friendly_name: 'Wind Direction'
+        value_template: >-
+         {% set wind_dir = states.sensor.kc_wind_bearing.state %}
+         {% if wind_dir | float<=11 %}N
+         {% elif wind_dir | float>348 %}N
+         {% elif 11 < (wind_dir|float) <=34 %}NNE
+         {% elif 34 < (wind_dir|float) <=56 %}NE
+         {% elif 56 < (wind_dir|float) <=79 %}}ENE
+         {% elif 79 < (wind_dir|float) <=101 %}E
+         {% elif 101 < (wind_dir|float) <=124 %}ESE
+         {% elif 124 < (wind_dir|float) <=146 %}SE
+         {% elif 146 < (wind_dir|float) <=169 %}SSE
+         {% elif 169 < (wind_dir|float) <=191 %}S
+         {% elif 191 < (wind_dir|float) <=214 %}SSW
+         {% elif 214 < (wind_dir|float) <=236 %}SW
+         {% elif 236 < (wind_dir|float) <=259 %}WSW
+         {% elif 259 < (wind_dir|float) <=281 %}W
+         {% elif 281 < (wind_dir|float) <=304 %}WWN
+         {% elif 304 < (wind_dir|float) <=326 %}NW
+         {% elif 326 < (wind_dir|float) <=348 %}NNW
+         {%- endif %}
+         
+      spray_condition:
+        friendly_name: 'Spray Suitability'
+        value_template: >-
+         {% set suit = states.sensor.delta_t.state %}
+         {% if suit | float<=2 %}Unsuitable
+         {% elif suit | float>2 %}Suitable
+         {% elif suit | float>8 %}Marginal
+         {% elif suit | float>10 %}Unsuitable
+         {%- endif %}
+        icon_template: >-
+         {% if is_state('sensor.spray_condition', 'Unsuitable') %}
+            mdi:hand
+         {% elif is_state('sensor.spray_condition', 'Suitable') %}
+            mdi:spray
+         {% elif is_state('sensor.spray_condition', 'Marginal') %}
+            mdi:sign-caution
+         {% endif %}
+        
 
 #################################################################
 #                                                               #
@@ -297,30 +441,13 @@ weather:
   - platform: bom
     station: IDQ60801.94592
     name: Gold Coast
-    monitored_conditions:
-      - apparent_t
-      - cloud
-      - cloud_base_m
-      - cloud_oktas
-      - cloud_type_id
-      - cloud_type
-      - delta_t
-      - gust_kmh
-      - gust_kt
-      - air_temp
-      - dewpt
-      - press
-      - press_qnh
-      - press_msl
-      - press_tend
-      - rain_trace
-      - rel_hum
-      - sea_state
-      - swell_dir_worded
-      - swell_height
-      - swell_period
-      - vis_km
-      - weather
-      - wind_dir
-      - wind_spd_kmh
-      - wind_spd_kt
+  
+####################################################
+#                                                  #
+#                Weather - Darksky                 #
+#                                                  #
+####################################################
+  
+  - platform: darksky
+    api_key: !secret darksky_api
+    mode: daily
