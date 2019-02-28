@@ -86,6 +86,7 @@ frontend:
 
 automation:
   - alias: 'Set Theme to Midnight'
+    initial_state: 'on'
     trigger:
     - platform: homeassistant
       event: start
