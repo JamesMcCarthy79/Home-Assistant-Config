@@ -39,7 +39,7 @@ sensor:
       - stargazers_count
       
   - platform: command_line
-    command: 'curl https://api.github.com/repos/bruhautomation/BRUH3-Home-Assistant-Configuration'
+    command: 'curl https://api.github.com/repos/geekofweek/homeassistant'
     name: Github Next
     scan_interval: 3600
     value_template: '{{ value_json.name }}'
@@ -47,7 +47,7 @@ sensor:
       - stargazers_count
       
   - platform: command_line
-    command: 'curl https://api.github.com/repos/stanvx/Home-Assistant-Configuration'
+    command: 'curl https://api.github.com/repos/bruhautomation/BRUH3-Home-Assistant-Configuration'
     name: Github Previous
     scan_interval: 3600
     value_template: '{{ value_json.name }}'
@@ -55,13 +55,27 @@ sensor:
       - stargazers_count
       
   - platform: command_line
-    command: 'curl https://api.github.com/repos/frenck/home-assistant-config'
+    command: 'curl https://api.github.com/repos/CCOSTAN/Home-AssistantConfig'
     name: Github Trending
     scan_interval: 3600
     value_template: '{{ value_json.name }}'
     json_attributes:
       - stargazers_count
-      
+
+####################################################
+#                                                  #
+#                   Sensor - MQQT                  #
+#                                                  #
+####################################################
+
+  - platform: mqtt
+    name: "Best Month"
+    state_topic: "github/month/best"
+    
+  - platform: mqtt
+    name: "Best Week"
+    state_topic: "github/week/best"
+    
 #################################################################
 #                                                               #
 #                            Template                           #
@@ -99,20 +113,12 @@ sensor:
         value_template: "{{ state_attr('sensor.github_trending', 'stargazers_count') }}"
         entity_id: sensor.github_trending
         
-      stars_this_week:
-        value_template: "{{ states.sensor.stars_this_week_mean.attributes.change|int }}"
-        friendly_name: 'This Week'
-        
       stars_last_week:
-        value_template: "{{ states('sensor.stars_this_week_mean.attributes.min_value')|int - states('sensor.stars_last_week_mean.attributes.min_value')|int }}"
+        value_template: "{{ states.sensor.weekly_github.attributes.last_period }}"
         friendly_name: 'Last Week'
         
-      stars_this_month:
-        value_template: "{{ states.sensor.stars_this_month_mean.attributes.change|int }}"
-        friendly_name: 'This Month'
-        
       stars_last_month:
-        value_template: "{{ states('sensor.stars_this_month_mean.attributes.min_value')|int - states('sensor.stars_last_month_mean.attributes.min_value')|int }}"
+        value_template: "{{ states.sensor.monthly_github.attributes.last_period }}"
         friendly_name: 'Last Month'
         
       git_stars_next_dif:
@@ -124,7 +130,7 @@ sensor:
         friendly_name: 'Next Target'
         
       git_stars_trend_dif:
-        value_template: "{{ states('sensor.stars')|int - states('sensor.stars_trending')|int }}"
+        value_template: "{{ states('sensor.stars_trending')|int - states('sensor.stars')|int }}"
         friendly_name: 'Trending Target'
         
 #################################################################
@@ -168,7 +174,22 @@ sensor:
     entity_id: sensor.stars_last
     max_age:
       days: 7
-      
+  
+#################################################################
+#                                                               #
+#                        Utility Meter                          #
+#                                                               #
+################################################################# 
+
+utility_meter:
+  weekly_github:
+    source: sensor.stars
+    cycle: weekly
+    
+  monthly_github:
+    source: sensor.stars
+    cycle: monthly
+    
 #################################################################
 #                                                               #
 #                         Automations                           #
