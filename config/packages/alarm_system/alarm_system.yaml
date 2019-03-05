@@ -214,15 +214,15 @@ binary_sensor:
           {% endif %}
         icon_template: >-
           {% if is_state('alarm_control_panel.ha_alarm', 'armed_home') %}
-            mdi:security-home
+            mdi:shield-home
           {% elif is_state('alarm_control_panel.ha_alarm', 'armed_away') %}
-            mdi:security-lock
+            mdi:shield-lock
           {% elif is_state('alarm_control_panel.ha_alarm', 'pending') %}
             mdi:security
           {% elif is_state('alarm_control_panel.ha_alarm', 'triggered') %}
-            mdi:security-close
+            mdi:shield-close
           {% elif is_state('alarm_control_panel.ha_alarm', 'disarmed') %}
-            mdi:security-home
+            mdi:shield-home
           {% else %}
             mdi:alert
           {% endif %}
