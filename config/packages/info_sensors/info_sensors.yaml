@@ -159,10 +159,10 @@ sensor:
         friendly_name: "Persistant Notification State"
         value_template: "{{ states.persistent_notification.notification.attributes.message.split(' ')[0] }}"
         
-      afership_delivered:
+      aftership_delivered:
         friendly_name: "Delivered Packages"
         value_template: "{{states.sensor.aftership.attributes.delivered}}"
         
-      afership_intransit:
+      aftership_intransit:
         friendly_name: "In Transit Packages"
         value_template: "{{states.sensor.aftership.attributes.intransit}}"
