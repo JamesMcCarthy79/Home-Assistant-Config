@@ -31,7 +31,7 @@ homeassistant:
       icon: mdi:domain
       friendly_name: 'Working (7 days)'
     sensor.aftership_intransit:
-      icon: fas:truck-delivery
+      icon: mdi:truck-delivery
     sensor.aftership_delivered:
       icon: mdi:package-variant  
 
