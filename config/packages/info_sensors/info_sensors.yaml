@@ -30,6 +30,10 @@ homeassistant:
     sensor.stats_work:
       icon: mdi:domain
       friendly_name: 'Working (7 days)'
+    sensor.aftership_intransit:
+      icon: fas:truck-delivery
+    sensor.aftership_delivered:
+      icon: mdi:package-variant  
 
 #################################################################
 #                                                               #
@@ -63,7 +67,7 @@ sensor:
 
 ####################################################
 #                                                  #
-#             Sensors - Alpha Vantage              #
+#               Sensors - Aftership                #
 #                                                  #
 #################################################### 
 
@@ -88,6 +92,18 @@ sensor:
       - from: BTC
         to: AUD
         name: Bitcoin
+
+####################################################
+#                                                  #
+#                Sensors - Gearbest                #
+#                                                  #
+####################################################
+
+  - platform: gearbest
+    currency: AUD
+    items:
+      - url: https://www.gearbest.com/scooters-and-wheels/pp_974668.html?wid=1349303
+        name: Xiaomi Scooter M365
         
 ####################################################
 #                                                  #
@@ -138,3 +154,15 @@ sensor:
         unit_of_measurement: 'AUD'
         value_template: "{{ states.sensor.bitcoin.state|round }}"
         friendly_name: 'Bitcoin'
+        
+      persistant_notification:
+        friendly_name: "Persistant Notification State"
+        value_template: "{{ states.persistent_notification.notification.attributes.message.split(' ')[0] }}"
+        
+      afership_delivered:
+        friendly_name: "Delivered Packages"
+        value_template: "{{states.sensor.aftership.attributes.delivered}}"
+        
+      afership_intransit:
+        friendly_name: "In Transit Packages"
+        value_template: "{{states.sensor.aftership.attributes.intransit}}"
