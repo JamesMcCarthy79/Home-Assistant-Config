@@ -4,7 +4,7 @@
 <h1 align="center">Info Sensors Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
 <hr *** </hr>
-<p align="center">This package monitors currency and some history stats around TV time and work/life balance and will be the package for any sensors that don't really fall into any other package.</p>
+<p align="center">This package monitors currency and some history stats around TV time and work/life balance and will be the package for any sensors that don't really fall into any other package. This is also now the package to track my packages :+1:</p>
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
