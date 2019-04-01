@@ -155,6 +155,102 @@ homeassistant:
     sensor.bathroom_fern_temperature:
       icon: mdi:thermometer
       friendly_name: Temperature
+      
+    sensor.frangipani_moisture:
+      icon: mdi:water
+      friendly_name: Moisture
+    sensor.frangipani_light_intensity:
+      icon: mdi:white-balance-sunny
+      friendly_name: Light Intensity
+    sensor.frangipani_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.frangipani_conductivity:
+      icon: mdi:emoticon-poop
+      friendly_name: Conductivity
+    sensor.frangipani_temperature:
+      icon: mdi:thermometer
+      friendly_name: Temperature
+      
+    sensor.fiddle_leaf_fig_moisture:
+      icon: mdi:water
+      friendly_name: Moisture
+    sensor.fiddle_leaf_fig_light_intensity:
+      icon: mdi:white-balance-sunny
+      friendly_name: Light Intensity
+    sensor.fiddle_leaf_fig_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.fiddle_leaf_fig_conductivity:
+      icon: mdi:emoticon-poop
+      friendly_name: Conductivity
+    sensor.fiddle_leaf_fig_temperature:
+      icon: mdi:thermometer
+      friendly_name: Temperature
+      
+    sensor.magnolia_bed_moisture:
+      icon: mdi:water
+      friendly_name: Moisture
+    sensor.magnolia_bed_light_intensity:
+      icon: mdi:white-balance-sunny
+      friendly_name: Light Intensity
+    sensor.magnolia_bed_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.magnolia_bed_conductivity:
+      icon: mdi:emoticon-poop
+      friendly_name: Conductivity
+    sensor.magnolia_bed_temperature:
+      icon: mdi:thermometer
+      friendly_name: Temperature
+      
+    sensor.peace_lily_moisture:
+      icon: mdi:water
+      friendly_name: Moisture
+    sensor.peace_lily_light_intensity:
+      icon: mdi:white-balance-sunny
+      friendly_name: Light Intensity
+    sensor.peace_lily_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.peace_lily_conductivity:
+      icon: mdi:emoticon-poop
+      friendly_name: Conductivity
+    sensor.peace_lily_temperature:
+      icon: mdi:thermometer
+      friendly_name: Temperature
+      
+    sensor.proteas_moisture:
+      icon: mdi:water
+      friendly_name: Moisture
+    sensor.proteas_light_intensity:
+      icon: mdi:white-balance-sunny
+      friendly_name: Light Intensity
+    sensor.proteas_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.proteas_conductivity:
+      icon: mdi:emoticon-poop
+      friendly_name: Conductivity
+    sensor.proteas_temperature:
+      icon: mdi:thermometer
+      friendly_name: Temperature
+      
+    sensor.red_maple_moisture:
+      icon: mdi:water
+      friendly_name: Moisture
+    sensor.red_maple_light_intensity:
+      icon: mdi:white-balance-sunny
+      friendly_name: Light Intensity
+    sensor.red_maple_battery:
+      icon: mdi:battery
+      friendly_name: Battery
+    sensor.red_maple_conductivity:
+      icon: mdi:emoticon-poop
+      friendly_name: Conductivity
+    sensor.red_maple_temperature:
+      icon: mdi:thermometer
+      friendly_name: Temperature
 
 #################################################################
 #                                                               #
@@ -561,28 +657,190 @@ sensor:
     unit_of_measurement: "lx"
     
   - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.bathroom_fern_moisture
+    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_moisture
     name: Bathroom Fern Moisture
     value_template: '{{ value_json.state }}'
     unit_of_measurement: "%"
   - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.bathroom_fern_conductivity
+    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_conductivity
     name: Bathroom Fern Conductivity
     value_template: '{{ value_json.state }}'
     unit_of_measurement: "µS/cm"
   - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.bathroom_fern_battery
+    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_battery
     name: Bathroom Fern Battery
     device_class: battery
     value_template: '{{ value_json.state }}'
     unit_of_measurement: "%"
   - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.bathroom_fern_temperature
+    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_temperature
     name: Bathroom Fern Temperature
     value_template: '{{ value_json.state }}'
     unit_of_measurement: "°C"
   - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.bathroom_fern_light_intensity
+    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_light_intensity
     name: Bathroom Fern Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "lx"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_moisture
+    name: Frangipani Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_conductivity
+    name: Frangipani Conductivity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_battery
+    name: Frangipani Battery
+    device_class: battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_temperature
+    name: Frangipani Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "°C"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_light_intensity
+    name: Frangipani Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "lx"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.magnolia_bed_moisture
+    name: Magnolia Bed Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.magnolia_bed_conductivity
+    name: Magnolia Bed Conductivity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.magnolia_bed_battery
+    name: Magnolia Bed Battery
+    device_class: battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.magnolia_bed_temperature
+    name: Magnolia Bed Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "°C"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.magnolia_bed_light_intensity
+    name: Magnolia Bed Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "lx"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_moisture
+    name: Fiddle Leaf Fig Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_conductivity
+    name: Fiddle Leaf Fig Conductivity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_battery
+    name: Fiddle Leaf Fig Battery
+    device_class: battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_temperature
+    name: Fiddle Leaf Fig Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "°C"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_light_intensity
+    name: Fiddle Leaf Fig Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "lx"
+    
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_moisture
+    name: Peace Lily Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_conductivity
+    name: Peace Lily Conductivity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_battery
+    name: Peace Lily Battery
+    device_class: battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_temperature
+    name: Peace Lily Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "°C"
+  - platform: rest
+    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_light_intensity
+    name: Peace Lily Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "lx"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.proteas_moisture
+    name: Proteas Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.proteas_conductivity
+    name: Proteas Conductivity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.proteas_battery
+    name: Proteas Battery
+    device_class: battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.proteas_temperature
+    name: Proteas Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "°C"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.proteas_light_intensity
+    name: Proteas Light Intensity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "lx"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_moisture
+    name: Red Maple Moisture
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_conductivity
+    name: Red Maple Conductivity
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "µS/cm"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_battery
+    name: Red Maple Battery
+    device_class: battery
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_temperature
+    name: Red Maple Temperature
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "°C"
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_light_intensity
+    name: Red Maple Light Intensity
     value_template: '{{ value_json.state }}'
     unit_of_measurement: "lx"
