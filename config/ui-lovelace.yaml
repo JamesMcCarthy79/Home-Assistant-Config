@@ -4214,6 +4214,22 @@ views:
                   entity: sensor.aftership
                   style: {color: white, left: 28%, top: 92%}
                   
+                - type: state-icon
+                  entity: sensor.aftership_intransit
+                  style: {color: white, left: 50%, top: 92%}
+                  
+                - type: state-label
+                  entity: sensor.aftership_intransit
+                  style: {color: white, left: 55%, top: 92%}
+                  
+                - type: state-icon
+                  entity: sensor.aftership_delivered
+                  style: {color: white, left: 80%, top: 92%}
+                  
+                - type: state-label
+                  entity: sensor.aftership_delivered
+                  style: {color: white, left: 85%, top: 92%}
+                  
             style:                 
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
@@ -4404,10 +4420,10 @@ views:
                   entity: sensor.bougainvillea_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/bougainvillea_8.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4) 
@@ -4465,10 +4481,10 @@ views:
                   entity: sensor.veggie_patch_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/veggie_patch_7.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -4526,15 +4542,137 @@ views:
                   entity: sensor.front_door_plant_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/front_plant_1.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
               overflow: hidden
 
+#################################################################
+#                                                               #
+#                       Fiddle Leaf Fig                         #
+#                                                               #
+#################################################################              
+
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/garden/fiddle_3.png
+              title: Fiddle Leaf Fig
+              elements:
+                - type: state-icon
+                  entity: sensor.fiddle_leaf_fig_moisture
+                  style: {color: white, left: 10%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.fiddle_leaf_fig_moisture
+                  style: {color: white, left: 10%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.fiddle_leaf_fig_temperature
+                  style: {color: white, left: 30%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.fiddle_leaf_fig_temperature
+                  style: {color: white, left: 30%, top: 85%}
+   
+                - type: state-icon
+                  entity: sensor.fiddle_leaf_fig_conductivity
+                  style: {color: white, left: 50%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.fiddle_leaf_fig_conductivity
+                  style: {color: white, left: 50%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.fiddle_leaf_fig_light_intensity
+                  style: {color: white, left: 70%, top: 60%}
+  
+                - type: state-label
+                  entity: sensor.fiddle_leaf_fig_light_intensity
+                  style: {color: white, left: 70%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.fiddle_leaf_fig_battery
+                  style: {color: white, left: 90%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.fiddle_leaf_fig_battery
+                  style: {color: white, left: 90%, top: 85%}
+            style:                 
+              background-image: url("/local/lovelace/garden/fiddle_3.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 65px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+#################################################################
+#                                                               #
+#                          Peace Lily                           #
+#                                                               #
+#################################################################              
+
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/garden/peace_lily_2.png
+              title: Peace Lily
+              elements:
+                - type: state-icon
+                  entity: sensor.peace_lily_moisture
+                  style: {color: white, left: 10%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.peace_lily_moisture
+                  style: {color: white, left: 10%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.peace_lily_temperature
+                  style: {color: white, left: 30%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.peace_lily_temperature
+                  style: {color: white, left: 30%, top: 85%}
+   
+                - type: state-icon
+                  entity: sensor.peace_lily_conductivity
+                  style: {color: white, left: 50%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.peace_lily_conductivity
+                  style: {color: white, left: 50%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.peace_lily_light_intensity
+                  style: {color: white, left: 70%, top: 60%}
+  
+                - type: state-label
+                  entity: sensor.peace_lily_light_intensity
+                  style: {color: white, left: 70%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.peace_lily_battery
+                  style: {color: white, left: 90%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.peace_lily_battery
+                  style: {color: white, left: 90%, top: 85%}
+            style:                 
+              background-image: url("/local/lovelace/garden/peace_lily_2.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 65px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
 #################################################################
 #                                                               #
 #                         Star Jasmine                          #
@@ -4590,10 +4728,10 @@ views:
                   entity: sensor.star_jasmine_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/star_jasmine_4.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -4651,10 +4789,10 @@ views:
                   entity: sensor.top_bed_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/top_bed_5.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -4662,7 +4800,7 @@ views:
 
 #################################################################
 #                                                               #
-#                         Indoor Plant                          #
+#                            Dracaena                           #
 #                                                               #
 #################################################################
               
@@ -4712,10 +4850,132 @@ views:
                   entity: sensor.dracaena_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/dracaena_6.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+#################################################################
+#                                                               #
+#                           Frangipani                          #
+#                                                               #
+#################################################################
+              
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/garden/frangipani_2.png
+              title: Red Dragon Frangipani
+              elements:
+                - type: state-icon
+                  entity: sensor.frangipani_moisture
+                  style: {color: white, left: 10%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.frangipani_moisture
+                  style: {color: white, left: 10%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.frangipani_temperature
+                  style: {color: white, left: 30%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.frangipani_temperature
+                  style: {color: white, left: 30%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.frangipani_conductivity
+                  style: {color: white, left: 50%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.frangipani_conductivity
+                  style: {color: white, left: 50%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.frangipani_light_intensity
+                  style: {color: white, left: 70%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.frangipani_light_intensity
+                  style: {color: white, left: 70%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.frangipani_battery
+                  style: {color: white, left: 90%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.frangipani_battery
+                  style: {color: white, left: 90%, top: 85%}
+            style:                 
+              background-image: url("/local/lovelace/garden/frangipani_2.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 65px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+#################################################################
+#                                                               #
+#                             Proteas                           #
+#                                                               #
+#################################################################
+              
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/garden/protea_2.png
+              title: Proteas
+              elements:
+                - type: state-icon
+                  entity: sensor.proteas_moisture
+                  style: {color: white, left: 10%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.proteas_moisture
+                  style: {color: white, left: 10%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.proteas_temperature
+                  style: {color: white, left: 30%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.proteas_temperature
+                  style: {color: white, left: 30%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.proteas_conductivity
+                  style: {color: white, left: 50%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.proteas_conductivity
+                  style: {color: white, left: 50%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.proteas_light_intensity
+                  style: {color: white, left: 70%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.proteas_light_intensity
+                  style: {color: white, left: 70%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.proteas_battery
+                  style: {color: white, left: 90%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.proteas_battery
+                  style: {color: white, left: 90%, top: 85%}
+            style:                 
+              background-image: url("/local/lovelace/garden/protea_2.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -4776,10 +5036,10 @@ views:
                   entity: sensor.chilli_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/chilli_4.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -4837,10 +5097,10 @@ views:
                   entity: sensor.citrus_bed_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/citrus_6.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -4856,7 +5116,7 @@ views:
             card:
               type: picture-elements
               image: /local/lovelace/garden/fern_4.png
-              title: Bathroom Fern
+              title: Outdoor Table Fern
               elements:
                 - type: state-icon
                   entity: sensor.bathroom_fern_moisture
@@ -4898,10 +5158,132 @@ views:
                   entity: sensor.bathroom_fern_battery
                   style: {color: white, left: 90%, top: 85%}
             style:                 
-              background-image: url("/local/lovelace/cardbackK.png")
+              background-image: url("/local/lovelace/garden/fern_4.png")
               background-repeat: no-repeat
               background-color: rgba(50,50,50,0.3)
-              background-size: 100% 68px
+              background-size: 100% 65px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+#################################################################
+#                                                               #
+#                         Magnolia Bed                          #
+#                                                               #
+#################################################################              
+
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/garden/magnolia_2.png
+              title: Magnolia Bed
+              elements:
+                - type: state-icon
+                  entity: sensor.magnolia_bed_moisture
+                  style: {color: white, left: 10%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.magnolia_bed_moisture
+                  style: {color: white, left: 10%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.magnolia_bed_temperature
+                  style: {color: white, left: 30%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.magnolia_bed_temperature
+                  style: {color: white, left: 30%, top: 85%}
+   
+                - type: state-icon
+                  entity: sensor.magnolia_bed_conductivity
+                  style: {color: white, left: 50%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.magnolia_bed_conductivity
+                  style: {color: white, left: 50%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.magnolia_bed_light_intensity
+                  style: {color: white, left: 70%, top: 60%}
+  
+                - type: state-label
+                  entity: sensor.magnolia_bed_light_intensity
+                  style: {color: white, left: 70%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.magnolia_bed_battery
+                  style: {color: white, left: 90%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.magnolia_bed_battery
+                  style: {color: white, left: 90%, top: 85%}
+            style:                 
+              background-image: url("/local/lovelace/garden/magnolia_2.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 65px
+              border-radius: 20px
+              border: solid 1px rgba(100,100,100,0.3)
+              box-shadow: 3px 3px rgba(0,0,0,0.4)
+              overflow: hidden
+              
+#################################################################
+#                                                               #
+#                           Red Maple                           #
+#                                                               #
+#################################################################              
+
+          - type: custom:card-modder
+            card:
+              type: picture-elements
+              image: /local/lovelace/garden/maple_4.png
+              title: Red Maple
+              elements:
+                - type: state-icon
+                  entity: sensor.red_maple_moisture
+                  style: {color: white, left: 10%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.red_maple_moisture
+                  style: {color: white, left: 10%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.red_maple_temperature
+                  style: {color: white, left: 30%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.red_maple_temperature
+                  style: {color: white, left: 30%, top: 85%}
+   
+                - type: state-icon
+                  entity: sensor.red_maple_conductivity
+                  style: {color: white, left: 50%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.red_maple_conductivity
+                  style: {color: white, left: 50%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.red_maple_light_intensity
+                  style: {color: white, left: 70%, top: 60%}
+  
+                - type: state-label
+                  entity: sensor.red_maple_light_intensity
+                  style: {color: white, left: 70%, top: 85%}
+
+                - type: state-icon
+                  entity: sensor.red_maple_battery
+                  style: {color: white, left: 90%, top: 60%}
+
+                - type: state-label
+                  entity: sensor.red_maple_battery
+                  style: {color: white, left: 90%, top: 85%}
+            style:                 
+              background-image: url("/local/lovelace/garden/maple_4.png")
+              background-repeat: no-repeat
+              background-color: rgba(50,50,50,0.3)
+              background-size: 100% 65px
               border-radius: 20px
               border: solid 1px rgba(100,100,100,0.3)
               box-shadow: 3px 3px rgba(0,0,0,0.4)
@@ -5209,3 +5591,4 @@ views:
                 - sensor.anniversary
                 - sensor.xmas_day
                 - sensor.days_left
+
