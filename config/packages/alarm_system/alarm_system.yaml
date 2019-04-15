@@ -13,7 +13,7 @@
 homeassistant:
   customize:
     alarm_control_panel.ha_alarm:
-      icon: mdi:security-home
+      icon: mdi:shield-home
     binary_sensor.door_window_sensor_158d00022016b2:
       friendly_name: Front Door Sensor
       device_class: door
