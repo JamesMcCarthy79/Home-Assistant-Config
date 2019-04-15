@@ -14,34 +14,37 @@ homeassistant:
   customize:
 ## Light Switches
     switch.front_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Front Light"
     switch.lounge_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Lounge Light"
     switch.hall_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Hall Light"
     switch.kitchen_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Kitchen Light"
     switch.dining_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Dining Light"
     switch.patio_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Patio Light"
     switch.master_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Master Light"
+    switch.master_wardrobe_switch:
+      icon: 'fas:lightbulb'
+      friendly_name: "Walk In Light"
     switch.jackson_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Jackson Light"
     switch.hudson_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Hudson Light"
     switch.bathroom_light_switch:
-      icon: 'mdi:lightbulb'
+      icon: 'fas:lightbulb'
       friendly_name: "Light"
     switch.bathroom_fan_switch:
       icon: 'mdi:fan'
@@ -63,6 +66,11 @@ homeassistant:
       friendly_name: PC Back Light
     switch.plug_158d0001f24e2b:
       friendly_name: Entertainment Lighting
+    group.downstairs_lights:
+      icon: 'fas:lightbulb'
+    group.upstairs_lights:
+      icon: 'fas:lightbulb'
+      
       
 #################################################################
 #                                                               #
@@ -76,12 +84,18 @@ group:
     view: no
     entities:
       - switch.lounge_light_switch
-      - input_number.lounge_brightness
       - switch.kitchen_light_switch
       - switch.dining_light_switch
-      - input_number.dining_brightness
       - switch.playroom_light_switch
       - switch.laundry_light_switch
+      
+  living room lights:
+    name: Living Room Lights
+    view: no
+    entities:
+      - switch.lounge_light_switch
+      - switch.kitchen_light_switch
+      - switch.dining_light_switch
       
   outside lights:
     name: Outside Lights
@@ -90,12 +104,11 @@ group:
       - switch.patio_light_switch
       - light.entrance_bulb
       
-  master bedroom lights:
-    name: Master Bedroom Lights
+  bedroom lights:
+    name: Bedroom Lights
     view: no
     entities:
       - switch.master_light_switch
-      - input_number.bedroom_brightness
       - switch.master_wardrobe_switch
       
   bathroom switches:
@@ -103,7 +116,6 @@ group:
     view: no
     entities:
       - switch.bathroom_light_switch
-      - input_number.bedroom_brightness
       - switch.bathroom_fan_switch
       - switch.bathroom_heat_switch
       
@@ -251,18 +263,6 @@ light:
     token: !secret xiaomi_bulb_5_token
     model: philips.light.bulb
 
-####################################################
-#                                                  #
-#                Lights - Yeelight                 #
-#                                                  #
-####################################################
-
-  - platform: yeelight
-    devices:
-      10.0.50.7:
-        name: Patio
-        model: color1
-
 #################################################################
 #                                                               #
 #                            Scenes                             #
@@ -273,11 +273,11 @@ scene:
 
   - name: Livingroom normal
     entities:
-      light.lounge_bulb:
+      light.lounge:
         state: on
         transition: 2
         brightness_pct: 75
-        color_temp: 333
+        color_temp: 280
       light.dining_bulb:
         state: on
         transition: 2
@@ -286,11 +286,11 @@ scene:
           
   - name: Livingroom dim
     entities:
-      light.lounge_bulb:
+      light.lounge:
         state: on
         transition: 2
         brightness_pct: 15
-        color_temp: 333
+        color_temp: 280
       light.dining_bulb:
         state: on
         transition: 2
@@ -325,7 +325,7 @@ scene:
         transition: 2
         brightness_pct: 100
         color_temp: 175
-      light.lounge_bulb:
+      light.lounge:
         state: on
         transition: 2
         brightness_pct: 100
@@ -341,6 +341,33 @@ scene:
         state: on
         brightness: 255
         rgb_color: [0,0,255]
+        
+  - name: Office Test
+    entities:
+      light.gateway_light_7811dcfd812f:
+        state: on
+        brightness: 255
+        rgb_color: [255,0,0]
+      light.gateway_light_7811dce13ad6:
+        state: on
+        brightness: 255
+        rgb_color: [255,0,0]
+        
+#################################################################
+#                                                               #
+#                           Yeelight                            #
+#                                                               #
+#################################################################
+
+yeelight:
+  devices:
+    10.0.50.7:
+      name: Patio
+      model: color1
+        
+    10.0.50.2:
+      name: Lounge
+      model: color1
 
 #################################################################
 #                                                               #
