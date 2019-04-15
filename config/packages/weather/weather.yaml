@@ -129,11 +129,11 @@ sensor:
   - platform: darksky
     api_key: !secret darksky_api
     forecast:
+      - 0
       - 1
       - 2
       - 3
       - 4
-      - 5
     monitored_conditions:
       - icon
       - summary
@@ -157,8 +157,8 @@ sensor:
       - daily_summary
       - pressure
       - visibility
-    update_interval:
-      minutes: 5
+    scan_interval:
+      minutes: 15
 
 ####################################################
 #                                                  #
