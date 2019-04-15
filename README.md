@@ -22,9 +22,9 @@
 <p>
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v2.0.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v2.0.2-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/ide"><img src="https://img.shields.io/badge/IDE-v0.8.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v2.0.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v3.0.0-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0-5294E2.svg"/>  
 </p>
 <p>
