@@ -17,14 +17,6 @@ homeassistant:
   whitelist_external_dirs:
     - /config
 
-####################################################
-#                                                  #
-#                      Cloud                       #
-#                                                  #
-####################################################
-
-cloud:
-
 #################################################################
 #                                                               #
 #                        Customizations                         #
@@ -75,16 +67,8 @@ api:
 
 http:
   api_password: !secret http_password
-  trusted_networks:
-    - trusted networks here
-  cors_allowed_origins:
-    - cors allowed here
 
 updater:
-
-discovery:
-  ignore:
-    - samsung_tv
     
 conversation:
 
@@ -94,13 +78,16 @@ logbook:
 
 map:
 
+discovery:
+  ignore:
+    - yeelight
+    
 ####################################################
 #                                                  #
 #                    Includes                      #
 #                                                  #
 ####################################################
 
-#input_select: !include includes/input_select.yaml
 python_script: !include_dir_named python_scripts
 script: !include includes/scripts.yaml
 switch: !include includes/switches.yaml
