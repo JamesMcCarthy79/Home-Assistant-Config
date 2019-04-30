@@ -21,6 +21,15 @@ notify:
   - name: Galaxy_Tab_A_(2016)
     platform: lannouncer
     host: !secret galaxy_tab
+
+####################################################
+#                                                  #
+#               Notify - FCM-Android               #
+#                                                  #
+####################################################
+    
+  - name: Android
+    platform: fcm-android
     
 ####################################################
 #                                                  #
