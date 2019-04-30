@@ -15,13 +15,13 @@ homeassistant:
     alarm_control_panel.ha_alarm:
       icon: mdi:shield-home
     binary_sensor.door_window_sensor_158d00022016b2:
-      friendly_name: Front Door Sensor
+      friendly_name: Front Door
       device_class: door
     binary_sensor.door_window_sensor_158d000225432d:
-      friendly_name: Patio Door Sensor
+      friendly_name: Patio Door
       device_class: door
     binary_sensor.door_window_sensor_158d0001e73c09:
-      friendly_name: Back Door Sensor
+      friendly_name: Back Door
       device_class: door
     binary_sensor.door_window_sensor_158d0001e73af4:
       friendly_name: Kitchen Window
@@ -133,7 +133,7 @@ group:
 
 alarm_control_panel:
   - platform: manual_mqtt
-    #code: !secret alarm_code
+    code: !secret alarm_code
     state_topic: home/alarm
     command_topic: home/alarm/set
     
