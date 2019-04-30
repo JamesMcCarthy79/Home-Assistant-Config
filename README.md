@@ -40,11 +40,11 @@
 
 | Components - Standard | Components - Custom |Network Devices | Automations | Scripts |
 |:---------------------:|:-------------------:|:--------------:|:-----------:|:-------:|
-| 92                    |6                    |83              |39           |34       |
+| 92                    |9                    |83              |39           |34       |
 
 | Binary Sensors | Cameras | Fans | Lights | Media Players | Plants | Sensors | Switches |
 |:--------------:|:-------:|:----:|:------:|:-------------:|:------:|:-------:|:--------:|
-|155             |8        |5     |9       |10             |16      |496      |64        |
+|168             |8        |5     |10       |10             |16      |754      |64        |
 
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Xiaomi%20Logo.png" width="150"/>
 
@@ -54,7 +54,7 @@
 
 | Philips Light Bulb | Yi Light Bulb | Plant Sensors | Temp/Hum Sensors | Smart Plugs | Appliances | Lamps |
 |:------------------:|:-------------:|:-------------:|:----------------:|:-----------:|:----------:|:-----:| 
-|5                   |4              |10             |7                 |7            |4           |1      |
+|5                   |4              |16             |7                 |7            |4           |1      |
 
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Sonoff%20Logo.png" width="180"/>
 
@@ -76,6 +76,12 @@ The wall switches are not actually used they are brand new in box they don't fit
 
 <hr --- </hr> 
 
+<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Nabu%20Casa.jpg" width="100"/>
+
+| Lovelace Mode | Resources | Views | Webhooks |
+|:-------------:|:---------:|:-----:|:--------:|
+|YAML           |22         |17     | 11       |
+
 | [Lovelace Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Transparent%20Lovelace) |
 | --- |
 | [<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Transparent%20Lovelace/11.%20Settings.png"/>](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Transparent%20Lovelace) |
@@ -96,7 +102,7 @@ The wall switches are not actually used they are brand new in box they don't fit
 <hr --- </hr>
 
 <h3 align="left">Home Assistant Hardware</h3> 
-<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/nuc_logo.png" width="110"/>
+<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/i7.png" width="95"/>
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Rasp%20Pi%20Logo.png" width="200"/> 
 <p align="left">There is nothing special regarding the hardware used when I start to notice available hardware resources becoming exhausted I will look to move to another platform. 
 <hr --- </hr>
@@ -107,7 +113,9 @@ The wall switches are not actually used they are brand new in box they don't fit
 
 <h3 align="left">Home Assistant Software</h3>
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/HA%20logo%202%20.png" width="200"/>
-<p align="left">Lately I have started to notice the automations becoming sluggish and this is due to the resources of my HA Server becoming occupied with background tasks like device tracking and sensor polling. With the recent release of HASSIO on its new operating system HASSOS I decided now was a good time to upgrade and splinter my automations off my main HA instance onto a dedicated RPi. Splitting my HA tasks across 3 Pis has made a huge difference and myautomations have become snappy again whilst all my sensors can run in the background not effecting the performance of my essential tasks. I used the MQTT Statestream to keep all the Pis insync with each other. I have used Hassio with standard Add-On store packages which include Appdaemon for use with HaDashboard, Mosquitto Broker for MQTT Broker & Node-RED for more complex Automation flows. I have now installed a stand alone RPi with Grafana, InfluxDB and Node-RED to take the strain off resources on my HA device and to also have access to a larger hdd for database storage. My config in this repo is a combination of all my Pi's as if you were running it all of the same device to save confusion message me if you would like more info on how I splintered off the automations to a dedicated device.</p>
+<p align="left">Lately I have started to notice the automations becoming sluggish and this is due to the resources of my HA Server becoming occupied with background tasks like device tracking and sensor polling. With the recent release of HASSIO on its new operating system HASSOS I decided now was a good time to upgrade and splinter my automations off my main HA instance onto a dedicated RPi. Splitting my HA tasks across 3 Pis has made a huge difference and my automations have become snappy again whilst all my sensors can run in the background not effecting the performance of my essential tasks. I used the MQTT Statestream to keep all the Pis insync with each other. I have used Hassio with standard Add-On store packages which include Appdaemon for use with HaDashboard, Mosquitto Broker for MQTT Broker & Node-RED for more complex Automation flows. I have now installed a stand alone RPi with Grafana, InfluxDB and Node-RED to take the strain off resources on my HA device and to also have access to a larger hdd for database storage. My config in this repo is a combination of all my Pi's as if you were running it all of the same device to save confusion message me if you would like more info on how I splintered off the automations to a dedicated device.</p>
+
+<p align="left">*** I have now moved across to using an Intel Nuc i7 running Ubuntu Server with HASSIO in a docker. This move has been amazing and the install from start to finsih took no more then 30-40mins. I still run seperate pi for MQTT Broker but have moved my Automations onto the Nuc with Node-RED also running in a docker container. My reboot times are down to 55s even with alot more being thrown at it great move and I highly recommend it if you can justify outlaying more coin for you HA server.</p>
 <p align="center">
   <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/HA%20Device%20Topo%203.png"/>
 </p>
