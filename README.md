@@ -76,9 +76,9 @@ The wall switches are not actually used they are brand new in box they don't fit
 
 <hr --- </hr> 
 
-| [Lovelace Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Lovelace%20Screenshots%20(Rounded%20Cards)) |
+| [Lovelace Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Transparent%20Lovelace) |
 | --- |
-| [<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Lovelace%20Screenshots%20(Rounded%20Cards)/01.%20Home_1.png"/>](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Lovelace%20Screenshots) |
+| [<img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Transparent%20Lovelace/11.%20Settings.png"/>](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Transparent%20Lovelace) |
 
 | [Home Assistant Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/HA%20Screenshots) |
 | --- |
