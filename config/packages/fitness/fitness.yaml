@@ -57,11 +57,6 @@ sensor:
     state_topic: "steps/james/huawei"
     
   - platform: mqtt
-    name: "James BMI"
-    state_topic: "bmi/james/huawei"
-    unit_of_measurement: "BMI"
-    
-  - platform: mqtt
     name: "James Heart Rate"
     state_topic: "hr/james/huawei"
     unit_of_measurement: "bpm"
@@ -80,6 +75,10 @@ sensor:
     name: "Tina Steps"
     state_topic: "steps/tina/samsung"
     unit_of_measurement: "steps"
+    
+  - platform: mqtt
+    name: "Target Steps"
+    state_topic: "target/steps"
 
 ####################################################
 #                                                  #
@@ -92,10 +91,40 @@ sensor:
       target_weight:
         friendly_name: Target Weight
         entity_id: sensor.weight
-        value_template: "{{ 85 - states.sensor.weight.state|int }}"
+        value_template: "{{ 80 - states.sensor.weight.state|int }}"
+
+      james_bmi:
+        friendly_name: "James BMI"
+        #entity_id: sensor.weight
+        value_template: "{{ ((states.sensor.weight.state | float) / (((states.sensor.height.state) | float /100)*((states.sensor.height.state) | float /100))) | round(1)}}"
+        unit_of_measurement: 'BMI'
         
       body_fat:
         friendly_name: Body Fat
-        entity_id: sensor.weight
+        #entity_id: sensor.weight
         value_template: "{{ ((1.20 * states.sensor.james_bmi.state|int) + (0.23 * 39) - 16.2)|round }}"
         unit_of_measurement: '%'
+        
+      average_steps:
+        friendly_name: Average Steps
+        entity_id: sensor.weekly_steps
+        value_template: "{{ (states.sensor.weekly_steps.state|int / 7)|round(0) }}"
+        
+#################################################################
+#                                                               #
+#                        Utility Meter                          #
+#                                                               #
+################################################################# 
+
+utility_meter:
+  daily_steps:
+    source: sensor.james_steps
+    cycle: daily
+    
+  monthly_steps:
+    source: sensor.james_steps
+    cycle: monthly
+    
+  weekly_steps:
+    source: sensor.james_steps
+    cycle: weekly
