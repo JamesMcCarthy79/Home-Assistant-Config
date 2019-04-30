@@ -12,6 +12,28 @@
 
 homeassistant:
   customize:
+    sensor.stars:
+      icon: 'fab:github'     
+    sensor.subscribers:
+      icon: 'far:eye'   
+    sensor.forks:
+      icon: 'mdi:directions-fork'    
+    sensor.issues:
+      icon: 'fas:exclamation-circle' 
+    sensor.git_stars_next_dif:
+      icon: 'fas:arrow-circle-right'
+    sensor.git_stars_last_dif:
+      icon: 'fas:arrow-circle-left'   
+    sensor.git_stars_trend_dif:
+      icon: 'mdi:trending-up'
+    sensor.monthly_github:
+      friendly_name: 'This Month'
+    sensor.stars_last_month:
+      icon: 'mdi:counter' 
+    sensor.weekly_github:
+      friendly_name: 'This Week'
+    sensor.stars_last_week:
+      icon: 'mdi:counter' 
       
 #################################################################
 #                                                               #
@@ -64,7 +86,7 @@ sensor:
 
 ####################################################
 #                                                  #
-#                   Sensor - MQQT                  #
+#                   Sensor - MQTT                  #
 #                                                  #
 ####################################################
 
@@ -88,30 +110,37 @@ sensor:
       issues:
         value_template: "{{ state_attr('sensor.github', 'open_issues') }}"
         entity_id: sensor.github
-
+        friendly_name: 'Issues'
+        
       subscribers:
         value_template: "{{ state_attr('sensor.github', 'subscribers_count') }}"
         entity_id: sensor.github
-
+        friendly_name: 'Subscribers'
+        
       forks:
         value_template: "{{ state_attr('sensor.github', 'forks') }}"
         entity_id: sensor.github
+        friendly_name: 'Forks'
 
       stars:
         value_template: "{{ state_attr('sensor.github', 'stargazers_count') }}"
         entity_id: sensor.github
+        friendly_name: 'Stars'
         
       stars_next:
         value_template: "{{ state_attr('sensor.github_next', 'stargazers_count') }}"
         entity_id: sensor.github_next
+        friendly_name: 'Next Target'
         
       stars_previous:
         value_template: "{{ state_attr('sensor.github_previous', 'stargazers_count') }}"
         entity_id: sensor.github_previous
+        friendly_name: 'Last Target'
         
       stars_trending:
         value_template: "{{ state_attr('sensor.github_trending', 'stargazers_count') }}"
         entity_id: sensor.github_trending
+        friendly_name: 'Trending'
         
       stars_last_week:
         value_template: "{{ states.sensor.weekly_github.attributes.last_period }}"
@@ -123,15 +152,15 @@ sensor:
         
       git_stars_next_dif:
         value_template: "{{ states('sensor.stars_next')|int - states('sensor.stars')|int }}"
-        friendly_name: 'Next Target' 
+        friendly_name: 'Next' 
         
       git_stars_last_dif:
         value_template: "{{ states('sensor.stars')|int - states('sensor.stars_previous')|int }}"
-        friendly_name: 'Next Target'
+        friendly_name: 'Last'
         
       git_stars_trend_dif:
         value_template: "{{ states('sensor.stars_trending')|int - states('sensor.stars')|int }}"
-        friendly_name: 'Trending Target'
+        friendly_name: 'Trending'
         
 #################################################################
 #                                                               #
