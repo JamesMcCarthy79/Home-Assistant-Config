@@ -366,6 +366,36 @@ sensor:
           {% else %}
             mdi:alert
           {% endif %}
+
+      trash:
+        friendly_name: Trash
+        entity_id: sensor.trash_day
+        value_template: >-
+          {% if is_state('sensor.trash_day', 'yes') %}
+            100
+          {% elif is_state('sensor.trash_day', 'no') %}
+            0
+          {% endif %}
+          
+      recycle:
+        friendly_name: Recycle
+        entity_id: sensor.recycle_day
+        value_template: >-
+          {% if is_state('sensor.recycle_day', 'yes') %}
+            100
+          {% elif is_state('sensor.recycle_day', 'no') %}
+            0
+          {% endif %}
+          
+      green:
+        friendly_name: Green
+        entity_id: sensor.green_day
+        value_template: >-
+          {% if is_state('sensor.green_day', 'yes') %}
+            100
+          {% elif is_state('sensor.green_day', 'no') %}
+            0
+          {% endif %}  
           
 #################################################################
 #                                                               #
