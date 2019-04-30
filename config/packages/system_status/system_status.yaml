@@ -411,9 +411,9 @@ binary_sensor:
         value_template: "{{ is_state('device_tracker.alarm_panel', 'home') }}"
         icon_template: >-
           {% if is_state('device_tracker.alarm_panel', 'home') %}
-            mdi:security-home
+            mdi:shield-home
           {% else %}
-            mdi:security-home
+            mdi:shield-home
           {% endif %}
       kitchen_dashboard:
         friendly_name: Kitchen Dashboard
@@ -603,8 +603,470 @@ sensor:
     resource: http://10.0.20.2:8123/api/states/sensor.cpu_temperature
     name: Addon Server CPU Temp
     value_template: '{{ value_json.state }}'
+    unit_of_measurement: "°C"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.disk_use
+    name: Garden Server Disk
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "GiB"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.memory_use_percent
+    name: Garden Server Memory
+    value_template: '{{ value_json.state }}'
     unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.processor_use
+    name: Garden Server CPU
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "%"
+    
+  - platform: rest
+    resource: http://10.0.20.5:8123/api/states/sensor.cpu_temperature
+    name: Garden Server CPU Temp
+    value_template: '{{ value_json.state }}'
+    unit_of_measurement: "°C"
 
+####################################################
+#                                                  #
+#                  Sensor - SNMP                   #
+#                                                  #
+#################################################### 
+
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.2.3.1.6.65536
+    name: Mikrotik Used Memory
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.1.3.0
+    name: Mikrotik Uptime
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.4.1.2021.11.10.0
+    name: Mikrotik CPU Load
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.1 
+    name: Mikrotik CPU Load 0
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.2 
+    name: Mikrotik CPU Load 1
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.3 
+    name: Mikrotik CPU Load 2
+
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.4
+    name: Mikrotik CPU Load 3
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.5 
+    name: Mikrotik CPU Load 4
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.6
+    name: Mikrotik CPU Load 5
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.7
+    name: Mikrotik CPU Load 6
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.8 
+    name: Mikrotik CPU Load 7
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.2.1.25.3.3.1.2.9
+    name: Mikrotik CPU Load 8
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.4.1.14988.1.1.3.11.0
+    name: Mikrotik CPU Temp
+    
+  - platform: snmp
+    host: 10.0.0.1
+    baseoid: 1.3.6.1.4.1.14988.1.1.3.12.0
+    name: Mikrotik Power Consumption
+
+  - platform: snmp
+    host: 10.0.0.10
+    baseoid: 1.3.6.1.4.1.27586.7.4.1.1.0
+    name: AP1 CPU
+    
+  - platform: snmp
+    host: 10.0.0.10
+    baseoid: 1.3.6.1.4.1.27586.7.4.1.2.0
+    name: AP1 Memory
+    
+  - platform: snmp
+    host: 10.0.0.10
+    baseoid: 1.3.6.1.4.1.27586.7.4.2.2.1.11.1
+    name: AP1 Clients
+    
+  - platform: snmp
+    host: 10.0.0.10
+    baseoid: 1.3.6.1.4.1.27586.7.1.1.8.0
+    name: AP1 Uptime
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}
+    
+  - platform: snmp
+    host: 10.0.0.10
+    baseoid: 1.3.6.1.4.1.27586.7.1.3.1.1.5.1
+    name: AP1 Channel
+    
+  - platform: snmp
+    host: 10.0.0.10
+    baseoid: 1.3.6.1.4.1.27586.7.1.3.1.1.6.1
+    name: AP1 TX Power
+    
+  - platform: snmp
+    host: 10.0.0.10
+    baseoid: 1.3.6.1.4.1.27586.7.4.5.1.7.1
+    name: AP1 Noise Floor
+    
+  - platform: snmp
+    host: 10.0.0.10
+    baseoid: 1.3.6.1.4.1.27586.7.4.5.1.5.1
+    name: AP1 Busy
+
+  - platform: snmp
+    host: 10.0.0.9
+    baseoid: 1.3.6.1.4.1.27586.7.4.1.1.0
+    name: AP2 CPU
+    
+  - platform: snmp
+    host: 10.0.0.9
+    baseoid: 1.3.6.1.4.1.27586.7.4.1.2.0
+    name: AP2 Memory
+    
+  - platform: snmp
+    host: 10.0.0.9
+    baseoid: 1.3.6.1.4.1.27586.7.4.2.2.1.11.1
+    name: AP2 Clients
+    
+  - platform: snmp
+    host: 10.0.0.9
+    baseoid: 1.3.6.1.4.1.27586.7.1.1.8.0
+    name: AP2 Uptime
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}
+    
+  - platform: snmp
+    host: 10.0.0.9
+    baseoid: 1.3.6.1.4.1.27586.7.1.3.1.1.5.1
+    name: AP2 Channel
+    
+  - platform: snmp
+    host: 10.0.0.9
+    baseoid: 1.3.6.1.4.1.27586.7.1.3.1.1.6.1
+    name: AP2 TX Power
+    
+  - platform: snmp
+    host: 10.0.0.9
+    baseoid: 1.3.6.1.4.1.27586.7.4.5.1.7.1
+    name: AP2 Noise Floor
+    
+  - platform: snmp
+    host: 10.0.0.9
+    baseoid: 1.3.6.1.4.1.27586.7.4.5.1.5.1
+    name: AP2 Busy
+    
+  - platform: snmp
+    host: 10.0.0.11
+    baseoid: 1.3.6.1.2.1.1.5.0
+    name: '5G Name'
+    
+  - platform: snmp
+    host: 10.0.0.11
+    baseoid: 1.2.840.10036.3.1.2.1.3.10
+    name: '5G Model'
+    
+  - platform: snmp
+    host: 10.0.0.11
+    baseoid: 1.3.6.1.4.1.41112.1.4.1.1.6.1
+    name: '5G TX Power'  
+    
+  - platform: snmp
+    host: 10.0.0.11
+    baseoid: 1.3.6.1.4.1.41112.1.4.1.1.4.1
+    name: '5G Channel'
+   
+  - platform: snmp
+    host: 10.0.0.11
+    baseoid: 1.3.6.1.2.1.1.3.0
+    name: '5G Uptime'
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}    
+
+  - platform: snmp
+    host: 10.0.0.12
+    baseoid: 1.3.6.1.2.1.1.5.0
+    name: '5G TV Name'
+    
+  - platform: snmp
+    host: 10.0.0.12
+    baseoid: 1.2.840.10036.3.1.2.1.3.10
+    name: '5G TV Model'
+    
+  - platform: snmp
+    host: 10.0.0.12
+    baseoid: 1.3.6.1.4.1.41112.1.4.1.1.6.1
+    name: '5G TV TX Power'  
+   
+  - platform: snmp
+    host: 10.0.0.12
+    baseoid: 1.3.6.1.2.1.1.3.0
+    name: '5G TV Uptime'
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%} 
+        
+  - platform: snmp
+    host: 10.0.0.12
+    baseoid: 1.3.6.1.4.1.41112.1.4.7.1.17.1.120.138.32.16.33.109 
+    name: 'BH Main Capacity'
+    
+  - platform: snmp
+    host: 10.0.0.12
+    baseoid: 1.3.6.1.4.1.41112.1.4.7.1.18.1.120.138.32.16.33.109
+    name: 'BH TV Capacity'
+    
+  - platform: snmp
+    host: 10.0.0.12
+    baseoid: 1.3.6.1.4.1.41112.1.4.7.1.15.1.120.138.32.16.33.109
+    name: '5G TV Link Uptime' 
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}
+    
+  - platform: snmp
+    host: 10.0.0.13
+    baseoid: 1.3.6.1.2.1.1.5.0
+    name: '5G US Name'
+    
+  - platform: snmp
+    host: 10.0.0.13
+    baseoid: 1.2.840.10036.3.1.2.1.3.10
+    name: '5G US Model'
+    
+  - platform: snmp
+    host: 10.0.0.13
+    baseoid: 1.3.6.1.4.1.41112.1.4.1.1.6.1
+    name: '5G US TX Power'  
+   
+  - platform: snmp
+    host: 10.0.0.13
+    baseoid: 1.3.6.1.2.1.1.3.0
+    name: '5G US Uptime'
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%} 
+        
+  - platform: snmp
+    host: 10.0.0.13
+    baseoid: 1.3.6.1.4.1.41112.1.4.7.1.18.1.120.138.32.16.33.109
+    name: 'BH US Capacity'
+    
+  - platform: snmp
+    host: 10.0.0.13
+    baseoid: 1.3.6.1.4.1.41112.1.4.7.1.15.1.120.138.32.16.33.109
+    name: '5G US Link Uptime' 
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}
+    
 ####################################################
 #                                                  #
 #             Sensor - System Monitor              #
@@ -614,11 +1076,420 @@ sensor:
   - platform: systemmonitor
     resources:
     - type: disk_use_percent
-      arg: "/"
+      arg: '/'
     - type: memory_use_percent
     - type: processor_use
     - type: last_boot
 
+####################################################
+#                                                  #
+#                  Sensors - MQTT                  #
+#                                                  #
+####################################################
+
+  - platform: mqtt
+    name: "NAS1 VOL1"
+    state_topic: "nas1v1"
+    
+  - platform: mqtt
+    name: "NAS1 VOL2"
+    state_topic: "nas1v2"
+    
+  - platform: mqtt
+    name: "NAS2 VOL1"
+    state_topic: "nas2v1"
+    
+  - platform: mqtt
+    name: "NAS2 VOL2"
+    state_topic: "nas2v2"
+    
+#################################################################
+#                                                               #
+#                       Template Sensors                        #
+#                                                               #
+################################################################# 
+   
+  - platform: template
+    sensors:
+## Mikrotik Memory
+      mikrotik_memory:
+        value_template: '{{ ((states.sensor.mikrotik_used_memory.state|int / 960000) * 100)|round(2) }}'
+        friendly_name: 'Memory'
+        
+      core_router_state:
+        friendly_name: Core Router
+        entity_id: device_tracker.core_router
+        value_template: >-
+          {% if is_state('device_tracker.core_router', 'home') %}
+            100
+          {% elif is_state('device_tracker.core_router', 'not_home') %}
+            0
+          {% endif %}
+          
+      core_switch_state:
+        friendly_name: Core Switch
+        entity_id: device_tracker.core_switch
+        value_template: >-
+          {% if is_state('device_tracker.core_switch', 'home') %}
+            100
+          {% elif is_state('device_tracker.core_switch', 'not_home') %}
+            0
+          {% endif %}
+          
+      wifi_bridge_state:
+        friendly_name: Wi-Fi Bridge
+        entity_id: device_tracker.wifi_bridge
+        value_template: >-
+          {% if is_state('device_tracker.wifi_bridge', 'home') %}
+            100
+          {% elif is_state('device_tracker.wifi_bridge', 'not_home') %}
+            0
+          {% endif %}
+          
+      downstairs_ap_state:
+        friendly_name: Altai AP Downstairs
+        entity_id: device_tracker.downstairs_ap
+        value_template: >-
+          {% if is_state('device_tracker.downstairs_ap', 'home') %}
+            100
+          {% elif is_state('device_tracker.downstairs_ap', 'not_home') %}
+            0
+          {% endif %}
+          
+      upstairs_ap_state:
+        friendly_name: Altai AP Upstairs
+        entity_id: device_tracker.upstairs_ap
+        value_template: >-
+          {% if is_state('device_tracker.upstairs_ap', 'home') %}
+            100
+          {% elif is_state('device_tracker.upstairs_ap', 'not_home') %}
+            0
+          {% endif %}
+          
+      upstairs_switch_state:
+        friendly_name: Upstairs Switch
+        entity_id: device_tracker.upstairs_switch
+        value_template: >-
+          {% if is_state('device_tracker.upstairs_switch', 'home') %}
+            100
+          {% elif is_state('device_tracker.upstairs_switch', 'not_home') %}
+            0
+          {% endif %}
+          
+      5g_ac_main_state:
+        friendly_name: 5G AC Main
+        entity_id: device_tracker.5g_ac_main
+        value_template: >-
+          {% if is_state('device_tracker.5g_ac_main', 'home') %}
+            100
+          {% elif is_state('device_tracker.5g_ac_main', 'not_home') %}
+            0
+          {% endif %}
+          
+      5g_ac_upstairs_state:
+        friendly_name: 5G AC Upstairs
+        entity_id: device_tracker.5g_ac_upstairs
+        value_template: >-
+          {% if is_state('device_tracker.5g_ac_upstairs', 'home') %}
+            100
+          {% elif is_state('device_tracker.5g_ac_upstairs', 'not_home') %}
+            0
+          {% endif %}
+          
+      rpi_state:
+        friendly_name: HA Server
+        entity_id: device_tracker.rpi
+        value_template: >-
+          {% if is_state('device_tracker.rpi', 'home') %}
+            100
+          {% elif is_state('device_tracker.rpi', 'not_home') %}
+            0
+          {% endif %}
+          
+      garden_pi_state:
+        friendly_name: HA Garden Server
+        entity_id: device_tracker.garden_pi
+        value_template: >-
+          {% if is_state('device_tracker.garden_pi', 'home') %}
+            100
+          {% elif is_state('device_tracker.garden_pi', 'not_home') %}
+            0
+          {% endif %}
+          
+      alarm_panel_state:
+        friendly_name: Alarm Panel
+        entity_id: device_tracker.alarm_panel
+        value_template: >-
+          {% if is_state('device_tracker.alarm_panel', 'home') %}
+            100
+          {% elif is_state('device_tracker.alarm_panel', 'not_home') %}
+            0
+          {% endif %}
+          
+      kitchen_dashboard_state:
+        friendly_name: Kitchen Dashboard
+        entity_id: device_tracker.kitchen_dashboard
+        value_template: >-
+          {% if is_state('device_tracker.kitchen_dashboard', 'home') %}
+            100
+          {% elif is_state('device_tracker.kitchen_dashboard', 'not_home') %}
+            0
+          {% endif %}
+          
+      upstairs_dashboard_state:
+        friendly_name: Upstairs Dashboard
+        entity_id: device_tracker.upstairs_dashboard
+        value_template: >-
+          {% if is_state('device_tracker.upstairs_dashboard', 'home') %}
+            100
+          {% elif is_state('device_tracker.upstairs_dashboard', 'not_home') %}
+            0
+          {% endif %}
+          
+      addon_pi_state:
+        friendly_name: HA Addon Server
+        entity_id: device_tracker.addon_pi
+        value_template: >-
+          {% if is_state('device_tracker.addon_pi', 'home') %}
+            100
+          {% elif is_state('device_tracker.addon_pi', 'not_home') %}
+            0
+          {% endif %}
+          
+      automation_pi_state:
+        friendly_name: HA Automation Server
+        entity_id: device_tracker.automation_pi
+        value_template: >-
+          {% if is_state('device_tracker.automation_pi', 'home') %}
+            100
+          {% elif is_state('device_tracker.automation_pi', 'not_home') %}
+            0
+          {% endif %}
+          
+      hdhomerun_state:
+        friendly_name: HRHomeRun
+        entity_id: device_tracker.hdhomerun
+        value_template: >-
+          {% if is_state('device_tracker.hdhomerun', 'home') %}
+            100
+          {% elif is_state('device_tracker.hdhomerun', 'not_home') %}
+            0
+          {% endif %}
+          
+      media_kodi_4k_state:
+        friendly_name: Media 4K Kodi
+        entity_id: device_tracker.media_kodi_4k
+        value_template: >-
+          {% if is_state('device_tracker.media_kodi_4k', 'home') %}
+            100
+          {% elif is_state('device_tracker.media_kodi_4k', 'not_home') %}
+            0
+          {% endif %}
+          
+      bedroom_kodi_state:
+        friendly_name: Bedroom Kodi
+        entity_id: device_tracker.bedroom_kodi
+        value_template: >-
+          {% if is_state('device_tracker.bedroom_kodi', 'home') %}
+            100
+          {% elif is_state('device_tracker.bedroom_kodi', 'not_home') %}
+            0
+          {% endif %}
+          
+      apple_tv_state:
+        friendly_name: Apple TV
+        entity_id: device_tracker.appletv
+        value_template: >-
+          {% if is_state('device_tracker.appletv', 'home') %}
+            100
+          {% elif is_state('device_tracker.appletv', 'not_home') %}
+            0
+          {% endif %}
+          
+      media_tv_state:
+        friendly_name: Media 4K TV
+        entity_id: device_tracker.media_tv
+        value_template: >-
+          {% if is_state('device_tracker.media_tv', 'home') %}
+            100
+          {% elif is_state('device_tracker.media_tv', 'not_home') %}
+            0
+          {% endif %}
+          
+      bedroom_tv_state:
+        friendly_name: Bedroom TV
+        entity_id: device_tracker.bedroom_tv
+        value_template: >-
+          {% if is_state('device_tracker.bedroom_tv', 'home') %}
+            100
+          {% elif is_state('device_tracker.bedroom_tv', 'not_home') %}
+            0
+          {% endif %}
+
+      patio_kodi_state:
+        friendly_name: Patio Kodi
+        entity_id: device_tracker.patio_kodi
+        value_template: >-
+          {% if is_state('device_tracker.patio_kodi', 'home') %}
+            100
+          {% elif is_state('device_tracker.patio_kodi', 'not_home') %}
+            0
+          {% endif %}
+          
+      5g_ac_media_tv_state:
+        friendly_name: 5G AC Media TV
+        entity_id: device_tracker.5g_ac_media_tv
+        value_template: >-
+          {% if is_state('device_tracker.5g_ac_media_tv', 'home') %}
+            100
+          {% elif is_state('device_tracker.5g_ac_media_tv', 'not_home') %}
+            0
+          {% endif %}
+          
+      nas_movies_state:
+        friendly_name: NAS Movies
+        entity_id: device_tracker.nas_movies
+        value_template: >-
+          {% if is_state('device_tracker.nas_movies', 'home') %}
+            100
+          {% elif is_state('device_tracker.nas_movies', 'not_home') %}
+            0
+          {% endif %}
+          
+      nas_tv_state:
+        friendly_name: NAS TV Shows
+        entity_id: device_tracker.nas_tv
+        value_template: >-
+          {% if is_state('device_tracker.nas_tv', 'home') %}
+            100
+          {% elif is_state('device_tracker.nas_tv', 'not_home') %}
+            0
+          {% endif %}
+          
+      smart_things_hub_state:
+        friendly_name: Smart Things Hub
+        entity_id: device_tracker.smart_things_hub
+        value_template: >-
+          {% if is_state('device_tracker.smart_things_hub', 'home') %}
+            100
+          {% elif is_state('device_tracker.smart_things_hub', 'not_home') %}
+            0
+          {% endif %}
+          
+      alexa_main_state:
+        friendly_name: Alexa Main
+        entity_id: device_tracker.44650df543ec
+        value_template: >-
+          {% if is_state('device_tracker.44650df543ec', 'home') %}
+            100
+          {% elif is_state('device_tracker.44650df543ec', 'not_home') %}
+            0
+          {% endif %}
+          
+      alexa_bedroom_state:
+        friendly_name: Alexa Bedroom
+        entity_id: device_tracker.f081735c7ffc
+        value_template: >-
+          {% if is_state('device_tracker.f081735c7ffc', 'home') %}
+            100
+          {% elif is_state('device_tracker.f081735c7ffc', 'not_home') %}
+            0
+          {% endif %}
+          
+      main_pc_state:
+        friendly_name: Main PC
+        entity_id: device_tracker.8c89a5ef4d19
+        value_template: >-
+          {% if is_state('device_tracker.8c89a5ef4d19', 'home') %}
+            100
+          {% elif is_state('device_tracker.8c89a5ef4d19', 'not_home') %}
+            0
+          {% endif %}
+          
+      printer_state:
+        friendly_name: Printer
+        entity_id: device_tracker.printer
+        value_template: >-
+          {% if is_state('device_tracker.printer', 'home') %}
+            100
+          {% elif is_state('device_tracker.printer', 'not_home') %}
+            0
+          {% endif %}
+          
+      xiaomi_gateway_state:
+        friendly_name: Xiaomi Gateway
+        entity_id: device_tracker.xiaomi_gateway
+        value_template: >-
+          {% if is_state('device_tracker.xiaomi_gateway', 'home') %}
+            100
+          {% elif is_state('device_tracker.xiaomi_gateway', 'not_home') %}
+            0
+          {% endif %}
+          
+      xiaomi_gateway_2_state:
+        friendly_name: Xiaomi Gateway 2
+        entity_id: device_tracker.xiaomi_gateway_2
+        value_template: >-
+          {% if is_state('device_tracker.xiaomi_gateway_2', 'home') %}
+            100
+          {% elif is_state('device_tracker.xiaomi_gateway_2', 'not_home') %}
+            0
+          {% endif %}
+          
+      mikrotik_cpu:
+        friendly_name: CPU Temp
+        entity_id: sensor.mikrotik_cpu_temp
+        value_template: '{{ (states.sensor.mikrotik_cpu_temp.state|int / 10) }}'
+        unit_of_measurement: '°C'
+        
+      mikrotik_power:
+        friendly_name: Consumption
+        entity_id: sensor.mikrotik_power_consumption
+        value_template: '{{ (states.sensor.mikrotik_power_consumption.state|int / 10) }}'
+        unit_of_measurement: 'W'
+        
+      ap1_freq:
+        friendly_name: AP1 Frequency
+        entity_id: sensor.ap1_channel
+        value_template: >-
+          {% if is_state('sensor.ap1_channel', '1') %}
+            2412
+          {% elif is_state('sensor.ap1_channel', '6') %}
+            2437
+          {% elif is_state('sensor.ap1_channel', '11') %}
+            2462
+          {% endif %}
+          
+      ap2_freq:
+        friendly_name: AP2 Frequency
+        entity_id: sensor.ap2_channel
+        value_template: >-
+          {% if is_state('sensor.ap2_channel', '1') %}
+            2412
+          {% elif is_state('sensor.ap2_channel', '6') %}
+            2437
+          {% elif is_state('sensor.ap2_channel', '11') %}
+            2462
+          {% endif %}
+
+      main_capacity:
+        friendly_name: Main Capacitiy
+        entity_id: sensor.bh_main_capacity
+        value_template: '{{ (states.sensor.bh_main_capacity.state|int /1000) }}'
+        unit_of_measurement: 'Mbps'
+        
+      tv_capacity:
+        friendly_name: TV Capacitiy
+        entity_id: sensor.bh_tv_capacity
+        value_template: '{{ (states.sensor.bh_tv_capacity.state|int /1000) }}'
+        unit_of_measurement: 'Mbps'
+        
+      us_capacity:
+        friendly_name: Upstairs Capacitiy
+        entity_id: sensor.bh_us_capacity
+        value_template: '{{ (states.sensor.bh_us_capacity.state|int /1000) }}'
+        unit_of_measurement: 'Mbps'
+        
 ####################################################
 #                                                  #
 #                 Sensor - Uptime                  #
@@ -636,9 +1507,6 @@ sensor:
 ################################################################# 
 
 shell_command:
-  ha_start: !secret ha_start
-  
-  ble_monitor_restart: !secret ble_monitor_restart
   
 #################################################################
 #                                                               #
@@ -662,7 +1530,7 @@ speedtestdotnet:
 ################################################################# 
 
 system_health:
-          
+        
 #################################################################
 #                                                               #
 #                          Automations                          #
@@ -717,3 +1585,16 @@ automation:
         data:
           title: 'HA HASSIO Server'
           message: 'Warning - HA Server CPU Temp is {{states.sensor.cpu_temperature.state}}c'
+          
+## Notify if ISP Download Speed has dropped
+#  - alias: Internet Download Speed Drop
+#    initial_state: 'on'
+#    trigger:
+#      platform: numeric_state
+#      entity_id: sensor.speedtest_download
+#      below: 40
+#    action:
+#      - service: notify.pushbullet
+#        data:
+#          title: 'HA HASSIO Server'
+#          message: 'Warning - ISP Download Speed is {{states.sensor.speedtest_download.state}}Mbps'
