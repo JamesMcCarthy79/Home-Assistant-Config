@@ -232,7 +232,7 @@ sensor:
   - platform: template
     sensors:
       battery_james:
-        friendly_name: "Battery James"
+        friendly_name: "Battery"
         value_template: "{{ states.device_tracker.huawei_h10.attributes.battery|int }}"
         icon_template: >-
           {% if is_state('sensor.james_charging', 'Charging') %}
@@ -242,7 +242,7 @@ sensor:
         device_class: battery
         
       battery_tina:
-        friendly_name: "Battery Tina"
+        friendly_name: "Battery"
         value_template: "{{ states.device_tracker.galaxy_tina.attributes.battery|int }}"
         icon_template: >-
           {% if is_state('sensor.tina_charging', 'Charging') %}
@@ -341,7 +341,7 @@ sensor:
           {% elif is_state('device_tracker.huawei_h10', 'Italy') %}
             mdi:airplane
           {% else %}
-            mdi:walk
+            mdi:car
           {% endif %}
           
       tina:
@@ -532,8 +532,7 @@ binary_sensor:
   - platform: template
     sensors:
       james_gps_status:
-        friendly_name: James GPS
-        device_class: connectivity
+        friendly_name: GPS
         entity_id: device_tracker.huawei_h10
         value_template: "{{ is_state('device_tracker.huawei_h10', 'home') }}"
         icon_template: >-
@@ -584,8 +583,7 @@ binary_sensor:
           {% endif %}
           
       james_ble_status:
-        friendly_name: James BLE
-        device_class: connectivity
+        friendly_name: BLE
         entity_id: device_tracker.james_phone
         value_template: "{{ is_state('device_tracker.james_phone', 'home') }}"
         icon_template: >-
@@ -598,8 +596,7 @@ binary_sensor:
           {% endif %}
           
       james_keys_status:
-        friendly_name: James Keys
-        device_class: connectivity
+        friendly_name: Keys
         entity_id: device_tracker.james_keys
         value_template: "{{ is_state('device_tracker.james_keys', 'home') }}"
         icon_template: >-
@@ -612,8 +609,7 @@ binary_sensor:
           {% endif %}
           
       james_car_status:
-        friendly_name: James Car
-        device_class: connectivity
+        friendly_name: Car
         entity_id: device_tracker.james_car
         value_template: "{{ is_state('device_tracker.james_car', 'home') }}"
         icon_template: >-
@@ -626,8 +622,7 @@ binary_sensor:
           {% endif %}
           
       james_bag_status:
-        friendly_name: James Bag
-        device_class: connectivity
+        friendly_name: Bag
         entity_id: device_tracker.james_bag
         value_template: "{{ is_state('device_tracker.james_bag', 'home') }}"
         icon_template: >-
@@ -640,8 +635,7 @@ binary_sensor:
           {% endif %}
           
       tina_gps_status:
-        friendly_name: Tina GPS
-        device_class: connectivity
+        friendly_name: GPS
         entity_id: device_tracker.galaxy_tina
         value_template: "{{ is_state('device_tracker.galaxy_tina', 'home') }}"
         icon_template: >-
@@ -692,8 +686,7 @@ binary_sensor:
           {% endif %}
           
       tina_ble_status:
-        friendly_name: Tina BLE
-        device_class: connectivity
+        friendly_name: BLE
         entity_id: device_tracker.tina_phone
         value_template: "{{ is_state('device_tracker.tina_phone', 'home') }}"
         icon_template: >-
@@ -706,8 +699,7 @@ binary_sensor:
           {% endif %}
           
       tina_keys_status:
-        friendly_name: Tina Keys
-        device_class: connectivity
+        friendly_name: Keys
         entity_id: device_tracker.tina_keys
         value_template: "{{ is_state('device_tracker.tina_keys', 'home') }}"
         icon_template: >-
@@ -720,8 +712,7 @@ binary_sensor:
           {% endif %}
           
       james_miband_status:
-        friendly_name: James Mi Band
-        device_class: connectivity
+        friendly_name: Mi Band
         entity_id: device_tracker.james_miband
         value_template: "{{ is_state('device_tracker.james_miband', 'home') }}"
         icon_template: >-
