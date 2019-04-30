@@ -189,7 +189,7 @@ sensor:
 ## Robovac Things
       robovac_status:
         friendly_name: "Status"
-        value_template: "Status: {{ states.vacuum.robovac.attributes.status }}"
+        value_template: "{{ states.vacuum.robovac.attributes.status }}"
         icon_template: >-
           {% if is_state('sensor.robovac_status', 'Cleaning') %}
             mdi:robot-vacuum
@@ -210,7 +210,7 @@ sensor:
         friendly_name: "Battery"
         unit_of_measurement: "%"
         device_class: battery
-        value_template: "Battery: {{ states.vacuum.robovac.attributes.battery_level }}"
+        value_template: "{{ states.vacuum.robovac.attributes.battery_level }}"
       robovac_cleaning_time:
         friendly_name: "Cleaning Time"
         unit_of_measurement: "Mins"
@@ -230,7 +230,61 @@ sensor:
       robovac_cleaning_count:
         friendly_name: "Cleaning Count"
         value_template: "{{ states.vacuum.robovac.attributes.cleaning_count }}"
+      robovac_cleaned_area:
+        friendly_name: "Cleaned Area"
+        value_template: "{{ states.vacuum.robovac.attributes.cleaned_area }}"
+      robovac_total_clean_time:
+        friendly_name: "Total Clean Time"
+        unit_of_measurement: "Mins"
+        value_template: "{{ states.vacuum.robovac.attributes.total_cleaning_time }}"
+      robovac_sensor_dirty:
+        friendly_name: "Dirty Sensor"
+        unit_of_measurement: "Hrs"
+        value_template: "{{ states.vacuum.robovac.attributes.sensor_dirty_left }}"
         
+      appliance_last_week:
+        value_template: "{{ states.sensor.weekly_appliance.attributes.last_period }}"
+        friendly_name: 'Last Week'
+        
+      appliance_last_month:
+        value_template: "{{ states.sensor.monthly_appliance.attributes.last_period }}"
+        friendly_name: 'Last Month'
+          
+      washer_door_status:
+        friendly_name: Door
+        entity_id: binary_sensor.door_window_sensor_158d0001e73a83
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e73a83', 'on') %}
+            Open
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e73a83', 'off') %}
+            Closed
+          {% endif %}
+          
+      dryer_door_status:
+        friendly_name: Door
+        entity_id: binary_sensor.door_window_sensor_158d0001e73bc5
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d0001e73bc5', 'on') %}
+            Open
+          {% elif is_state('binary_sensor.door_window_sensor_158d0001e73bc5', 'off') %}
+            Closed
+          {% endif %}
+        
+#################################################################
+#                                                               #
+#                        Utility Meter                          #
+#                                                               #
+################################################################# 
+
+utility_meter:
+  weekly_appliance:
+    source: sensor.appliance_consumption
+    cycle: weekly
+    
+  monthly_appliance:
+    source: sensor.appliance_consumption
+    cycle: monthly
+    
 #################################################################
 #                                                               #
 #                           Vacuums                             #
@@ -256,7 +310,7 @@ vacuum:
 #                                                               #
 #################################################################
 
-## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##  
+## All automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
 
 #################################################################
 #                                                               #
