@@ -35,10 +35,46 @@ group:
 #################################################################
 
 sensor: 
+
+####################################################
+#                                                  #
+#                  Sensors - MQTT                  #
+#                                                  #
+####################################################
+
   - platform: mqtt
     name: "Coffee Water Level Monitor"
     state_topic: "cmwaterlevel"
     
+  - platform: mqtt
+    name: "Coffee Pods Organic"
+    state_topic: "cmpodsorg"
+    
+  - platform: mqtt
+    name: "Coffee Pods Caramel"
+    state_topic: "cmpodscar"
+    
+  - platform: mqtt
+    name: "Used Coffee Pod Level Monitor"
+    state_topic: "cmpodsused"
+
+#################################################################
+#                                                               #
+#                       Template Sensors                        #
+#                                                               #
+################################################################# 
+   
+  - platform: template
+    sensors:
+## Water Level
+      coffee_water_level_perc:
+        value_template: '{{ 100 - ((states.sensor.coffee_water_level_monitor.state|int / 22) * 100)|round(0) }}'
+        friendly_name: 'Memory'
+        
+      used_coffee_pod_level_perc:
+        value_template: '{{ 100 - ((states.sensor.used_coffee_pod_level_monitor.state|int / 14) * 100)|round(0) }}'
+        friendly_name: 'Memory'
+        
 #################################################################
 #                                                               #
 #                         Automations                           #
