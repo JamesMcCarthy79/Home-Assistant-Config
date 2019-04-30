@@ -24,7 +24,7 @@ homeassistant:
       friendly_name: "Hall Light"
     switch.kitchen_light_switch:
       icon: 'fas:lightbulb'
-      friendly_name: "Kitchen Light"
+      friendly_name: "Kitchen"
     switch.dining_light_switch:
       icon: 'fas:lightbulb'
       friendly_name: "Dining Light"
@@ -70,7 +70,21 @@ homeassistant:
       icon: 'fas:lightbulb'
     group.upstairs_lights:
       icon: 'fas:lightbulb'
-      
+    light.lounge_bulb:
+      icon: 'fas:lightbulb'
+    light.dining_bulb:
+      icon: 'fas:lightbulb'
+    switch.laundry_light_switch:
+      icon: 'fas:lightbulb'
+      friendly_name: 'Laundry'
+    switch.playroom_light_switch:
+      icon: 'fas:lightbulb'
+      friendly_name: 'Playroom'
+    light.entrance_bulb:
+      icon: 'fas:lightbulb' 
+    light.patio_bulb:
+      icon: 'fas:lightbulb' 
+          
       
 #################################################################
 #                                                               #
@@ -140,7 +154,6 @@ group:
 binary_sensor:
   - platform: template
     sensors:
-## Door Sensors
       lights:
         friendly_name: Lights
         device_class: light
@@ -150,6 +163,20 @@ binary_sensor:
           {% if is_state('group.downstairs_lights', 'on') %}
             fas:lightbulb
           {% elif is_state('group.downstairs_lights', 'off') %}
+            fas:lightbulb       
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+      outside_lights:
+        friendly_name: Lights
+        device_class: light
+        entity_id: group.outside_lights
+        value_template: "{{ is_state('group.outside_lights', 'on') }}"
+        icon_template: >-
+          {% if is_state('group.outside_lights', 'on') %}
+            fas:lightbulb
+          {% elif is_state('group.outside_lights', 'off') %}
             fas:lightbulb       
           {% else %}
             mdi:alert
@@ -240,7 +267,7 @@ light:
     model: philips.light.bulb
   
   - platform: xiaomi_miio
-    name: Lounge Bulb
+    name: Spare Bulb - 1
     host: !secret xiaomi_bulb_2
     token: !secret xiaomi_bulb_2_token
     model: philips.light.bulb
@@ -273,7 +300,7 @@ scene:
 
   - name: Livingroom normal
     entities:
-      light.lounge:
+      light.lounge_bulb:
         state: on
         transition: 2
         brightness_pct: 75
@@ -286,7 +313,7 @@ scene:
           
   - name: Livingroom dim
     entities:
-      light.lounge:
+      light.lounge_bulb:
         state: on
         transition: 2
         brightness_pct: 15
@@ -325,7 +352,7 @@ scene:
         transition: 2
         brightness_pct: 100
         color_temp: 175
-      light.lounge:
+      light.lounge_bulb:
         state: on
         transition: 2
         brightness_pct: 100
@@ -362,11 +389,11 @@ scene:
 yeelight:
   devices:
     10.0.50.7:
-      name: Patio
+      name: Patio Bulb
       model: color1
         
     10.0.50.2:
-      name: Lounge
+      name: Lounge Bulb
       model: color1
 
 #################################################################
@@ -376,6 +403,68 @@ yeelight:
 #################################################################
 
 ## Some automations for this package have now been moved to Node-RED please see Node-Red Flows folder within this package for more infomation! ##
+
+automation:
+  - alias: Lounge Light - Adjust Brightness
+    trigger:
+      platform: state
+      entity_id: input_number.lounge_brightness
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.lounge_bulb
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Dining Light - Adjust Brightness
+    trigger:
+      platform: state
+      entity_id: input_number.dining_brightness
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.dining_bulb
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Hall Light - Adjust Brightness
+    trigger:
+      platform: state
+      entity_id: input_number.hall_brightness
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.hall_bulb
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Bedroom Light - Adjust Brightness
+    trigger:
+      platform: state
+      entity_id: input_number.bedroom_brightness
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.bedroom_bulb
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Gateway 1 Light - Adjust Brightness
+    trigger:
+      platform: state
+      entity_id: input_number.gateway1_brightness
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dcfd812f
+          brightness: "{{ trigger.to_state.state | int }}"
+          
+  - alias: Gateway 2 Light - Adjust Brightness
+    trigger:
+      platform: state
+      entity_id: input_number.gateway2_brightness
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dce13ad6
+          brightness: "{{ trigger.to_state.state | int }}"
+
 
 automation:
   - alias: Lounge Light - Adjust Brightness
