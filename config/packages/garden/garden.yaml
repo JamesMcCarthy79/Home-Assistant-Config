@@ -311,8 +311,32 @@ plant:
       temperature: sensor.bougainvillea_temperature
       conductivity: sensor.bougainvillea_conductivity
       brightness: sensor.bougainvillea_light_intensity
-    min_moisture: 10
+    min_moisture: 15
+    max_moisture: 60
     min_battery: 15
+    min_temperature: 5
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 3000
+    max_brightness: 70000
+    
+  Hydrangea:
+    sensors:
+      moisture: sensor.hydrangea_moisture
+      battery: sensor.hydrangea_battery
+      temperature: sensor.hydrangea_temperature
+      conductivity: sensor.hydrangea_conductivity
+      brightness: sensor.hydrangea_light_intensity
+    min_moisture: 20
+    max_moisture: 60
+    min_battery: 15
+    min_temperature: 6
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 1000
+    max_brightness: 30000
     
   Star Jasmine:
     sensors:
@@ -321,18 +345,15 @@ plant:
       temperature: sensor.star_jasmine_temperature
       conductivity: sensor.star_jasmine_conductivity
       brightness: sensor.star_jasmine_light_intensity
-    min_moisture: 10
+    min_moisture: 15
+    max_moisture: 60
     min_battery: 15
-    
-  Purple Mumba Chilli:
-    sensors:
-      moisture: sensor.chilli_moisture
-      battery: sensor.chilli_battery
-      temperature: sensor.chilli_temperature
-      conductivity: sensor.chilli_conductivity
-      brightness: sensor.chilli_light_intensity
-    min_moisture: 10
-    min_battery: 15
+    min_temperature: 10
+    max_temperature: 30
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 1200
+    max_brightness: 18000
     
   Veggie Patch:
     sensors:
@@ -341,8 +362,15 @@ plant:
       temperature: sensor.veggie_patch_temperature
       conductivity: sensor.veggie_patch_conductivity
       brightness: sensor.veggie_patch_light_intensity
-    min_moisture: 10
+    min_moisture: 15
+    max_moisture: 60
     min_battery: 15
+    min_temperature: 8
+    max_temperature: 32
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 2500
+    max_brightness: 60000
     
   Top Bed:
     sensors:
@@ -351,8 +379,15 @@ plant:
       temperature: sensor.top_bed_temperature
       conductivity: sensor.top_bed_conductivity
       brightness: sensor.top_bed_light_intensity
-    min_moisture: 10
+    min_moisture: 15
+    max_moisture: 60
     min_battery: 15
+    min_temperature: 5
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 3000
+    max_brightness: 60000
     
   Citrus Bed:
     sensors:
@@ -361,18 +396,15 @@ plant:
       temperature: sensor.citrus_bed_temperature
       conductivity: sensor.citrus_bed_conductivity
       brightness: sensor.citrus_bed_light_intensity
-    min_moisture: 10
+    min_moisture: 15
+    max_moisture: 60
     min_battery: 15
-    
-  Herb Patch:
-    sensors:
-      moisture: sensor.herb_patch_moisture
-      battery: sensor.herb_patch_battery
-      temperature: sensor.herb_patch_temperature
-      conductivity: sensor.herb_patch_conductivity
-      brightness: sensor.herb_patch_light_intensity
-    min_moisture: 10
-    min_battery: 15
+    min_temperature: 8
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 4000
+    max_brightness: 65000
     
   Lounge Plant:
     sensors:
@@ -381,18 +413,168 @@ plant:
       temperature: sensor.dracaena_temperature
       conductivity: sensor.dracaena_conductivity
       brightness: sensor.dracaena_light_intensity
-    min_moisture: 10
+    min_moisture: 15
+    max_moisture: 60
     min_battery: 15
+    min_temperature: 10
+    max_temperature: 35
+    min_conductivity: 200
+    max_conductivity: 1500
+    min_brightness: 2000
+    max_brightness: 50000
     
-  Bathroom Fern:
+  Fiddle Leaf Fig:
+    sensors:
+      moisture: sensor.fiddle_leaf_fig_moisture
+      battery: sensor.fiddle_leaf_fig_battery
+      temperature: sensor.fiddle_leaf_fig_temperature
+      conductivity: sensor.fiddle_leaf_fig_conductivity
+      brightness: sensor.fiddle_leaf_fig_light_intensity
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 15
+    min_temperature: 12
+    max_temperature: 32
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 1500
+    max_brightness: 45000
+    
+  Front Door Plant:
+    sensors:
+      moisture: sensor.front_door_plant_moisture
+      battery: sensor.front_door_plant_battery
+      temperature: sensor.front_door_plant_temperature
+      conductivity: sensor.front_door_plant_conductivity
+      brightness: sensor.front_door_plant_light_intensity
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 15
+    min_temperature: 5
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 3000
+    max_brightness: 70000
+    
+  Climbing Rose:
+    sensors:
+      moisture: sensor.rose_moisture
+      battery: sensor.rose_battery
+      temperature: sensor.rose_temperature
+      conductivity: sensor.rose_conductivity
+      brightness: sensor.rose_light_intensity
+    min_moisture: 15
+    max_moisture: 75
+    min_battery: 15
+    min_temperature: 8
+    max_temperature: 35
+    min_conductivity: 425
+    max_conductivity: 2000
+    min_brightness: 3000
+    max_brightness: 60000
+    
+  Frangipani Bed:
+    sensors:
+      moisture: sensor.frangipani_bed_moisture
+      battery: sensor.frangipani_bed_battery
+      temperature: sensor.frangipani_bed_temperature
+      conductivity: sensor.frangipani_bed_conductivity
+      brightness: sensor.frangipani_bed_light_intensity
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 15
+    min_temperature: 5
+    max_temperature: 32
+    min_conductivity: 200
+    max_conductivity: 2000
+    min_brightness: 3500
+    max_brightness: 65000
+    
+  Japanese Maple:
+    sensors:
+      moisture: sensor.red_maple_moisture
+      battery: sensor.red_maple_battery
+      temperature: sensor.red_maple_temperature
+      conductivity: sensor.red_maple_conductivity
+      brightness: sensor.red_maple_light_intensity
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 15
+    min_temperature: 5
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 2800
+    max_brightness: 75000
+    
+  Peach Bougainvillea:
+    sensors:
+      moisture: sensor.peach_bougainvillea_moisture
+      battery: sensor.peach_bougainvillea_battery
+      temperature: sensor.peach_bougainvillea_temperature
+      conductivity: sensor.peach_bougainvillea_conductivity
+      brightness: sensor.peach_bougainvillea_light_intensity
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 15
+    min_temperature: 5
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 3000
+    max_brightness: 70000
+    
+  Proteas:
+    sensors:
+      moisture: sensor.proteas_moisture
+      battery: sensor.proteas_battery
+      temperature: sensor.proteas_temperature
+      conductivity: sensor.proteas_conductivity
+      brightness: sensor.proteas_light_intensity
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 15
+    min_temperature: 7
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 2500
+    max_brightness: 60000
+    
+  Peace Lily:
+    sensors:
+      moisture: sensor.peace_lily_moisture
+      battery: sensor.peace_lily_battery
+      temperature: sensor.peace_lily_temperature
+      conductivity: sensor.peace_lily_conductivity
+      brightness: sensor.peace_lily_light_intensity
+    min_moisture: 15
+    max_moisture: 65
+    min_battery: 15
+    min_temperature: 15
+    max_temperature: 32
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 1000
+    max_brightness: 22500
+    
+  Outdoor Table Fern:
     sensors:
       moisture: sensor.bathroom_fern_moisture
-      battery: sensor.bathroom_fern_battery
+      battery: sensor.bathroom_fern_temperature
       temperature: sensor.bathroom_fern_temperature
       conductivity: sensor.bathroom_fern_conductivity
       brightness: sensor.bathroom_fern_light_intensity
-    min_moisture: 10
+    min_moisture: 15
+    max_moisture: 60
     min_battery: 15
+    min_temperature: 10
+    max_temperature: 32
+    min_conductivity: 350
+    max_conductivity: 1500
+    min_brightness: 300
+    max_brightness: 4000
 
 #################################################################
 #                                                               #
