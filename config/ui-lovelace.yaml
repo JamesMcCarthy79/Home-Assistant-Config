@@ -314,7 +314,7 @@ views:
                   color: "#3498db"
                   
             - type: custom:gap-card
-              height: 84
+              height: 65
               size: 
                   
             - type: horizontal-stack
@@ -2439,79 +2439,163 @@ views:
                 show_header_toggle: off
                 entities:
                   - type: section
-                    label: NAS 1
+                    label: NAS 1 - MOVIES - 4Tb
                   - type: custom:vertical-stack-in-card
                     cards:
                       - type: horizontal-stack
                         cards:
-                          - type: custom:circle-sensor-card
-                            entity: sensor.nas1_vol1
-                            max: 100
-                            min: 0
-                            stroke_width: 15
-                            gradient: true
-                            fill: '#383C45'
-                            name: Volume 1
-                            units: '%'
-                            color_stops:
-                              80: '#09C7E8'
-                              100: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
-                            
-                          - type: custom:circle-sensor-card
-                            entity: sensor.nas1_vol2
-                            max: 100
-                            min: 0
-                            stroke_width: 15
-                            gradient: true
-                            fill: '#383C45'
-                            name: Volume 2
-                            units: '%'
-                            color_stops:
-                              80: '#09C7E8'
-                              100: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
-                  
+                          - type: custom:card-modder
+                            card: 
+                              type: picture
+                              image: /local/lovelace/settings/NAS.png
+                            style:                 
+                              border-radius: 5px
+                              
+                          - type: vertical-stack
+                            cards:
+                              - type: custom:bar-card
+                                title_position: inside
+                                show_icon: true
+                                align: center
+                                padding: 1.5px
+                                card_style: 
+                                  border-radius: 5px
+                                columns: 1
+                                max: 1500
+                                entities:
+                                  - entity: sensor.nas1_fan_rpm
+                                    icon: mdi:fan
+                                    unit_of_measurement: 'rpm'
+                                    severity:
+                                    - value: 1000
+                                      color: '#1db954'
+                                    - value: 1200
+                                      color: '#bf9540'
+                                    - value: 1500
+                                      color: '#bf4040'
+                                      
+                              - type: custom:bar-card
+                                title_position: inside
+                                show_icon: true
+                                align: center
+                                padding: 1.5px
+                                card_style: 
+                                  border-radius: 5px
+                                columns: 1
+                                max: 100
+                                entities:
+                                  - entity: sensor.nas1_temp_value
+                                    icon: mdi:thermometer
+                                    unit_of_measurement: '°C'
+                                    severity:
+                                    - value: 65
+                                      color: '#1db954'
+                                    - value: 75
+                                      color: '#bf9540'
+                                    - value: 85
+                                      color: '#bf4040'
+
+                          - type: vertical-stack
+                            cards:
+                              - type: custom:circle-sensor-card
+                                entity: sensor.nas1_volume_used
+                                max: 100
+                                min: 0
+                                stroke_width: 15
+                                gradient: true
+                                fill: '#383C45'
+                                name: Used
+                                units: '%'
+                                color_stops:
+                                  80: '#09C7E8'
+                                  100: '#5294E2'
+                                font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                                style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
+                                
+                              - type: custom:gap-card
+                                height:
+                                size:
+                                
               - type: entities
                 show_header_toggle: off
                 entities:
                   - type: section
-                    label: NAS 2
+                    label: NAS 2 - TV SHOWS - 4Tb
                   - type: custom:vertical-stack-in-card
                     cards:
                       - type: horizontal-stack
                         cards:
-                          - type: custom:circle-sensor-card
-                            entity: sensor.nas2_vol1
-                            max: 100
-                            min: 0
-                            stroke_width: 15
-                            gradient: true
-                            fill: '#383C45'
-                            name: Volume 1
-                            units: '%'
-                            color_stops:
-                              80: '#09C7E8'
-                              100: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
-                            
-                          - type: custom:circle-sensor-card
-                            entity: sensor.nas2_vol2
-                            max: 100
-                            min: 0
-                            stroke_width: 15
-                            gradient: true
-                            fill: '#383C45'
-                            name: Volume 2
-                            units: '%'
-                            color_stops:
-                              80: '#09C7E8'
-                              100: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
+                          - type: custom:card-modder
+                            card: 
+                              type: picture
+                              image: /local/lovelace/settings/NAS.png
+                            style:                 
+                              border-radius: 5px
+                              
+                          - type: vertical-stack
+                            cards:
+                              - type: custom:bar-card
+                                title_position: inside
+                                show_icon: true
+                                align: center
+                                padding: 1.5px
+                                card_style: 
+                                  border-radius: 5px
+                                columns: 1
+                                max: 1500
+                                entities:
+                                  - entity: sensor.nas2_fan_rpm
+                                    icon: mdi:fan
+                                    unit_of_measurement: 'rpm'
+                                    severity:
+                                    - value: 1000
+                                      color: '#1db954'
+                                    - value: 1200
+                                      color: '#bf9540'
+                                    - value: 1500
+                                      color: '#bf4040'
+                                      
+                              - type: custom:bar-card
+                                title_position: inside
+                                show_icon: true
+                                align: center
+                                padding: 1.5px
+                                card_style: 
+                                  border-radius: 5px
+                                columns: 1
+                                max: 100
+                                entities:
+                                  - entity: sensor.nas2_temp_value
+                                    icon: mdi:thermometer
+                                    unit_of_measurement: '°C'
+                                    severity:
+                                    - value: 65
+                                      color: '#1db954'
+                                    - value: 75
+                                      color: '#bf9540'
+                                    - value: 85
+                                      color: '#bf4040'
+
+                          - type: vertical-stack
+                            cards:
+                              - type: custom:circle-sensor-card
+                                entity: sensor.nas2_volume_used
+                                max: 100
+                                min: 0
+                                stroke_width: 15
+                                gradient: true
+                                fill: '#383C45'
+                                name: Used
+                                units: '%'
+                                color_stops:
+                                  80: '#09C7E8'
+                                  100: '#5294E2'
+                                font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                                style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
+                                
+                              - type: custom:gap-card
+                                height:
+                                size:
                 
 #################################################################
 #                                                               #
@@ -2626,11 +2710,11 @@ views:
                         padding: 4px
                         card_style: 
                           border-radius: 5px
-                        max: 82
+                        max: 83
                         severity:
-                        - value: 80
-                          color: '#bf4040'
                         - value: 81
+                          color: '#bf4040'
+                        - value: 82
                           color: '#1db954'
                         - value: 100
                           color: '#bf9540'
@@ -2698,11 +2782,11 @@ views:
                         padding: 4px
                         card_style: 
                           border-radius: 5px
-                        max: 722
+                        max: 755
                         severity:
-                        - value: 720
+                        - value: 753
                           color: '#bf4040'
-                        - value: 721
+                        - value: 754
                           color: '#1db954'
                         - value: 800
                           color: '#bf9540'
@@ -6178,4 +6262,5 @@ views:
                 color: "#1db954"
               - value: 0
                 color: "#3498db"                
+                             
                 
