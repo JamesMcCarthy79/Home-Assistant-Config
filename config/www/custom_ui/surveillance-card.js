@@ -18,27 +18,33 @@ class SurveillanceCard extends LitElement {
         position: absolute;
         background: #000;
       }
+
       .thumbs {
         flex: 1;
         overflow-y: auto;
         position:relative;
       }
+
       .thumb > img {
         width: 100%;
         height: auto;
         border: 1px solid var(--primary-color);
       }
+
       .thumb {
         width: calc(100% - 9px);
         padding: 2px 4px;
         position: relative;
       }
+
       .thumb.motion > img {
         border-color: var(--accent-color);
       }
+
       img {
         display: block;
       }
+
       .mainImage {
         flex: 3;
         height: 100%;
@@ -48,11 +54,13 @@ class SurveillanceCard extends LitElement {
         justify-content: center;
         overflow: hidden;
       }
+
       .mainImage > img {
         display: inline-block;
         max-width: 100%;
         max-height: 100%;
       }
+
       .loading {
         color: #FFF;
         text-align: center;
