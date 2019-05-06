@@ -476,11 +476,11 @@ plant:
     
   Frangipani Bed:
     sensors:
-      moisture: sensor.frangipani_bed_moisture
-      battery: sensor.frangipani_bed_battery
-      temperature: sensor.frangipani_bed_temperature
-      conductivity: sensor.frangipani_bed_conductivity
-      brightness: sensor.frangipani_bed_light_intensity
+      moisture: sensor.frangipani_moisture
+      battery: sensor.frangipani_battery
+      temperature: sensor.frangipani_temperature
+      conductivity: sensor.frangipani_conductivity
+      brightness: sensor.frangipani_light_intensity
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
