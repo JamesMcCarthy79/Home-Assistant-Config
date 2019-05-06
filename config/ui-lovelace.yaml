@@ -1,6 +1,8 @@
 title: Kingia Castle
 
 resources:
+  - url: /customcards/custom_ui/aftership-card.js
+    type: module
   - url: /customcards/custom_ui/bar-card.js?v=1.0.0
     type: js
   - url: /customcards/custom_ui/bignumber-card.js?v=1
@@ -40,6 +42,8 @@ resources:
   - url: /customcards/custom_ui/text-divider-row.js
     type: module
   - url: /customcards/custom_ui/tracker-card.js
+    type: js
+  - url: /customcards/custom_ui/upcoming-media-card.js?v=0.1.2
     type: js
   - url: /customcards/custom_ui/vertical-stack-in-card.js?v=0.1.2
     type: js
@@ -113,9 +117,9 @@ views:
 #                                                               #
 #################################################################
 
-            - type: custom:gap-card
-              height: 45
-              size: 
+            #- type: custom:gap-card
+            #  height: 45
+            #  size: 
               
             - type: entities
               show_header_toggle: false
@@ -124,10 +128,20 @@ views:
                   text: Next Bus
                 - entity: sensor.next_bus
                   name: ' '
-                - type: section
-                - type: section
-                - type: section
-                  
+                #- type: section
+                #- type: section
+                #- type: section
+
+#################################################################
+#                                                               #
+#                    Home - Aftership Card                      #
+#                                                               #
+#################################################################
+
+            #- type: 'custom:aftership-card'
+            #  entity: sensor.aftership
+            #  title: Packages
+                
 #################################################################
 #                                                               #
 #                     Home - Presence Card                      #
@@ -906,6 +920,18 @@ views:
                 color: "#e74c3c"
               - value: 0
                 color: "#1db954"
+                
+#################################################################
+#                                                               #
+#                  Downstairs - Upcoming Media                  #
+#                                                               #
+#################################################################
+
+          - type: custom:upcoming-media-card
+            entity: sensor.kodi_recently_added_tv
+            date: ddmm
+            image_style: fanart
+            max: 3
 
 #############################################################################################################################################
 #                                                                                                                                           # 
@@ -2373,23 +2399,55 @@ views:
 
       - type: vertical-stack
         cards:
-          - type: custom:mini-graph-card
-            entities: 
-              - sensor.speedtest_ping
-            height: 20
-            line_width: 2
-            font_size: 70
-            hours_to_show: 168
-            points_per_hour: 1
-            show:
-              #extrema: true
-              fill: true
-              graph: bar
-            color_thresholds:
-              - value: 25
-                color: "#FFFF00"
-              - value: 0
-                color: "#3498db"
+          - type: horizontal-stack
+            cards:
+              - type: custom:bar-card
+                title_position: inside
+                show_icon: true
+                align: split
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                columns: 1
+                entities:
+                  - entity: sensor.tpg_nbn
+                    icon: mdi:earth
+
+              - type: custom:bar-card
+                title_position: inside
+                show_icon: true
+                align: split
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                columns: 1
+                max: 100
+                entities:
+                  - entity: sensor.speedtest_ping
+                    severity:
+                    - value: 20
+                      color: '#1db954'
+                    - value: 30
+                      color: '#bf9540'
+                    - value: 50
+                      color: '#bf4040'
+          #- type: custom:mini-graph-card
+          #  entities: 
+          #    - sensor.speedtest_ping
+          #  height: 20
+          #  line_width: 2
+          #  font_size: 70
+          #  hours_to_show: 168
+          #  points_per_hour: 1
+          #  show:
+          #    #extrema: true
+          #    fill: true
+          #    graph: bar
+          #  color_thresholds:
+          #    - value: 25
+          #      color: "#FFFF00"
+          #    - value: 0
+          #      color: "#3498db"
             
           - type: horizontal-stack
             cards:
@@ -2596,7 +2654,53 @@ views:
                               - type: custom:gap-card
                                 height:
                                 size:
-                
+
+#################################################################
+#                                                               #
+#               System Status - BLE Trackers Card               #
+#                                                               #
+#################################################################
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:bar-card
+                title_position: inside
+                show_icon: true
+                align: split
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                columns: 1
+                max: 100
+                entities:
+                  - entity: sensor.ble_tracker_downstairs_state
+                    icon: mdi:bluetooth
+                    show_value: false
+                    severity:
+                    - value: 50
+                      color: '#bf4040'
+                    - value: 100
+                      color: '#1db954'
+
+              - type: custom:bar-card
+                title_position: inside
+                show_icon: true
+                align: split
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                columns: 1
+                max: 100
+                entities:
+                  - entity: sensor.ble_tracker_upstairs_state
+                    icon: mdi:bluetooth
+                    show_value: false
+                    severity:
+                    - value: 50
+                      color: '#bf4040'
+                    - value: 100
+                      color: '#1db954'
+                      
 #################################################################
 #                                                               #
 #                System Status - Statistics Card                #
@@ -2710,11 +2814,11 @@ views:
                         padding: 4px
                         card_style: 
                           border-radius: 5px
-                        max: 83
+                        max: 88
                         severity:
-                        - value: 81
+                        - value: 86
                           color: '#bf4040'
-                        - value: 82
+                        - value: 87
                           color: '#1db954'
                         - value: 100
                           color: '#bf9540'
@@ -2782,11 +2886,11 @@ views:
                         padding: 4px
                         card_style: 
                           border-radius: 5px
-                        max: 755
+                        max: 786
                         severity:
-                        - value: 753
+                        - value: 784
                           color: '#bf4040'
-                        - value: 754
+                        - value: 785
                           color: '#1db954'
                         - value: 800
                           color: '#bf9540'
@@ -3953,36 +4057,36 @@ views:
                       icon: mdi:bell-ring
                       tap_action: 
                         action: call-service
-                        entity: vacuum.robovac
                         service: vacuum.locate
-                        service_data: {"entity_id": "vacuum.robovac"}
+                        service_data: 
+                          entity_id: vacuum.robovac
                       style: {color: white, left: 80%, top: 90.5%}
 
                     - type: icon
                       icon: mdi:home
                       tap_action: 
                         action: call-service
-                        entity: vacuum.robovac
                         service: vacuum.return_to_base
-                        service_data: {"entity_id": "vacuum.robovac"}
+                        service_data: 
+                          entity_id: vacuum.robovac
                       style: {color: white, left: 60%, top: 90%}
 
                     - type: icon
                       icon: mdi:play-pause
                       tap_action: 
                         action: call-service
-                        #entity: vacuum.robovac
-                        service: vacuum.start_pause
-                        service_data: {"entity_id": "vacuum.robovac"}
+                        service: vacuum.start
+                        service_data:
+                          entity_id: vacuum.robovac
                       style: {color: white, left: 20%, top: 90%}
 
                     - type: icon
                       icon: mdi:stop
                       tap_action: 
                         action: call-service
-                        entity: vacuum.robovac
                         service: vacuum.stop
-                        service_data: {"entity_id": "vacuum.robovac"}
+                        service_data:
+                          entity_id: vacuum.robovac
                       style: {color: white, left: 40%, top: 90%}
 
                     - type: state-label
@@ -4287,7 +4391,7 @@ views:
 #############################################################################################################################################
 
   - id: 13 
-    icon: mdi:server
+    icon: mdi:access-point-network
     name: Xiaomi Sensors
     cards:
     
@@ -4727,7 +4831,7 @@ views:
                               color: '#bf9540'
                             - value: 30
                               color: '#bf4040'
-                            
+                              
               - type: custom:bar-card
                 title_position: inside
                 show_icon: true
@@ -6262,5 +6366,4 @@ views:
                 color: "#1db954"
               - value: 0
                 color: "#3498db"                
-                             
                 
