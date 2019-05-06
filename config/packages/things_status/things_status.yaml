@@ -92,6 +92,8 @@ device_tracker:
   - platform: ping
     hosts:
       baby_monitor_camera: !secret baby_monitor_camera
+      bt_mqtt_gw1: !secret bt_mqtt_gw1
+      bt_mqtt_gw2: !secret bt_mqtt_gw2
       dining_camera: !secret dining_camera
       living_camera: !secret living_camera
       bedroom_camera: !secret bedroom_camera
@@ -118,8 +120,6 @@ device_tracker:
       patio_led_switch: !secret patio_led_switch
       garage_door_sensor: !secret garage_door_sensor
       coffee_machine_sensor: !secret coffee_machine_sensor
-      ble_tracker_downstairs: !secret ble_tracker_downstairs
-      ble_tracker_upstairs: !secret ble_tracker_upstairs
       playroom_fan: !secret playroom_fan
       bedroom_fan: !secret bedroom_fan
       bedroom_fan_switch: !secret bedroom_fan_switch
@@ -493,10 +493,10 @@ binary_sensor:
       ble_tracker_downstairs:
         friendly_name: BLE Tracker Downstairs
         device_class: connectivity
-        entity_id: device_tracker.ble_tracker_downstairs
-        value_template: "{{ is_state('device_tracker.ble_tracker_downstairs', 'home') }}"
+        entity_id: device_tracker.bt_mqtt_gw1
+        value_template: "{{ is_state('device_tracker.bt_mqtt_gw1', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.ble_tracker_downstairs', 'home') %}
+          {% if is_state('device_tracker.bt_mqtt_gw1', 'home') %}
             mdi:bluetooth
           {% else %}
             mdi:alert
@@ -504,10 +504,10 @@ binary_sensor:
       ble_tracker_upstairs:
         friendly_name: BLE Tracker Upstairs
         device_class: connectivity
-        entity_id: device_tracker.ble_tracker_upstairs
-        value_template: "{{ is_state('device_tracker.ble_tracker_upstairs', 'home') }}"
+        entity_id: device_tracker.bt_mqtt_gw2
+        value_template: "{{ is_state('device_tracker.bt_mqtt_gw2', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.ble_tracker_upstairs', 'home') %}
+          {% if is_state('device_tracker.bt_mqtt_gw2', 'home') %}
             mdi:bluetooth
           {% else %}
             mdi:alert
@@ -894,21 +894,21 @@ sensor:
           
       ble_tracker_downstairs_state:
         friendly_name: BLE Tracker Downstairs
-        entity_id: device_tracker.ble_tracker_downstairs
+        entity_id: device_tracker.bt_mqtt_gw1
         value_template: >-
-          {% if is_state('device_tracker.ble_tracker_downstairs', 'home') %}
+          {% if is_state('device_tracker.bt_mqtt_gw1', 'home') %}
             100
-          {% elif is_state('device_tracker.ble_tracker_downstairs', 'not_home') %}
+          {% elif is_state('device_tracker.bt_mqtt_gw1', 'not_home') %}
             0
           {% endif %}
           
       ble_tracker_upstairs_state:
         friendly_name: BLE Tracker Upstairs
-        entity_id: device_tracker.ble_tracker_upstairs
+        entity_id: device_tracker.bt_mqtt_gw2
         value_template: >-
-          {% if is_state('device_tracker.ble_tracker_upstairs', 'home') %}
+          {% if is_state('device_tracker.bt_mqtt_gw2', 'home') %}
             100
-          {% elif is_state('device_tracker.ble_tracker_upstairs', 'not_home') %}
+          {% elif is_state('device_tracker.bt_mqtt_gw2', 'not_home') %}
             0
           {% endif %}
           
