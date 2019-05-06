@@ -560,6 +560,17 @@ sensor:
     
 ####################################################
 #                                                  #
+#                 Sensor - DNS IP                  #
+#                                                  #
+####################################################
+
+  - platform: dnsip
+    hostname: !secret dns_hostname
+    name: TPG NBN
+    resolver: 8.8.8.8
+    
+####################################################
+#                                                  #
 #                Sensor - File Size                #
 #                                                  #
 ####################################################
@@ -913,11 +924,6 @@ sensor:
     
   - platform: snmp
     host: 10.0.0.12
-    baseoid: 1.2.840.10036.3.1.2.1.3.10
-    name: '5G TV Model'
-    
-  - platform: snmp
-    host: 10.0.0.12
     baseoid: 1.3.6.1.4.1.41112.1.4.1.1.6.1
     name: '5G TV TX Power'  
    
@@ -993,11 +999,6 @@ sensor:
     host: 10.0.0.13
     baseoid: 1.3.6.1.2.1.1.5.0
     name: '5G US Name'
-    
-  - platform: snmp
-    host: 10.0.0.13
-    baseoid: 1.2.840.10036.3.1.2.1.3.10
-    name: '5G US Model'
     
   - platform: snmp
     host: 10.0.0.13
