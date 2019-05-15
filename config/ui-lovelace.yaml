@@ -188,17 +188,25 @@ views:
 #                                                               #
 ################################################################# 
 
-            - type: custom:waze-card
+            - type: entities
+              show_header_toggle: false
               entities:
+                - type: 'custom:text-divider-row'
+                  text: Travel
                 - entity: sensor.james_to_home
-                  zone: zone.home
-                  name: James
                 - entity: sensor.tina_to_home
-                  zone: zone.home
-                  name: Tina
                 - entity: sensor.commute_to_work
-                  zone: zone.powertec
-                  name: Work
+            #- type: custom:waze-card
+            #  entities:
+            #    - entity: sensor.james_to_home
+            #      zone: zone.home
+            #      name: James
+            #    - entity: sensor.tina_to_home
+            #      zone: zone.home
+            #      name: Tina
+            #    - entity: sensor.commute_to_work
+            #      zone: zone.powertec
+            #      name: Work
 
 #################################################################
 #                                                               #
@@ -327,9 +335,9 @@ views:
                 - value: 0
                   color: "#3498db"
                   
-            - type: custom:gap-card
-              height: 65
-              size: 
+            #- type: custom:gap-card
+            #  height: 65
+            #  size: 
                   
             - type: horizontal-stack
               cards:
@@ -371,7 +379,39 @@ views:
                     - value: 15
                       color: "#1db954"
                     - value: 0
-                      color: "#3498db"           
+                      color: "#3498db"      
+
+#################################################################
+#                                                               #
+#                    Home - Air Quality Card                    #
+#                                                               #
+#################################################################
+              
+            - type: picture-elements
+              #title: Smoke Detectors
+              image: /local/lovelace/security/air_8.png
+              elements:
+                - type: image
+                  entity: sensor.us_air_pollution_level_2
+                  image: https://www.airvisual.com/assets/aqi/ic-face-1-green.svg
+                  style: {left: 12%, top: 30%, transform: none, width: 80px, height: 80px}
+                  
+                - type: state-label
+                  entity: sensor.us_air_pollution_level_2
+                  style: {color: "#718b3a", left: 36%, top: 50%, font-size: 20px, font-weight: 600}
+                  
+                - type: state-label
+                  entity: sensor.aqi
+                  style: {color: "#718b3a", left: 70%, top: 50%, font-size: 104px, line-height: 50px}
+                  
+                - type: state-icon
+                  entity: sensor.us_main_pollutant_2
+                  style: {color: white, left: 52%, top: 80%}
+                  
+                - type: state-label
+                  entity: sensor.us_main_pollutant_2
+                  style: {color: white, left: 72%, top: 81%, font-size: 18px, font-weight: 500}
+                  suffix: " | 7.2 ug/m3"                   
               
 #############################################################################################################################################
 #                                                                                                                                           # 
@@ -5952,7 +5992,7 @@ views:
               
 #############################################################################################################################################
 #                                                                                                                                           # 
-#                                                             VIEW 17 - WEATHER                                                             #
+#                                                             VIEW 16 - WEATHER                                                             #
 #                                                                                                                                           #
 ############################################################################################################################################# 
 
@@ -6366,4 +6406,981 @@ views:
                 color: "#1db954"
               - value: 0
                 color: "#3498db"                
+                
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                        VIEW 17 - POWER CONSUMPTION                                                        #
+#                                                                                                                                           #
+############################################################################################################################################# 
+
+  - id: 1
+    icon: mdi:power-plug
+    name: Power Consumption
+    cards:
+
+#################################################################
+#                                                               #
+#                    Compact Header Config                      #
+#                                                               #
+################################################################# 
+
+      - type: "custom:compact-custom-header"   
+        main_config: true
+        background: 'rgba(150, 150, 150, 0.2)'
+        menu: show
+        options: show
+        voice: show
+        notifications: clock
+        clock_format: '24'
+        clock_date: true
+        date_locale: en-gb
+        disable: false 
+        
+#################################################################
+#                                                               #
+#                  Power Consumption - Total                    #
+#                                                               #
+#################################################################
+
+      - type: vertical-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities: 
+              - entity: sensor.daily_total
+                unit: kW/h
+            name: Power Consumption Today
+            icon: mdi:flash
+            line_width: 2
+            height: 88
+            hours_to_show: 24
+            points_per_hour: 6
+            show:
+              extrema: true
+              fill: true
+            color_thresholds:
+              - value: 25
+                color: "#e74c3c"
+              - value: 20
+                color: "#3498db"
+              - value: 0
+                color: "#1db954"
+ 
+#################################################################
+#                                                               #
+#                Power Consumption - Lighting                   #
+#                                                               #
+#################################################################
+ 
+          - type: entities
+            show_header_toggle: off
+            entities:
+              - type: section
+                label: LIGHTING
+              - type: custom:vertical-stack-in-card
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/yeelight_7.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 2.5
+                        entities:
+                          - entity: sensor.lighting_total_month
+                            title: Internal
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 2
+                              color: '#b91d9e'
+                            - value: 5
+                              color: '#681db9'
+                                      
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1
+                        color: '#b91d9e'
+                        entities:
+                          - entity: sensor.lighting_total_cost
+                            title: Cost
+                              
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/outdoor_5.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 2.5
+                        entities:
+                          - entity: sensor.outdoor_lights_month
+                            title: External
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 2
+                              color: '#b91d9e'
+                            - value: 5
+                              color: '#681db9'
+                                      
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1
+                        color: '#b91d9e'
+                        entities:
+                          - entity: sensor.outdoor_lights_cost
+                            title: Cost
+                            
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/patio-lights_2.jpg
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 2.5
+                        entities:
+                          - entity: sensor.monthly_entertainment_lighting
+                            title: Entertainment
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 2
+                              color: '#b91d9e'
+                            - value: 5
+                              color: '#681db9'
+                                      
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1
+                        color: '#b91d9e'
+                        entities:
+                          - entity: sensor.entertainment_lights_cost
+                            title: Cost
+                            
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/led.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 750
+                        entities:
+                          - entity: sensor.monthly_festive_lighting
+                            title: Festive
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 2
+                              color: '#b91d9e'
+                            - value: 750
+                              color: '#681db9'
+                                      
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1
+                        color: '#b91d9e'
+                        entities:
+                          - entity: sensor.festive_lights_cost
+                            title: Cost
+
+#################################################################
+#                                                               #
+#               Power Consumption - Server Rack                 #
+#                                                               #
+#################################################################
+
+          - type: entities
+            show_header_toggle: off
+            entities:
+              - type: section
+                label: SERVER RACK
+              - type: custom:vertical-stack-in-card
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card: 
+                          type: picture
+                          image: /local/lovelace/settings/nuc_4.jpg
+                        style:                 
+                          border-radius: 5px
+                     
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.ha_nuc_month
+                        title: Power
+                        unit_of_measurement: 'kW/h'
+                        align: center
+                        padding: 7px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.ha_nuc_cost
+                        title: Cost
+                        align: center
+                        padding: 7px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                          
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/settings/Pi.jpg
+                        style:                 
+                          border-radius: 5px
+                     
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_rpi_month
+                        title: Power
+                        unit_of_measurement: 'kW/h'
+                        align: center
+                        padding: 7px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_rpi_cost
+                        title: Cost
+                        align: center
+                        padding: 7px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                          
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/nas_2.png
+                        style:                 
+                          border-radius: 5px
+                     
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_nas_month
+                        title: Power
+                        unit_of_measurement: 'kW/h'
+                        align: center
+                        padding: 12.5px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_nas_cost
+                        title: Cost
+                        align: center
+                        padding: 12.5px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+
+#################################################################
+#                                                               #
+#                  Power Consumption - Stats                    #
+#                                                               #
+#################################################################
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                show_header_toggle: false
+                #title: Week
+                entities: 
+                  - entity: sensor.cost_week_state
+                    name: Weekly
+              - type: entities
+                show_header_toggle: false
+                #title: Week
+                entities: 
+                  - entity: sensor.cost_month_state
+                    name: Monthly
+          - type: horizontal-stack
+            cards:
+              - type: custom:bar-card
+                height: 160px
+                width: 100px
+                direction: up
+                title_position: inside
+                indicator: auto-vertical
+                align: center
+                padding: 5px
+                columns: 2
+                max: 350
+                #card_style: 
+                  #border-radius: 0px
+                entities:
+                  - entity: sensor.weekly_total
+                    title: This Week
+                    unit_of_measurement: 'kW/h'
+                  - entity: sensor.total_last_week
+                    title: Last Week
+                    unit_of_measurement: 'kW/h'
+                severity:
+                - value: 200
+                  color: '#1db954'
+                - value: 300
+                  color: '#1d8ab9'
+                - value: 350
+                  color: '#e74c3c'
+                      
+                  
+              - type: custom:bar-card
+                height: 160px
+                width: 100px
+                direction: up
+                title_position: inside
+                indicator: auto-vertical
+                align: center
+                padding: 5px
+                columns: 2
+                max: 350
+                #card_style: 
+                  #border-radius: 0px
+                entities:
+                  - entity: sensor.monthly_total
+                    title: This Month
+                    unit_of_measurement: 'kW/h'
+                  - entity: sensor.total_last_month
+                    title: Last Month
+                    unit_of_measurement: 'kW/h'
+                severity:
+                - value: 200
+                  color: '#1db954'
+                - value: 300
+                  color: '#1d8ab9'
+                - value: 350
+                  color: '#e74c3c'
+
+#################################################################
+#                                                               #
+#               Power Consumption - Current Draw                #
+#                                                               #
+#################################################################
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:circle-sensor-card
+                entity: sensor.total_power
+                max: 20
+                min: 0
+                stroke_width: 15
+                gradient: true
+                fill: '#383C45'
+                name: Current Power
+                units: 'W'
+                color_stops:
+                15: '#09C7E8'
+                20: '#5294E2'
+                font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none} 
+              #- type: custom:gap-card
+              #  height:
+              #  size:
+              - type: custom:card-modder
+                card:
+                  type: picture
+                  image: /local/lovelace/energy/origin_2.png
+                style:                 
+                  border-radius: 5px
+              - type: custom:circle-sensor-card
+                entity: sensor.total_current
+                max: 1
+                min: 0
+                stroke_width: 15
+                gradient: true
+                fill: '#383C45'
+                name: Current Power
+                units: 'A'
+                color_stops:
+                0.8: '#09C7E8'
+                1: '#5294E2'
+                font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
+                style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none} 
+            
+#################################################################
+#                                                               #
+#                 Power Consumption - Overview                  #
+#                                                               #
+#################################################################
+ 
+          - type: entities
+            show_header_toggle: off
+            entities:
+              - type: section
+                label: OVERVIEW
+              - type: custom:vertical-stack-in-card
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/robovac.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        entities:
+                          - entity: sensor.monthly_appliance
+                            title: Appliances
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 1000
+                              color: '#b91d58'
+                            - value: 2000
+                              color: '#b91d3e'
+                              
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        color: '#b91d58'
+                        entities:
+                          - entity: sensor.appliance_cost
+                            title: Appliances
+                              
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/washer_dryer_5.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        entities:
+                          - entity: sensor.monthly_dryer
+                            title: Dryer
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 1000
+                              color: '#b91d58'
+                            - value: 2000
+                              color: '#b91d3e'
+                              
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        color: '#b91d58'
+                        entities:
+                          - entity: sensor.dryer_cost
+                            title: Cost
+                            
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/washer_dryer_5.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        entities:
+                          - entity: sensor.monthly_washer
+                            title: Washer
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 1000
+                              color: '#b91d58'
+                            - value: 2000
+                              color: '#b91d3e'
+                              
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        color: '#b91d58'
+                        entities:
+                          - entity: sensor.washer_cost
+                            title: Cost
+                            
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/aircon.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        entities:
+                          - entity: sensor.total_climate_month
+                            title: Climate Control
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 1000
+                              color: '#b91d58'
+                            - value: 2000
+                              color: '#b91d3e'
+                              
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        color: '#b91d58'
+                        entities:
+                          - entity: sensor.total_climate_cost
+                            title: Cost
+                            
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/lighting.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        entities:
+                          - entity: sensor.all_lighting_month
+                            title: Lighting
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 1000
+                              color: '#b91d58'
+                            - value: 2000
+                              color: '#b91d3e'
+                              
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        color: '#b91d58'
+                        entities:
+                          - entity: sensor.all_lighting_cost
+                            title: Cost
+                            
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/smart_home.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        entities:
+                          - entity: sensor.total_smart_month
+                            title: Smart Home
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 1000
+                              color: '#b91d58'
+                            - value: 2000
+                              color: '#b91d3e'
+                              
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 4.5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1500
+                        color: '#b91d58'
+                        entities:
+                          - entity: sensor.total_smart_cost
+                            title: Cost
+
+          - type: custom:gap-card
+            height: 400
+            style: 400
+            
+#################################################################
+#                                                               #
+#             Power Consumption - Predicted Spend               #
+#                                                               #
+#################################################################
+
+      - type: vertical-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities: 
+              - entity: sensor.cost_prediction
+                name: Usage Prediction
+                color: "#e74c3c"
+                unit: kW/h
+              - entity: sensor.monthly_total
+                name: Current Usage
+                unit: kW/h
+                color: '#5294E2'
+                show_state: false
+            name: Estimate Usage
+            icon: mdi:flash
+            line_width: 2
+            height: 53
+            hours_to_show: 72
+            points_per_hour: 1
+            show:
+              extrema: true
+              fill: true
+              #graph: bar
+
+#################################################################
+#                                                               #
+#                 Power Consumption - Climate                   #
+#                                                               #
+#################################################################
+ 
+          - type: entities
+            show_header_toggle: off
+            entities:
+              - type: section
+                label: CLIMATE CONTROL
+              - type: custom:vertical-stack-in-card
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/fan_2.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 2.5
+                        entities:
+                          - entity: sensor.total_fan_month
+                            title: Fans
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 2
+                              color: '#1d9fb9'
+                            - value: 5
+                              color: '#1d8fb9'
+                                      
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1
+                        color: '#1d9fb9'
+                        entities:
+                          - entity: sensor.total_fan_cost
+                            title: Cost
+                            
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/aircon.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 2.5
+                        entities:
+                          - entity: sensor.total_aircon_month
+                            title: Cooling
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 2
+                              color: '#1d9fb9'
+                            - value: 5
+                              color: '#1d8fb9'
+                                      
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1
+                        color: '#1d9fb9'
+                        entities:
+                          - entity: sensor.total_aircon_cost
+                            title: Cost
+                            
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/heater.png
+                        style:                 
+                          border-radius: 5px
+
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 2.5
+                        entities:
+                          - entity: sensor.total_aircon_month
+                            title: Heating
+                            unit_of_measurement: kW/h
+                            severity:
+                            - value: 2
+                              color: '#1d9fb9'
+                            - value: 5
+                              color: '#1d8fb9'
+                                      
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 5px
+                        card_style: 
+                          border-radius: 0px
+                        columns: 1
+                        max: 1
+                        color: '#1d9fb9'
+                        entities:
+                          - entity: sensor.total_aircon_cost
+                            title: Cost
+                            
+                  
+#################################################################
+#                                                               #
+#                 Power Consumption - Network                   #
+#                                                               #
+#################################################################
+
+          - type: entities
+            show_header_toggle: off
+            entities:
+              - type: section
+                label: NETWORK
+              - type: custom:vertical-stack-in-card
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card: 
+                          type: picture
+                          image: /local/lovelace/energy/ccr.png
+                        style:                 
+                          border-radius: 5px
+                     
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_routers_month
+                        title: Power
+                        unit_of_measurement: 'kW/h'
+                        align: center
+                        padding: 7px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_routers_cost
+                        title: Cost
+                        align: center
+                        padding: 7px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                          
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/settings/altai_1.png
+                        style:                 
+                          border-radius: 5px
+                     
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_wireless_month
+                        title: Power
+                        unit_of_measurement: 'kW/h'
+                        align: center
+                        padding: 10px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_wireless_cost
+                        title: Cost
+                        align: center
+                        padding: 10px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                          
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:card-modder
+                        card:
+                          type: picture
+                          image: /local/lovelace/energy/xiaomi_3.png
+                        style:                 
+                          border-radius: 5px
+                     
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_zigbee_month
+                        title: Power
+                        unit_of_measurement: 'kW/h'
+                        align: center
+                        padding: 10px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px
+                      - type: custom:bar-card
+                        title_position: inside
+                        entity: sensor.total_zigbee_cost
+                        title: Cost
+                        align: center
+                        padding: 10px
+                        max: 2
+                        card_style: 
+                          border-radius: 0px          
                 
