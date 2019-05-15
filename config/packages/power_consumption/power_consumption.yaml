@@ -1,0 +1,1376 @@
+#################################################################
+#                                                               #
+#                  Packages/Power Consumption                   #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+
+
+#################################################################
+#                                                               #
+#                            Groups                             #
+#                                                               #
+#################################################################
+
+group:
+
+
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+################################################################# 
+
+sensor:
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors: 
+      appliance_consumption:
+        entity_id: switch.plug_158d00022ae22d
+        value_template: '{{ (states.switch.plug_158d00022ae22d.attributes.power_consumed|int / 1000)|round(2) }}'  
+        friendly_name: 'Appliance Consumption' 
+        unit_of_measurement: 'W' 
+        
+      dryer_consumption:
+        entity_id: switch.plug_158d00022ae069
+        value_template: '{{ (states.switch.plug_158d00022ae069.attributes.power_consumed|int / 1000)|round(2) }}' 
+        friendly_name: 'Dryer Consumption' 
+        unit_of_measurement: 'W' 
+
+      entertainment_lighting_consumption:
+        entity_id: switch.plug_158d0001f24e2bS
+        value_template: '{{ (states.switch.plug_158d0001f24e2b.attributes.power_consumed|int / 1000)|round(2) }}' 
+        friendly_name: 'Entertainment Lighting Consumption' 
+        unit_of_measurement: 'W' 
+
+      festive_lighting_consumption:
+        entity_id: switch.plug_158d00022ae02a
+        value_template: '{{ (states.switch.plug_158d00022ae02a.attributes.power_consumed|int / 1000)|round(2) }}' 
+        friendly_name: 'Festive Lighting Consumption' 
+        unit_of_measurement: 'W'
+
+      washer_consumption:
+        entity_id: switch.plug_158d0001bc2b6d
+        value_template: '{{ (states.switch.plug_158d0001bc2b6d.attributes.power_consumed|int / 1000)|round(2) }}' 
+        friendly_name: 'Washer Consumption' 
+        unit_of_measurement: 'W'
+        
+      total_consumption:
+        value_template: "{{ (states.sensor.monthly_appliance.state|float + states.sensor.monthly_dryer.state|float + states.sensor.lighting_total_month.state|float + states.sensor.total_climate_month.state|float + states.sensor.monthly_washer.state|float + states.sensor.total_smart_month.state|float) |round(2) }}"
+        friendly_name: 'Total'
+        
+      appliance_power:
+        entity_id: switch.plug_158d00022ae22d
+        value_template: '{{ states.switch.plug_158d00022ae22d.attributes.load_power|int }}'  
+        friendly_name: 'Appliance Power' 
+        
+      entertainment_lighting_power:
+        entity_id: switch.plug_158d0001f24e2bS
+        value_template: '{{ states.switch.plug_158d0001f24e2bS.attributes.load_power|int }}'  
+        friendly_name: 'Entertainment Lighting Power'
+        
+      festive_lighting_power:
+        entity_id: switch.plug_158d00022ae02a
+        value_template: '{{ states.switch.plug_158d00022ae02a.attributes.load_power|int }}'  
+        friendly_name: 'Festive Lighting Power'
+        
+      total_power:
+        entity_id: switch.plug_158d0001bc2b6d
+        value_template: "{{ (states.sensor.appliance_power.state|int + states.sensor.entertainment_lighting_power.state|int + states.sensor.festive_lighting_power.state|int + states.sensor.waching_machine_power.state|int + states.sensor.dryer_power.state|int) |round(2) }}"
+        friendly_name: 'Total'
+        
+      total_current:
+        entity_id: switch.plug_158d0001bc2b6d
+        value_template: "{{ ((states.sensor.total_power.state|int) / 240)|round(2) }}"
+        friendly_name: 'Total Current'
+
+      appliance_last_week:
+        value_template: "{{ states.sensor.weekly_appliance.attributes.last_period }}"
+        friendly_name: 'Last Week'
+        
+      appliance_last_month:
+        value_template: "{{ states.sensor.monthly_appliance.attributes.last_period }}"
+        friendly_name: 'Last Month'
+        
+      appliance_cost:
+        entity_id: sensor.monthly_appliance
+        friendly_name: 'Appliance Cost'
+        value_template: >-
+          {% if (states.sensor.monthly_appliance.state|float > 0) %}
+            ${{ (states.sensor.monthly_appliance.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.monthly_appliance.state|float == 0) %}
+            ${{ (states.sensor.monthly_appliance.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      dryer_last_week:
+        value_template: "{{ states.sensor.weekly_dryer.attributes.last_period }}"
+        friendly_name: 'Last Week'
+        
+      dryer_last_month:
+        value_template: "{{ states.sensor.monthly_dryer.attributes.last_period }}"
+        friendly_name: 'Last Month'
+        
+      dryer_cost:
+        entity_id: sensor.monthly_dryer
+        friendly_name: 'Dryer Cost'
+        value_template: >-
+          {% if (states.sensor.monthly_dryer.state|float > 0) %}
+            ${{ (states.sensor.monthly_dryer.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.monthly_dryer.state|float == 0) %}
+            ${{ (states.sensor.monthly_dryer.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      entertainment_lighting_last_week:
+        value_template: "{{ states.sensor.weekly_entertainment_lighting.attributes.last_period }}"
+        friendly_name: 'Last Week'
+        
+      entertainment_lighting_last_month:
+        value_template: "{{ states.sensor.monthly_entertainment_lighting.attributes.last_period }}"
+        friendly_name: 'Last Month'
+        
+      festive_lighting_last_week:
+        value_template: "{{ states.sensor.weekly_festive_lighting.attributes.last_period }}"
+        friendly_name: 'Last Week'
+        
+      festive_lighting_last_month:
+        value_template: "{{ states.sensor.monthly_festive_lighting.attributes.last_period }}"
+        friendly_name: 'Last Month'
+        
+      washer_last_week:
+        value_template: "{{ states.sensor.weekly_washer.attributes.last_period }}"
+        friendly_name: 'Last Week'
+        
+      washer_last_month:
+        value_template: "{{ states.sensor.monthly_washer.attributes.last_period }}"
+        friendly_name: 'Last Month'
+        
+      washer_cost:
+        entity_id: sensor.monthly_washer
+        friendly_name: 'Washer Cost'
+        value_template: >-
+          {% if (states.sensor.monthly_washer.state|float > 0) %}
+            ${{ (states.sensor.monthly_washer.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.monthly_washer.state|float == 0) %}
+            ${{ (states.sensor.monthly_washer.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      total_last_week:
+        entity_id: sensor.weekly_total
+        value_template: "{{ states.sensor.weekly_total.attributes.last_period }}"
+        friendly_name: 'Last Week'
+        
+      total_last_month:
+        entity_id: sensor.monthly_total
+        value_template: "{{ states.sensor.monthly_total.attributes.last_period }}"
+        friendly_name: 'Last Month'
+        
+      cost_week:
+        entity_id: sensor.weekly_total
+        value_template: "{{ (states.sensor.weekly_total.state|float * 0.2420)|round(2) }}"
+        friendly_name: 'This Week'
+        
+      cost_last_week:
+        entity_id: sensor.total_last_week
+        value_template: "{{ (states.sensor.total_last_week.state|float * 0.2420)|round(2) }}"
+        friendly_name: 'Last Week'
+        
+      cost_week_difference:
+        entity_id: sensor.weekly_total
+        value_template: "{{ ((states.sensor.total_last_week.state|float * 0.2420) - (states.sensor.weekly_total.state|float * 0.2420))|round(2) }}"
+        friendly_name: 'Week Difference'
+        
+      cost_month:
+        entity_id: sensor.monthly_total
+        value_template: "{{ (states.sensor.monthly_total.state|float * 0.2420)|round(2) }}"
+        friendly_name: 'This Week'
+        
+      cost_last_month:
+        entity_id: sensor.total_last_month
+        value_template: "{{ (states.sensor.total_last_month.state|float * 0.2420)|round(2) }}"
+        friendly_name: 'Last Week'
+        
+      cost_month_difference:
+        entity_id: sensor.monthly_total
+        value_template: "{{ ((states.sensor.total_last_month.state|float * 0.2420) - (states.sensor.monthly_total.state|float * 0.2420))|round(2) }}"
+        friendly_name: 'Month Difference'
+        
+      cost_week_state:
+        friendly_name: "Week Difference"
+        entity_id: sensor.cost_week_difference
+        value_template: >-
+          {% if (states.sensor.cost_week_difference.state|float < 0) %}
+            Increase of ${{ (states.sensor.cost_week_difference.state)|float | abs }}
+          {% elif (states.sensor.cost_week_difference.state|float > 0) %}
+            Saving of ${{ states.sensor.cost_week_difference.state }}
+          {% endif %}
+        icon_template: >-
+          {% if (states.sensor.cost_week_difference.state|float < 0) %}
+            mdi:trending-up
+          {% elif (states.sensor.cost_week_difference.state|float > 0) %}
+            mdi:trending-down
+          {% endif %}
+          
+      cost_month_state:
+        friendly_name: "Month Difference"
+        entity_id: sensor.cost_month_difference
+        value_template: >-
+          {% if (states.sensor.cost_month_difference.state|float < 0) %}
+            Increase of ${{ (states.sensor.cost_month_difference.state)|float | abs }}
+          {% elif (states.sensor.cost_month_difference.state|float > 0) %}
+            Saving of ${{ states.sensor.cost_month_difference.state }}
+          {% endif %}
+        icon_template: >-
+          {% if (states.sensor.cost_month_difference.state|float < 0) %}
+            mdi:trending-up
+          {% elif (states.sensor.cost_month_difference.state|float > 0) %}
+            mdi:trending-down
+          {% endif %}
+
+      remaining_days:
+        friendly_name: "Month Left"
+        entity_id: sensor.date
+        value_template: >-
+          {% if now().month in [1,3,5,7,8,10,12] %}
+            {{ 31 - now().day }}
+          {% elif now().month in [4,6,9,11] %}
+            {{ 30 - now().day }}
+          {% elif now().month == 2 and ((now().year-2000) % 4 > 0) %}
+            {{ 28 - now().day }}
+          {% elif now().month == 2 and ((now().year-2000) % 4 == 0) %}
+            {{ 29 - now().day }}
+          {% endif %}
+
+      cost_daily_ave:
+        friendly_name: "Daily Ave"
+        entity_id: sensor.monthly_total
+        value_template: "{{ (states.sensor.monthly_total.state|float) / ( now().day) }}"
+        
+      cost_prediction:
+        friendly_name: "Cost Prediction"
+        entity_id: sensor.monthly_total
+        value_template: "{{ (((states.sensor.cost_daily_ave.state|float) * (states.sensor.remaining_days.state|float)) + (states.sensor.monthly_total.state|float))|round(2) }}"
+        
+      kitchen_light_month:
+        friendly_name: "Kitchen Light"
+        entity_id: sensor.kitchen_light_total
+        value_template: "{{ (((states.sensor.kitchen_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      kitchen_light_cost:
+        friendly_name: "Kitchen Light Cost"
+        entity_id: sensor.kitchen_light_month
+        value_template: >-
+          {% if (states.sensor.kitchen_light_month.state|float > 0) %}
+            ${{ (states.sensor.kitchen_light_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.kitchen_light_month.state|float == 0) %}
+            ${{ (states.sensor.kitchen_light_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      laundry_light_month:
+        friendly_name: "Laundry Light"
+        entity_id: sensor.laundry_light_total
+        value_template: "{{ (((states.sensor.laundry_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      lounge_light_month:
+        friendly_name: "Lounge Light"
+        entity_id: sensor.lounge_light_total
+        value_template: "{{ (((states.sensor.lounge_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      lounge_light_cost:
+        friendly_name: "Lounge Light Total"
+        entity_id: sensor.lounge_light_month
+        value_template: >-
+          {% if (states.sensor.lounge_light_month.state|float > 0) %}
+            ${{ (states.sensor.lounge_light_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.lounge_light_month.state|float == 0) %}
+            ${{ (states.sensor.lounge_light_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      bathroom_light_month:
+        friendly_name: "Bathroom Light"
+        entity_id: sensor.bathroom_light_total
+        value_template: "{{ (((states.sensor.bathroom_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      bedroom_walkin_light_month:
+        friendly_name: "Walk In Light"
+        entity_id: sensor.bedroom_walkin_light_total
+        value_template: "{{ (((states.sensor.bedroom_walkin_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      dining_light_month:
+        friendly_name: "Dining Light"
+        entity_id: sensor.dining_light_total
+        value_template: "{{ (((states.sensor.dining_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      playroom_light_month:
+        friendly_name: "Playroom Light"
+        entity_id: sensor.playroom_light_total
+        value_template: "{{ (((states.sensor.playroom_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      upstairs_toilet_light_month:
+        friendly_name: "Upstairs Toilet Light"
+        entity_id: sensor.upstairs_toilet_light_total
+        value_template: "{{ (((states.sensor.upstairs_toilet_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      upstairs_toilet_light_cost:
+        friendly_name: "Upstairs Light Total"
+        entity_id: sensor.upstairs_toilet_light_month
+        value_template: >-
+          {% if (states.sensor.upstairs_toilet_light_month.state|float > 0) %}
+            ${{ (states.sensor.upstairs_toilet_light_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.upstairs_toilet_light_month.state|float == 0) %}
+            ${{ (states.sensor.upstairs_toilet_light_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      bedroom_light_month:
+        friendly_name: "Bedroom Light"
+        entity_id: sensor.bedroom_light_total
+        value_template: "{{ (((states.sensor.bedroom_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      jackson_light_month:
+        friendly_name: "Jackson Light"
+        entity_id: sensor.jackson_light_total
+        value_template: "{{ (((states.sensor.jackson_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      hudson_light_month:
+        friendly_name: "Hudson Light"
+        entity_id: sensor.hudson_light_total
+        value_template: "{{ (((states.sensor.hudson_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      lighting_total_month:
+        friendly_name: "Lighting Total"
+        entity_id: sensor.lounge_light_total
+        value_template: "{{ ((states.sensor.kitchen_light_month.state|float) + (states.sensor.laundry_light_month.state|float) + (states.sensor.lounge_light_month.state|float) + (states.sensor.bathroom_light_month.state|float) + (states.sensor.dining_light_month.state|float) + (states.sensor.playroom_light_month.state|float) + (states.sensor.upstairs_toilet_light_month.state|float) + (states.sensor.bedroom_walkin_light_month.state|float) + (states.sensor.jackson_light_month.state|float) + (states.sensor.hudson_light_month.state|float))|round(2) }}"
+        
+      lighting_total_cost:
+        friendly_name: "Lighting Total"
+        entity_id: sensor.lighting_total_month
+        value_template: >-
+          {% if (states.sensor.lighting_total_month.state|float > 0) %}
+            ${{ (states.sensor.lighting_total_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.lighting_total_month.state|float == 0) %}
+            ${{ (states.sensor.lighting_total_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      all_lighting_month:
+        friendly_name: "All Lighting"
+        entity_id: sensor.lounge_light_total
+        value_template: "{{ ((states.sensor.lighting_total_month.state|float) +  (states.sensor.outdoor_lights_month.state|float) + (states.sensor.monthly_entertainment_lighting.state|float) + (states.sensor.monthly_festive_lighting.state|float)) }}"
+          
+      all_lighting_cost:
+        friendly_name: "All Lighting Total"
+        entity_id: sensor.lighting_total_month
+        value_template: >-
+          {% if (states.sensor.all_lighting_month.state|float > 0) %}
+            ${{ (states.sensor.all_lighting_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.all_lighting_month.state|float == 0) %}
+            ${{ (states.sensor.all_lighting_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      lounge_fan_month:
+        friendly_name: "Lounge Fan"
+        entity_id: sensor.lounge_fan_total
+        value_template: "{{ (((states.sensor.lounge_fan_total.state|float) * 75) / 1000)|round(2) }}"
+        
+      bedroom_fan_month:
+        friendly_name: "Bedroom Fan"
+        entity_id: sensor.bedroom_fan_total
+        value_template: "{{ (((states.sensor.bedroom_fan_total.state|float) * 75) / 1000)|round(2) }}"
+        
+      jackson_fan_month:
+        friendly_name: "Jackson Fan"
+        entity_id: sensor.jackson_fan_total
+        value_template: "{{ (((states.sensor.jackson_fan_total.state|float) * 75) / 1000)|round(2) }}"
+        
+      hudson_fan_month:
+        friendly_name: "Hudson Fan"
+        entity_id: sensor.hudson_fan_total
+        value_template: "{{ (((states.sensor.hudson_fan_total.state|float) * 75) / 1000)|round(2) }}"
+        
+      total_fan_month:
+        friendly_name: "Total Fan"
+        entity_id: sensor.lounge_fan_total
+        value_template: "{{ ((states.sensor.hudson_fan_month.state|float) +  (states.sensor.lounge_fan_month.state|float) + (states.sensor.bedroom_fan_month.state|float) + (states.sensor.jackson_fan_month.state|float)) }}"
+        
+      downstairs_aircon_month:
+        friendly_name: "Downstairs Aircon"
+        entity_id: sensor.downstairs_aircon_total
+        value_template: "{{ (((states.sensor.downstairs_aircon_total.state|float) * 450) / 1000)|round(2) }}"
+        
+      upstairs_aircon_month:
+        friendly_name: "Upstairs Aircon"
+        entity_id: sensor.upstairs_aircon_total
+        value_template: "{{ (((states.sensor.upstairs_aircon_total.state|float) * 450) / 1000)|round(2) }}"
+        
+      total_aircon_month:
+        friendly_name: "Total Aircon"
+        entity_id: sensor.lounge_fan_total
+        value_template: "{{ ((states.sensor.downstairs_aircon_month.state|float) +  (states.sensor.upstairs_aircon_month.state|float)) }}"
+        
+      total_climate_month:
+        friendly_name: "Total Climate"
+        entity_id: sensor.total_fan_month
+        value_template: "{{ ((states.sensor.total_fan_month.state|float) +  (states.sensor.total_aircon_month.state|float)) }}"
+        
+      total_climate_cost:
+        entity_id: sensor.total_climate_month
+        friendly_name: 'Media Room Cost'
+        value_template: >-
+          {% if (states.sensor.total_climate_month.state|float > 0) %}
+            ${{ (states.sensor.total_climate_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_climate_month.state|float == 0) %}
+            ${{ (states.sensor.total_climate_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      media_tv_month:
+        friendly_name: "Media TV"
+        entity_id: sensor.media_tv_total
+        value_template: "{{ (((states.sensor.media_tv_total.state|float) * 91.5) / 1000)|round(2) }}"
+        
+      media_kodi_month:
+        friendly_name: "Media Kodi"
+        entity_id: sensor.media_kodi_total
+        value_template: "{{ (((states.sensor.media_kodi_total.state|float) * 14.9) / 1000)|round(2) }}"
+        
+      total_media_month:
+        friendly_name: "Total Media"
+        entity_id: sensor.media_kodi_month
+        value_template: "{{ ((states.sensor.media_tv_month.state|float) +  (states.sensor.media_kodi_month.state|float))|round(2) }}"
+        
+      total_media_cost:
+        entity_id: sensor.total_media_month
+        friendly_name: 'Media Room Cost'
+        value_template: >-
+          {% if (states.sensor.total_media_month.state|float > 0) %}
+            ${{ (states.sensor.total_media_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_media_month.state|float == 0) %}
+            ${{ (states.sensor.total_media_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      ha_nuc_month:
+        friendly_name: "HA NUC"
+        entity_id: sensor.ha_nuc_total
+        value_template: "{{ (((states.sensor.ha_nuc_total.state|float) * 14.9) / 1000)|round(2) }}"
+        
+      ha_nuc_cost:
+        friendly_name: "HA NUC"
+        entity_id: sensor.ha_nuc_month
+        value_template: >-
+          {% if (states.sensor.ha_nuc_month.state|float > 0) %}
+            ${{ (states.sensor.ha_nuc_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.ha_nuc_month.state|float == 0) %}
+            ${{ (states.sensor.ha_nuc_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      ha_addons_month:
+        friendly_name: "HA Addons"
+        entity_id: sensor.ha_addons_total
+        value_template: "{{ (((states.sensor.ha_addons_total.state|float) * 2) / 1000)|round(2) }}"
+        
+      ha_addons_cost:
+        friendly_name: "HA Addons"
+        entity_id: sensor.ha_addons_month
+        value_template: >-
+          {% if (states.sensor.ha_addons_month.state|float > 0) %}
+            ${{ (states.sensor.ha_addons_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.ha_addons_month.state|float == 0) %}
+            ${{ (states.sensor.ha_addons_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      ha_automations_month:
+        friendly_name: "HA Automations"
+        entity_id: sensor.ha_automations_total
+        value_template: "{{ (((states.sensor.ha_automations_total.state|float) * 2) / 1000)|round(2) }}"
+        
+      ha_automations_cost:
+        friendly_name: "HA Automations"
+        entity_id: sensor.ha_automations_month
+        value_template: >-
+          {% if (states.sensor.ha_automations_month.state|float > 0) %}
+            ${{ (states.sensor.ha_automations_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.ha_automations_month.state|float == 0) %}
+            ${{ (states.sensor.ha_automations_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      ha_ble_upstairs_month:
+        friendly_name: "HA BLE Upstairs"
+        entity_id: sensor.ha_ble_upstairs_total
+        value_template: "{{ (((states.sensor.ha_ble_upstairs_total.state|float) * 2) / 1000)|round(2) }}"
+        
+      ha_ble_upstairs_cost:
+        friendly_name: "HA BLE Upstairs"
+        entity_id: sensor.ha_ble_upstairs_month
+        value_template: >-
+          {% if (states.sensor.ha_ble_upstairs_month.state|float > 0) %}
+            ${{ (states.sensor.ha_ble_upstairs_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.ha_ble_upstairs_month.state|float == 0) %}
+            ${{ (states.sensor.ha_ble_upstairs_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      ha_ble_downstairs_month:
+        friendly_name: "HA BLE Downstairs"
+        entity_id: sensor.ha_ble_downstairs_total
+        value_template: "{{ (((states.sensor.ha_ble_downstairs_total.state|float) * 2) / 1000)|round(2) }}"
+        
+      ha_ble_downstairs_cost:
+        friendly_name: "HA BLE Downstairs"
+        entity_id: sensor.ha_ble_downstairs_month
+        value_template: >-
+          {% if (states.sensor.ha_ble_downstairs_month.state|float > 0) %}
+            ${{ (states.sensor.ha_ble_downstairs_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.ha_ble_downstairs_month.state|float == 0) %}
+            ${{ (states.sensor.ha_ble_downstairs_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      ha_garden_month:
+        friendly_name: "HA Garden"
+        entity_id: sensor.ha_garden_total
+        value_template: "{{ (((states.sensor.ha_garden_total.state|float) * 0.7) / 1000)|round(2) }}"
+        
+      ha_garden_cost:
+        friendly_name: "HA Garden"
+        entity_id: sensor.ha_garden_month
+        value_template: >-
+          {% if (states.sensor.ha_garden_month.state|float > 0) %}
+            ${{ (states.sensor.ha_garden_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.ha_garden_month.state|float == 0) %}
+            ${{ (states.sensor.ha_garden_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      total_rpi_month:
+        friendly_name: "Total RPi"
+        entity_id: sensor.ha_nuc_month
+        value_template: "{{ ((states.sensor.ha_nuc_month.state|float) +  (states.sensor.ha_addons_month.state|float) + (states.sensor.ha_automations_month.state|float) + (states.sensor.ha_ble_upstairs_month.state|float) + (states.sensor.ha_ble_downstairs_month.state|float) + (states.sensor.ha_garden_month.state|float))|round(2) }}"
+      
+      total_rpi_cost:
+        friendly_name: "Total RPi"
+        entity_id: sensor.ha_nuc_month
+        value_template: >-
+          {% if (states.sensor.total_rpi_month.state|float > 0) %}
+            ${{ (states.sensor.total_rpi_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_rpi_month.state|float == 0) %}
+            ${{ (states.sensor.total_rpi_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+        
+      nas_movies_month:
+        friendly_name: "NAS Movies"
+        entity_id: sensor.nas_movies_total
+        value_template: "{{ (((states.sensor.nas_movies_total.state|float) * 0.7) / 1000)|round(2) }}"
+        
+      nas_movies_cost:
+        friendly_name: "NAS Movies"
+        entity_id: sensor.nas_movies_month
+        value_template: >-
+          {% if (states.sensor.nas_movies_month.state|float > 0) %}
+            ${{ (states.sensor.nas_movies_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.nas_movies_month.state|float == 0) %}
+            ${{ (states.sensor.nas_movies_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      nas_tv_month:
+        friendly_name: "NAS TV"
+        entity_id: sensor.nas_tv_total
+        value_template: "{{ (((states.sensor.nas_tv_total.state|float) * 0.7) / 1000)|round(2) }}"
+        
+      nas_tv_cost:
+        friendly_name: "NAS TV"
+        entity_id: sensor.nas_tv_month
+        value_template: >-
+          {% if (states.sensor.nas_tv_month.state|float > 0) %}
+            ${{ (states.sensor.nas_tv_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.nas_tv_month.state|float == 0) %}
+            ${{ (states.sensor.nas_tv_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      total_nas_month:
+        friendly_name: "Total NAS"
+        entity_id: sensor.nas_movies_month
+        value_template: "{{ ((states.sensor.nas_movies_month.state|float) +  (states.sensor.nas_tv_month.state|float))|round(2) }}"
+      
+      total_nas_cost:
+        friendly_name: "Total NAS"
+        entity_id: sensor.nas_movies_month
+        value_template: >-
+          {% if (states.sensor.total_nas_month.state|float > 0) %}
+            ${{ (states.sensor.total_nas_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_nas_month.state|float == 0) %}
+            ${{ (states.sensor.total_nas_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      router_month:
+        friendly_name: "Router"
+        entity_id: sensor.router_total
+        value_template: "{{ (((states.sensor.router_total.state|float) * 16) / 1000)|round(2) }}"
+        
+      router_cost:
+        friendly_name: "Router"
+        entity_id: sensor.router_month
+        value_template: >-
+          {% if (states.sensor.router_month.state|float > 0) %}
+            ${{ (states.sensor.router_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.router_month.state|float == 0) %}
+            ${{ (states.sensor.router_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      switch_month:
+        friendly_name: "Switch"
+        entity_id: sensor.switch_total
+        value_template: "{{ (((states.sensor.switch_total.state|float) * 16) / 1000)|round(2) }}"
+        
+      switch_cost:
+        friendly_name: "Switch"
+        entity_id: sensor.switch_month
+        value_template: >-
+          {% if (states.sensor.switch_month.state|float > 0) %}
+            ${{ (states.sensor.switch_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.switch_month.state|float == 0) %}
+            ${{ (states.sensor.switch_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      total_routers_month:
+        friendly_name: "Total Routers"
+        entity_id: sensor.router_month
+        value_template: "{{ ((states.sensor.router_month.state|float) +  (states.sensor.switch_month.state|float))|round(2) }}"
+      
+      total_routers_cost:
+        friendly_name: "Total Routers"
+        entity_id: sensor.router_month
+        value_template: >-
+          {% if (states.sensor.total_routers_month.state|float > 0) %}
+            ${{ (states.sensor.total_routers_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_routers_month.state|float == 0) %}
+            ${{ (states.sensor.total_routers_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      5g_main_month:
+        friendly_name: "5G Main"
+        entity_id: sensor.5g_main
+        value_template: "{{ ((('states.sensor.5g_main_total.state'|float) * 8) / 1000)|round(2) }}"
+        
+      5g_main_cost:
+        friendly_name: "5G Main"
+        entity_id: 'sensor.5g_main_month'
+        value_template: >-
+          {% if ('states.sensor.5g_main_month.state'|float > 0) %}
+            ${{ ('states.sensor.5g_main_month.state'|float * 0.2420)|round(2) }}
+          {% elif ('states.sensor.5g_main_month.state'|float == 0) %}
+            ${{ ('states.sensor.5g_main_month.state'|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      5g_tv_month:
+        friendly_name: "5G TV"
+        entity_id: 'sensor.5g_tv'
+        value_template: "{{ ((('states.sensor.5g_tv_total.state'|float) * 8) / 1000)|round(2) }}"
+        
+      5g_tv_cost:
+        friendly_name: "5G TV"
+        entity_id: 'sensor.5g_tv_month'
+        value_template: >-
+          {% if ('states.sensor.5g_tv_month.state'|float > 0) %}
+            ${{ ('states.sensor.5g_tv_month.state'|float * 0.2420)|round(2) }}
+          {% elif ('states.sensor.5g_tv_month.state'|float == 0) %}
+            ${{ ('states.sensor.5g_tv_month.state'|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      5g_upstairs_month:
+        friendly_name: "5G Upstairs"
+        entity_id: 'sensor.5g_upstairs'
+        value_template: "{{ ((('states.sensor.5g_upstairs_total.state'|float) * 8) / 1000)|round(2) }}"
+        
+      5g_upstairs_cost:
+        friendly_name: "5G Upstairs"
+        entity_id: 'sensor.5g_upstairs_month'
+        value_template: >-
+          {% if ('states.sensor.5g_upstairs_month.state'|float > 0) %}
+            ${{ ('states.sensor.5g_upstairs_month.state'|float * 0.2420)|round(2) }}
+          {% elif ('states.sensor.5g_upstairs_month.state'|float == 0) %}
+            ${{ ('states.sensor.5g_upstairs_month.state'|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      downstairs_ap_month:
+        friendly_name: "Downstairs AP"
+        entity_id: sensor.downstairs_ap
+        value_template: "{{ (((states.sensor.downstairs_ap_total.state|float) * 8) / 1000)|round(2) }}"
+        
+      downstairs_ap_cost:
+        friendly_name: "Downstairs AP"
+        entity_id: sensor.downstairs_ap_month
+        value_template: >-
+          {% if (states.sensor.downstairs_ap_month.state|float > 0) %}
+            ${{ (states.sensor.downstairs_ap_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.downstairs_ap_month.state|float == 0) %}
+            ${{ (states.sensor.downstairs_ap_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      upstairs_ap_month:
+        friendly_name: "Upstairs AP"
+        entity_id: sensor.upstairs_ap
+        value_template: "{{ (((states.sensor.upstairs_ap_total.state|float) * 8) / 1000)|round(2) }}"
+        
+      upstairs_ap_cost:
+        friendly_name: "Upstairs AP"
+        entity_id: sensor.upstairs_ap_month
+        value_template: >-
+          {% if (states.sensor.upstairs_ap_month.state|float > 0) %}
+            ${{ (states.sensor.upstairs_ap_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.upstairs_ap_month.state|float == 0) %}
+            ${{ (states.sensor.upstairs_ap_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      total_wireless_month:
+        friendly_name: "Total Wireless"
+        entity_id: sensor.downstairs_ap_month
+        value_template: "{{ (('states.sensor.5g_main_month.state'|float) + ('states.sensor.5g_tv_month.state'|float) + ('states.sensor.5g_upstairs_month.state'|float) + (states.sensor.downstairs_ap_month.state|float) + (states.sensor.upstairs_ap_month.state|float))|round(2) }}"
+      
+      total_wireless_cost:
+        friendly_name: "Total Wireless"
+        entity_id: sensor.wireless_month
+        value_template: >-
+          {% if (states.sensor.total_wireless_month.state|float > 0) %}
+            ${{ (states.sensor.total_wireless_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_wireless_month.state|float == 0) %}
+            ${{ (states.sensor.total_wireless_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      xiaomi_gateway_1_month:
+        friendly_name: "Xiaomi Gateway 1"
+        entity_id: sensor.xiaomi_gateway_1
+        value_template: "{{ (((states.sensor.xiaomi_gateway_1_total.state|float) * 8) / 1000)|round(2) }}"
+        
+      xiaomi_gateway_1_cost:
+        friendly_name: "Xiaomi Gateway 1"
+        entity_id: sensor.xiaomi_gateway_1_month
+        value_template: >-
+          {% if (states.sensor.xiaomi_gateway_1_month.state|float > 0) %}
+            ${{ (states.sensor.xiaomi_gateway_1_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.xiaomi_gateway_1_month.state|float == 0) %}
+            ${{ (states.sensor.xiaomi_gateway_1_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      xiaomi_gateway_2_month:
+        friendly_name: "Xiaomi Gateway 2"
+        entity_id: sensor.xiaomi_gateway_2
+        value_template: "{{ (((states.sensor.xiaomi_gateway_2_total.state|float) * 8) / 1000)|round(2) }}"
+        
+      xiaomi_gateway_2_cost:
+        friendly_name: "Xiaomi Gateway 2"
+        entity_id: sensor.xiaomi_gateway_2_month
+        value_template: >-
+          {% if (states.sensor.xiaomi_gateway_2_month.state|float > 0) %}
+            ${{ (states.sensor.xiaomi_gateway_2_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.xiaomi_gateway_2_month.state|float == 0) %}
+            ${{ (states.sensor.xiaomi_gateway_2_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      total_zigbee_month:
+        friendly_name: "Zigbee Wireless"
+        entity_id: sensor.xiaomi_gateway_2_month
+        value_template: "{{ ((states.sensor.xiaomi_gateway_1_month.state|float) + (states.sensor.xiaomi_gateway_2_month.state|float))|round(2) }}"
+      
+      total_zigbee_cost:
+        friendly_name: "Zigbee Wireless"
+        entity_id: sensor.total_zigbee_month
+        value_template: >-
+          {% if (states.sensor.total_zigbee_month.state|float > 0) %}
+            ${{ (states.sensor.total_zigbee_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_zigbee_month.state|float == 0) %}
+            ${{ (states.sensor.total_zigbee_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      total_smart_month:
+        friendly_name: "Total Smart Home"
+        entity_id: sensor.xiaomi_gateway_2_month
+        value_template: "{{ ((states.sensor.total_zigbee_month.state|float) + (states.sensor.total_wireless_month.state|float) + (states.sensor.total_routers_month.state|float) + (states.sensor.total_nas_month.state|float) + (states.sensor.total_rpi_month.state|float) + (states.sensor.ha_nuc_month.state|float))|round(2) }}"
+        
+      total_smart_cost:
+        friendly_name: "Total Smart Cost"
+        entity_id: sensor.total_smart_month
+        value_template: >-
+          {% if (states.sensor.total_smart_month.state|float > 0) %}
+            ${{ (states.sensor.total_smart_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_smart_month.state|float == 0) %}
+            ${{ (states.sensor.total_smart_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      entrance_light_month:
+        friendly_name: "Entrance Light"
+        entity_id: sensor.entrance_light
+        value_template: "{{ (((states.sensor.entrance_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      entrance_light_cost:
+        friendly_name: "Entrance Light Cost"
+        entity_id: sensor.entrance_light_month
+        value_template: >-
+          {% if (states.sensor.entrance_light_month.state|float > 0) %}
+            ${{ (states.sensor.entrance_light_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.entrance_light_month.state|float == 0) %}
+            ${{ (states.sensor.entrance_light_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      patio_light_month:
+        friendly_name: "Patio Light"
+        entity_id: sensor.patio_light
+        value_template: "{{ (((states.sensor.patio_light_total.state|float) * 10) / 1000)|round(2) }}"
+        
+      patio_light_cost:
+        friendly_name: "Patio Light Cost"
+        entity_id: sensor.patio_light_month
+        value_template: >-
+          {% if (states.sensor.patio_light_month.state|float > 0) %}
+            ${{ (states.sensor.patio_light_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.patio_light_month.state|float == 0) %}
+            ${{ (states.sensor.patio_light_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      outdoor_lights_month:
+        friendly_name: "Outdoor Lights"
+        entity_id: sensor.entrance_light_month
+        value_template: "{{ ((states.sensor.entrance_light_month.state|float) + (states.sensor.patio_light_month.state|float))|round(2) }}"
+        
+      outdoor_lights_cost:
+        friendly_name: "Outdoor Lights Cost"
+        entity_id: sensor.outdoor_lights_month
+        value_template: >-
+          {% if (states.sensor.outdoor_lights_month.state|float > 0) %}
+            ${{ (states.sensor.outdoor_lights_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.outdoor_lights_month.state|float == 0) %}
+            ${{ (states.sensor.outdoor_lights_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      entertainment_lights_cost:
+        friendly_name: "Entertainment Lights Cost"
+        entity_id: sensor.monthly_entertainment_lighting
+        value_template: >-
+          {% if (states.sensor.monthly_entertainment_lighting.state|float > 0) %}
+            ${{ (states.sensor.monthly_entertainment_lighting.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.monthly_entertainment_lighting.state|float == 0) %}
+            ${{ (states.sensor.monthly_entertainment_lighting.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      festive_lights_cost:
+        friendly_name: "Festive Lights Cost"
+        entity_id: sensor.monthly_entertainment_lighting
+        value_template: >-
+          {% if (states.sensor.monthly_festive_lighting.state|float > 0) %}
+            ${{ (states.sensor.monthly_festive_lighting.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.monthly_festive_lighting.state|float == 0) %}
+            ${{ (states.sensor.monthly_festive_lighting.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      total_fan_cost:
+        friendly_name: "Total Fan Cost"
+        entity_id: sensor.total_fan_month
+        value_template: >-
+          {% if (states.sensor.total_fan_month.state|float > 0) %}
+            ${{ (states.sensor.total_fan_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_fan_month.state|float == 0) %}
+            ${{ (states.sensor.total_fan_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+          
+      total_aircon_cost:
+        friendly_name: "Total Aircon Cost"
+        entity_id: sensor.total_aircon_month
+        value_template: >-
+          {% if (states.sensor.total_aircon_month.state|float > 0) %}
+            ${{ (states.sensor.total_aircon_month.state|float * 0.2420)|round(2) }}
+          {% elif (states.sensor.total_aircon_month.state|float == 0) %}
+            ${{ (states.sensor.total_aircon_month.state|float * 0.2420)|round(2) }}
+          {% endif %}
+
+####################################################
+#                                                  #
+#             Sensors - History Stats              #
+#                                                  #
+####################################################
+        
+  - platform: history_stats
+    name: Kitchen Light
+    entity_id: switch.kitchen_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Dining Light
+    entity_id: switch.dining_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Laundry Light
+    entity_id: switch.laundry_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Playroom Light
+    entity_id: switch.playroom_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Lounge Light
+    entity_id: switch.lounge_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Entrance Light
+    entity_id: light.entrance_bulb
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Patio Light
+    entity_id: switch.patio_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Upstairs Toilet Light
+    entity_id: switch.upstairs_toilet_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Bathroom Light
+    entity_id: switch.bathroom_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Bedroom Light
+    entity_id: switch.master_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Bedroom Walkin Light
+    entity_id: switch.master_wardrobe_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Jackson Light
+    entity_id: switch.jackson_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Hudson Light
+    entity_id: switch.hudson_light_switch
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Jackson Fan
+    entity_id: fan.jackson_fan
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Hudson Fan
+    entity_id: fan.hudson_fan
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Bedroom Fan
+    entity_id: fan.bedroom_fan
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Lounge Fan
+    entity_id: fan.lounge_fan
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Downstairs Aircon
+    entity_id: switch.aircon_power
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Upstairs Aircon
+    entity_id: switch.bedroom_aircon_power
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: HA NUC
+    entity_id: device_tracker.rpi
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: HA Addons
+    entity_id: device_tracker.addon_pi
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: HA Automations
+    entity_id: device_tracker.automation_pi
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: HA BLE Upstairs
+    entity_id: device_tracker.ble_tracker_upstairs
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: HA BLE Downstairs
+    entity_id: device_tracker.ble_tracker_downstairs
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: HA Garden
+    entity_id: device_tracker.garden_pi
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: NAS Movies
+    entity_id: device_tracker.nas_movies
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: NAS TV
+    entity_id: device_tracker.nas_tv
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Router
+    entity_id: device_tracker.core_router
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Switch
+    entity_id: device_tracker.core_switch
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: "5G Main"
+    entity_id: device_tracker.5g_ac_main
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: "5G TV"
+    entity_id: device_tracker.5g_ac_media_tv
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: "5G Upstairs"
+    entity_id: device_tracker.5g_ac_upstairs
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: 'Downstairs AP'
+    entity_id: device_tracker.downstairs_ap
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: 'Upstairs AP'
+    entity_id: device_tracker.upstairs_ap
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: 'Xiaomi Gateway 1'
+    entity_id: device_tracker.xiaomi_gateway
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: 'Xiaomi Gateway 2'
+    entity_id: device_tracker.xiaomi_gateway_2
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+#################################################################
+#                                                               #
+#                        Utility Meter                          #
+#                                                               #
+################################################################# 
+
+utility_meter:
+
+  monthly_appliance:
+    source: sensor.appliance_consumption
+    cycle: monthly
+    
+  monthly_dryer:
+    source: sensor.dryer_consumption
+    cycle: monthly
+    
+  monthly_entertainment_lighting:
+    source: sensor.entertainment_lighting_consumption
+    cycle: monthly
+    
+  monthly_festive_lighting:
+    source: sensor.festive_lighting_consumption
+    cycle: monthly
+    
+  monthly_washer:
+    source: sensor.washer_consumption
+    cycle: monthly
+    
+  daily_total:
+    source: sensor.total_consumption
+    cycle: daily
+    
+  weekly_total:
+    source: sensor.total_consumption
+    cycle: weekly
+    
+  monthly_total:
+    source: sensor.total_consumption
+    cycle: monthly
+    
+  kitchen_light_total:
+    source: sensor.kitchen_light
+    cycle: monthly
+    
+  laundry_light_total:
+    source: sensor.laundry_light
+    cycle: monthly
+    
+  lounge_light_total:
+    source: sensor.lounge_light
+    cycle: monthly
+    
+  bathroom_light_total:
+    source: sensor.bathroom_light
+    cycle: monthly
+    
+  bedroom_walkin_light_total:
+    source: sensor.bedroom_walkin_light
+    cycle: monthly
+    
+  dining_light_total:
+    source: sensor.dining_light
+    cycle: monthly
+    
+  playroom_light_total:
+    source: sensor.playroom_light
+    cycle: monthly
+    
+  upstairs_toilet_light_total:
+    source: sensor.upstairs_toilet_light
+    cycle: monthly
+    
+  bedroom_light_total:
+    source: sensor.bedroom_light
+    cycle: monthly
+    
+  jackson_light_total:
+    source: sensor.jackson_light
+    cycle: monthly
+    
+  hudson_light_total:
+    source: sensor.hudson_light
+    cycle: monthly
+    
+  lounge_fan_total:
+    source: sensor.lounge_fan
+    cycle: monthly
+    
+  bedroom_fan_total:
+    source: sensor.bedroom_fan
+    cycle: monthly
+    
+  jackson_fan_total:
+    source: sensor.jackson_fan
+    cycle: monthly
+    
+  hudson_fan_total:
+    source: sensor.hudson_fan
+    cycle: monthly
+    
+  downstairs_aircon_total:
+    source: sensor.downstairs_aircon
+    cycle: monthly
+    
+  upstairs_aircon_total:
+    source: sensor.upstairs_aircon
+    cycle: monthly
+    
+  media_tv_total:
+    source: sensor.stats_tv
+    cycle: monthly
+    
+  media_kodi_total:
+    source: sensor.stats_kodi
+    cycle: monthly
+    
+  ha_nuc_total:
+    source: sensor.ha_nuc
+    cycle: monthly
+    
+  ha_addons_total:
+    source: sensor.ha_addons
+    cycle: monthly
+    
+  ha_automations_total:
+    source: sensor.ha_automations
+    cycle: monthly
+    
+  ha_ble_upstairs_total:
+    source: sensor.ha_ble_upstairs
+    cycle: monthly
+    
+  ha_ble_downstairs_total:
+    source: sensor.ha_ble_downstairs
+    cycle: monthly
+    
+  ha_garden_total:
+    source: sensor.ha_garden
+    cycle: monthly
+    
+  nas_movies_total:
+    source: sensor.nas_movies
+    cycle: monthly
+    
+  nas_tv_total:
+    source: sensor.nas_tv
+    cycle: monthly
+    
+  router_total:
+    source: sensor.router
+    cycle: monthly
+    
+  switch_total:
+    source: sensor.switch
+    cycle: monthly
+    
+  5g_main_total:
+    source: sensor.5g_main
+    cycle: monthly
+    
+  5g_tv_total:
+    source: sensor.5g_tv
+    cycle: monthly
+    
+  5g_upstairs_total:
+    source: sensor.5g_upstairs
+    cycle: monthly
+    
+  downstairs_ap_total:
+    source: sensor.downstairs_ap
+    cycle: monthly
+    
+  upstairs_ap_total:
+    source: sensor.upstairs_ap
+    cycle: monthly
+    
+  xiaomi_gateway_1_total:
+    source: sensor.xiaomi_gateway_1
+    cycle: monthly
+    
+  xiaomi_gateway_2_total:
+    source: sensor.xiaomi_gateway_2
+    cycle: monthly
+    
+  entrance_light_total:
+    source: sensor.entrance_light
+    cycle: monthly
+    
+  pation_light_total:
+    source: sensor.patio_light
+    cycle: monthly
