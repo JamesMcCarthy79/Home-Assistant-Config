@@ -37,14 +37,34 @@ sensor:
 
 ####################################################
 #                                                  #
+#                 Sensors - Fitbit                 #
+#                                                  #
+####################################################
+
+  - platform: fitbit
+    clock_format: 12H
+    monitored_resources:
+      - "body/weight"
+      - "activities/distance"
+      - "activities/heart"
+      - "activities/steps"
+      - "body/bmi"
+      - "body/fat"
+      - "body/weight"
+      - "devices/battery"
+      - "sleep/startTime"
+      - "sleep/timeInBed"
+      
+####################################################
+#                                                  #
 #               Sensors - Google Fit               #
 #                                                  #
 ####################################################
 
-  - platform: google_fit
-    client_id: !secret google_fit_client_id
-    client_secret: !secret google_fit_client_secret
-    scan_interval: 30
+#  - platform: google_fit
+#    client_id: !secret google_fit_client_id
+#    client_secret: !secret google_fit_client_secret
+#    scan_interval: 30
     
 ####################################################
 #                                                  #
