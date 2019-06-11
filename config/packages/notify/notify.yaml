@@ -71,8 +71,8 @@ notify:
 #                                                               #
 #################################################################
     
-tts:
-  - platform: google
+#tts:
+#  - platform: google
   
 #################################################################
 #                                                               #
@@ -86,7 +86,7 @@ script:
     sequence:
       - service: media_player.alexa_tts
         data_template:
-          entity_id: media_player.kingia_main
+          entity_id: media_player.kingia_main_2
           message: >
             {% if now().strftime("%H")|int < 12 %}
             Good morning James.
@@ -106,7 +106,7 @@ script:
     sequence:
       - service: media_player.alexa_tts
         data_template:
-          entity_id: media_player.kingia_main
+          entity_id: media_player.kingia_main_2
           message: >
             {% if now().strftime("%H")|int < 12 %}
             Good morning Tina.
@@ -125,7 +125,7 @@ script:
     sequence:
       - service: media_player.alexa_tts
         data_template:
-          entity_id: media_player.kingia_main
+          entity_id: media_player.kingia_main_2
           message: >
             {% if now().strftime("%H")|int < 12 %}
             Good morning.
