@@ -1,0 +1,8 @@
+{
+  "domain": "fcm-android",
+  "name": "Home Assistant Notify",
+  "documentation": "https://github.com/Crewski/HANotify",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": []
+}

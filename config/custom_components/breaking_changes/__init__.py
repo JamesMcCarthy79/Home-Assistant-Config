@@ -1,5 +1,6 @@
 """
 Component to show with breaking_changes.
+
 For more details about this component, please refer to
 https://github.com/custom-components/breaking_changes
 """

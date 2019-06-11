@@ -1,0 +1,8 @@
+{
+  "domain": "kodi_recently_added",
+  "name": "Kodi Recently Added Component",
+  "documentation": "https://github.com/custom-components/sensor.kodi_recently_added",
+  "dependencies": [],
+  "codeowners": ["@boralyl"],
+  "requirements": []
+}

@@ -1,0 +1,13 @@
+{
+  "domain": "xiaomi_miio_fan",
+  "name": "Xiaomi Mi Smart Pedestal Fan",
+  "documentation": "https://github.com/syssi/xiaomi_fan",
+  "requirements": [
+    "construct==2.9.45",
+    "python-miio==0.4.5"
+  ],
+  "dependencies": [],
+  "codeowners": [
+    "@syssi"
+  ]
+}

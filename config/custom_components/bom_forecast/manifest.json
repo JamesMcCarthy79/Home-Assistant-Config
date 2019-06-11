@@ -1,0 +1,8 @@
+{
+	"domain": "bom_forecast",
+	"name": "BOM Forecast",
+	"documentation": "https://github.com/bremor/bom_forecast",
+	"dependencies": [],
+	"codeowners": [],
+	"requirements": []
+}

@@ -1,9 +1,7 @@
 """
 A component which allows you to parse an RSS feed into a sensor
-
 For more details about this component, please refer to the documentation at
 https://github.com/custom-components/sensor.feedparser
-
 Following spec from https://validator.w3.org/feed/docs/rss2.html
 """
 
@@ -15,9 +13,9 @@ from time import strftime
 from subprocess import check_output
 from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
-from homeassistant.components.switch import (PLATFORM_SCHEMA)
+from homeassistant.components.sensor import (PLATFORM_SCHEMA)
 
-__version__ = '0.0.4'
+__version__ = '0.0.6'
 _LOGGER = logging.getLogger(__name__)
 
 REQUIREMENTS = ['feedparser']
