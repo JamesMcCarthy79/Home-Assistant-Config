@@ -12,7 +12,7 @@
 </p>  
 <p>
   <img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <img src="https://img.shields.io/badge/HA--Version-0.91.4-brightgreen.svg"/>
+  <img src="https://img.shields.io/badge/HA--Version-0.94.1-brightgreen.svg"/>
   <img src="https://img.shields.io/maintenance/yes/2019.svg"/>
   <img src="https://img.shields.io/github/commit-activity/y/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
@@ -22,17 +22,19 @@
 <p>
   <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v2.0.2-5294E2.svg"/>
-  <href="https://www.home-assistant.io/addons/ide"><img src="https://img.shields.io/badge/IDE-v0.8.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v3.0.3-5294E2.svg"/>
-  <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0-5294E2.svg"/>  
+  <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v2.1.4-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-grocy"><img src="https://img.shields.io/badge/Grocy-v0.2.0-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/ide"><img src="https://img.shields.io/badge/IDE-v1.0.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v3.0.5-5294E2.svg"/>  
 </p>
 <p>
+  <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0-5294E2.svg"/>
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-3.0.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-3.1.4-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v8.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v5.0.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.7.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v5.0.2-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.7.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-zigbee2mqtt"><img src="https://img.shields.io/badge/Zigbee2MQTT-1.4.0-5294E2.svg"/>
 </p>
 <hr --- </hr> 
 
@@ -40,11 +42,11 @@
 
 | Components - Standard | Components - Custom |Network Devices | Automations | Scripts |
 |:---------------------:|:-------------------:|:--------------:|:-----------:|:-------:|
-| 92                    |9                    |83              |39           |34       |
+| 92                    |11                   |83              |39           |34       |
 
 | Binary Sensors | Cameras | Fans | Lights | Media Players | Plants | Sensors | Switches |
 |:--------------:|:-------:|:----:|:------:|:-------------:|:------:|:-------:|:--------:|
-|168             |8        |5     |10       |10             |16      |754      |64        |
+|169             |8        |5     |10       |10             |16      |754      |64        |
 
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Xiaomi%20Logo.png" width="150"/>
 
@@ -52,9 +54,9 @@
 |:--------:|:-------------------:|:--------------:|:-------------:|:--------------:|:-----------------:|:------------------:|
 |2         |10                   |12              |2              |7               |2                  |2                   |
 
-| Philips Light Bulb | Yi Light Bulb | Plant Sensors | Temp/Hum Sensors | Smart Plugs | Appliances | Lamps |
-|:------------------:|:-------------:|:-------------:|:----------------:|:-----------:|:----------:|:-----:| 
-|5                   |4              |16             |7                 |7            |4           |1      |
+| Philips Light Bulb | Yi Light Bulb | Plant Sensors | Temp/Hum Sensors | Smart Plugs | Appliances | Lamps | Cubes |
+|:------------------:|:-------------:|:-------------:|:----------------:|:-----------:|:----------:|:-----:|:-----:| 
+|5                   |4              |16             |7                 |7            |4           |1      |1      |
 
 <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Sonoff%20Logo.png" width="180"/>
 
@@ -80,7 +82,7 @@ The wall switches are not actually used they are brand new in box they don't fit
 
 | Lovelace Mode | Resources | Views | Webhooks |
 |:-------------:|:---------:|:-----:|:--------:|
-|YAML           |22         |17     | 11       |
+|YAML           |24         |18     | 11       |
 
 | [Lovelace Screenshots](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/HA%20Pics/Transparent%20Lovelace) |
 | --- |
