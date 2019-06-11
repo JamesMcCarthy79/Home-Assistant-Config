@@ -68,10 +68,10 @@ group:
 #                                                               #
 #################################################################
 
-camera:
-  - platform: 'bom_radar'
-    name: "Bom Radar"
-    product_id: 'IDR663'
+#camera:
+#  - platform: 'bom_radar'
+#    name: "Bom Radar"
+#    product_id: 'IDR663'
     
 #################################################################
 #                                                               #
