@@ -74,14 +74,32 @@ device_tracker:
 
 ####################################################
 #                                                  #
+#              Device Tracker - MQTT               #
+#                                                  #
+####################################################
+
+  - platform: mqtt
+    devices:
+      james_keys: 'downstairs/blescan/presence/james_keys'
+      tina_keys: 'downstairs/blescan/presence/tina_keys'
+      james_car: 'downstairs/blescan/presence/james_car'
+      jackson_miband: 'downstairs/blescan/presence/jackson_miband'
+      james_miband: 'downstairs/blescan/presence/james_miband'
+      james_bag: 'downstairs/blescan/presence/james_bag'
+      trash_bin: 'downstairs/blescan/presence/trash_bin'
+      james_phone: 'downstairs/blescan/presence/james_phone'
+      tina_phone: 'downstairs/blescan/presence/tina_phone'
+
+####################################################
+#                                                  #
 #              Device Tracker - Ping               #
 #                                                  #
 ####################################################
 
   - platform: ping
     hosts:
-      james_ping: 10.0.5.2
-      tina_ping: 10.0.5.1
+      james_ping: 10.0.5.1
+      tina_ping: 10.0.5.2
 
 #################################################################
 #                                                               #
@@ -166,52 +184,36 @@ sensor:
 
 ## Trackers
   - platform: mqtt
-    state_topic: 'tracker/downstairs/34:2D:24:E9:AA:9F'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'James Keys'
+    state_topic: 'downstairs/blescan/presence/james_keys/rssi'
+    name: 'James Keys RSSI'
     
   - platform: mqtt
-    state_topic: 'tracker/downstairs/17:4F:24:F2:AC:FC'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'Tina Keys'
+    state_topic: 'downstairs/blescan/presence/tina_keys/rssi'
+    name: 'Tina Keys RSSI'
     
   - platform: mqtt
-    state_topic: 'tracker/downstairs/EB:44:53:B4:1E:3E'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'Trash Bin'
+    state_topic: 'downstairs/blescan/presence/trash_bin/rssi'
+    name: 'Trash Bin RSSI'
     
   - platform: mqtt
-    state_topic: 'tracker/downstairs/C2:B2:76:3E:5E:38'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'James Car'
+    state_topic: 'downstairs/blescan/presence/james_car/rssi'
+    name: 'James Car RSSI'
     
   - platform: mqtt
-    state_topic: 'tracker/downstairs/C8:FA:19:16:36:66'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'James Bag'
+    state_topic: 'downstairs/blescan/presence/james_bag/rssi'
+    name: 'James Bag RSSI'
     
   - platform: mqtt
-    state_topic: 'tracker/downstairs/04:79:70:4A:DC:D7'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'James Phone'
+    state_topic: 'downstairs/blescan/presence/james_phone/rssi'
+    name: 'James Phone RSSI'
     
   - platform: mqtt
-    state_topic: 'tracker/downstairs/CB:BA:4F:D0:D5:42'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'James MiBand'
+    state_topic: 'downstairs/blescan/presence/james_miband/rssi'
+    name: 'James MiBand RSSI'
     
   - platform: mqtt
-    state_topic: 'tracker/downstairs/A0:10:81:64:82:CB'
-    value_template: '{{ value_json.confidence }}'
-    unit_of_measurement: '%'
-    name: 'Tina Phone'
+    state_topic: 'downstairs/blescan/presence/tina_phone/rssi'
+    name: 'Tina Phone RSSI'
     
 ## Charging State
   - platform: mqtt
@@ -233,7 +235,7 @@ sensor:
     sensors:
       battery_james:
         friendly_name: "Battery"
-        value_template: "{{ states.device_tracker.huawei_h10.attributes.battery|int }}"
+        value_template: "{{ states.device_tracker.samsung_s10.attributes.battery|int }}"
         icon_template: >-
           {% if is_state('sensor.james_charging', 'Charging') %}
             mdi:battery-charging
@@ -256,43 +258,43 @@ sensor:
         value_template: >-
           {% if is_state('device_tracker.james_bayesian', 'home') %}
             Home
-          {% elif is_state('device_tracker.huawei_h10', 'Powertec') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Powertec') %}
             Powertec
-          {% elif is_state('device_tracker.huawei_h10', 'Kindy') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Kindy') %}
             Kindy
-          {% elif is_state('device_tracker.huawei_h10', 'Stocklands') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Stocklands') %}
             Stocklands
-          {% elif is_state('device_tracker.huawei_h10', 'Parlour') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Parlour') %}
             Parlour
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 25mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 25mins') %}
             25mins Away
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 15mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 15mins') %}
             15mins Away
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 5mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 5mins') %}
             5mins Away
-          {% elif is_state('device_tracker.huawei_h10', 'Darwin') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Darwin') %}
             Darwin
-          {% elif is_state('device_tracker.huawei_h10', 'Brisbane') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Brisbane') %}
             Brisbane
-          {% elif is_state('device_tracker.huawei_h10', 'Sydney') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Sydney') %}
             Sydney
-          {% elif is_state('device_tracker.huawei_h10', 'Melbourne') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Melbourne') %}
             Melbourne
-          {% elif is_state('device_tracker.huawei_h10', 'Perth') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Perth') %}
             Perth
-          {% elif is_state('device_tracker.huawei_h10', 'Adelaide') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Adelaide') %}
             Adelaide
-          {% elif is_state('device_tracker.huawei_h10', 'Tasmania') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Tasmania') %}
             Tasmania
-          {% elif is_state('device_tracker.huawei_h10', 'UK') %}
+          {% elif is_state('device_tracker.samsung_s10', 'UK') %}
             UK
-          {% elif is_state('device_tracker.huawei_h10', 'France') %}
+          {% elif is_state('device_tracker.samsung_s10', 'France') %}
             France
-          {% elif is_state('device_tracker.huawei_h10', 'Netherlands') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Netherlands') %}
             Netherlands
-          {% elif is_state('device_tracker.huawei_h10', 'Switzerland') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Switzerland') %}
             Switzerland
-          {% elif is_state('device_tracker.huawei_h10', 'Italy') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Italy') %}
             Italy
           {% else %}
             Away
@@ -302,43 +304,43 @@ sensor:
             /local/james.jpg
           {% endif %}
         icon_template: >-
-          {% if is_state('device_tracker.huawei_h10', 'Powertec') %}
+          {% if is_state('device_tracker.samsung_s10', 'Powertec') %}
             mdi:briefcase
-          {% elif is_state('device_tracker.huawei_h10', 'Kindy') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Kindy') %}
             mdi:school
-          {% elif is_state('device_tracker.huawei_h10', 'Stocklands') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Stocklands') %}
             mdi:cart
-          {% elif is_state('device_tracker.huawei_h10', 'Parlour') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Parlour') %}
             mdi:coffee
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 25mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 25mins') %}
             mdi:car
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 15mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 15mins') %}
             mdi:car
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 5mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 5mins') %}
             mdi:car
-          {% elif is_state('device_tracker.huawei_h10', 'Darwin') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Darwin') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Brisbane') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Brisbane') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Sydney') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Sydney') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Melbourne') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Melbourne') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Perth') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Perth') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Adelaide') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Adelaide') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Tasmania') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Tasmania') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'UK') %}
+          {% elif is_state('device_tracker.samsung_s10', 'UK') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'France') %}
+          {% elif is_state('device_tracker.samsung_s10', 'France') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Netherlands') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Netherlands') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Switzerland') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Switzerland') %}
             mdi:airplane
-          {% elif is_state('device_tracker.huawei_h10', 'Italy') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Italy') %}
             mdi:airplane
           {% else %}
             mdi:car
@@ -505,7 +507,7 @@ sensor:
     
   - platform: waze_travel_time
     name: 'James to Home'
-    origin: device_tracker.huawei_h10
+    origin: device_tracker.samsung_s10
     destination: zone.home
     region: 'EU'
     
@@ -533,50 +535,50 @@ binary_sensor:
     sensors:
       james_gps_status:
         friendly_name: GPS
-        entity_id: device_tracker.huawei_h10
-        value_template: "{{ is_state('device_tracker.huawei_h10', 'home') }}"
+        entity_id: device_tracker.samsung_s10
+        value_template: "{{ is_state('device_tracker.samsung_s10', 'home') }}"
         icon_template: >-
-          {% if is_state('device_tracker.huawei_h10', 'home') %}
+          {% if is_state('device_tracker.samsung_s10', 'home') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Powertec') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Powertec') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Kindy') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Kindy') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Stocklands') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Stocklands') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Parlour') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Parlour') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 25mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 25mins') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 15mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 15mins') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Work Home Beacon 5mins') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Work Home Beacon 5mins') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Darwin') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Darwin') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Brisbane') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Brisbane') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Sydney') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Sydney') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Melbourne') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Melbourne') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Perth') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Perth') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Adelaide') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Adelaide') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Tasmania') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Tasmania') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'UK') %}
+          {% elif is_state('device_tracker.samsung_s10', 'UK') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'France') %}
+          {% elif is_state('device_tracker.samsung_s10', 'France') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Netherlands') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Netherlands') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Switzerland') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Switzerland') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'Italy') %}
+          {% elif is_state('device_tracker.samsung_s10', 'Italy') %}
             mdi:crosshairs-gps
-          {% elif is_state('device_tracker.huawei_h10', 'not_home') %}
+          {% elif is_state('device_tracker.samsung_s10', 'not_home') %}
             mdi:crosshairs-gps
           {% else %}
             mdi:alert
