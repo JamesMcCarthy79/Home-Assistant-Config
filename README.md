@@ -28,7 +28,6 @@
   <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v5.1-5294E2.svg"/>
 </p>
 <p>
-  
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1.1-5294E2.svg"/>
   <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-6.1.4-5294E2.svg"/>
   <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v9.0-5294E2.svg"/>
