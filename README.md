@@ -12,29 +12,29 @@
 </p>  
 <p>
   <img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <img src="https://img.shields.io/badge/HA--Version-0.97.2-brightgreen.svg"/>
-  <img src="https://img.shields.io/maintenance/yes/2019.svg"/>
+  <img src="https://img.shields.io/badge/HA--Version-0.107.5-brightgreen.svg"/>
+  <img src="https://img.shields.io/maintenance/yes/2020.svg"/>
   <img src="https://img.shields.io/github/commit-activity/y/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
   <img src="https://img.shields.io/github/issues/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
 </p>
 <p>
-  <href="https://github.com/hassio-addons/addon-appdaemon3"><img src="https://img.shields.io/badge/AppDaemon3-v1.5.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-appdaemon4"><img src="https://img.shields.io/badge/AppDaemon4-v0.2.3-5294E2.svg"/>
   <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/DropBox Sync-v1.3.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v2.2.3-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-grocy"><img src="https://img.shields.io/badge/Grocy-v0.3.1-5294E2.svg"/>
-  <href="https://www.home-assistant.io/addons/ide"><img src="https://img.shields.io/badge/IDE-v2.0.2-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v3.1.2-5294E2.svg"/>  
+  <href="https://github.com/hassio-addons/addon-grafana"><img src="https://img.shields.io/badge/Grafana-v4.2.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-grocy"><img src="https://img.shields.io/badge/Grocy-v0.7.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-influxdb"><img src="https://img.shields.io/badge/InfluxDB-v3.1.2-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v5.1-5294E2.svg"/>
 </p>
 <p>
-  <href="https://www.home-assistant.io/addons/mosquitto/"><img src="https://img.shields.io/badge/Mosquitto-v4.0.7-5294E2.svg"/>
-  <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-4.0.1-5294E2.svg"/>
-  <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v8.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v6.3.0-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.8.1-5294E2.svg"/>
-  <href="https://github.com/hassio-addons/addon-zigbee2mqtt"><img src="https://img.shields.io/badge/Zigbee2MQTT-1.5.1.2-5294E2.svg"/>
+  
+  <href="https://github.com/danielwelch/hassio-dropbox-sync"><img src="https://img.shields.io/badge/Network UPS Tools-v0.1.1-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-node-red"><img src="https://img.shields.io/badge/Node--RED-6.1.4-5294E2.svg"/>
+  <href="https://www.home-assistant.io/addons/samba/"><img src="https://img.shields.io/badge/Samba-v9.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-ssh"><img src="https://img.shields.io/badge/SSH-v8.5.2-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-tasmoadmin"><img src="https://img.shields.io/badge/TasmoAdmin-0.10.0-5294E2.svg"/>
+  <href="https://github.com/hassio-addons/addon-vscode"><img src="https://img.shields.io/badge/VSCode-2.1.0-5294E2.svg"/>
 </p>
 <hr --- </hr> 
 
