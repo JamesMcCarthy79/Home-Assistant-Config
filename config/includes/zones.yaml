@@ -10,10 +10,22 @@
   radius: 50
   icon: mdi:briefcase
   
+- name: Swimming
+  latitude: !secret swimming_latitude
+  longitude: !secret swimming_longitude
+  radius: 75
+  icon: mdi:briefcase
+  
 - name: Kindy
   latitude: !secret kindy_latitude
   longitude: !secret kindy_longitude
   radius: 25
+  icon: mdi:school
+  
+- name: School
+  latitude: !secret school_latitude
+  longitude: !secret school_longitude
+  radius: 200
   icon: mdi:school
   
 - name: Stocklands
@@ -22,27 +34,15 @@
   radius: 200
   icon: mdi:cart
   
-- name: Parlour
-  latitude: !secret parlour_latitude
-  longitude: !secret parlour_longitude
-  radius: 50
-  icon: mdi:coffee
-  
 - name: Work Home Beacon 25mins
   latitude: !secret workhome25mins_latitude
   longitude: !secret workhome25mins_longitude
   radius: 50
   icon: mdi:car
   
-- name: Work Home Beacon 15mins
-  latitude: !secret workhome15mins_latitude
-  longitude: !secret workhome15mins_longitude
-  radius: 50
-  icon: mdi:car
-  
-- name: Work Home Beacon 5mins
-  latitude: !secret workhome5mins_latitude
-  longitude: !secret workhome5mins_longitude
+- name: Work Home Beacon 10mins
+  latitude: !secret workhome10mins_latitude
+  longitude: !secret workhome10mins_longitude
   radius: 50
   icon: mdi:car
   
