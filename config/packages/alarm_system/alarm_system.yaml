@@ -73,7 +73,6 @@ group:
   security:
     name: Security
     icon: mdi:security-home
-    view: yes
     entities:
       - group.alarms
       - group.doors
@@ -83,7 +82,6 @@ group:
   alarms:
     name: Alarms
     icon: mdi:security
-    view: no
     entities:
       - alarm_control_panel.ha_alarm
       - binary_sensor.smoke_sensor_158d0001b8ddc7
@@ -92,7 +90,6 @@ group:
   motion:
     name: Motion
     icon: mdi:walk
-    view: no
     entities:
       - binary_sensor.motion_sensor_158d0001e5cf11
       - binary_sensor.motion_sensor_158d0001e5d118
@@ -107,7 +104,6 @@ group:
   doors:
     name: Doors
     icon: mdi:door
-    view: no
     entities:
       - binary_sensor.door_window_sensor_158d00022016b2
       - binary_sensor.door_window_sensor_158d000225432d
@@ -117,7 +113,6 @@ group:
   windows:
     name: Windows
     icon: mdi:window
-    view: no
     entities:
       - binary_sensor.door_window_sensor_158d0001e73af4
       - binary_sensor.door_window_sensor_158d0001e73a73
@@ -152,7 +147,7 @@ sensor:
       window_count:
         value_template: >-
            {{ states.binary_sensor | selectattr('state', 'eq', 'on') | selectattr('attributes.device_class', 'eq', 'window') | list | count | int }}
-
+           
 #################################################################
 #                                                               #
 #                       Binary Sensors                          #
@@ -226,7 +221,6 @@ binary_sensor:
           {% else %}
             mdi:alert
           {% endif %}
-
 #################################################################
 #                                                               #
 #                          Automations                          #
