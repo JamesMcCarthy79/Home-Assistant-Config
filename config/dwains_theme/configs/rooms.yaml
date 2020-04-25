@@ -1,0 +1,821 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/rooms.html
+
+rooms:
+  - name: Living Room
+    icon: fas:couch
+    light: light.lounge_light
+#    lock:
+    temperature: sensor.temperature_158d0001f558f5
+    climate: climate.downstairs_cool
+    humidity: sensor.humidity_158d0001f558f5
+#    pressure: sensor.pressure_158d0001f558f5
+    motion: binary_sensor.motion_sensor_158d0001e5d118
+#    door: 
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: vacuum.robovac
+#      camera: 
+    plant: group.lounge_plants
+    media_player: group.living_media
+    device: switch.tvpower
+    more_entities:
+      entities:
+        - entity: scene.livingroom_normal
+        - entity: scene.livingroom_dim
+    page_entities:
+      columns: 3
+      entities:
+        - entity: light.lounge_bulb
+        - entity: light.dining_bulb
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Playroom
+    icon: fas:paper-plane
+    light: light.playroom_lamp
+#    lock:
+    temperature: sensor.temperature_158d0001f56682
+    climate: climate.playroom
+    humidity: sensor.humidity_158d0001f56682
+#    pressure: sensor.pressure_158d0001f56682
+    motion: binary_sensor.motion_sensor_158d0001e5cf11
+#    door: 
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+#    media_player: 
+    device: fan.xiaomi_smart_fan
+#    more_entities:
+#      entities:
+#        - entity: camera.playroom_monitor
+#        - entity: sensor.illumination_158d0001e5cf11
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: camera.playroom_monitor
+        - entity: sensor.illumination_158d0001e5cf11
+        - entity: group.marvel_lights
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Patio
+    icon: fas:glass-cheers
+    light: light.patio_light
+#    lock:
+    temperature: sensor.temperature_158d0001f56350
+#    climate: 
+    humidity: sensor.humidity_158d0001f56350
+#    pressure: sensor.pressure_158d0001f56350
+    motion: binary_sensor.motion_sensor_158d000200ea5b
+    door: binary_sensor.door_window_sensor_158d000225432d
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+    media_player: group.patio_media
+    device: binary_sensor.garden_pi
+#    more_entities:
+#      entities:
+#        - entity: light.patio_bulb
+#        - entity: sensor.illumination_158d000200ea5b
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: light.patio_bulb
+        - entity: sensor.illumination_158d000200ea5b
+        - entity: switch.plug_158d0001f24e2b
+        - entity: switch.fairy_light_power
+        - entity: switch.fairy_light_power_2
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Bedroom
+    icon: fas:bed
+    light: group.bedroom_lights
+#    lock:
+    temperature: sensor.temperature_158d0001f53de9
+    climate: climate.bedroom
+    humidity: sensor.humidity_158d0001f53de9
+    pressure: sensor.pressure_158d0001f53de9
+    motion: binary_sensor.motion_sensor_158d0001e63803
+#    door: 
+    window: binary_sensor.door_window_sensor_158d0001f36741
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+    media_player: group.bedroom_media
+    device: input_boolean.bedroom_fan_state
+#    more_entities:
+#      entities:
+#        - entity: light.bedroom_bulb
+#        - entity: sensor.illumination_158d0001e63803
+    page_entities:
+       columns: 1 #optional
+       entities:
+         - entity: input_select.bedroom_fan
+         - entity: light.bedroom_bulb
+         - entity: sensor.illumination_158d0001e63803
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Jackson
+    icon: fas:chess-knight
+    light: light.jackson_light
+#    lock:
+    temperature: sensor.temperature_158d0001f534e1
+    climate: climate.jackson 
+    humidity: sensor.humidity_158d0001f534e1
+#    pressure: sensor.pressure_158d0001f534e1
+    motion: binary_sensor.motion_sensor_158d000201351c
+#    door: 
+    window: binary_sensor.door_window_sensor_158d0001e73a73
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+#    media_player: 
+    device: input_boolean.jackson_fan_state
+#    more_entities:
+#      entities:
+#        - entity: light.jackson_bulb
+#        - entity: sensor.illumination_158d000201351c
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: input_select.jackson_fan
+        - entity: light.jackson_bulb
+        - entity: sensor.illumination_158d000201351c
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Hudson
+    icon: fas:chess-rook
+    light: light.hudson_light
+#    lock:
+    temperature: sensor.temperature_158d0001f54df3
+    climate: climate.hudson
+    humidity: sensor.humidity_158d0001f54df3
+#    pressure: sensor.pressure_158d0001f54df3
+    motion: binary_sensor.motion_sensor_158d0002006d46
+#    door: 
+    window: binary_sensor.door_window_sensor_158d0001e73aad
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+#    media_player: 
+    device: input_boolean.hudson_fan_state
+#    more_entities:
+#      entities:
+#        - entity: input_select.hudson_fan
+#        - entity: light.hudson_bulb
+#        - entity: sensor.illumination_158d0002006d46
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: input_select.hudson_fan
+        - entity: light.hudson_bulb
+        - entity: sensor.illumination_158d0002006d46
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Bathroom
+    icon: fas:shower
+    light: group.bathroom_switches
+#    lock:
+    temperature: sensor.temperature_158d0003498ef5
+    climate: climate.bathroom_climate
+    humidity: sensor.humidity_158d0003498ef5
+#    pressure: sensor.pressure_158d0003498ef5
+    motion: binary_sensor.motion_sensor_158d000200e4ab
+#    door: 
+    window: binary_sensor.door_window_sensor_158d0001e74875
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+    media_player: group.bathroom_media
+#    device: binary_sensor.smoke_sensor_158d0001b8deba
+#    more_entities:
+#      entities:
+#        - entity: binary_sensor.water_leak_sensor_158d0002338651
+#        - entity: sensor.illumination_158d000200e4ab
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: binary_sensor.water_leak_sensor_158d0002338651
+        - entity: sensor.illumination_158d000200e4ab
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Hallway
+    icon: fas:key
+    light: light.hall_bulb
+#    lock:
+#    temperature: 
+#    climate: 
+#    humidity:
+#    pressure: 
+    motion: group.upstairs_motion_sensors
+#    door: 
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+#    media_player: 
+#    device: binary_sensor.smoke_sensor_158d0001b8deba
+#    more_entities:
+#      entities:
+#        - entity: 
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: switch.upstairs_toilet_light_switch
+        - entity: light.upstairs_toilet_bulb
+        - entity: binary_sensor.smoke_sensor_158d0001b8deba
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Garage
+    icon: fas:garage
+    light: light.garage_light
+#    lock:
+#    temperature: 
+#    climate: 
+#    humidity:
+#    pressure: 
+    motion: binary_sensor.motion_sensor_158d0001fa41fd
+#    door: sensor.garage_door_status
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+#    media_player: 
+#    device: 
+#    more_entities:
+#      entities:
+#        - entity: sensor.illumination_158d0001fa41fd
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: sensor.illumination_158d0001fa41fd
+        - entity: sensor.garage_door_status
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Entry
+    icon: fas:dolly
+    light: light.entrance_bulb
+#    lock:
+    temperature: sensor.temperature_158d0001f56350
+#    climate: 
+    humidity: sensor.humidity_158d0001f56350
+    pressure: sensor.pressure_158d0001f56350
+    motion: binary_sensor.motion_sensor_158d0001e5d147
+    door: binary_sensor.door_window_sensor_158d00022016b2 
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+    plant: group.entry_plants
+#    media_player: 
+#    device: binary_sensor.smoke_sensor_158d0001b8deba
+#    more_entities:
+#      entities:
+#        - entity: sensor.illumination_158d0001e5d147
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: sensor.illumination_158d0001e5d147
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Office
+    icon: fas:laptop-code
+    light: light.desk_lighting
+#    lock:
+#    temperature: 
+#    climate: 
+#    humidity:
+#    pressure: 
+    motion: binary_sensor.motion_sensor_158d0001e5d103
+#    door: 
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: 
+#      camera: 
+#    plant: 
+#    media_player: 
+#    device: binary_sensor.smoke_sensor_158d0001b8deba
+#    more_entities:
+#      entities:
+#        - entity: sensor.illumination_158d0001e5d103
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: sensor.illumination_158d0001e5d103
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Kitchen
+    icon: fas:utensils
+    light: light.kitchen_light
+#    lock:
+#    temperature: 
+#    climate: 
+#    humidity:
+#    pressure: 
+#    motion: group.upstairs_motion_sensors
+#    door: 
+    window: binary_sensor.door_window_sensor_158d0001e73af4
+#    cover:
+#    vacuum: 
+#      entity: vacuum.robovac
+#      camera: 
+#    plant: 
+#    media_player: 
+#    device: switch.plug_158d000315aea1
+#    more_entities:
+#      entities:
+#        - entity: binary_sensor.water_leak_sensor_158d00026e26dc
+#        - entity: light.kitchen_bulb
+#        - entity: binary_sensor.smoke_sensor_158d0001b8ddc7
+#        - entity: switch.plug_158d000315aea1
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: binary_sensor.water_leak_sensor_158d00026e26dc
+        - entity: light.kitchen_bulb
+        - entity: binary_sensor.smoke_sensor_158d0001b8ddc7
+        - entity: switch.plug_158d000315aea1
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Laundry
+    icon: mdi:washing-machine
+    light: light.laundry_light
+#    lock:
+    temperature: sensor.temperature_158d0001f56682
+#    climate: 
+    humidity: sensor.humidity_158d0001f56682
+#    pressure: sensor.pressure_158d0001f56682
+    motion: binary_sensor.motion_sensor_158d0001e5cf11
+    door: binary_sensor.door_window_sensor_158d0001e73c09
+#    window: 
+#    cover:
+    vacuum: 
+      entity: vacuum.robovac
+#      camera: 
+#    plant: 
+#    media_player: 
+#    device: binary_sensor.smoke_sensor_158d0001b8deba
+#    more_entities:
+#      entities:
+#        - entity: sensor.illumination_158d0001e5cf11
+#        - entity: light.gateway_light_7811dce13ad6
+#        - entity: scene.backlights_night
+#        - entity: switch.plug_158d00022ae22d
+#        - entity: binary_sensor.door_window_sensor_158d0001e73a83
+#        - entity: switch.plug_158d0001bc2b6d
+#        - entity: switch.plug_158d00022ae069
+#        - entity: binary_sensor.door_window_sensor_158d0001e73bc5
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: sensor.illumination_158d0001e5cf11
+        - entity: light.gateway_light_7811dce13ad6
+        - entity: scene.backlights_night
+        - entity: switch.plug_158d00022ae22d
+        - entity: binary_sensor.door_window_sensor_158d0001e73a83
+        - entity: switch.plug_158d0001bc2b6d
+        - entity: switch.plug_158d00022ae069
+        - entity: binary_sensor.door_window_sensor_158d0001e73bc5
+#    addons:
+#      - name: Hello room
+#        icon: fas:puzzle-piece
+#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#        data:
+#          some_data: 'This is some data parsed.'
+#          some_other_data: 'and some other data.'
+#          entity: vacuum.roborock
+
+  - name: Server Rack
+    icon: fas:server
+#    light: light.laundry_light
+#    lock:
+    temperature: sensor.temperature_158d00034ced8f
+#    climate: 
+    humidity: sensor.humidity_158d00034ced8f
+#    pressure: sensor.pressure_158d0001f56682
+#    motion: binary_sensor.motion_sensor_158d0001e5cf11
+#    door: binary_sensor.door_window_sensor_158d0001e73c09
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: vacuum.robovac
+#      camera: 
+#    plant: 
+#    media_player: 
+#    device: binary_sensor.smoke_sensor_158d0001b8deba
+#    more_entities:
+#      entities:
+#        - entity: sensor.illumination_158d0001e5cf11
+#        - entity: light.gateway_light_7811dce13ad6
+#        - entity: scene.backlights_night
+#        - entity: switch.plug_158d00022ae22d
+#        - entity: binary_sensor.door_window_sensor_158d0001e73a83
+#        - entity: switch.plug_158d0001bc2b6d
+#        - entity: switch.plug_158d00022ae069
+#        - entity: binary_sensor.door_window_sensor_158d0001e73bc5
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: binary_sensor.indoor_plant_pi
+        - entity: binary_sensor.garden_pi
+    addons:
+      - name: Core Router
+        icon: mdi:router-wireless
+        path: 'dwains-theme/addons/rooms/server-room/router.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'RouterOS: {{states.sensor.installed_routeros.state}}'
+          some_other_data: 'Uptime: {{states.sensor.mikrotik_uptime.state}}'
+          entity: binary_sensor.core_router
+
+      - name: Core Switch
+        icon: mdi:switch
+        path: 'dwains-theme/addons/rooms/server-room/switch.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'RouterOS: {{states.sensor.switch_routeros.state}}'
+          some_other_data: 'Uptime: {{states.sensor.switch_uptime.state}}'
+          entity: binary_sensor.core_switch
+
+      - name: HA Server
+        icon: mdi:home-assistant
+        path: 'dwains-theme/addons/rooms/server-room/ha-server.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Version: {{states.sensor.current_version.state}}'
+          some_other_data: 'Startup Time: {{states.sensor.ha_restart_time.state}}' 
+          some_more_data: 'Uptime: {{states.sensor.time_online.state}}'
+          entity: binary_sensor.server_main
+
+      - name: MQTT Server
+        icon: mdi:home-assistant
+        path: 'dwains-theme/addons/rooms/server-room/mqtt-server.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Version: {{states.sensor.mqtt_server_version.state}}'
+          some_other_data: 'Startup Time: {{states.sensor.mqtt_restart_time.state}}' 
+          some_more_data: 'Uptime: {{states.sensor.mqtt_server_time_online.state}}'
+          entity: binary_sensor.addon_pi
+
+      - name: UPS Server
+        icon: mdi:home-assistant
+        path: 'dwains-theme/addons/rooms/server-room/ups-server.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Version: {{states.sensor.ups_server_version.state}}'
+          some_other_data: 'Startup Time: {{states.sensor.ups_restart_time.state}}' 
+          some_more_data: 'Uptime: {{states.sensor.ups_server_time_online.state}}'
+          entity: binary_sensor.automation_pi
+
+      - name: NAS - Movies
+        icon: mdi:nas
+        path: 'dwains-theme/addons/rooms/server-room/nas-1.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Version: 4.4.2.1273'
+          some_other_data: 'Uptime: {{states.sensor.switch_uptime.state}}'
+          entity: binary_sensor.nas_movies
+
+      - name: NAS - TV
+        icon: mdi:nas
+        path: 'dwains-theme/addons/rooms/server-room/nas-2.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Version: 6.10.1'
+          some_other_data: 'Uptime: {{states.sensor.nas1_uptime.state}}'
+          entity: binary_sensor.nas_tv
+
+      - name: NAS - Backups
+        icon: mdi:nas
+        path: 'dwains-theme/addons/rooms/server-room/nas-3.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Version: 6.10.1'
+          some_other_data: 'Uptime: {{states.sensor.nas2_uptime.state}}'
+          entity: binary_sensor.nas_bu
+
+      - name: UPS
+        icon: mdi:car-battery
+        path: 'dwains-theme/addons/rooms/server-room/ups.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Status: {{states.sensor.switch_routeros.state}}'
+          some_other_data: 'Runtime: {{states.sensor.switch_uptime.state}}'
+          entity: binary_sensor.core_switch
+
+  - name: Wireless Network
+    icon: mdi:access-point
+#    light: light.laundry_light
+#    lock:
+#    temperature: sensor.temperature_158d00034ced8f
+#    climate: 
+#    humidity: sensor.humidity_158d00034ced8f
+#    pressure: sensor.pressure_158d0001f56682
+#    motion: binary_sensor.motion_sensor_158d0001e5cf11
+#    door: binary_sensor.door_window_sensor_158d0001e73c09
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: vacuum.robovac
+#      camera: 
+#    plant: 
+#    media_player: 
+#    device: binary_sensor.smoke_sensor_158d0001b8deba
+#    more_entities:
+#      entities:
+#        - entity: sensor.illumination_158d0001e5cf11
+#        - entity: light.gateway_light_7811dce13ad6
+#        - entity: scene.backlights_night
+#        - entity: switch.plug_158d00022ae22d
+#        - entity: binary_sensor.door_window_sensor_158d0001e73a83
+#        - entity: switch.plug_158d0001bc2b6d
+#        - entity: switch.plug_158d00022ae069
+#        - entity: binary_sensor.door_window_sensor_158d0001e73bc5
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: binary_sensor.downstairs_ap
+        - entity: binary_sensor.upstairs_ap
+        - entity: binary_sensor.xiaomi_gateway
+        - entity: binary_sensor.xiaomi_gateway_2
+    addons:
+      - name: Downstairs AP
+        icon: mdi:access-point
+        path: 'dwains-theme/addons/rooms/server-room/ap1.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: 2.1.0.1312'
+          some_other_data: 'Uptime: {{states.sensor.ap1_uptime.state}}'
+          entity: binary_sensor.downstairs_ap
+
+      - name: Upstairs AP
+        icon: mdi:access-point
+        path: 'dwains-theme/addons/rooms/server-room/ap2.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: 2.1.0.1312'
+          some_other_data: 'Uptime: {{states.sensor.ap2_uptime.state}}'
+          entity: binary_sensor.upstairs_ap
+
+      - name: Media TV Link
+        icon: mdi:access-point
+        path: 'dwains-theme/addons/rooms/server-room/link1.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: 8.7.0'
+          some_other_data: 'Uptime: {{states.sensor.5g_tv_link_uptime.state}}'
+          entity: binary_sensor.5g_ac_media_tv
+
+      - name: Upstairs Link
+        icon: mdi:access-point
+        path: 'dwains-theme/addons/rooms/server-room/link2.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          name: '{{states.sensor.bh_name.state}}'
+          model: '{{states.sensor.bh_model.state}}'
+          txpower: '{{states.sensor.bh_tx_power.state}}'
+          txpowertv: '{{states.sensor.bh_tv_tx_power.state}}'
+          airtime: '{{states.sensor.bh_tv_airtime.state}}'
+
+      - name: Xiaomi Ecosystem
+        icon: mdi:home-circle
+        path: 'dwains-theme/addons/rooms/server-room/xgw1.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: 1.4.1_175'
+          some_other_data: 'Status: {{states.binary_sensor.xiaomi_gateway.state}}'
+          some_more_data: 'Status: {{states.binary_sensor.xiaomi_gateway_2.state}}'
+          motion: '{{states.sensor.xiaomi_motion_sensor_count.state}}'
+          door: '{{states.sensor.xiaomi_door_sensor_count.state}}'
+          window: '{{states.sensor.xiaomi_window_sensor_count.state}}'
+          temperature: '{{states.sensor.xiaomi_temperature_sensor_count.state}}'
+          cube: '{{states.sensor.xiaomi_cube_count.state}}'
+          gpo: '{{states.sensor.xiaomi_gpo_count.state}}'
+          leak: '{{states.sensor.xiaomi_leak_sensor_count.state}}'
+          smoke: '{{states.sensor.xiaomi_smoke_sensor_count.state}}'
+          vibration: '{{states.sensor.xiaomi_vibration_count.state}}'
+          fan: '{{states.sensor.xiaomi_fan_count.state}}'
+          switch: '{{states.sensor.xiaomi_switches_count.state}}'
+          vac: '{{states.sensor.vacuum_count.state}}'
+          entity: binary_sensor.xiaomi_gateway
+
+  - name: Garden
+    icon: mdi:sprout
+#    light: light.laundry_light
+#    lock:
+#    temperature: sensor.temperature_158d00034ced8f
+#    climate: 
+#    humidity: sensor.humidity_158d00034ced8f
+#    pressure: sensor.pressure_158d0001f56682
+#    motion: binary_sensor.motion_sensor_158d0001e5cf11
+#    door: binary_sensor.door_window_sensor_158d0001e73c09
+#    window: 
+#    cover:
+#    vacuum: 
+#      entity: vacuum.robovac
+#      camera: 
+#    plant: 
+#    media_player: 
+#    device: binary_sensor.smoke_sensor_158d0001b8deba
+#    more_entities:
+#      entities:
+#        - entity: sensor.illumination_158d0001e5cf11
+#        - entity: light.gateway_light_7811dce13ad6
+#        - entity: scene.backlights_night
+#        - entity: switch.plug_158d00022ae22d
+#        - entity: binary_sensor.door_window_sensor_158d0001e73a83
+#        - entity: switch.plug_158d0001bc2b6d
+#        - entity: switch.plug_158d00022ae069
+#        - entity: binary_sensor.door_window_sensor_158d0001e73bc5
+    page_entities:
+      columns: 1 #optional
+      entities:
+
+    addons:
+      - name: Dracaena
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/dracaena.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: {{states.sensor.dracaena_firmware.state}}'
+          some_other_data: 'Last Update: {{relative_time(states.sensor.dracaena_last_report.last_updated)}}'
+          entity: plant.lounge_plant
+
+      - name: Fiddle Leaf Fig
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/fiddle-leaf-fig.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: {{states.sensor.fiddle_leaf_fig_firmware.state}}'
+          some_other_data: 'Last Update: {{relative_time(states.sensor.fiddle_leaf_fig_last_report.last_updated)}}'
+          entity: plant.fiddle_leaf_fig
+
+      - name: Front Door Plant
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/front-door-plant.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: {{states.sensor.front_door_plant_firmware.state}}'
+          some_other_data: 'Last Update: {{relative_time(states.sensor.front_door_plant_last_report.last_updated)}}'
+          entity: plant.front_door_plant
+
+      - name: Front Flower Pot 
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/front-flower-pot.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: {{states.sensor.front_flower_pot_firmware.state}}'
+          some_other_data: 'Last Update: {{relative_time(states.sensor.front_flower_pot_last_report.last_updated)}}'
+          entity: plant.front_flower_pot
+
+      - name: Rose Garden
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/rose-garden.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: {{states.sensor.rose_garden_firmware.state}}'
+          some_other_data: 'Last Update: {{relative_time(states.sensor.rose_garden_last_report.last_updated)}}'
+          entity: plant.rose_garden
+
+      - name: Bougainvillea
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/bougainvillea.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: {{states.sensor.bougainvillea_firmware.state}}'
+          some_other_data: 'Last Update: {{relative_time(states.sensor.bougainvillea_last_report.last_updated)}}'
+          entity: plant.bougainvillea
+
+      - name: Star Jasmine
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/star-jasmine.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: {{states.sensor.sar_jasmine_firmware.state}}'
+          some_other_data: 'Last Update: {{relative_time(states.sensor.star_jasmine_last_report.last_updated)}}'
+          entity: plant.star_jasmine
+
+      - name: Veggie Patch
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/veggie-patch.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          some_data: 'Firmware: {{states.sensor.bougainvillea_2_firmware.state}}'
+          some_other_data: 'Last Update: {{relative_time(states.sensor.bougainvillea_2_last_report.last_updated)}}'
+          entity: plant.bougainvillea_2
