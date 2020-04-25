@@ -1,0 +1,16 @@
+# Own resources?
+# Add here your own resources
+#
+
+- url: /hacsfiles/lovelace-flower-card/flower-card.js
+  type: module
+- url: /hacsfiles/lovelace-card-tools/card-tools.js
+  type: module
+- url: /hacsfiles/bar-card/bar-card.js
+  type: module
+- url: /hacsfiles/stack-in-card/stack-in-card.js
+  type: module
+- url: /hacsfiles/circle-sensor-card/circle-sensor-card.js
+  type: module
+- url: /hacsfiles/flex-horseshoe-card/flex-horseshoe-card.js
+  type: module
