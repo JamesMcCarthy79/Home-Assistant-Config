@@ -227,75 +227,16 @@ homeassistant:
 #################################################################
 
 group:
-  bougainvillea:
-    name: Bougainvillea
-    view: no
+  lounge_plants:
     entities:
-      - sensor.bougainvillea_moisture
-      - sensor.bougainvillea_conductivity
-      - sensor.bougainvillea_battery
-      - sensor.bougainvillea_temperature
-      - sensor.bougainvillea_light_intensity
-      
-  chilli:
-    name: Purple Mumba Chilli
-    view: no
+      - plant.lounge_plant
+      - plant.fiddle_leaf_fig
+
+  entry_plants:
     entities:
-      - sensor.chilli_moisture
-      - sensor.chilli_conductivity
-      - sensor.chilli_battery
-      - sensor.chilli_temperature
-      - sensor.chilli_light_intensity
-    
-  citrus:
-    name: Citrus Bed
-    view: no
-    entities:
-      - sensor.citrus_bed_moisture
-      - sensor.citrus_bed_conductivity
-      - sensor.citrus_bed_battery
-      - sensor.citrus_bed_temperature
-      - sensor.citrus_bed_light_intensity
-    
-  herb:
-    name: Herb Patch
-    view: no
-    entities:
-      - sensor.herb_patch_moisture
-      - sensor.herb_patch_conductivity
-      - sensor.herb_patch_battery
-      - sensor.herb_patch_temperature
-      - sensor.herb_patch_light_intensity
-    
-  jasmine:
-    name: Jasmine Bed
-    view: no
-    entities:
-      - sensor.star_jasmine_moisture
-      - sensor.star_jasmine_conductivity
-      - sensor.star_jasmine_battery
-      - sensor.star_jasmine_temperature
-      - sensor.star_jasmine_light_intensity
-    
-  top_bed:
-    name: Top Bed
-    view: no
-    entities:
-      - sensor.top_bed_moisture
-      - sensor.top_bed_conductivity
-      - sensor.top_bed_battery
-      - sensor.top_bed_temperature
-      - sensor.top_bed_light_intensity
-    
-  veggie_patch:
-    name: Veggie Patch
-    view: no
-    entities:
-      - sensor.veggie_patch_moisture
-      - sensor.veggie_patch_conductivity
-      - sensor.veggie_patch_battery  
-      - sensor.veggie_patch_temperature
-      - sensor.veggie_patch_light_intensity
+      - plant.front_flower_pot
+      - plant.front_door_plant
+
       
 #################################################################
 #                                                               #
@@ -310,7 +251,7 @@ plant:
       battery: sensor.bougainvillea_battery
       temperature: sensor.bougainvillea_temperature
       conductivity: sensor.bougainvillea_conductivity
-      brightness: sensor.bougainvillea_light_intensity
+      brightness: sensor.bougainvillea_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -327,7 +268,7 @@ plant:
       battery: sensor.hydrangea_battery
       temperature: sensor.hydrangea_temperature
       conductivity: sensor.hydrangea_conductivity
-      brightness: sensor.hydrangea_light_intensity
+      brightness: sensor.hydrangea_light
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
@@ -344,7 +285,7 @@ plant:
       battery: sensor.star_jasmine_battery
       temperature: sensor.star_jasmine_temperature
       conductivity: sensor.star_jasmine_conductivity
-      brightness: sensor.star_jasmine_light_intensity
+      brightness: sensor.star_jasmine_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -361,7 +302,7 @@ plant:
       battery: sensor.veggie_patch_battery
       temperature: sensor.veggie_patch_temperature
       conductivity: sensor.veggie_patch_conductivity
-      brightness: sensor.veggie_patch_light_intensity
+      brightness: sensor.veggie_patch_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -372,13 +313,13 @@ plant:
     min_brightness: 2500
     max_brightness: 60000
     
-  Top Bed:
+  Flower Bed:
     sensors:
-      moisture: sensor.top_bed_moisture
-      battery: sensor.top_bed_battery
-      temperature: sensor.top_bed_temperature
-      conductivity: sensor.top_bed_conductivity
-      brightness: sensor.top_bed_light_intensity
+      moisture: sensor.flower_bed_moisture
+      battery: sensor.flower_bed_battery
+      temperature: sensor.flower_bed_temperature
+      conductivity: sensor.flower_bed_conductivity
+      brightness: sensor.flower_bed_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -395,7 +336,7 @@ plant:
       battery: sensor.citrus_bed_battery
       temperature: sensor.citrus_bed_temperature
       conductivity: sensor.citrus_bed_conductivity
-      brightness: sensor.citrus_bed_light_intensity
+      brightness: sensor.citrus_bed_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -412,7 +353,7 @@ plant:
       battery: sensor.dracaena_battery
       temperature: sensor.dracaena_temperature
       conductivity: sensor.dracaena_conductivity
-      brightness: sensor.dracaena_light_intensity
+      brightness: sensor.dracaena_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -429,7 +370,7 @@ plant:
       battery: sensor.fiddle_leaf_fig_battery
       temperature: sensor.fiddle_leaf_fig_temperature
       conductivity: sensor.fiddle_leaf_fig_conductivity
-      brightness: sensor.fiddle_leaf_fig_light_intensity
+      brightness: sensor.fiddle_leaf_fig_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -446,7 +387,7 @@ plant:
       battery: sensor.front_door_plant_battery
       temperature: sensor.front_door_plant_temperature
       conductivity: sensor.front_door_plant_conductivity
-      brightness: sensor.front_door_plant_light_intensity
+      brightness: sensor.front_door_plant_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -456,6 +397,23 @@ plant:
     max_conductivity: 2000
     min_brightness: 3000
     max_brightness: 70000
+
+  Front Flower Pot:
+    sensors:
+      moisture: sensor.front_flower_pot_moisture
+      battery: sensor.front_flower_pot_battery
+      temperature: sensor.front_flower_pot_temperature
+      conductivity: sensor.front_flower_pot_conductivity
+      brightness: sensor.front_flower_pot_light
+    min_moisture: 15
+    max_moisture: 60
+    min_battery: 15
+    min_temperature: 5
+    max_temperature: 35
+    min_conductivity: 350
+    max_conductivity: 2000
+    min_brightness: 1500
+    max_brightness: 40000
     
   Climbing Rose:
     sensors:
@@ -463,7 +421,7 @@ plant:
       battery: sensor.rose_battery
       temperature: sensor.rose_temperature
       conductivity: sensor.rose_conductivity
-      brightness: sensor.rose_light_intensity
+      brightness: sensor.rose_light
     min_moisture: 15
     max_moisture: 75
     min_battery: 15
@@ -474,13 +432,13 @@ plant:
     min_brightness: 3000
     max_brightness: 60000
     
-  Frangipani Bed:
+  Rose Garden:
     sensors:
-      moisture: sensor.frangipani_moisture
-      battery: sensor.frangipani_battery
-      temperature: sensor.frangipani_temperature
-      conductivity: sensor.frangipani_conductivity
-      brightness: sensor.frangipani_light_intensity
+      moisture: sensor.rose_garden_moisture
+      battery: sensor.rose_garden_battery
+      temperature: sensor.rose_garden_temperature
+      conductivity: sensor.rose_garden_conductivity
+      brightness: sensor.rose_garden_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
@@ -490,91 +448,23 @@ plant:
     max_conductivity: 2000
     min_brightness: 3500
     max_brightness: 65000
-    
-  Japanese Maple:
-    sensors:
-      moisture: sensor.red_maple_moisture
-      battery: sensor.red_maple_battery
-      temperature: sensor.red_maple_temperature
-      conductivity: sensor.red_maple_conductivity
-      brightness: sensor.red_maple_light_intensity
-    min_moisture: 15
-    max_moisture: 60
-    min_battery: 15
-    min_temperature: 5
-    max_temperature: 35
-    min_conductivity: 350
-    max_conductivity: 2000
-    min_brightness: 2800
-    max_brightness: 75000
-    
-  Peach Bougainvillea:
-    sensors:
-      moisture: sensor.peach_bougainvillea_moisture
-      battery: sensor.peach_bougainvillea_battery
-      temperature: sensor.peach_bougainvillea_temperature
-      conductivity: sensor.peach_bougainvillea_conductivity
-      brightness: sensor.peach_bougainvillea_light_intensity
-    min_moisture: 15
-    max_moisture: 60
-    min_battery: 15
-    min_temperature: 5
-    max_temperature: 35
-    min_conductivity: 350
-    max_conductivity: 2000
-    min_brightness: 3000
-    max_brightness: 70000
-    
+
   Proteas:
     sensors:
       moisture: sensor.proteas_moisture
       battery: sensor.proteas_battery
       temperature: sensor.proteas_temperature
       conductivity: sensor.proteas_conductivity
-      brightness: sensor.proteas_light_intensity
+      brightness: sensor.proteas_light
     min_moisture: 15
     max_moisture: 60
     min_battery: 15
     min_temperature: 7
     max_temperature: 35
-    min_conductivity: 350
+    min_conductivity: 200
     max_conductivity: 2000
     min_brightness: 2500
-    max_brightness: 60000
-    
-  Peace Lily:
-    sensors:
-      moisture: sensor.peace_lily_moisture
-      battery: sensor.peace_lily_battery
-      temperature: sensor.peace_lily_temperature
-      conductivity: sensor.peace_lily_conductivity
-      brightness: sensor.peace_lily_light_intensity
-    min_moisture: 15
-    max_moisture: 65
-    min_battery: 15
-    min_temperature: 15
-    max_temperature: 32
-    min_conductivity: 350
-    max_conductivity: 2000
-    min_brightness: 1000
-    max_brightness: 22500
-    
-  Outdoor Table Fern:
-    sensors:
-      moisture: sensor.bathroom_fern_moisture
-      battery: sensor.bathroom_fern_temperature
-      temperature: sensor.bathroom_fern_temperature
-      conductivity: sensor.bathroom_fern_conductivity
-      brightness: sensor.bathroom_fern_light_intensity
-    min_moisture: 15
-    max_moisture: 60
-    min_battery: 15
-    min_temperature: 10
-    max_temperature: 32
-    min_conductivity: 350
-    max_conductivity: 1500
-    min_brightness: 300
-    max_brightness: 4000
+    max_brightness: 65000
 
 #################################################################
 #                                                               #
@@ -586,438 +476,342 @@ sensor:
 
 ####################################################
 #                                                  #
-#                  Sensors - Rest                  #
+#                  Sensors - MQTT                  #
 #                                                  #
 ####################################################
 
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_moisture
-    name: Bougainvillea Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_conductivity
-    name: Bougainvillea Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_battery
-    name: Bougainvillea Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_temperature
-    name: Bougainvillea Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bougainvillea_light_intensity
-    name: Bougainvillea Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.peach_bougainvillea_moisture
-    name: Peach Bougainvillea Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.peach_bougainvillea_conductivity
-    name: Peach Bougainvillea Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.peach_bougainvillea_battery
-    name: Peach Bougainvillea Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.peach_bougainvillea_temperature
-    name: Peach Bougainvillea Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.peach_bougainvillea_light_intensity
-    name: Peach Bougainvillea Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_moisture
-    name: Citrus Bed Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_conductivity
-    name: Citrus Bed Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_battery
-    name: Citrus Bed Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_temperature
-    name: Citrus Bed Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.citrus_bed_light_intensity
-    name: Citrus Bed Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.front_door_plant_moisture
-    name: Front Door Plant Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.front_door_plant_conductivity
-    name: Front Door Plant Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.front_door_plant_battery
-    name: Front Door Plant Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.front_door_plant_temperature
-    name: Front Door Plant Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.front_door_plant_light_intensity
-    name: Front Door Plant Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_moisture
-    name: Star Jasmine Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_conductivity
-    name: Star Jasmine Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_battery
-    name: Star Jasmine Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_temperature
-    name: Star Jasmine Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.star_jasmine_light_intensity
-    name: Star Jasmine Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_moisture
-    name: Top Bed Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_conductivity
-    name: Top Bed Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_battery
-    name: Top Bed Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_temperature
-    name: Top Bed Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.top_bed_light_intensity
-    name: Top Bed Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_moisture
-    name: Veggie Patch Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_conductivity
-    name: Veggie Patch Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_battery
-    name: Veggie Patch Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_temperature
-    name: Veggie Patch Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.veggie_patch_light_intensity
-    name: Veggie Patch Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.dracaena_moisture
-    name: Dracaena Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.dracaena_conductivity
-    name: Dracaena Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.dracaena_battery
+  - platform: mqtt
     name: Dracaena Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.dracaena_temperature
+    state_topic: "miflora/dracaena_battery"
+
+  - platform: mqtt
+    name: Dracaena Light
+    state_topic: "miflora/dracaena_light"
+
+  - platform: mqtt
     name: Dracaena Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.dracaena_light_intensity
-    name: Dracaena Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_moisture
-    name: Bathroom Fern Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_conductivity
-    name: Bathroom Fern Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_battery
-    name: Bathroom Fern Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_temperature
-    name: Bathroom Fern Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.bathroom_fern_light_intensity
-    name: Bathroom Fern Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_bed_moisture
-    name: Frangipani Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_bed_conductivity
-    name: Frangipani Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_bed_battery
-    name: Frangipani Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_bed_temperature
-    name: Frangipani Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.frangipani_bed_light_intensity
-    name: Frangipani Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.hydrangea_moisture
-    name: Hydrangea Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.hydrangea_conductivity
-    name: Hydrangea Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.hydrangea_battery
-    name: Hydrangea Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.hydrangea_temperature
-    name: Hydrangea Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.hydrangea_light_intensity
-    name: Hydrangea Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_moisture
-    name: Fiddle Leaf Fig Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_conductivity
-    name: Fiddle Leaf Fig Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_battery
+    state_topic: "miflora/dracaena_temperature"
+
+  - platform: mqtt
+    name: Dracaena Moisture
+    state_topic: "miflora/dracaena_moisture"
+
+  - platform: mqtt
+    name: Dracaena Conductivity
+    state_topic: "miflora/dracaena_conductivity"
+
+  - platform: mqtt
+    name: Dracaena Firmware
+    state_topic: "miflora/dracaena_firmware"
+
+  - platform: mqtt
+    name: Dracaena Last Report
+    state_topic: "miflora/dracaena_last_report"
+
+  - platform: mqtt
     name: Fiddle Leaf Fig Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_temperature
+    state_topic: "miflora/fiddle_leaf_fig_battery"
+
+  - platform: mqtt
+    name: Fiddle Leaf Fig Light
+    state_topic: "miflora/fiddle_leaf_fig_light"
+
+  - platform: mqtt
     name: Fiddle Leaf Fig Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.fiddle_leaf_fig_light_intensity
-    name: Fiddle Leaf Fig Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_moisture
-    name: Peace Lily Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_conductivity
-    name: Peace Lily Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_battery
-    name: Peace Lily Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_temperature
-    name: Peace Lily Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.2:8123/api/states/sensor.peace_lily_light_intensity
-    name: Peace Lily Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.proteas_moisture
-    name: Proteas Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.proteas_conductivity
-    name: Proteas Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.proteas_battery
+    state_topic: "miflora/fiddle_leaf_fig_temperature"
+
+  - platform: mqtt
+    name: Fiddle Leaf Fig Moisture
+    state_topic: "miflora/fiddle_leaf_fig_moisture"
+
+  - platform: mqtt
+    name: Fiddle Leaf Fig Conductivity
+    state_topic: "miflora/fiddle_leaf_fig_conductivity"
+
+  - platform: mqtt
+    name: Fiddle Leaf Fig Firmware
+    state_topic: "miflora/fiddle_leaf_fig_firmware"
+
+  - platform: mqtt
+    name: Fiddle Leaf Fig Last Report
+    state_topic: "miflora/fiddle_leaf_fig_last_report"
+
+  - platform: mqtt
+    name: Front Door Plant Battery
+    state_topic: "miflora/front_door_plant_battery"
+
+  - platform: mqtt
+    name: Front Door Plant Light
+    state_topic: "miflora/front_door_plant_light"
+
+  - platform: mqtt
+    name: Front Door Plant Temperature
+    state_topic: "miflora/front_door_plant_temperature"
+
+  - platform: mqtt
+    name: Front Door Plant Moisture
+    state_topic: "miflora/front_door_plant_moisture"
+
+  - platform: mqtt
+    name: Front Door Plant Conductivity
+    state_topic: "miflora/front_door_plant_conductivity"
+
+  - platform: mqtt
+    name: Front Door Plant Firmware
+    state_topic: "miflora/front_door_plant_firmware"
+
+  - platform: mqtt
+    name: Front Door Plant Last Report
+    state_topic: "miflora/front_door_plant_last_report"
+
+  - platform: mqtt
+    name: Rose Garden Battery
+    state_topic: "miflora/rose_garden_battery"
+
+  - platform: mqtt
+    name: Rose Garden Light
+    state_topic: "miflora/rose_garden_light"
+
+  - platform: mqtt
+    name: Rose Garden Temperature
+    state_topic: "miflora/rose_garden_temperature"
+
+  - platform: mqtt
+    name: Rose Garden Moisture
+    state_topic: "miflora/rose_garden_moisture"
+
+  - platform: mqtt
+    name: Rose Garden Conductivity
+    state_topic: "miflora/rose_garden_conductivity"
+
+  - platform: mqtt
+    name: Rose Garden Firmware
+    state_topic: "miflora/rose_garden_firmware"
+
+  - platform: mqtt
+    name: Rose Garden Last Report
+    state_topic: "miflora/rose_garden_last_report"
+
+  - platform: mqtt
+    name: Front Flower Pot Battery
+    state_topic: "miflora/front_flower_pot_battery"
+
+  - platform: mqtt
+    name: Front Flower Pot Light
+    state_topic: "miflora/front_flower_pot_light"
+
+  - platform: mqtt
+    name: Front Flower Pot Temperature
+    state_topic: "miflora/front_flower_pot_temperature"
+
+  - platform: mqtt
+    name: Front Flower Pot Moisture
+    state_topic: "miflora/front_flower_pot_moisture"
+
+  - platform: mqtt
+    name: Front Flower Pot Conductivity
+    state_topic: "miflora/front_flower_pot_conductivity"
+
+  - platform: mqtt
+    name: Front Flower Pot Firmware
+    state_topic: "miflora/front_flower_pot_firmware"
+
+  - platform: mqtt
+    name: Front Flower Pot Last Report
+    state_topic: "miflora/front_flower_pot_last_report"
+
+  - platform: mqtt
+    name: Bougainvillea Battery
+    state_topic: "miflora/bougainvillea_battery"
+
+  - platform: mqtt
+    name: Bougainvillea Light
+    state_topic: "miflora/bougainvillea_light"
+
+  - platform: mqtt
+    name: Bougainvillea Temperature
+    state_topic: "miflora/bougainvillea_temperature"
+
+  - platform: mqtt
+    name: Bougainvillea Moisture
+    state_topic: "miflora/bougainvillea_moisture"
+
+  - platform: mqtt
+    name: Bougainvillea Conductivity
+    state_topic: "miflora/bougainvillea_conductivity"
+
+  - platform: mqtt
+    name: Bougainvillea Firmware
+    state_topic: "miflora/bougainvillea_firmware"
+
+  - platform: mqtt
+    name: Bougainvillea Last Report
+    state_topic: "miflora/bougainvillea_last_report"
+
+  - platform: mqtt
+    name: Star Jasmine Battery
+    state_topic: "miflora/star_jasmine_battery"
+  
+  - platform: mqtt
+    name: Star Jasmine Light
+    state_topic: "miflora/star_jasmine_light"
+
+  - platform: mqtt
+    name: Star Jasmine Temperature
+    state_topic: "miflora/star_jasmine_temperature"
+
+  - platform: mqtt
+    name: Star Jasmine Moisture
+    state_topic: "miflora/star_jasmine_moisture"
+
+  - platform: mqtt
+    name: Star Jasmine Conductivity
+    state_topic: "miflora/star_jasmine_conductivity"
+
+  - platform: mqtt
+    name: Star Jasmine Firmware
+    state_topic: "miflora/star_jasmine_firmware"
+
+  - platform: mqtt
+    name: Star Jasmine Last Report
+    state_topic: "miflora/star_jasmine_last_report"
+
+  - platform: mqtt
+    name: Flower Bed Battery
+    state_topic: "miflora/flower_bed_battery"
+  
+  - platform: mqtt
+    name: Flower Bed Light
+    state_topic: "miflora/flower_bed_light"
+
+  - platform: mqtt
+    name: Flower Bed Temperature
+    state_topic: "miflora/flower_bed_temperature"
+
+  - platform: mqtt
+    name: Flower Bed Moisture
+    state_topic: "miflora/flower_bed_moisture"
+
+  - platform: mqtt
+    name: Flower Bed Conductivity
+    state_topic: "miflora/flower_bed_conductivity"
+
+  - platform: mqtt
+    name: Flower Bed Firmware
+    state_topic: "miflora/flower_bed_firmware"
+
+  - platform: mqtt
+    name: Flower Bed Last Report
+    state_topic: "miflora/flower_bed_last_report"
+
+  - platform: mqtt
+    name: Citrus Bed Battery
+    state_topic: "miflora/citrus_bed_battery"
+  
+  - platform: mqtt
+    name: Citrus Bed Light
+    state_topic: "miflora/citrus_bed_light"
+
+  - platform: mqtt
+    name: Citrus Bed Temperature
+    state_topic: "miflora/citrus_bed_temperature"
+
+  - platform: mqtt
+    name: Citrus Bed Moisture
+    state_topic: "miflora/citrus_bed_moisture"
+
+  - platform: mqtt
+    name: Citrus Bed Conductivity
+    state_topic: "miflora/citrus_bed_conductivity"
+
+  - platform: mqtt
+    name: Citrus Bed Firmware
+    state_topic: "miflora/citrus_bed_firmware"
+
+  - platform: mqtt
+    name: Citrus Bed Last Report
+    state_topic: "miflora/citrus_bed_last_report"
+
+  - platform: mqtt
     name: Proteas Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.proteas_temperature
+    state_topic: "miflora/proteas_battery"
+  
+  - platform: mqtt
+    name: Proteas Light
+    state_topic: "miflora/proteas_light"
+
+  - platform: mqtt
     name: Proteas Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.proteas_light_intensity
-    name: Proteas Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_moisture
-    name: Red Maple Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_conductivity
-    name: Red Maple Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_battery
-    name: Red Maple Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_temperature
-    name: Red Maple Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.red_maple_light_intensity
-    name: Red Maple Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
-    
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.rose_moisture
-    name: Rose Moisture
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.rose_conductivity
-    name: Rose Conductivity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "µS/cm"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.rose_battery
-    name: Rose Battery
-    device_class: battery
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "%"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.rose_temperature
-    name: Rose Temperature
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "°C"
-  - platform: rest
-    resource: http://10.0.20.5:8123/api/states/sensor.rose_light_intensity
-    name: Rose Light Intensity
-    value_template: '{{ value_json.state }}'
-    unit_of_measurement: "lx"
+    state_topic: "miflora/proteas_temperature"
+
+  - platform: mqtt
+    name: Proteas Moisture
+    state_topic: "miflora/proteas_moisture"
+
+  - platform: mqtt
+    name: Proteas Conductivity
+    state_topic: "miflora/proteas_conductivity"
+
+  - platform: mqtt
+    name: Proteas Firmware
+    state_topic: "miflora/proteas_firmware"
+
+  - platform: mqtt
+    name: Proteas Last Report
+    state_topic: "miflora/proteas_last_report"
+
+  - platform: mqtt
+    name: Hydrangea Light
+    state_topic: "miflora/hydrangea_light"
+
+  - platform: mqtt
+    name: Hydrangea Battery
+    state_topic: "miflora/hydrangea_battery"
+  
+  - platform: mqtt
+    name: Hydrangea Temperature
+    state_topic: "miflora/hydrangea_temperature"
+
+  - platform: mqtt
+    name: Hydrangea Moisture
+    state_topic: "miflora/hydrangea_moisture"
+
+  - platform: mqtt
+    name: Hydrangea Conductivity
+    state_topic: "miflora/hydrangea_conductivity"
+
+  - platform: mqtt
+    name: Hydrangea Firmware
+    state_topic: "miflora/hydrangea_firmware"
+
+  - platform: mqtt
+    name: Hydrangea Last Report
+    state_topic: "miflora/hydrangea_last_report"
+
+  - platform: mqtt
+    name: Veggie Patch Battery
+    state_topic: "miflora/veggie_patch_battery"
+  
+  - platform: mqtt
+    name: Veggie Patch Light
+    state_topic: "miflora/veggie_patch_light"
+
+  - platform: mqtt
+    name: Veggie Patch Temperature
+    state_topic: "miflora/veggie_patch_temperature"
+
+  - platform: mqtt
+    name: Veggie Patch Moisture
+    state_topic: "miflora/veggie_patch_moisture"
+
+  - platform: mqtt
+    name: Veggie Patch Conductivity
+    state_topic: "miflora/veggie_patch_conductivity"
+
+  - platform: mqtt
+    name: Veggie Patch Firmware
+    state_topic: "miflora/veggie_patch_firmware"
+
+  - platform: mqtt
+    name: Veggie Patch Last Report
+    state_topic: "miflora/veggie_patch_last_report"
