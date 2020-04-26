@@ -4,7 +4,9 @@
 <h1 align="center">Garden Package</h1>
 <p align="center">Be sure to :star: my repo!</p>
 <hr *** </hr>
-<p align="center">This package utilises the Mi Flora Plant Sensors to monitor my garden beds and potted plants to automate when my irrigation system turns to water them.</p>
+
+This package utilises this [Mi Flora Plant Sensors Python Script](https://github.com/ThomDietrich/miflora-mqtt-daemon) to monitor my garden beds and potted plants to automate when my irrigation system to water them.
+
 <hr --- </hr> 
 
 <h4 align="left">Package Credits:</h4>
@@ -18,14 +20,15 @@
 <h4 align="left">Package Sensors:</h4>
 <h4 align="left">Mi Flora Plant Sensors</h4>
 
-Due to the location of my HASSIO Server I could not get a bluetooth connection out to my garden beds. I flashed a Raspberry Pi Zero with HASSIO and installed it out in my Patio area where it can connect to all of my plant sensors [Config Here](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/packages/garden/pi-zero.yaml). I then use the HASSIO API to get sensor states into my main HA Server
+Due to the location of my Home Assistant Server I could not get a bluetooth connection out to my garden beds. I flashed a Raspberry Pi Zero with the above script and installed it out in my Patio area where it can connect to all of my plant sensors. I then use Node-Red to break out the sensors I want and publish them back to my MQTT Broker for HA to read them.
 
 <p align="left">Each Mi Flora Sensor has the following monitored conditions :-</br>
 Temperature
-- Humidity
+- Battery
 - Moisture
 - Conductivity
-- Lux
+- Light
+- Firmware
 <h4 align="left">Irrigation</h4>
 <p align="left">To control the Solenoid I use the Sonoff POW Dual, I could have easily achieved my desired outcome of Opening/Closing the Solenoid with a Sonoff Basic.</br> 
 The reason I chose the POW Dual was one you can monitor Power Consumption but also I used the second switch to montior the power consuption of my Patio Entertaining areas festoon lighting and also media equipment.</br>
