@@ -2,7 +2,7 @@
 
 #################################################################
 #                                                               #
-#           Dwains Theme - Addons/Garden/Bougainvillea          #
+#           Dwains Theme - Addons/Garden/Veggie Patch           #
 #                                                               #
 #################################################################
 
@@ -13,7 +13,7 @@
 #################################################################
 
 - type: picture
-  image: "https://wallpaperscave.com/images/original/17/12-14/earth-bougainvillea-3407.jpg"
+  image: "https://benonicitytimes.co.za/wp-content/uploads/sites/26/2016/01/vegetable-garden.jpg"
   style: |
     ha-card {
       height: 125px;
@@ -55,7 +55,7 @@
               unit_of_measurement: '%'
               width: 125%
               entities:
-                - entity: sensor.bougainvillea_battery
+                - entity: sensor.veggie_patch_battery
                   icon: mdi:battery
               severity:
                 - color: rgb(163,0,0)
@@ -126,7 +126,7 @@
       target: 60
       unit_of_measurement: '%'
       width: 150%
-      entity: sensor.bougainvillea_moisture
+      entity: sensor.veggie_patch_moisture
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -186,7 +186,7 @@
       max: 2000
       unit_of_measurement: 'µS'
       width: 140%
-      entity: sensor.bougainvillea_conductivity
+      entity: sensor.veggie_patch_conductivity
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -249,7 +249,7 @@
       max: 50
       unit_of_measurement: '°C'
       width: 150%
-      entity: sensor.bougainvillea_temperature
+      entity: sensor.veggie_patch_temperature
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -309,7 +309,7 @@
       unit_of_measurement: 'Lx'
       width: 150%
       entities:
-        - entity: sensor.bougainvillea_light
+        - entity: sensor.veggie_patch_light
           icon: mdi:weather-sunny
           severity:
             - color: rgb(163,0,0)

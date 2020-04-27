@@ -2,7 +2,7 @@
 
 #################################################################
 #                                                               #
-#           Dwains Theme - Addons/Garden/Bougainvillea          #
+#                   Addons/Garden/Citrus Bed                    #
 #                                                               #
 #################################################################
 
@@ -13,7 +13,7 @@
 #################################################################
 
 - type: picture
-  image: "https://wallpaperscave.com/images/original/17/12-14/earth-bougainvillea-3407.jpg"
+  image: "https://www.wallpaperup.com/uploads/wallpapers/2019/05/20/1323742/baa8d7fe12c8756cb0fb899ea1e1cb42-700.jpg"
   style: |
     ha-card {
       height: 125px;
@@ -55,7 +55,7 @@
               unit_of_measurement: '%'
               width: 125%
               entities:
-                - entity: sensor.bougainvillea_battery
+                - entity: sensor.citrus_bed_battery
                   icon: mdi:battery
               severity:
                 - color: rgb(163,0,0)
@@ -67,7 +67,7 @@
               style: |
                 ha-card {
                   --paper-item-icon-color: rgb(47,186,229);
-                  border-radius: 5px;
+                  border-radius: 2.5px;
                   height: 40px;
                 }
                 ha-icon	 {
@@ -120,13 +120,12 @@
 
     - type: custom:bar-card
       name: ' '
-      icon: mdi:water
       positions:
         value: 'outside'
       target: 60
       unit_of_measurement: '%'
       width: 150%
-      entity: sensor.bougainvillea_moisture
+      entity: sensor.citrus_bed_moisture
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -179,14 +178,13 @@
 
     - type: custom:bar-card
       name: ' '
-      icon: mdi:emoticon-poop
       positions:
         value: 'outside'
       target: 1500
       max: 2000
       unit_of_measurement: 'µS'
       width: 140%
-      entity: sensor.bougainvillea_conductivity
+      entity: sensor.citrus_bed_conductivity
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -231,25 +229,23 @@
           padding-left: 5px;
         }
 
-- type: horizontal-stack
-  cards:
-
 ####################################################
 #                                                  #
 #             Mi Flora - Temperature               #
 #                                                  #
 ####################################################
 
+- type: horizontal-stack
+  cards:
     - type: custom:bar-card
       name: ' '
-      icon: mdi:thermometer
       positions:
         value: 'outside'
       target: 35
       max: 50
       unit_of_measurement: '°C'
       width: 150%
-      entity: sensor.bougainvillea_temperature
+      entity: sensor.citrus_bed_temperature
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -309,7 +305,7 @@
       unit_of_measurement: 'Lx'
       width: 150%
       entities:
-        - entity: sensor.bougainvillea_light
+        - entity: sensor.citrus_bed_light
           icon: mdi:weather-sunny
           severity:
             - color: rgb(163,0,0)

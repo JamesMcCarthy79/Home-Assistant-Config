@@ -2,7 +2,7 @@
 
 #################################################################
 #                                                               #
-#           Dwains Theme - Addons/Garden/Bougainvillea          #
+#                Addons/Garden/Front Door Plant                 #
 #                                                               #
 #################################################################
 
@@ -25,6 +25,7 @@
 #                    Mi Flora Sensor Details                    #
 #                                                               #
 #################################################################
+
 
 - type: custom:stack-in-card
   cards:
@@ -55,7 +56,7 @@
               unit_of_measurement: '%'
               width: 125%
               entities:
-                - entity: sensor.bougainvillea_battery
+                - entity: sensor.front_door_plant_battery
                   icon: mdi:battery
               severity:
                 - color: rgb(163,0,0)
@@ -109,6 +110,7 @@
 #                                                               #
 #################################################################
 
+
 - type: horizontal-stack
   cards:
 
@@ -120,13 +122,12 @@
 
     - type: custom:bar-card
       name: ' '
-      icon: mdi:water
       positions:
         value: 'outside'
       target: 60
       unit_of_measurement: '%'
       width: 150%
-      entity: sensor.bougainvillea_moisture
+      entity: sensor.front_door_plant_moisture
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -179,14 +180,13 @@
 
     - type: custom:bar-card
       name: ' '
-      icon: mdi:emoticon-poop
       positions:
         value: 'outside'
       target: 1500
       max: 2000
       unit_of_measurement: 'µS'
       width: 140%
-      entity: sensor.bougainvillea_conductivity
+      entity: sensor.front_door_plant_conductivity
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -231,25 +231,23 @@
           padding-left: 5px;
         }
 
-- type: horizontal-stack
-  cards:
-
 ####################################################
 #                                                  #
 #             Mi Flora - Temperature               #
 #                                                  #
 ####################################################
 
+- type: horizontal-stack
+  cards:
     - type: custom:bar-card
       name: ' '
-      icon: mdi:thermometer
       positions:
         value: 'outside'
       target: 35
       max: 50
       unit_of_measurement: '°C'
       width: 150%
-      entity: sensor.bougainvillea_temperature
+      entity: sensor.front_door_plant_temperature
       severity:
         - color: rgb(163,0,0)
           from: 0
@@ -258,7 +256,7 @@
           from: 11
           to: 35
         - color: rgb(163,0,0)
-          from: 36
+          from: 35
           to: 50
       style: |
         ha-card {
@@ -309,7 +307,7 @@
       unit_of_measurement: 'Lx'
       width: 150%
       entities:
-        - entity: sensor.bougainvillea_light
+        - entity: sensor.front_door_plant_light
           icon: mdi:weather-sunny
           severity:
             - color: rgb(163,0,0)
@@ -320,7 +318,7 @@
               to: 50000
             - color: rgb(163,0,0)
               from: 50001
-              to: 100000
+              to: 200000
       style: |
         ha-card {
           --paper-item-icon-color: rgb(47,186,229);
