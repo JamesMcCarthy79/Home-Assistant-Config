@@ -454,7 +454,7 @@ Line 128 - Your Plant Moisture Sensor<br>
 Line 187 - Your Plant Conductivity Sensor<br>
 Line 248 - Your Plant Temperature Sensor<br>
 Line 308 - Your Plant Light Sensor<br>
-_If you aren't using device firmware of Last Update you can remove lines 42 & 43_<br>
+_If you aren't using device firmware or Last Update you can remove lines 42 & 43_<br>
 
 <hr --- </hr> 
 
