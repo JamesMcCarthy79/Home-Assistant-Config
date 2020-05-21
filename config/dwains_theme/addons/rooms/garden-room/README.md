@@ -20,7 +20,7 @@ Each **Room** and **Addon** is explained below in how to implement it and what d
 <h4 align="left">Prerequisites:</h4>
 
 [Mi Flora Plant Sensor](https://gadget-freakz.com/product/xiaomi-mi-flora-plant-sensor/) - Buy some of these guys<br>
-[Mi Flora - Integration](https://www.home-assistant.io/integrations/miflora/) - This will get you the main sensors<br>
+[Mi Flora Integration](https://www.home-assistant.io/integrations/miflora/) - This will get you the main sensors<br>
 [Plant Sensor](https://www.home-assistant.io/integrations/plant/) - This will montior the plants preferred envirnmental conditions<br>
 [Mi Flora Python Script](https://github.com/ThomDietrich/miflora-mqtt-daemon) - An alternative way to retrieve Mi Flora Sensor information<br>
 
@@ -93,27 +93,45 @@ label: >
   Next you will need to create the room addon file called ```my_plant_name.yaml``` this will match the one you used in the path location above in the ```rooms.yaml```.<br>
   Inside this file place the following code
   ```
-  # dwains_theme
+# dwains_theme
 
 #################################################################
 #                                                               #
-#                     Addons/Garden/Dracaena                    #
+#                      Addons/Garden/Plants                     #
 #                                                               #
 #################################################################
 
 #################################################################
 #                                                               #
-#                        Plant Type Image                       #
+#                          Plant Row 1                          #
 #                                                               #
 #################################################################
 
-- type: picture
-  image: "https://www.proflowers.com/blog/wp-content/uploads/2017/09/dracaena-care.jpg"
-  style: |
-    ha-card {
-      height: 125px;
-      border-radius: 2.5px;
-    }
+- type: horizontal-stack
+  cards:
+
+#################################################################
+#                                                               #
+#                    Plant Lounge Golden Cane                   #
+#                                                               #
+#################################################################
+
+    - type: custom:stack-in-card
+      cards: 
+
+#################################################################
+#                                                               #
+#                   Golden Cane Image Banner                    #
+#                                                               #
+#################################################################
+
+
+        - type: picture
+          image: "https://treeloppingpros.com.au/wp-content/uploads/2018/07/golden-cane-palm-tree-brisbane-southside.jpg"
+          style: |
+            ha-card {
+              height: 85px;
+            }
 
 #################################################################
 #                                                               #
@@ -121,34 +139,28 @@ label: >
 #                                                               #
 #################################################################
 
-- type: custom:stack-in-card
-  cards:
-    - type: horizontal-stack
-      cards:
-        - type: markdown
-          content: >
-            <img width="125" src="https://apps-cdn.athom.com/app/com.mi.flora/1/00700bec-b736-440b-9dc4-fd1b5ab8336a/drivers/flora/assets/images/large.png"/><br>
         - type: vertical-stack
           cards:
             - type: markdown
               content: >
-                <br>
-                **Mi Flora**<br>
-                {{ (data | fromjson)['firmware'] }}<br>
-                {{ (data | fromjson)['last_update'] }}
-
-####################################################
-#                                                  #
-#                Mi Flora - Battery                #
-#                                                  #
-####################################################
-
+                <center>
+                <h3>
+                Mi Flora - Lounge Golden Cane
+                </h3>
+                </center>
+              style: |
+                ha-card {
+                color: teal;
+                margin-top: -20px;
+                }
+            
             - type: custom:bar-card
               name: ' '
               positions:
                 value: 'outside'
+                indicator: 'off'
               unit_of_measurement: '%'
-              width: 125%
+              height: 5px
               entities:
                 - entity: sensor.dracaena_battery
                   icon: mdi:battery
@@ -156,47 +168,51 @@ label: >
                 - color: rgb(163,0,0)
                   from: 0
                   to: 15
-                - color: rgb(51,191,99)
+                - color: rgb(26,204,147,0.33)
                   from: 16
                   to: 100
               style: |
                 ha-card {
                   --paper-item-icon-color: rgb(47,186,229);
-                  border-radius: 5px;
                   height: 40px;
                 }
                 ha-icon	 {
-                  margin-right: auto;
-                  margin-left: auto;
-                  margin-bottom: auto;
-                  margin-top: -17px;
+                  margin-top: -110px;
+                  margin-right: -25px;
                 }
-                bar-card-indicator	 {
-                  margin-right: auto;
-                  margin-left: auto;
-                  margin-bottom: auto;
-                  margin-top: -17px;
+                bar-card-backgroundbar  {
+                  margin-top: -35px;
+                  border-radius: 2.5px;
                 }
-                bar-card-background	 {
-                  margin-right: auto;
-                  margin-left: auto;
-                  margin-bottom: auto;
-                  margin-top: -12.5px;
-                  padding-right: 5px;
-                  height: 15px;
+                bar-card-currentbar  {
+                  margin-top: -35px;
+                  border-radius: 2.5px;
                 }
                 bar-card-value	 {
-                  margin-right: auto;
-                  margin-left: auto;
-                  margin-bottom: auto;
-                  margin-top: -15px;
-                  padding-left: 5px;
+                  margin-top: -102.5px;
+                  padding-left: 17.5px;
                 }
-  style: |
-    ha-card {
-      color: teal;
-      border-radius: 2.5px;
-    }
+            
+            - type: markdown
+              content: >
+                <center>
+                {{ (data | fromjson)['dracaenafw'] }}<br>
+                {{ (data | fromjson)['dracaenalu'] }}
+                </center>
+              style: |
+                ha-card {
+                color: teal;
+                margin-top: -60px;
+                height: 40px;
+                }
+            - type: markdown
+              content: >
+                <img width="125" src="https://apps-cdn.athom.com/app/com.mi.flora/1/00700bec-b736-440b-9dc4-fd1b5ab8336a/drivers/flora/assets/images/large.png"/><br>
+              style: |
+                ha-card {
+                  margin-top: -20px;
+                  margin-left: -50px;
+                }
 
 #################################################################
 #                                                               #
@@ -204,66 +220,64 @@ label: >
 #                                                               #
 #################################################################
 
-- type: horizontal-stack
-  cards:
-
 ####################################################
 #                                                  #
 #               Mi Flora - Moisture                #
 #                                                  #
 ####################################################
 
-    - type: custom:bar-card
-      name: ' '
-      positions:
-        value: 'outside'
-      target: 60
-      unit_of_measurement: '%'
-      width: 150%
-      entity: sensor.dracaena_moisture
-      severity:
-        - color: rgb(163,0,0)
-          from: 0
-          to: 15
-        - color: rgb(51,191,99)
-          from: 16
-          to: 60
-        - color: rgb(163,0,0)
-          from: 61
-          to: 100
-      style: |
-        ha-card {
-          --paper-item-icon-color: rgb(47,186,229);
-          border-radius: 2.5px;
-          height: 40px;
-        }
-        ha-icon	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -15px;
-        }
-        bar-card-indicator	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -17px;
-        }
-        bar-card-background	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -12.5px;
-          padding-right: 5px;
-          height: 15px;
-        }
-        bar-card-value	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -15px;
-          padding-left: 5px;
-        }
+            - type: custom:bar-card
+              name: ' '
+              positions:
+                value: 'outside'
+                indicator: off
+              target: 60
+              unit_of_measurement: '%'
+              height: 15px
+              width: 70%
+              entity: sensor.dracaena_moisture
+              severity:
+                - color: rgb(163,0,0)
+                  from: 0
+                  to: 15
+                - color: rgb(26,204,147,0.33)
+                  from: 16
+                  to: 60
+                - color: rgb(163,0,0)
+                  from: 61
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  border-radius: 2.5px;
+                  height: 40px;
+                  width: 91%;
+                  margin-left: 27.5px;
+                }
+                ha-icon	 {
+                  margin-top: -325px;
+                  margin-right: -20px;
+                }
+                bar-card-value	 {
+                  margin-top: -319px;
+                  padding-left: 20px;
+                }
+                bar-card-backgroundbar	 {
+                  margin-top: -162.5px;
+                  margin-right: -25px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar	 {
+                  margin-top: -162.5px;
+                  border-radius: 2.5px;
+                }
+                bar-card-targetbar  {
+                  margin-top: -162.5px;
+                }
+                bar-card-markerbar  {
+                  margin-top: -162.5px;
+                } 
+      
 
 ####################################################
 #                                                  #
@@ -271,58 +285,58 @@ label: >
 #                                                  #
 ####################################################
 
-    - type: custom:bar-card
-      name: ' '
-      positions:
-        value: 'outside'
-      target: 1500
-      max: 2000
-      unit_of_measurement: 'µS'
-      width: 140%
-      entity: sensor.dracaena_conductivity
-      severity:
-        - color: rgb(163,0,0)
-          from: 0
-          to: 200
-        - color: rgb(51,191,99)
-          from: 201
-          to: 1500
-        - color: rgb(163,0,0)
-          from: 1501
-          to: 2000
-      style: |
-        ha-card {
-          --paper-item-icon-color: rgb(47,186,229);
-          border-radius: 2.5px;
-          height: 40px;
-        }
-        ha-icon	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -15px;
-        }
-        bar-card-indicator	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -17px;
-        }
-        bar-card-background	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -12.5px;
-          padding-right: 5px;
-          height: 15px;
-        }
-        bar-card-value	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -15px;
-          padding-left: 5px;
-        }
+            - type: custom:bar-card
+              name: ' '
+              positions:
+                value: 'outside'
+                indicator: 'off'
+              target: 1500
+              max: 2000
+              unit_of_measurement: 'µS'
+              height: 15px
+              width: 68%
+              entity: sensor.dracaena_conductivity
+              severity:
+                - color: rgb(163,0,0)
+                  from: 0
+                  to: 200
+                - color: rgb(26,204,147,0.33)
+                  from: 201
+                  to: 1500
+                - color: rgb(163,0,0)
+                  from: 1501
+                  to: 2000
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  border-radius: 2.5px;
+                  height: 40px;
+                  width: 92.5%;
+                  margin-left: 28.5px;
+                }
+                ha-icon	 {
+                  margin-top: -345px;
+                  margin-right: -25px;
+                  padding-right: 5px;
+                }
+                bar-card-value	 {
+                  margin-top: -337.5px;
+                  padding-left: 20px;
+                }
+                bar-card-backgroundbar	 {
+                  margin-top: -172.5px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar	 {
+                  margin-top: -172.5px;
+                  border-radius: 2.5px;
+                }
+                bar-card-targetbar  {
+                  margin-top: -172.5px;
+                }
+                bar-card-markerbar  {
+                  margin-top: -172.5px;
+                }  
 
 ####################################################
 #                                                  #
@@ -330,60 +344,57 @@ label: >
 #                                                  #
 ####################################################
 
-- type: horizontal-stack
-  cards:
-    - type: custom:bar-card
-      name: ' '
-      positions:
-        value: 'outside'
-      target: 35
-      max: 50
-      unit_of_measurement: '°C'
-      width: 150%
-      entity: sensor.dracaena_temperature
-      severity:
-        - color: rgb(163,0,0)
-          from: 0
-          to: 10
-        - color: rgb(51,191,99)
-          from: 11
-          to: 35
-        - color: rgb(163,0,0)
-          from: 36
-          to: 50
-      style: |
-        ha-card {
-          --paper-item-icon-color: rgb(47,186,229);
-          border-radius: 2.5px;
-          height: 40px;
-        }
-        ha-icon	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -15px;
-        }
-        bar-card-indicator	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -17px;
-        }
-        bar-card-background	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -12.5px;
-          padding-right: 5px;
-          height: 15px;
-        }
-        bar-card-value	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -15px;
-          padding-left: 5px;
-        }
+            - type: custom:bar-card
+              name: ' '
+              positions:
+                value: 'outside'
+                indicator: 'off'
+              target: 35
+              max: 50
+              unit_of_measurement: '°C'
+              height: 15px
+              width: 70%
+              entity: sensor.dracaena_temperature
+              severity:
+                - color: rgb(163,0,0)
+                  from: 0
+                  to: 10
+                - color: rgb(26,204,147,0.33)
+                  from: 11
+                  to: 35
+                - color: rgb(163,0,0)
+                  from: 36
+                  to: 50
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  border-radius: 2.5px;
+                  height: 40px;
+                  width: 92.5%;
+                  margin-left: 28.5px;
+                }
+                ha-icon	 {
+                  margin-top: -362.5px;
+                  margin-right: -20px;
+                }
+                bar-card-value	 {
+                  margin-top: -357.5px;
+                  padding-left: 20px;
+                }
+                bar-card-backgroundbar	 {
+                  margin-top: -182.5px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar	 {
+                  margin-top: -182.5px;
+                  border-radius: 2.5px;
+                }
+                bar-card-targetbar  {
+                  margin-top: -182.5px;
+                }
+                bar-card-markerbar  {
+                  margin-top: -182.5px;
+                }  
 
 ####################################################
 #                                                  #
@@ -391,70 +402,76 @@ label: >
 #                                                  #
 ####################################################
 
-    - type: custom:bar-card
-      name: ' '
-      positions:
-        value: 'outside'
-      target: 50000
-      max: 60000
-      unit_of_measurement: 'Lx'
-      width: 150%
-      entities:
-        - entity: sensor.dracaena_light
-          icon: mdi:weather-sunny
-          severity:
-            - color: rgb(163,0,0)
-              from: 0
-              to: 2000
-            - color: rgb(51,191,99)
-              from: 2000
-              to: 50000
-            - color: rgb(163,0,0)
-              from: 50001
-              to: 100000
+            - type: custom:bar-card
+              name: ' '
+              positions:
+                value: 'outside'
+                indicator: 'off'
+              target: 50000
+              max: 60000
+              unit_of_measurement: 'Lx'
+              height: 15px
+              width: 70%
+              entities:
+                - entity: sensor.dracaena_light
+                  icon: mdi:weather-sunny
+              severity:
+                - color: rgb(163,0,0)
+                  from: 0
+                  to: 2000
+                - color: rgb(26,204,147,0.33)
+                  from: 2000
+                  to: 50000
+                - color: rgb(163,0,0)
+                  from: 50001
+                  to: 100000
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  border-radius: 2.5px;
+                  height: 40px;
+                  width: 91.5%;
+                  margin-left: 28.5px;
+                }
+                ha-icon	 {
+                  margin-top: -384px;
+                  margin-right: -20px;
+                }
+                bar-card-value	 {
+                  margin-top: -377.5px;
+                  padding-left: 20px;
+                }
+                bar-card-backgroundbar	 {
+                  margin-top: -192.5px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar	 {
+                  margin-top: -192.5px;
+                  border-radius: 2.5px;
+                }
+                bar-card-targetbar  {
+                  margin-top: -192.5px;
+                  border-radius: 2.5px;
+                }
+                bar-card-markerbar  {
+                  margin-top: -192.5px;
+                }  
+
       style: |
-        ha-card {
-          --paper-item-icon-color: rgb(47,186,229);
+        ha-card  {
           border-radius: 2.5px;
-          height: 40px;
-        }
-        ha-icon	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -15px;
-        }
-        bar-card-indicator	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -17px;
-        }
-        bar-card-background	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -12.5px;
-          padding-right: 5px;
-          height: 15px;
-        }
-        bar-card-value	 {
-          margin-right: auto;
-          margin-left: auto;
-          margin-bottom: auto;
-          margin-top: -15px;
-          padding-left: 5px;
+          height: 317.5px;
         }
 ```
 You will need to change the following with your specific config<br>
 
-Line 16 - Change to image of your own plant<br>
-Line 58 - Your Plant Battery Sensor<br>
-Line 128 - Your Plant Moisture Sensor<br>
-Line 187 - Your Plant Conductivity Sensor<br>
-Line 248 - Your Plant Temperature Sensor<br>
-Line 308 - Your Plant Light Sensor<br>
-_If you aren't using device firmware or Last Update you can remove lines 42 & 43_<br>
+Line 35 - Change to image of your own plant<br>
+Line 70 - Your Plant Battery Sensor<br>
+Line 143 - Your Plant Moisture Sensor<br>
+Line 203 - Your Plant Conductivity Sensor<br>
+Line 262 - Your Plant Temperature Sensor<br>
+Line 321 - Your Plant Light Sensor<br>
+_If you aren't using device firmware or Last Update you can remove lines 104 & 105<br>
 
 <hr --- </hr> 
 
