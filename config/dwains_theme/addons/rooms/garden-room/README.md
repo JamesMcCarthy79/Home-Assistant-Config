@@ -476,5 +476,5 @@ _If you aren't using device firmware or Last Update you can remove lines 104 & 1
 <hr --- </hr> 
 
 Thanks to Dwains for creating a killing theme and inspiring me to get back into HA UI Design.<br>
-You can find examples of how I have implemented this in [my own setup here](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/dwains_theme)
+You can find examples of how I have implemented this in [my own setup here](https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/config/dwains_theme/addons/rooms/garden-room/indoor-plants.yaml) & [Garden Package Config](https://github.com/JamesMcCarthy79/Home-Assistant-Config/tree/master/config/packages/garden)
 
