@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Addon%20Screens/Garden%20Room.png" width="800"/>
-  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Addon%20Screens/Plant%20Addon.png" width="800"/>
+  <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Addon%20Screens/dwains%20-%20plant%20addon.png" width="800"/>
 </p>
 <h1 align="center">Dwains Theme - Addon Mi Flora</h1>
 <p align="center">Be sure to :star: my repo!</br>
