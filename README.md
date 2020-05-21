@@ -12,7 +12,7 @@
 </p>  
 <p>
   <img src="https://img.shields.io/github/stars/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
-  <img src="https://img.shields.io/badge/HA--Version-0.107.5-brightgreen.svg"/>
+  <img src="https://img.shields.io/badge/HA--Version-0.109.6-brightgreen.svg"/>
   <img src="https://img.shields.io/maintenance/yes/2020.svg"/>
   <img src="https://img.shields.io/github/commit-activity/y/JamesMcCarthy79/Home-Assistant-Config.svg"/>
   <img src="https://img.shields.io/github/last-commit/JamesMcCarthy79/Home-Assistant-Config.svg?style=plasticr"/>
