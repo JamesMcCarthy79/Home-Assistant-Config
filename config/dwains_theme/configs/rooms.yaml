@@ -1,6 +1,60 @@
 # https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/rooms.html
 
 rooms:
+  - name: System Health
+    icon: mdi:monitor-dashboard
+    addons:
+      - name: System
+        icon: mdi:monitor-dashboard
+        path: 'dwains-theme/addons/rooms/system-health/overview.yaml'
+        button_path: 'dwains-theme/addons/rooms/system-health/button.yaml'
+        data:
+          smsname: '{{states.sensor.smart_home_server.attributes.friendly_name}}'
+          smsstate: '{{states.sensor.smart_home_server.attributes.status}}'
+          smsicon: '{{states.sensor.smart_home_server.attributes.icon}}'
+          dockname: '{{states.sensor.docker.attributes.friendly_name}}'
+          dockstate: '{{states.sensor.docker.attributes.status}}'
+          dockicon: '{{states.sensor.docker.attributes.icon}}'
+          hassname: '{{states.sensor.home_assistant_2.attributes.friendly_name}}'
+          hassstate: '{{states.sensor.home_assistant_2.attributes.status}}'
+          hassicon: '{{states.sensor.home_assistant_2.attributes.icon}}'
+          llname: '{{states.sensor.lovelace.attributes.friendly_name}}'
+          llstate: '{{states.sensor.lovelace.attributes.status}}'
+          llicon: '{{states.sensor.lovelace.attributes.icon}}'
+          mqttname: '{{states.sensor.mqtt_server.attributes.friendly_name}}'
+          mqttstate: '{{states.sensor.mqtt_server.attributes.status}}'
+          mqtticon: '{{states.sensor.mqtt_server.attributes.icon}}'
+          upsname: '{{states.sensor.ups_server.attributes.friendly_name}}'
+          upsstate: '{{states.sensor.ups_server.attributes.status}}'
+          upsicon: '{{states.sensor.ups_server.attributes.icon}}'
+          ispname: '{{states.sensor.internet.attributes.friendly_name}}'
+          ispstate: '{{states.sensor.internet.attributes.status}}'
+          ispicon: '{{states.sensor.internet.attributes.icon}}'
+          routername: '{{states.sensor.main_router.attributes.friendly_name}}'
+          routerstate: '{{states.sensor.main_router.attributes.status}}'
+          routericon: '{{states.sensor.main_router.attributes.icon}}'
+          switchname: '{{states.sensor.main_switch.attributes.friendly_name}}'
+          switchstate: '{{states.sensor.main_switch.attributes.status}}'
+          switchicon: '{{states.sensor.main_switch.attributes.icon}}'
+          upswitchname: '{{states.sensor.upstairs_switch.attributes.friendly_name}}'
+          upswitchstate: '{{states.sensor.upstairs_switch.attributes.status}}'
+          upswitchicon: '{{states.sensor.upstairs_switch.attributes.icon}}'
+          nas1name: '{{states.sensor.nas_tv_2.attributes.friendly_name}}'
+          nas1state: '{{states.sensor.nas_tv_2.attributes.status}}'
+          nas1icon: '{{states.sensor.nas_tv_2.attributes.icon}}'
+          nas2name: '{{states.sensor.nas_backup.attributes.friendly_name}}'
+          nas2state: '{{states.sensor.nas_backup.attributes.status}}'
+          nas2icon: '{{states.sensor.nas_backup.attributes.icon}}'
+          nas3name: '{{states.sensor.nas_movies_2.attributes.friendly_name}}'
+          nas3state: '{{states.sensor.nas_movies_2.attributes.status}}'
+          nas3icon: '{{states.sensor.nas_movies_2.attributes.icon}}'
+          mainname: '{{states.sensor.main_radio.attributes.friendly_name}}'
+          mainstate: '{{states.sensor.main_radio.attributes.status}}'
+          mainicon: '{{states.sensor.main_radio.attributes.icon}}'
+          entity: binary_sensor.server_main
+
+
+
   - name: Living Room
     icon: fas:couch
     light: light.lounge_light
@@ -28,15 +82,17 @@ rooms:
       entities:
         - entity: light.lounge_bulb
         - entity: light.dining_bulb
-#    addons:
-#      - name: Hello room
-#        icon: fas:puzzle-piece
-#        path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
-#        button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
-#        data:
-#          some_data: 'This is some data parsed.'
-#          some_other_data: 'and some other data.'
-#          entity: vacuum.roborock
+    addons:
+      - name: Main
+        icon: fab:fort-awesome
+        path: 'dwains-theme/addons/rooms/lounge-room/lounge-main.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          temp: '{{states.sensor.temperature_158d0001f558f5.state}}°C'
+          humd: '{{states.sensor.humidity_158d0001f558f5.state}}%'
+          forecast: '{{states.sensor.bom_gc_forecast_detailed_summary_0.state}} With a high of {{states.sensor.bom_gc_forecast_max_temp_c_0.state}}°C, the temperature outside is currently {{states.sensor.temperature_158d0001f56350.state}}°C'
+          overnight: '{{states.sensor.bom_gc_forecast_detailed_summary_0.state}} With a low of {{states.sensor.bom_gc_forecast_min_temp_c_1.state}}°C, the temperature outside is currently {{states.sensor.temperature_158d0001f56350.state}}°C'
+          entity: person.james
 
   - name: Playroom
     icon: fas:paper-plane
@@ -503,32 +559,8 @@ rooms:
 
   - name: Server Rack
     icon: fas:server
-#    light: light.laundry_light
-#    lock:
     temperature: sensor.temperature_158d00034ced8f
-#    climate: 
     humidity: sensor.humidity_158d00034ced8f
-#    pressure: sensor.pressure_158d0001f56682
-#    motion: binary_sensor.motion_sensor_158d0001e5cf11
-#    door: binary_sensor.door_window_sensor_158d0001e73c09
-#    window: 
-#    cover:
-#    vacuum: 
-#      entity: vacuum.robovac
-#      camera: 
-#    plant: 
-#    media_player: 
-#    device: binary_sensor.smoke_sensor_158d0001b8deba
-#    more_entities:
-#      entities:
-#        - entity: sensor.illumination_158d0001e5cf11
-#        - entity: light.gateway_light_7811dce13ad6
-#        - entity: scene.backlights_night
-#        - entity: switch.plug_158d00022ae22d
-#        - entity: binary_sensor.door_window_sensor_158d0001e73a83
-#        - entity: switch.plug_158d0001bc2b6d
-#        - entity: switch.plug_158d00022ae069
-#        - entity: binary_sensor.door_window_sensor_158d0001e73bc5
     page_entities:
       columns: 1 #optional
       entities:
@@ -540,8 +572,17 @@ rooms:
         path: 'dwains-theme/addons/rooms/server-room/router.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'RouterOS: {{states.sensor.installed_routeros.state}}'
-          some_other_data: 'Uptime: {{states.sensor.mikrotik_uptime.state}}'
+          routeros: 'RouterOS: {{states.sensor.installed_routeros.state}}'
+          uptime: 'Uptime: {{states.sensor.mikrotik_uptime.state}}'
+          plan: 'Plan: NBN FTTN 50'
+          dl: '{{states.sensor.speedtest_download.state}}'
+          ul: '{{states.sensor.speedtest_upload.state}}'
+          wanrx: '{{states.sensor.main_router_ether1_internet_bridge_rx.state}}'
+          wantx: '{{states.sensor.main_router_ether1_internet_bridge_tx.state}}'
+          pcrx: '{{states.sensor.main_router_ether2_rx.state}}'
+          pctx: '{{states.sensor.main_router_ether2_tx.state}}'
+          shrx: '{{states.sensor.main_router_ether8_core_switch_rx.state}}'
+          shtx: '{{states.sensor.main_router_ether8_core_switch_tx.state}}'
           entity: binary_sensor.core_router
 
       - name: Core Switch
@@ -549,18 +590,81 @@ rooms:
         path: 'dwains-theme/addons/rooms/server-room/switch.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'RouterOS: {{states.sensor.switch_routeros.state}}'
-          some_other_data: 'Uptime: {{states.sensor.switch_uptime.state}}'
+          routeros: 'RouterOS: {{states.sensor.switch_routeros.state}}'
+          uptime: 'Uptime: {{states.sensor.switch_uptime.state}}'
+          bridgerx: '{{states.sensor.main_switch_ether24_core_router_rx.state}}'
+          bridgetx: '{{states.sensor.main_switch_ether24_core_router_tx.state}}'
           entity: binary_sensor.core_switch
+
+      - name: Upstairs Switch
+        icon: mdi:switch
+        path: 'dwains-theme/addons/rooms/server-room/switch-2.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          routeros: 'RouterOS: {{states.sensor.switch_routeros.state}}'
+          uptime: 'Uptime: {{states.sensor.switch_uptime.state}}'
+          bridgerx: '{{states.sensor.upstairs_switch_sfp1_rx.state}}'
+          bridgetx: '{{states.sensor.upstairs_switch_sfp1_tx.state}}'
+          entity: binary_sensor.upstairs_switch
 
       - name: HA Server
         icon: mdi:home-assistant
         path: 'dwains-theme/addons/rooms/server-room/ha-server.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Version: {{states.sensor.current_version.state}}'
-          some_other_data: 'Startup Time: {{states.sensor.ha_restart_time.state}}' 
-          some_more_data: 'Uptime: {{states.sensor.time_online.state}}'
+          os: '18.04.4 LTS'
+          startup: '{{states.sensor.ha_restart_time.state}}' 
+          online: '{{states.sensor.nuc_uptime.state}}'
+          uptime: '{{states.sensor.time_online.state}}'
+          db: '{{states.sensor.home_assistant_v2_db.state}} MB'
+          log: '{{states.sensor.home_assistant_log.state}} MB'
+          bridgerx: '{{states.sensor.main_switch_ether3_core_wireless_bridge_tx.state}}'
+          bridgetx: '{{states.sensor.main_switch_ether3_core_wireless_bridge_rx.state}}'
+          core: '{{states.sensor.current_version.state}}'
+          corenew: '{{states.binary_sensor.updater.attributes.newest_version}}'
+          su: '{{states.sensor.supervisor_updates.attributes.current_version}}'
+          sunew: '{{states.sensor.supervisor_updates.attributes.newest_version}}'
+          grafana: '{{states.sensor.grafana_addon.attributes.version}}'
+          grafananew: '{{states.sensor.grafana_addon.attributes.version_latest}}'
+          grocy: '{{states.sensor.grocy_addon.attributes.version}}'
+          grocynew: '{{states.sensor.grocy_addon.attributes.version_latest}}'
+          influxdb: '{{states.sensor.influxdb_addon.attributes.version}}'
+          influxdbnew: '{{states.sensor.influxdb_addon.attributes.version_latest}}'
+          nodered: '{{states.sensor.nodered_addon.attributes.version}}'
+          noderednew: '{{states.sensor.nodered_addon.attributes.version_latest}}'
+          samba: '{{states.sensor.samba_addon.attributes.version}}'
+          sambanew: '{{states.sensor.samba_addon.attributes.version_latest}}'
+          ssh: '{{states.sensor.ssh_addon.attributes.version}}'
+          sshnew: '{{states.sensor.ssh_addon.attributes.version_latest}}'
+          sonweb: '{{states.sensor.sonweb_addon.attributes.version}}'
+          sonwebnew: '{{states.sensor.sonweb_addon.attributes.version_latest}}'
+          vscode: '{{states.sensor.vscode_addon.attributes.version}}'
+          vscodenew: '{{states.sensor.vscode_addon.attributes.version_latest}}'
+          updates: '{{states.sensor.hacs.state}} Available'
+          hacs0name: '{{states.sensor.hacs0.state}}'
+          hacs0image: '{{states.sensor.hacs0_image.state}}'
+          hacs0imagepx: '{{states.sensor.hacs0_image_px.state}}'
+          hacs1name: '{{states.sensor.hacs1.state}}'
+          hacs1image: '{{states.sensor.hacs1_image.state}}'
+          hacs1imagepx: '{{states.sensor.hacs1_image_px.state}}'
+          hacs2name: '{{states.sensor.hacs2.state}}'
+          hacs2image: '{{states.sensor.hacs2_image.state}}'
+          hacs2imagepx: '{{states.sensor.hacs2_image_px.state}}'
+          hacs3name: '{{states.sensor.hacs3.state}}'
+          hacs3image: '{{states.sensor.hacs3_image.state}}'
+          hacs3imagepx: '{{states.sensor.hacs3_image_px.state}}'
+          hacs4name: '{{states.sensor.hacs4.state}}'
+          hacs4image: '{{states.sensor.hacs4_image.state}}'
+          hacs4imagepx: '{{states.sensor.hacs4_image_px.state}}'
+          hacs5name: '{{states.sensor.hacs5.state}}'
+          hacs5image: '{{states.sensor.hacs5_image.state}}'
+          hacs5imagepx: '{{states.sensor.hacs5_image_px.state}}'
+          hacs6name: '{{states.sensor.hacs6.state}}'
+          hacs6image: '{{states.sensor.hacs6_image.state}}'
+          hacs6imagepx: '{{states.sensor.hacs6_image_px.state}}'
+          hacs7name: '{{states.sensor.hacs7.state}}'
+          hacs7image: '{{states.sensor.hacs7_image.state}}'
+          hacs7imagepx: '{{states.sensor.hacs7_image_px.state}}'
           entity: binary_sensor.server_main
 
       - name: MQTT Server
@@ -568,9 +672,22 @@ rooms:
         path: 'dwains-theme/addons/rooms/server-room/mqtt-server.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Version: {{states.sensor.mqtt_server_version.state}}'
-          some_other_data: 'Startup Time: {{states.sensor.mqtt_restart_time.state}}' 
-          some_more_data: 'Uptime: {{states.sensor.mqtt_server_time_online.state}}'
+          os: '{{states.sensor.mqtt_server_version.state}}'
+          startup: '{{states.sensor.mqtt_restart_time.state}}' 
+          uptime: '{{states.sensor.mqtt_server_time_online.state}}'
+          bridgerx: '{{states.sensor.main_switch_ether5_pc_smart_monitor_tx.state}}'
+          bridgetx: '{{states.sensor.main_switch_ether5_pc_smart_monitor_rx.state}}'
+          core: '{{states.sensor.mqtt_server_version.state}}'
+          corenew: '{{states.binary_sensor.updater.attributes.newest_version}}'
+          mqtt: '{{states.sensor.mqtt_addon.attributes.version}}'
+          mqttnew: '{{states.sensor.mqtt_addon.attributes.version_latest}}'
+          ssh: '{{states.sensor.mqtt_ssh_addon.attributes.version}}'
+          sshnew: '{{states.sensor.mqtt_ssh_addon.attributes.version_latest}}'
+          nodered: '{{states.sensor.mqtt_nodered_addon.attributes.version}}'
+          noderednew: '{{states.sensor.mqtt_nodered_addon.attributes.version_latest}}'
+          samba: '{{states.sensor.mqtt_samba_addon.attributes.version}}'
+          sambanew: '{{states.sensor.mqtt_samba_addon.attributes.version_latest}}'
+          pipower: '{{states.sensor.mqtt_server_power.state}}'
           entity: binary_sensor.addon_pi
 
       - name: UPS Server
@@ -578,9 +695,20 @@ rooms:
         path: 'dwains-theme/addons/rooms/server-room/ups-server.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Version: {{states.sensor.ups_server_version.state}}'
-          some_other_data: 'Startup Time: {{states.sensor.ups_restart_time.state}}' 
-          some_more_data: 'Uptime: {{states.sensor.ups_server_time_online.state}}'
+          os: '{{states.sensor.ups_server_version.state}}'
+          startup: '{{states.sensor.ups_restart_time.state}}' 
+          uptime: '{{states.sensor.ups_server_time_online.state}}'
+          bridgerx: '{{states.sensor.main_switch_ether6_hdhomerun_tx.state}}'
+          bridgetx: '{{states.sensor.main_switch_ether6_hdhomerun_rx.state}}'
+          core: '{{states.sensor.ups_server_version.state}}'
+          corenew: '{{states.binary_sensor.updater.attributes.newest_version}}'
+          ssh: '{{states.sensor.ups_ssh_addon.attributes.version}}'
+          sshnew: '{{states.sensor.ups_ssh_addon.attributes.version_latest}}'
+          nodered: '{{states.sensor.ups_nodered_addon.attributes.version}}'
+          noderednew: '{{states.sensor.ups_nodered_addon.attributes.version_latest}}'
+          samba: '{{states.sensor.ups_samba_addon.attributes.version}}'
+          sambanew: '{{states.sensor.ups_samba_addon.attributes.version_latest}}'
+          pipower: '{{states.sensor.ups_server_power.state}}'
           entity: binary_sensor.automation_pi
 
       - name: NAS - Movies
@@ -588,8 +716,11 @@ rooms:
         path: 'dwains-theme/addons/rooms/server-room/nas-1.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Version: 4.4.2.1273'
-          some_other_data: 'Uptime: {{states.sensor.switch_uptime.state}}'
+          os: '4.4.2.1273'
+          uptime: '{{states.sensor.nas3_qnap_status.attributes.Uptime}}'
+          status: '{{states.sensor.nas3_qnap_status.state}}'
+          bridgerx: '{{states.sensor.main_switch_ether4_upstairs_link_tx.state}}'
+          bridgetx: '{{states.sensor.main_switch_ether4_upstairs_link_rx.state}}'
           entity: binary_sensor.nas_movies
 
       - name: NAS - TV
@@ -597,8 +728,10 @@ rooms:
         path: 'dwains-theme/addons/rooms/server-room/nas-2.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Version: 6.10.1'
-          some_other_data: 'Uptime: {{states.sensor.nas1_uptime.state}}'
+          os: '6.10.1'
+          uptime: '{{states.sensor.nas1_uptime.state}}'
+          bridgerx: '{{states.sensor.main_switch_ether2_nas_tv_shows_tx.state}}'
+          bridgetx: '{{states.sensor.main_switch_ether2_nas_tv_shows_rx.state}}'
           entity: binary_sensor.nas_tv
 
       - name: NAS - Backups
@@ -621,47 +754,19 @@ rooms:
 
   - name: Wireless Network
     icon: mdi:access-point
-#    light: light.laundry_light
-#    lock:
-#    temperature: sensor.temperature_158d00034ced8f
-#    climate: 
-#    humidity: sensor.humidity_158d00034ced8f
-#    pressure: sensor.pressure_158d0001f56682
-#    motion: binary_sensor.motion_sensor_158d0001e5cf11
-#    door: binary_sensor.door_window_sensor_158d0001e73c09
-#    window: 
-#    cover:
-#    vacuum: 
-#      entity: vacuum.robovac
-#      camera: 
-#    plant: 
-#    media_player: 
-#    device: binary_sensor.smoke_sensor_158d0001b8deba
-#    more_entities:
-#      entities:
-#        - entity: sensor.illumination_158d0001e5cf11
-#        - entity: light.gateway_light_7811dce13ad6
-#        - entity: scene.backlights_night
-#        - entity: switch.plug_158d00022ae22d
-#        - entity: binary_sensor.door_window_sensor_158d0001e73a83
-#        - entity: switch.plug_158d0001bc2b6d
-#        - entity: switch.plug_158d00022ae069
-#        - entity: binary_sensor.door_window_sensor_158d0001e73bc5
     page_entities:
       columns: 1 #optional
       entities:
-        - entity: binary_sensor.downstairs_ap
-        - entity: binary_sensor.upstairs_ap
-        - entity: binary_sensor.xiaomi_gateway
-        - entity: binary_sensor.xiaomi_gateway_2
     addons:
       - name: Downstairs AP
         icon: mdi:access-point
         path: 'dwains-theme/addons/rooms/server-room/ap1.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Firmware: 2.1.0.1312'
-          some_other_data: 'Uptime: {{states.sensor.ap1_uptime.state}}'
+          firmware: 'Firmware: 2.1.0.1312'
+          uptime: 'Uptime: {{states.sensor.ap1_uptime.state}}'
+          bridgerx: '{{states.sensor.main_switch_ether7_smart_things_hub_tx.state}}'
+          bridgetx: '{{states.sensor.main_switch_ether7_smart_things_hub_rx.state}}'
           entity: binary_sensor.downstairs_ap
 
       - name: Upstairs AP
@@ -669,38 +774,49 @@ rooms:
         path: 'dwains-theme/addons/rooms/server-room/ap2.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Firmware: 2.1.0.1312'
-          some_other_data: 'Uptime: {{states.sensor.ap2_uptime.state}}'
+          firmware: 'Firmware: 2.1.0.1312'
+          uptime: 'Uptime: {{states.sensor.ap2_uptime.state}}'
+          bridgerx: '{{states.sensor.upstairs_switch_sfp3_tx.state}}'
+          bridgetx: '{{states.sensor.upstairs_switch_sfp3_rx.state}}'
           entity: binary_sensor.upstairs_ap
 
       - name: Media TV Link
-        icon: mdi:access-point
-        path: 'dwains-theme/addons/rooms/server-room/link1.yaml'
-        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
-        data:
-          some_data: 'Firmware: 8.7.0'
-          some_other_data: 'Uptime: {{states.sensor.5g_tv_link_uptime.state}}'
-          entity: binary_sensor.5g_ac_media_tv
-
-      - name: Upstairs Link
-        icon: mdi:access-point
-        path: 'dwains-theme/addons/rooms/server-room/link2.yaml'
+        icon: mdi:satellite-uplink
+        path: 'dwains-theme/addons/rooms/server-room/media-tv-link.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
           name: '{{states.sensor.bh_name.state}}'
           model: '{{states.sensor.bh_model.state}}'
           txpower: '{{states.sensor.bh_tx_power.state}}'
-          txpowertv: '{{states.sensor.bh_tv_tx_power.state}}'
+          txpowerus: '{{states.sensor.bh_tv_tx_power.state}}'
           airtime: '{{states.sensor.bh_tv_airtime.state}}'
+          bridgerx: '{{states.sensor.bh_main_cap.state}}'
+          bridgetx: '{{states.sensor.bh_tv_cap.state}}'
+          entity: binary_sensor.5g_ac_media_tv
+
+      - name: Upstairs Link
+        icon: mdi:satellite-uplink
+        path: 'dwains-theme/addons/rooms/server-room/upstairs-link.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          name: '{{states.sensor.bh_name.state}}'
+          model: '{{states.sensor.bh_model.state}}'
+          txpower: '{{states.sensor.bh_tx_power.state}}'
+          txpowerus: '{{states.sensor.bh_us_tx_power.state}}'
+          airtime: '{{states.sensor.bh_us_airtime.state}}'
+          bridgerx: '{{states.sensor.bh_main_cap.state}}'
+          bridgetx: '{{states.sensor.bh_us_cap.state}}'
+          entity: binary_sensor.5g_ac_upstairs
 
       - name: Xiaomi Ecosystem
         icon: mdi:home-circle
-        path: 'dwains-theme/addons/rooms/server-room/xgw1.yaml'
+        path: 'dwains-theme/addons/rooms/server-room/xiaomi-ecosystem.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Firmware: 1.4.1_175'
-          some_other_data: 'Status: {{states.binary_sensor.xiaomi_gateway.state}}'
-          some_more_data: 'Status: {{states.binary_sensor.xiaomi_gateway_2.state}}'
+          firmware_gw1: 'Firmware: 1.4.1_175'
+          firmware_gw2: 'Firmware: 1.4.1_175'
+          state_gw1: 'Status: {{states.binary_sensor.xiaomi_gateway.state}}'
+          state_gw2: 'Status: {{states.binary_sensor.xiaomi_gateway_2.state}}'
           motion: '{{states.sensor.xiaomi_motion_sensor_count.state}}'
           door: '{{states.sensor.xiaomi_door_sensor_count.state}}'
           window: '{{states.sensor.xiaomi_window_sensor_count.state}}'
@@ -717,80 +833,32 @@ rooms:
 
   - name: Garden
     icon: mdi:sprout
-#    light: light.laundry_light
-#    lock:
-#    temperature: sensor.temperature_158d00034ced8f
-#    climate: 
-#    humidity: sensor.humidity_158d00034ced8f
-#    pressure: sensor.pressure_158d0001f56682
-#    motion: binary_sensor.motion_sensor_158d0001e5cf11
-#    door: binary_sensor.door_window_sensor_158d0001e73c09
-#    window: 
-#    cover:
-#    vacuum: 
-#      entity: vacuum.robovac
-#      camera: 
-#    plant: 
-#    media_player: 
-#    device: binary_sensor.smoke_sensor_158d0001b8deba
-#    more_entities:
-#      entities:
-#        - entity: sensor.illumination_158d0001e5cf11
-#        - entity: light.gateway_light_7811dce13ad6
-#        - entity: scene.backlights_night
-#        - entity: switch.plug_158d00022ae22d
-#        - entity: binary_sensor.door_window_sensor_158d0001e73a83
-#        - entity: switch.plug_158d0001bc2b6d
-#        - entity: switch.plug_158d00022ae069
-#        - entity: binary_sensor.door_window_sensor_158d0001e73bc5
     page_entities:
       columns: 1 #optional
       entities:
-
     addons:
-      - name: Dracaena
+      - name: Indoor Plants
         icon: mdi:sprout
-        path: 'dwains-theme/addons/rooms/garden-room/dracaena.yaml'
+        path: 'dwains-theme/addons/rooms/garden-room/indoor-plants.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Firmware: {{states.sensor.dracaena_firmware.state}}'
-          some_other_data: 'Last Update: {{relative_time(states.sensor.dracaena_last_report.last_updated)}}'
+          dracaenafw: 'Firmware: {{states.sensor.dracaena_firmware.state}}'
+          dracaenalu: 'Last Update: {{relative_time(states.sensor.dracaena_last_report.last_updated)}}'
+          fiddlefw: 'Firmware: {{states.sensor.fiddle_leaf_fig_firmware.state}}'
+          fiddlelu: 'Last Update: {{relative_time(states.sensor.fiddle_leaf_fig_last_report.last_updated)}}'
+          fdplantfw: 'Firmware: {{states.sensor.front_door_plant_firmware.state}}'
+          fdplantlu: 'Last Update: {{relative_time(states.sensor.front_door_plant_last_report.last_updated)}}'
+          ffpotfw: 'Firmware: {{states.sensor.front_flower_pot_firmware.state}}'
+          ffpotlu: 'Last Update: {{relative_time(states.sensor.front_flower_pot_last_report.last_updated)}}'
           entity: plant.lounge_plant
-
-      - name: Fiddle Leaf Fig
-        icon: mdi:sprout
-        path: 'dwains-theme/addons/rooms/garden-room/fiddle-leaf-fig.yaml'
-        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
-        data:
-          some_data: 'Firmware: {{states.sensor.fiddle_leaf_fig_firmware.state}}'
-          some_other_data: 'Last Update: {{relative_time(states.sensor.fiddle_leaf_fig_last_report.last_updated)}}'
-          entity: plant.fiddle_leaf_fig
-
-      - name: Front Door Plant
-        icon: mdi:sprout
-        path: 'dwains-theme/addons/rooms/garden-room/front-door-plant.yaml'
-        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
-        data:
-          some_data: 'Firmware: {{states.sensor.front_door_plant_firmware.state}}'
-          some_other_data: 'Last Update: {{relative_time(states.sensor.front_door_plant_last_report.last_updated)}}'
-          entity: plant.front_door_plant
-
-      - name: Front Flower Pot 
-        icon: mdi:sprout
-        path: 'dwains-theme/addons/rooms/garden-room/front-flower-pot.yaml'
-        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
-        data:
-          some_data: 'Firmware: {{states.sensor.front_flower_pot_firmware.state}}'
-          some_other_data: 'Last Update: {{relative_time(states.sensor.front_flower_pot_last_report.last_updated)}}'
-          entity: plant.front_flower_pot
 
       - name: Rose Garden
         icon: mdi:sprout
         path: 'dwains-theme/addons/rooms/garden-room/rose-garden.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Firmware: {{states.sensor.rose_garden_firmware.state}}'
-          some_other_data: 'Last Update: {{relative_time(states.sensor.rose_garden_last_report.last_updated)}}'
+          firmware: 'Firmware: {{states.sensor.rose_garden_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.rose_garden_last_report.last_updated)}}'
           entity: plant.rose_garden
 
       - name: Bougainvillea
@@ -798,8 +866,8 @@ rooms:
         path: 'dwains-theme/addons/rooms/garden-room/bougainvillea.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Firmware: {{states.sensor.bougainvillea_firmware.state}}'
-          some_other_data: 'Last Update: {{relative_time(states.sensor.bougainvillea_last_report.last_updated)}}'
+          firmware: 'Firmware: {{states.sensor.bougainvillea_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.bougainvillea_last_report.last_updated)}}'
           entity: plant.bougainvillea
 
       - name: Star Jasmine
@@ -807,8 +875,8 @@ rooms:
         path: 'dwains-theme/addons/rooms/garden-room/star-jasmine.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Firmware: {{states.sensor.sar_jasmine_firmware.state}}'
-          some_other_data: 'Last Update: {{relative_time(states.sensor.star_jasmine_last_report.last_updated)}}'
+          firmware: 'Firmware: {{states.sensor.sar_jasmine_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.star_jasmine_last_report.last_updated)}}'
           entity: plant.star_jasmine
 
       - name: Veggie Patch
@@ -816,6 +884,58 @@ rooms:
         path: 'dwains-theme/addons/rooms/garden-room/veggie-patch.yaml'
         button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
         data:
-          some_data: 'Firmware: {{states.sensor.bougainvillea_2_firmware.state}}'
-          some_other_data: 'Last Update: {{relative_time(states.sensor.bougainvillea_2_last_report.last_updated)}}'
-          entity: plant.bougainvillea_2
+          firmware: 'Firmware: {{states.sensor.veggie_patch_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.veggie_patch_last_report.last_updated)}}'
+          entity: plant.veggie_patch
+
+      - name: Flower Bed
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/flower-bed.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          firmware: 'Firmware: {{states.sensor.flower_bed_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.flower_bed_last_report.last_updated)}}'
+          entity: plant.flower_bed
+
+      - name: Citrus Bed
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/citrus-bed.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          firmware: 'Firmware: {{states.sensor.citrus_bed_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.citrus_bed_last_report.last_updated)}}'
+          entity: plant.citrus_bed
+
+      - name: Proteas
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/proteas.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          firmware: 'Firmware: {{states.sensor.proteas_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.proteas_last_report.last_updated)}}'
+          entity: plant.proteas
+
+      - name: Hydrangea
+        icon: mdi:sprout
+        path: 'dwains-theme/addons/rooms/garden-room/hydrangea.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          firmware: 'Firmware: {{states.sensor.hydrangea_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.hydrangea_last_report.last_updated)}}'
+          entity: plant.hydrangea
+
+  - name: Test Page
+    icon: mdi:clipboard-check
+    page_entities:
+      columns: 1 #optional
+      entities:
+
+    addons:
+      - name: Weather Test
+        icon: mdi:clipboard-check
+        path: 'dwains-theme/addons/rooms/test-room/airvisual-test.yaml'
+        button_path: 'dwains-theme/addons/rooms/server-room/button.yaml'
+        data:
+          firmware: 'Firmware: {{states.sensor.dracaena_firmware.state}}'
+          last_update: 'Last Update: {{relative_time(states.sensor.dracaena_last_report.last_updated)}}'
+          entity: group.motion_sensors
