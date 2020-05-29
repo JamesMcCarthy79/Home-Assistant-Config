@@ -1,0 +1,2486 @@
+# dwains_theme
+
+#################################################################
+#                                                               #
+#           Dwains Theme - Addons/Network/HA Server             #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                       HA Server Details                       #
+#                                                               #
+#################################################################
+
+- type: custom:stack-in-card
+  cards:
+    - type: horizontal-stack
+      cards:
+
+####################################################
+#                                                  #
+#                   Server Image                   #
+#                                                  #
+####################################################
+
+        - type: markdown
+          content: >
+            <img width="150" src="https://www.intel.com/content/dam/products/hero/foreground/nuc8-i7i5i3-beh-front-straight.png.rendition.intel.web.320.180.png">
+          style: |
+            ha-card {
+              height: 40px;
+              margin-top: 12.5px;
+              margin-left: 35px;
+            }
+
+####################################################
+#                                                  #
+#                  Server Details                  #
+#                                                  #
+####################################################
+        
+        - type: markdown
+          content: >
+            **SMART HOME SERVER RESOURCES**<br>
+            **NUC I5**<br>
+            **Ubuntu:**
+            {{ (data | fromjson)['os'] }}<br>
+            **Uptime:**
+            {{ (data | fromjson)['online'] }}
+          style: |
+            ha-card {
+              color: teal;
+              padding-top: 15px;
+              padding-right: 40px;
+            }
+
+####################################################
+#                                                  #
+#                 Server Resources                 #
+#                                                  #
+####################################################
+
+        - type: vertical-stack
+          cards:
+            - type: custom:bar-card
+              positions:
+                name: outside
+                value: outside
+              height: 15px
+              width: 60%
+              entities:
+                - entity: sensor.processor_use
+                  name: CPU Load
+                  icon: mdi:speedometer
+                  severity:
+                    - color: rgb(26,204,147,0.33)
+                      from: 0
+                      to: 10
+                    - color: rgb(206,133,0,0.60)
+                      from: 11
+                      to: 25
+                    - color: rgb(163,0,0,0.60)
+                      from: 26
+                      to: 150
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  border-radius: 2.5px;
+                  height: 40px;
+                }
+                ha-icon	 {
+                  margin-left: -100px;
+                  margin-top: -5px;
+                  padding-right: 5px;
+                }
+                bar-card-indicator	 {
+                  margin-left: -50px;
+                  margin-top: -6px;
+                  padding-right: 5px;
+                  }
+                  bar-card-name	 {
+                    margin-top: 3px;
+                    padding-left: 5px;
+                  }
+                  bar-card-backgroundbar	 {
+                    margin-top: 0px;
+                    border-radius: 2.5px;
+                  }
+                  bar-card-currentbar	 {
+                    margin-top: 0px;
+                    border-radius: 2.5px;
+                  }
+                  bar-card-value	 {
+                    margin-right: -105px;
+                    margin-top: 3px;
+                    padding-left: 5px;
+                  }
+
+            - type: custom:bar-card
+              positions:
+                name: outside
+                value: outside
+              height: 15px
+              width: 60%
+              entities:
+                  - entity: sensor.cpu_temperature
+                    name: CPU Temp
+                    icon: mdi:thermometer
+                    severity:
+                      - color: rgb(26,204,147,0.33)
+                        from: 0
+                        to: 69.9
+                      - color: rgb(206,133,0,0.60)
+                        from: 70
+                        to: 85
+                      - color: rgb(163,0,0,0.60)
+                        from: 85
+                        to: 150
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  border-radius: 2.5px;
+                  height: 40px;
+                }
+                ha-icon	 {
+                  margin-left: -100px;
+                  margin-top: -27.5px;
+                  padding-right: 5px;
+                }
+                bar-card-indicator	 {
+                  margin-left: -52.5px;
+                  margin-top: -25px;
+                  padding-right: 5px;
+                  }
+                  bar-card-name	 {
+                    margin-top: -20px;
+                    padding-left: 5px;
+                  }
+                  bar-card-backgroundbar	 {
+                    margin-top: -12.5px;
+                    border-radius: 2.5px;
+                  }
+                  bar-card-currentbar	 {
+                    margin-top: -12.5px;
+                    border-radius: 2.5px;
+                  }
+                  bar-card-value	 {
+                    margin-right: -105px;
+                    margin-top: -20px;
+                    padding-left: 5px;
+                  }
+
+            - type: custom:bar-card
+              positions:
+                name: outside
+                value: outside
+              height: 15px
+              width: 60%
+              entities:      
+                  - entity: sensor.memory_use_percent
+                    name: Memory
+                    icon: mdi:memory
+                    severity:
+                      - color: rgb(26,204,147,0.33)
+                        from: 0
+                        to: 69.9
+                      - color: rgb(206,133,0,0.60)
+                        from: 70
+                        to: 85
+                      - color: rgb(163,0,0,0.60)
+                        from: 85
+                        to: 150
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  border-radius: 2.5px;
+                  height: 40px;
+                }
+                ha-icon	 {
+                  margin-left: -100px;
+                  margin-top: -50px;
+                  padding-right: 5px;
+                }
+                bar-card-indicator	 {
+                  margin-left: -52.5px;
+                  margin-top: -50px;
+                  padding-right: 5px;
+                  }
+                  bar-card-name	 {
+                    margin-top: -45px;
+                    padding-left: 5px;
+                  }
+                  bar-card-backgroundbar	 {
+                    margin-top: -25px;
+                    border-radius: 2.5px;
+                  }
+                  bar-card-currentbar	 {
+                    margin-top: -25px;
+                    border-radius: 2.5px;
+                  }
+                  bar-card-value	 {
+                    margin-right: -105px;
+                    margin-top: -45px;
+                    padding-left: 5px;
+                  }
+
+            - type: custom:bar-card
+              positions:
+                name: outside
+                value: outside
+              height: 15px
+              width: 60%
+              entities:       
+                  - entity: sensor.disk_use_percent
+                    name: HDD
+                    icon: mdi:harddisk
+                    severity:
+                      - color: rgb(26,204,147,0.33)
+                        from: 0
+                        to: 69.9
+                      - color: rgb(206,133,0,0.60)
+                        from: 70
+                        to: 85
+                      - color: rgb(163,0,0,0.60)
+                        from: 85
+                        to: 150
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  border-radius: 2.5px;
+                  height: 40px;
+                }
+                ha-icon	 {
+                  margin-left: -100px;
+                  margin-top: -72.5px;
+                  padding-right: 5px;
+                }
+                bar-card-indicator	 {
+                  margin-left: -52.5px;
+                  margin-top: -30px;
+                  padding-right: 5px;
+                  }
+                  bar-card-name	 {
+                    margin-top: -67.5px;
+                    padding-left: 5px;
+                  }
+                  bar-card-backgroundbar	 {
+                    margin-top: -36.5px;
+                    border-radius: 2.5px;
+                  }
+                  bar-card-currentbar	 {
+                    margin-top: -36.5px;
+                    border-radius: 2.5px;
+                  }
+                  bar-card-value	 {
+                    margin-right: -105px;
+                    margin-top: -67.5px;
+                    padding-left: 5px;
+                  }
+                  
+####################################################
+#                                                  #
+#                Server Ethernet RX                #
+#                                                  #
+####################################################
+
+        - type: vertical-stack
+          cards:
+            - type: 'custom:flex-horseshoe-card'
+              entities:
+                - entity: sensor.main_switch_ether3_core_wireless_bridge_tx
+                  name: 'Server RX'
+                  unit: 'Kbps'
+              show:
+                horseshoe_style: 'lineargradient'
+              layout:
+                hlines:
+                  - id: 0
+                    xpos: 50
+                    ypos: 50
+                    length: 40
+                    styles:
+                      - stroke: var(--primary-text-color);
+                      - stroke-width: 5;
+                      - stroke-linecap: round;
+                      - opacity: 0.7;
+              states:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 34
+                  styles:
+                   - font-size: 3em;
+                   - color: black;
+              icons:
+                - id: 0
+                  entity_index: 1
+                  xpos: 37
+                  ypos: 57
+                  align: end
+                  size: 1.3
+              horseshoe_scale:
+                min: 0
+                max: 55
+              color_stops:
+                16: '#E7FAFC'
+                17: '#D0F5FA'
+                18: '#B8F0F8'
+                19: '#A1EBF6'
+                20: '#89E7F4'
+                21: '#72E2F2'
+                22: '#5ADDF0'
+                23: '#43D8EE'
+                24: '#2BD3EC' 
+                25: '#14cfea' 
+              style: |
+                ha-card {
+                  height: 120px;
+                  margin-right: -110px;
+                  margin-top: 17.5px;
+                } 
+
+            - type: markdown
+              content: >
+                {{ (data | fromjson)['bridgerx'] }}Mbps
+              style: |
+                ha-card {
+                  margin-top: -109px;
+                  margin-left: 137.5px;
+                }
+
+            - type: markdown
+              content: >
+                Bridge RX
+              style: |
+                ha-card {
+                  margin-top: -82.5px;
+                  margin-left: 127px;
+                }
+          
+####################################################
+#                                                  #
+#            Server Ethernet Throughput            #
+#                                                  #
+####################################################
+
+        - type: custom:mini-graph-card
+          name: Server Throughput
+          entities: 
+            - entity: sensor.main_switch_ether3_core_wireless_bridge_tx
+              name: Server RX
+              color: rgba(50,203,253,0.33)
+              max: 55
+            - entity: sensor.main_switch_ether3_core_wireless_bridge_rx
+              name: Server TX
+              color: rgb(26,204,147,0.33)
+              max: 55
+          height: 100
+          line_width: 2
+          font_size: 70
+          hours_to_show: 168
+          points_per_hour: 1
+          show:
+            extrema: false
+            fill: true
+            state: false
+            legend: false
+          style: |
+            ha-card {
+              --paper-item-icon-color: rgb(47,186,229);
+              margin-right: -65px;
+              margin-left: 15px;
+              margin-bottom: 25px;
+            }
+
+####################################################
+#                                                  #
+#                  Switch Bridge TX                #
+#                                                  #
+####################################################
+
+        - type: vertical-stack
+          cards:
+            - type: 'custom:flex-horseshoe-card'
+              entities:
+                - entity: sensor.main_switch_ether3_core_wireless_bridge_tx
+                  name: 'WAN TX'
+                  unit: 'Kbps'
+              show:
+                horseshoe_style: 'lineargradient'
+              layout:
+                hlines:
+                  - id: 0
+                    xpos: 50
+                    ypos: 50
+                    length: 40
+                    styles:
+                      - stroke: var(--primary-text-color);
+                      - stroke-width: 5;
+                      - stroke-linecap: round;
+                      - opacity: 0.7;
+              states:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 34
+                  styles:
+                   - font-size: 3em;
+                   - color: black;
+              icons:
+                - id: 0
+                  entity_index: 1
+                  xpos: 37
+                  ypos: 57
+                  align: end
+                  size: 1.3
+              horseshoe_scale:
+                min: 0
+                max: 20
+              color_stops:
+                16: '#E7FAFC'
+                17: '#D0F5FA'
+                18: '#B8F0F8'
+                19: '#A1EBF6'
+                20: '#89E7F4'
+                21: '#72E2F2'
+                22: '#5ADDF0'
+                23: '#43D8EE'
+                24: '#2BD3EC' 
+                25: '#14cfea' 
+              style: |
+                ha-card {
+                  height: 120px;
+                  margin-right: -45px;
+                  margin-top: 17.5px;
+                }
+
+            - type: markdown
+              content: >
+                {{ (data | fromjson)['bridgetx'] }}Mbps
+              style: |
+                ha-card {
+                  margin-top: -109px;
+                  margin-left: 105px;
+                }
+
+            - type: markdown
+              content: >
+                Bridge TX
+              style: |
+                ha-card {
+                  margin-top: -82.5px;
+                  margin-left: 96px;
+                } 
+  style: |
+    ha-card {
+      border-radius: 2.5px;
+    }
+
+#################################################################
+#                                                               #
+#                    Container Status Row 1                     #
+#                                                               #
+#################################################################
+
+- type: custom:stack-in-card
+  cards:
+    - type: horizontal-stack
+      cards:
+
+####################################################
+#                                                  #
+#                 Docker Image                     #
+#                                                  #
+####################################################
+  
+        - type: markdown
+          content: >
+            <img width="100" src="https://cdn.worldvectorlogo.com/logos/docker.svg">
+          style: |
+            ha-card {
+              margin-top: 17.5px;
+            }
+
+####################################################
+#                                                  #
+#                   Portainer                      #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="60" src="https://developer.asustor.com/uploadIcons/0020_999_1583488696_Portainer_new_256.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>Portainer</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.portainer
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.portainer
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                    Node-RED                      #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="52" src="https://nodered.org/about/resources/media/node-red-hexagon.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>Node-RED</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.nodered
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.nodered
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                 Home Assistant                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="60" src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Home_Assistant_Logo.svg">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>HASS</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.home_assistant
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.home_assistant
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                    InfluxDB                      #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="60" src="https://cdn.iconscout.com/icon/free/png-512/influxdb-285211.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>InfluxDB</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.influxdb
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.influxdb
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                     Grafana                      #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="55.5" src="https://seeklogo.com/images/G/grafana-logo-15BA0AFA8A-seeklogo.com.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>Grafana</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.grafana
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.grafana
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                      VSCode                      #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="62" src="https://secrethub.io/img/vs-code.svg">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>VSCode</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.vscode
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.vscode
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                   HA Dockerman                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="70" src="https://pbs.twimg.com/profile_images/948686391445278720/G8NA23kS_400x400.jpg">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>HA Docker</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -57px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.ha_dockerman
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.ha_dockerman
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                        SSH                       #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="60" src="https://lh3.googleusercontent.com/pH5F_x-w_KCLIL-LgXX7EGpJMHKfUshKIQkxaqppd6MfxON-8IyCqi91t0RW9M3qzQ">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>SSH</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.ssh
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.ssh
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                      Samba                       #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="60" src="https://sbcguides.com/wp-content/uploads/2020/01/logo_samba.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>Samba</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.samba
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.samba
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                   Dropbox Sync                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="64" src="https://cfl.dropboxstatic.com/static/images/logo_catalog/glyph_m1%402x.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -8px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>Dropbox</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.dropbox_sync
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.dropbox_sync
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                      Grocy                       #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="59" src="https://lh3.googleusercontent.com/AoNNBeQTIOeAnoUkuWhtAnXbGikpxa1QqwFcmSyQ51DjaBP-K5iU-3b-nbCuaGG6Ur4">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -7.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>Grocy</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.grocy
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.grocy
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                      SonWeb                      #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="100" src="https://upload.wikimedia.org/wikipedia/commons/1/1a/SONOFF-logo.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: 17.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h4>SonWeb</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -42.5px;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.sonweb
+              tap_action: 
+                action: call-service
+                service: switch.toggle
+                service_data: 
+                  entity_id: switch.sonweb
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -47px;
+                  border-radius: 2.5px;
+                }
+
+  style: |
+    ha-card {
+      border-radius: 2.5px;
+      height: 120px;
+    }
+
+#################################################################
+#                                                               #
+#                Home Assistant Status Column 1                 #
+#                                                               #
+#################################################################
+
+- type: custom:stack-in-card
+  cards:
+    - type: horizontal-stack
+      cards:
+
+####################################################
+#                                                  #
+#                  HASS Image                      #
+#                                                  #
+####################################################
+  
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="97.5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTwfSYDhuxdDOI4FBPxnX2lmB3ePH_jEW1ijnlO0PrKkoOo5mMZ&usqp=CAU">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: 0px;
+                  margin-left: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                HA Server Details                 #
+#                                                  #
+####################################################
+        
+            - type: markdown
+              content: >
+                <center>
+                  <h4>HOME ASSISTANT RESOURCES</h4>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;
+                }
+
+            - type: markdown
+              content: >
+                **Uptime:**
+                {{ (data | fromjson)['uptime'] }}<br>
+                **Restart:**
+                {{ (data | fromjson)['startup'] }}<br>
+                **Database:**
+                {{ (data | fromjson)['db'] }}<br>
+                **Log:**
+                {{ (data | fromjson)['log'] }}<br>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -45px;
+                  margin-left: 25px;
+                }
+
+#################################################################
+#                                                               #
+#                Home Assistant Addons Column 2                 #
+#                                                               #
+#################################################################
+
+####################################################
+#                                                  #
+#                    HASS Core                     #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="50" src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Home_Assistant_Logo.svg">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -12.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>HASS Core<br>
+                  Installed:
+                  {{ (data | fromjson)['core'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['corenew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hass_core_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                   Supervisor                     #
+#                                                  #
+####################################################
+   
+            - type: markdown
+              content: >
+                <center>
+                  <img width="50" src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Home_Assistant_Logo.svg">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -45px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>Supervisor<br>
+                  Installed:
+                  {{ (data | fromjson)['su'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['sunew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hass_su_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+#################################################################
+#                                                               #
+#                Home Assistant Addons Column 3                 #
+#                                                               #
+#################################################################
+
+####################################################
+#                                                  #
+#                   Grafana Addon                  #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="46.5" src="https://seeklogo.com/images/G/grafana-logo-15BA0AFA8A-seeklogo.com.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -12.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>Grafana Addon<br>
+                  Installed:
+                  {{ (data | fromjson)['grafana'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['grafananew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.grafana_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                     SSH Addon                    #
+#                                                  #
+####################################################
+   
+            - type: markdown
+              content: >
+                <center>
+                  <img width="50" src="https://lh3.googleusercontent.com/pH5F_x-w_KCLIL-LgXX7EGpJMHKfUshKIQkxaqppd6MfxON-8IyCqi91t0RW9M3qzQ">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -45px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>SSH Addon<br>
+                  Installed:
+                  {{ (data | fromjson)['ssh'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['sshnew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.ssh_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+#################################################################
+#                                                               #
+#                Home Assistant Addons Column 4                 #
+#                                                               #
+#################################################################
+
+####################################################
+#                                                  #
+#                    Grocy Addon                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="50" src="https://lh3.googleusercontent.com/AoNNBeQTIOeAnoUkuWhtAnXbGikpxa1QqwFcmSyQ51DjaBP-K5iU-3b-nbCuaGG6Ur4">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -12.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>Grocy Addon<br>
+                  Installed:
+                  {{ (data | fromjson)['grocy'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['grocynew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.grocy_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                   VSCode Addon                   #
+#                                                  #
+####################################################
+   
+            - type: markdown
+              content: >
+                <center>
+                  <img width="51.5" src="https://secrethub.io/img/vs-code.svg">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -45px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>VSCode Addon<br>
+                  Installed:
+                  {{ (data | fromjson)['vscode'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['vscodenew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.vscode_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+#################################################################
+#                                                               #
+#                Home Assistant Addons Column 5                 #
+#                                                               #
+#################################################################
+
+####################################################
+#                                                  #
+#                  InFluxDB Addon                  #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="50" src="https://cdn.iconscout.com/icon/free/png-512/influxdb-285211.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -12.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>InFluxDB Addon<br>
+                  Installed:
+                  {{ (data | fromjson)['influxdb'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['influxdbnew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.influxdb_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                   SonWeb Addon                   #
+#                                                  #
+####################################################
+   
+            - type: markdown
+              content: >
+                <center>
+                  <img width="100" src="https://upload.wikimedia.org/wikipedia/commons/1/1a/SONOFF-logo.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -31.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>SonWeb Addon<br>
+                  Installed:
+                  {{ (data | fromjson)['sonweb'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['sonwebnew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.sonweb_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+#################################################################
+#                                                               #
+#                Home Assistant Addons Column 6                 #
+#                                                               #
+#################################################################
+
+####################################################
+#                                                  #
+#                  Node=RED Addon                  #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="43.5" src="https://nodered.org/about/resources/media/node-red-hexagon.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -12.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>Node-RED Addon<br>
+                  Installed:
+                  {{ (data | fromjson)['nodered'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['noderednew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.nodered_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+#################################################################
+#                                                               #
+#                Home Assistant Addons Column 7                 #
+#                                                               #
+#################################################################
+
+####################################################
+#                                                  #
+#                   Samba Addon                    #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="50" src="https://sbcguides.com/wp-content/uploads/2020/01/logo_samba.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -12.5px;
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>Samba Addon<br>
+                  Installed:
+                  {{ (data | fromjson)['samba'] }}<br>
+                  Newest:
+                  {{ (data | fromjson)['sambanew'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -54px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.samba_update
+              severity:
+                - color: red
+                  from: 0
+                  to: 0
+                - color: rgb(26,204,147,0.33)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -52px;
+                  border-radius: 2.5px;
+                }
+
+  style: |
+    ha-card {
+      border-radius: 2.5px;
+      height: 265px;
+    }
+
+#################################################################
+#                                                               #
+#           Home Assistant Community Store Column 1             #
+#                                                               #
+#################################################################
+
+- type: custom:stack-in-card
+  cards:
+    - type: horizontal-stack
+      cards:
+
+####################################################
+#                                                  #
+#                  HACS Image                      #
+#                                                  #
+####################################################
+  
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  <img width="50" src="https://community-home-assistant-assets.s3.dualstack.us-west-2.amazonaws.com/original/3X/e/7/e76aefdb4329ec8f2283a7441e82748dec697e81.png">
+                </center>
+              style: |
+                ha-card {
+                  margin-top: -6px;
+                }
+
+####################################################
+#                                                  #
+#                  HACS Details                    #
+#                                                  #
+####################################################
+        
+            - type: markdown
+              content: >
+                <center>
+                  <h5>HOME ASSISTANT<br> COMMUNITY STORE<br>
+                  Updates: {{ (data | fromjson)['updates'] }}</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -47.5px;
+                }
+
+#################################################################
+#                                                               #
+#                Home Assistant Addons Column 2                 #
+#                                                               #
+#################################################################
+
+####################################################
+#                                                  #
+#                  HASS Update 0                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  {{ (data | fromjson)['hacs0image'] }}
+                </center>
+              style: |
+                ha-card {
+                  margin-top: {{ (data | fromjson)['hacs0imagepx'] }};
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>{{ (data | fromjson)['hacs0name'] }}<br>
+                  Update Available!</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hacs
+              tap_action: 
+                action: navigate
+                navigation_path: /hacs/installed
+              max: 0.1
+              severity:
+                - color: rgb(26,204,147,0.33)
+                  from: 0
+                  to: 0
+                - color: rgb(255,0,0,0.225)
+                  from: 1
+                  to: 100
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                  HACS Update 1                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  {{ (data | fromjson)['hacs1image'] }}
+                </center>
+              style: |
+                ha-card {
+                  margin-top: {{ (data | fromjson)['hacs1imagepx'] }};
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>{{ (data | fromjson)['hacs1name'] }}<br>
+                  Update Available!</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hacs
+              max: 0.1
+              severity:
+                - color: rgb(26,204,147,0.33)
+                  from: 0
+                  to: 1
+                - color: rgb(255,0,0,0.225)
+                  from: 2
+                  to: 100
+              tap_action: 
+                action: navigate
+                navigation_path: /hacs/installed
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                  HACS Update 2                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  {{ (data | fromjson)['hacs2image'] }}
+                </center>
+              style: |
+                ha-card {
+                  margin-top: {{ (data | fromjson)['hacs2imagepx'] }};
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>{{ (data | fromjson)['hacs2name'] }}<br>
+                  Update Available!</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hacs
+              max: 0.1
+              severity:
+                - color: rgb(26,204,147,0.33)
+                  from: 0
+                  to: 2
+                - color: rgb(255,0,0,0.225)
+                  from: 3
+                  to: 100
+              tap_action: 
+                action: navigate
+                navigation_path: /hacs/installed
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                  HACS Update 3                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  {{ (data | fromjson)['hacs3image'] }}
+                </center>
+              style: |
+                ha-card {
+                  margin-top: {{ (data | fromjson)['hacs3imagepx'] }};
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>{{ (data | fromjson)['hacs3name'] }}<br>
+                  Update Available!</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hacs
+              max: 0.1
+              severity:
+                - color: rgb(26,204,147,0.33)
+                  from: 0
+                  to: 3
+                - color: rgb(255,0,0,0.225)
+                  from: 4
+                  to: 100
+              tap_action: 
+                action: navigate
+                navigation_path: /hacs/installed
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                  HACS Update 4                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  {{ (data | fromjson)['hacs4image'] }}
+                </center>
+              style: |
+                ha-card {
+                  margin-top: {{ (data | fromjson)['hacs4imagepx'] }};
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>{{ (data | fromjson)['hacs4name'] }}<br>
+                  Update Available!</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hacs
+              max: 0.1
+              severity:
+                - color: rgb(26,204,147,0.33)
+                  from: 0
+                  to: 4
+                - color: rgb(255,0,0,0.225)
+                  from: 5
+                  to: 100
+              tap_action: 
+                action: navigate
+                navigation_path: /hacs/installed
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                  HACS Update 5                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  {{ (data | fromjson)['hacs5image'] }}
+                </center>
+              style: |
+                ha-card {
+                  margin-top: {{ (data | fromjson)['hacs5imagepx'] }};
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>{{ (data | fromjson)['hacs5name'] }}<br>
+                  Update Available!</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hacs
+              max: 0.1
+              severity:
+                - color: rgb(26,204,147,0.33)
+                  from: 0
+                  to: 5
+                - color: rgb(255,0,0,0.225)
+                  from: 6
+                  to: 100
+              tap_action: 
+                action: navigate
+                navigation_path: /hacs/installed
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                   HACS Update 6                  #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  {{ (data | fromjson)['hacs6image'] }}
+                </center>
+              style: |
+                ha-card {
+                  margin-top: {{ (data | fromjson)['hacs6imagepx'] }};
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>{{ (data | fromjson)['hacs6name'] }}<br>
+                  Update Available!</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hacs
+              max: 0.1
+              severity:
+                - color: rgb(26,204,147,0.33)
+                  from: 0
+                  to: 6
+                - color: rgb(255,0,0,0.225)
+                  from: 7
+                  to: 100
+              tap_action: 
+                action: navigate
+                navigation_path: /hacs/installed
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+
+####################################################
+#                                                  #
+#                  HACS Update 7                   #
+#                                                  #
+####################################################
+   
+        - type: vertical-stack
+          cards:
+            - type: markdown
+              content: >
+                <center>
+                  {{ (data | fromjson)['hacs7image'] }}
+                </center>
+              style: |
+                ha-card {
+                  margin-top: {{ (data | fromjson)['hacs7imagepx'] }};
+                }
+            - type: markdown
+              content: >
+                <center>
+                  <h5>{{ (data | fromjson)['hacs7name'] }}<br>
+                  Update Available!</h5>
+                </center>
+              style: |
+                ha-card {
+                  color: teal;
+                  margin-top: -50px;;
+                }
+            - type: custom:bar-card
+              positions:
+                name: 'off'
+                value: 'off'
+                icon: 'off'
+              width: 100%
+              height: 10px
+              entity: sensor.hacs
+              max: 0.1
+              severity:
+                - color: rgb(26,204,147,0.33)
+                  from: 0
+                  to: 7
+                - color: rgb(255,0,0,0.225)
+                  from: 8
+                  to: 100
+              tap_action: 
+                action: navigate
+                navigation_path: /hacs/installed
+              style: |
+                ha-card {
+                  --paper-item-icon-color: rgb(47,186,229);
+                  height: 10px;
+                }
+                bar-card-backgroundbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+                bar-card-currentbar  {
+                  margin-top: -50px;
+                  border-radius: 2.5px;
+                }
+
+  style: |
+    ha-card {
+      border-radius: 2.5px;
+      height: 132.5px;
+    }
