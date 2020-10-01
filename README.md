@@ -2,10 +2,10 @@
   <img src="https://github.com/JamesMcCarthy79/Home-Assistant-Config/blob/master/HA%20Pics/Kingia%20Castle.png" width="250"/>
 </p>
 <h1 align="center">Kingia Castle Smart Home Configuration</h1>
-<h3 align="center">Home Assistant Configuration &amp; Documentation for my Smart House.</h3>
+<h3 align="center">Home Assistant Configuration &amp; Documentation for My Smart House.</h3>
 <p align="center">
   I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/au.png"/>, and therefor my links are for where I purchased from. There may be better (and most likely cheaper) sites in your local regions.</p>
-<p align="center">Be sure to :star: my repo!</p> 
+<p align="center">Be sure to :star: my Repo!</p> 
 <p align="center">🎧 Listen to Jimpower on Home Assistant Podcast 43 - https://hasspodcast.io/ha043/</p>
 <p align="center">
 <img src="http://hits.dwyl.io/JamesMcCarthy79/Home-Assistant-Config.svg"/>
